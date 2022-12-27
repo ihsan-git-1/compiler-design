@@ -13,17 +13,23 @@ CRLY_BRKT_OP:
 CRLY_BRKT_CL:
 '}'
     ;
+BRKT_OP:
+'('
+    ;
+BRKT_CL:
+')'
+    ;
 
 // operators
-SEMICOLON:
-';';
+SEMICOLON:';';
+COLON:':';
 PLUS: '+';
 EQUAL: '==';
 ASSIGN: '=';
 NOTEQUAL: '!=';
 
 
-// data types
+// variabels data types
 INT :
 'int'
 ;
@@ -40,6 +46,19 @@ STRING_LINE:
  '"' ( ~[\\"] | '\\' . )* '"'
  ;
 
+// widgets and widgets properties
+CONTAINER:
+'Container'
+;
+EXPANDED:
+'Expanded'
+;
+MATERIALBUTTON:
+'MaterialButton'
+;
+CHILD:
+'child'
+;
 
 STATEFULL:
 EXTENDS WS* 'StatefulWidget'
