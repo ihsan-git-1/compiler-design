@@ -126,6 +126,7 @@ dartVariabelsDeclaration:
     |dartListslsDeclaration
     ;
 
+// dart int, string, bool
 integerDeclaration:
     INT
     NAME
@@ -155,9 +156,12 @@ booleans:
     |FALSE
 ;
 
+// dart List<int>, List<String>, List<bool>
+
 dartListslsDeclaration:
 dartListStringDeclaration
 |dartListIntDeclaration
+|dartListBoolDeclaration
 ;
 dartListStringDeclaration :
 LIST
@@ -166,9 +170,10 @@ STRING
 ANGLE_BRKT_CL)?
 NAME
 ASSIGN
-(SQR_BRKT_OP
-STRING_LINE
-(COMMA STRING_LINE)*)*
+SQR_BRKT_OP
+(STRING_LINE
+(COMMA STRING_LINE)*
+)*
 SQR_BRKT_CL
 SEMICOLON
 ;
@@ -180,8 +185,23 @@ ANGLE_BRKT_CL)?
 NAME
 ASSIGN
 SQR_BRKT_OP
-NUMBER
+(NUMBER
 (COMMA NUMBER)*
+)*
+SQR_BRKT_CL
+SEMICOLON
+;
+dartListBoolDeclaration :
+LIST
+(ANGLE_BRKT_OP
+BOOL
+ANGLE_BRKT_CL)?
+NAME
+ASSIGN
+SQR_BRKT_OP
+(booleans
+(COMMA booleans)*
+)*
 SQR_BRKT_CL
 SEMICOLON
 ;
