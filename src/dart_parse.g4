@@ -123,6 +123,7 @@ dartVariabelsDeclaration:
     integerDeclaration
     |stringDeclaration
     |boolDeclaration
+    |dartListslsDeclaration
     ;
 
 integerDeclaration:
@@ -154,7 +155,36 @@ booleans:
     |FALSE
 ;
 
-
+dartListslsDeclaration:
+dartListStringDeclaration
+|dartListIntDeclaration
+;
+dartListStringDeclaration :
+LIST
+(ANGLE_BRKT_OP
+STRING
+ANGLE_BRKT_CL)?
+NAME
+ASSIGN
+(SQR_BRKT_OP
+STRING_LINE
+(COMMA STRING_LINE)*)*
+SQR_BRKT_CL
+SEMICOLON
+;
+dartListIntDeclaration :
+LIST
+(ANGLE_BRKT_OP
+INT
+ANGLE_BRKT_CL)?
+NAME
+ASSIGN
+SQR_BRKT_OP
+NUMBER
+(COMMA NUMBER)*
+SQR_BRKT_CL
+SEMICOLON
+;
 
 
 // flutter declaration
