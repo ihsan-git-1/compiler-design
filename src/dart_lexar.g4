@@ -25,7 +25,12 @@ BRKT_OP:
 BRKT_CL:
 ')'
     ;
-
+SQR_BRKT_OP:
+'['
+    ;
+SQR_BRKT_CL:
+']'
+    ;
 // operators
 SEMICOLON:';';
 COMMA:',';
@@ -46,6 +51,9 @@ STRING :
 ;
 BOOL :
 'bool'
+;
+LIST :
+'List'
 ;
 EXTENDS:
 'extends'
