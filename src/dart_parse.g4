@@ -117,13 +117,12 @@ declaration:
     |flutterVariabelsDeclaration
     ;
 
-
 // dart declarations
 dartVariabelsDeclaration:
     integerDeclaration
     |stringDeclaration
     |boolDeclaration
-    |dartListslsDeclaration
+    |dartAllListsDeclaration
     ;
 
 // dart int, string, bool
@@ -158,7 +157,7 @@ booleans:
 
 // dart List<int>, List<String>, List<bool>
 
-dartListslsDeclaration:
+dartAllListsDeclaration:
 dartListStringDeclaration
 |dartListIntDeclaration
 |dartListBoolDeclaration
@@ -174,6 +173,7 @@ SQR_BRKT_OP
 (STRING_LINE
 (COMMA STRING_LINE)*
 )*
+COMMA?
 SQR_BRKT_CL
 SEMICOLON
 ;
@@ -188,6 +188,7 @@ SQR_BRKT_OP
 (NUMBER
 (COMMA NUMBER)*
 )*
+COMMA?
 SQR_BRKT_CL
 SEMICOLON
 ;
@@ -202,6 +203,7 @@ SQR_BRKT_OP
 (booleans
 (COMMA booleans)*
 )*
+COMMA?
 SQR_BRKT_CL
 SEMICOLON
 ;
@@ -213,12 +215,22 @@ widgetsDeclaration:
     conatinerDeclaration
     |expandedDeclaration
     |materialButtonDeclaration
+    |materialAppDeclaration
 ;
 
 expandedDeclaration:
     EXPANDED
     BRKT_OP
     childPropertyDeclaration
+    COMMA?
+    BRKT_CL
+;
+
+materialAppDeclaration:
+    MATERIALAPP
+    BRKT_OP
+    homePropertyDeclaration
+    COMMA?
     BRKT_CL
 ;
 
@@ -226,13 +238,16 @@ materialButtonDeclaration:
     MATERIALBUTTON
     BRKT_OP
     childPropertyDeclaration
+    COMMA?
     BRKT_CL
 ;
 
 conatinerDeclaration:
     CONTAINER
     BRKT_OP
-    conatinerPropertiesDeclaration*
+    conatinerPropertiesDeclaration?
+    (COMMA conatinerPropertiesDeclaration)*
+    COMMA?
     BRKT_CL
     ;
 
@@ -252,14 +267,20 @@ heightPropertyDeclaration:
     HEIGHT
     COLON
     NUMBER
-    COMMA
     ;
 
 widthPropertyDeclaration:
     WIDTH
     COLON
     NUMBER
-    COMMA
+    ;
+
+homePropertyDeclaration:
+    HOME
+    COLON
+    NAME
+    BRKT_OP
+    BRKT_CL
     ;
 
 childPropertyDeclaration:
