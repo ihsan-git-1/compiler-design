@@ -20,128 +20,164 @@ classDeclaration :
     CRLY_BRKT_CL
     ;
 
-statefullClassDeclaration :
-    CLASS NAME
-    STATEFULL
-    CRLY_BRKT_OP
-    declaration*
-    CRLY_BRKT_CL
-    ;
-
 statelessClassDeclaration :
     CLASS NAME
     STATELESS
     CRLY_BRKT_OP
     declaration*
     CRLY_BRKT_CL
-;
+    ;
 
+statefullClassDeclaration :
+    CLASS NAME
+    STATEFULL
+    CRLY_BRKT_OP
+    statefullAssignStateClassDeclaration
+    CRLY_BRKT_CL
+    ;
+
+statefullAssignStateClassDeclaration:
+    STATE
+    ANGLE_BRKT_OP
+    NAME
+    ANGLE_BRKT_CL
+    CREATESTATE
+    BRKT_OP
+    BRKT_CL
+    returnStateTypes
+    ;
+returnStateTypes:
+    returnArrowState
+    |functionReturnState
+    ;
+functionReturnState:
+    CRLY_BRKT_OP
+    RETURN
+    NAME
+    BRKT_OP
+    BRKT_CL
+    SEMICOLON
+    CRLY_BRKT_CL
+    ;
+
+returnArrowState:
+    ASSIGN
+    ANGLE_BRKT_CL
+    NAME
+    BRKT_OP
+    BRKT_CL
+    SEMICOLON
+    ;
 declaration:
-dartVariabelsDeclaration
-|widgetsDeclaration
-|flutterVariabelsDeclaration
-;
+    dartVariabelsDeclaration
+    |widgetsDeclaration
+    |flutterVariabelsDeclaration
+    ;
+
+
 
 // dart declarations
 dartVariabelsDeclaration:
-integerDeclaration
-|stringDeclaration
-|boolDeclaration
-;
+    integerDeclaration
+    |stringDeclaration
+    |boolDeclaration
+    ;
 
 integerDeclaration:
-INT
-NAME
-ASSIGN
-NUMBER
-SEMICOLON
+    INT
+    NAME
+    ASSIGN
+    NUMBER
+    SEMICOLON
 ;
 
 stringDeclaration:
-STRING
-NAME
-ASSIGN
-STRING_LINE
-SEMICOLON
+    STRING
+    NAME
+    ASSIGN
+    STRING_LINE
+    SEMICOLON
 ;
 
 boolDeclaration:
-BOOL
-NAME
-ASSIGN
-booleans
-SEMICOLON
+    BOOL
+    NAME
+    ASSIGN
+    booleans
+    SEMICOLON
 ;
 
 booleans:
-TRUE
-|FALSE
+    TRUE
+    |FALSE
 ;
+
+
 
 
 // flutter declaration
 
 widgetsDeclaration:
-conatinerDeclaration
-|expandedDeclaration
-|materialButtonDeclaration
+    conatinerDeclaration
+    |expandedDeclaration
+    |materialButtonDeclaration
 ;
 
 expandedDeclaration:
-EXPANDED
-BRKT_OP
-childPropertyDeclaration
-BRKT_CL
+    EXPANDED
+    BRKT_OP
+    childPropertyDeclaration
+    BRKT_CL
 ;
 
 materialButtonDeclaration:
-MATERIALBUTTON
-BRKT_OP
-childPropertyDeclaration
-BRKT_CL
+    MATERIALBUTTON
+    BRKT_OP
+    childPropertyDeclaration
+    BRKT_CL
 ;
 
 conatinerDeclaration:
-CONTAINER
-BRKT_OP
-conatinerPropertiesDeclaration*
-BRKT_CL
-;
+    CONTAINER
+    BRKT_OP
+    conatinerPropertiesDeclaration*
+    BRKT_CL
+    ;
 
 conatinerPropertiesDeclaration:
-heightPropertyDeclaration
-|widthPropertyDeclaration
-|childPropertyDeclaration
-;
+    heightPropertyDeclaration
+    |widthPropertyDeclaration
+    |childPropertyDeclaration
+    ;
 
 heightPropertyDeclaration:
-HEIGHT
-COLON
-NUMBER
-COMMA
-;
+    HEIGHT
+    COLON
+    NUMBER
+    COMMA
+    ;
 
 widthPropertyDeclaration:
-WIDTH
-COLON
-NUMBER
-COMMA
-;
+    WIDTH
+    COLON
+    NUMBER
+    COMMA
+    ;
 
 childPropertyDeclaration:
-CHILD
-COLON
-widgetsDeclaration
-;
+    CHILD
+    COLON
+    widgetsDeclaration
+    ;
 
 flutterVariabelsDeclaration:
-buildContextDeclaration
-;
+    buildContextDeclaration
+    ;
 
 buildContextDeclaration:
-BUILDCONTEXT
-NAME
-;
+    BUILDCONTEXT
+    NAME
+    ;
 
 
 
