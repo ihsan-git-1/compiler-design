@@ -13,6 +13,12 @@ CRLY_BRKT_OP:
 CRLY_BRKT_CL:
 '}'
     ;
+ANGLE_BRKT_OP:
+'<'
+    ;
+ANGLE_BRKT_CL:
+'>'
+    ;
 BRKT_OP:
 '('
     ;
@@ -31,7 +37,7 @@ NOTEQUAL: '!=';
 
 
 
-// variabels data types
+// dart variabels data types
 INT :
 'int'
 ;
@@ -44,12 +50,28 @@ BOOL :
 EXTENDS:
 'extends'
 ;
-BUILDCONTEXT:
-'BuildContext'
+RETURN:
+'return'
 ;
 STRING_LINE:
  '"' ( ~[\\"] | '\\' . )* '"'
  ;
+
+
+ // flutter variabels data types
+
+BUILDCONTEXT:
+'BuildContext'
+;
+STATE:
+'State'
+;
+CREATE:
+'create'
+;
+CREATESTATE:
+'createState'
+;
 
 // widgets and widgets properties
 CONTAINER:
