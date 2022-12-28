@@ -14,16 +14,19 @@ allClassesDeclaration:
     ;
 
 classDeclaration :
-    CLASS NAME
+    CLASS
+    NAME
     CRLY_BRKT_OP
-    declaration*
+    dartVariabelsDeclaration*
     CRLY_BRKT_CL
     ;
 
 statelessClassDeclaration :
-    CLASS NAME
+    CLASS
+    NAME
     STATELESS
     CRLY_BRKT_OP
+    dartVariabelsDeclaration*
     buildMethodDeclaration
     CRLY_BRKT_CL
     ;
@@ -38,6 +41,7 @@ stfulFirstBody:
     NAME
     STATEFULL
     CRLY_BRKT_OP
+    dartVariabelsDeclaration*
     statefullAssignStateClassDeclaration
     CRLY_BRKT_CL
 ;
@@ -51,6 +55,7 @@ stfulSecondBody:
     NAME
     ANGLE_BRKT_CL
     CRLY_BRKT_OP
+    dartVariabelsDeclaration*
     buildMethodDeclaration
     CRLY_BRKT_CL
 ;
@@ -97,11 +102,11 @@ buildMethodDeclaration:
     buildContextDeclaration
     BRKT_CL
     CRLY_BRKT_OP
+    dartVariabelsDeclaration*
     RETURN
-    declaration+
+    widgetsDeclaration+
     SEMICOLON
     CRLY_BRKT_CL
-
 ;
 
 
@@ -180,6 +185,12 @@ conatinerDeclaration:
     conatinerPropertiesDeclaration*
     BRKT_CL
     ;
+
+
+
+
+// flutter widgets properties declaration
+
 
 conatinerPropertiesDeclaration:
     heightPropertyDeclaration
