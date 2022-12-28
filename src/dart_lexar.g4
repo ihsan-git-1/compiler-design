@@ -108,7 +108,12 @@ HEIGHT:
 COLOR:
 'color'
 ;
-
+MATERIALAPP:
+'MaterialApp'
+;
+HOME:
+'home'
+;
 
 STATEFULL:
 EXTENDS WS* 'StatefulWidget'
@@ -133,5 +138,11 @@ NUMBER:
 ;
 COMMENT
  : '//' ~[\r\n]* -> skip
+ ;
+OVERRIDE
+ : '@' ~[\r\n]* -> skip
+ ;
+PRIVATE
+ : '_' ~[\r\n]* -> skip
  ;
 WS : [ \t\n\r]+ -> skip ;
