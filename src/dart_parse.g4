@@ -2,64 +2,48 @@
 parser grammar dart_parse;
 options { tokenVocab=dart_lexar; }
 
-// declare start code
+// base declarations start code
 topTreeDeclaration :
-    classDeclaration*
+    allClassesDeclaration*
+    ;
+
+allClassesDeclaration:
+    classDeclaration
+    |statefullClassDeclaration
+    |statelessClassDeclaration
     ;
 
 classDeclaration :
     CLASS NAME
-    classExtender?
+    CRLY_BRKT_OP
+    declaration*
+    CRLY_BRKT_CL
+    ;
+
+statefullClassDeclaration :
+    CLASS NAME
+    STATEFULL
+    CRLY_BRKT_OP
+    declaration*
+    CRLY_BRKT_CL
+    ;
+
+statelessClassDeclaration :
+    CLASS NAME
+    STATELESS
     CRLY_BRKT_OP
     declaration*
     CRLY_BRKT_CL
 ;
 
-classExtender:
-STATELESS
-|STATEFULL
-;
-
 declaration:
-variabelsDeclaration
+dartVariabelsDeclaration
 |widgetsDeclaration
+|flutterVariabelsDeclaration
 ;
 
-widgetsDeclaration:
-conatinerDeclaration
-|widgetsWithRequiredChildDeclaration
-;
-
-widgetsWithRequiredChildDeclaration:
-
-widgetsWithRequiredChildNames
-
-BRKT_OP
-
-childPropertyDeclaration
-
-BRKT_CL
-;
-
-widgetsWithRequiredChildNames:
-EXPANDED
-|MATERIALBUTTON
-;
-
-conatinerDeclaration:
-CONTAINER
-BRKT_OP
-childPropertyDeclaration?
-BRKT_CL
-;
-
-childPropertyDeclaration:
-CHILD
-COLON
-widgetsDeclaration
-;
-
-variabelsDeclaration:
+// dart declarations
+dartVariabelsDeclaration:
 integerDeclaration
 |stringDeclaration
 |boolDeclaration
@@ -93,6 +77,73 @@ booleans:
 TRUE
 |FALSE
 ;
+
+
+// flutter declaration
+
+widgetsDeclaration:
+conatinerDeclaration
+|expandedDeclaration
+|materialButtonDeclaration
+;
+
+expandedDeclaration:
+EXPANDED
+BRKT_OP
+childPropertyDeclaration
+BRKT_CL
+;
+
+materialButtonDeclaration:
+MATERIALBUTTON
+BRKT_OP
+childPropertyDeclaration
+BRKT_CL
+;
+
+conatinerDeclaration:
+CONTAINER
+BRKT_OP
+conatinerPropertiesDeclaration*
+BRKT_CL
+;
+
+conatinerPropertiesDeclaration:
+heightPropertyDeclaration
+|widthPropertyDeclaration
+|childPropertyDeclaration
+;
+
+heightPropertyDeclaration:
+HEIGHT
+COLON
+NUMBER
+COMMA
+;
+
+widthPropertyDeclaration:
+WIDTH
+COLON
+NUMBER
+COMMA
+;
+
+childPropertyDeclaration:
+CHILD
+COLON
+widgetsDeclaration
+;
+
+flutterVariabelsDeclaration:
+buildContextDeclaration
+;
+
+buildContextDeclaration:
+BUILDCONTEXT
+NAME
+;
+
+
 
 
 

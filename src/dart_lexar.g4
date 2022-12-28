@@ -22,11 +22,13 @@ BRKT_CL:
 
 // operators
 SEMICOLON:';';
+COMMA:',';
 COLON:':';
 PLUS: '+';
 EQUAL: '==';
 ASSIGN: '=';
 NOTEQUAL: '!=';
+
 
 
 // variabels data types
@@ -41,6 +43,9 @@ BOOL :
 ;
 EXTENDS:
 'extends'
+;
+BUILDCONTEXT:
+'BuildContext'
 ;
 STRING_LINE:
  '"' ( ~[\\"] | '\\' . )* '"'
@@ -59,6 +64,16 @@ MATERIALBUTTON:
 CHILD:
 'child'
 ;
+WIDTH:
+'width'
+;
+HEIGHT:
+'height'
+;
+COLOR:
+'color'
+;
+
 
 STATEFULL:
 EXTENDS WS* 'StatefulWidget'
