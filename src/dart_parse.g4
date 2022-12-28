@@ -24,17 +24,36 @@ statelessClassDeclaration :
     CLASS NAME
     STATELESS
     CRLY_BRKT_OP
-    declaration*
+    buildMethodDeclaration
     CRLY_BRKT_CL
     ;
 
 statefullClassDeclaration :
-    CLASS NAME
+    stfulFirstBody
+    stfulSecondBody
+    ;
+
+stfulFirstBody:
+    CLASS
+    NAME
     STATEFULL
     CRLY_BRKT_OP
     statefullAssignStateClassDeclaration
     CRLY_BRKT_CL
-    ;
+;
+
+stfulSecondBody:
+    CLASS
+    NAME
+    EXTENDS
+    STATE
+    ANGLE_BRKT_OP
+    NAME
+    ANGLE_BRKT_CL
+    CRLY_BRKT_OP
+    buildMethodDeclaration
+    CRLY_BRKT_CL
+;
 
 statefullAssignStateClassDeclaration:
     STATE
@@ -46,10 +65,12 @@ statefullAssignStateClassDeclaration:
     BRKT_CL
     returnStateTypes
     ;
+
 returnStateTypes:
     returnArrowState
     |functionReturnState
     ;
+
 functionReturnState:
     CRLY_BRKT_OP
     RETURN
@@ -68,12 +89,28 @@ returnArrowState:
     BRKT_CL
     SEMICOLON
     ;
+
+buildMethodDeclaration:
+    WIDGET
+    BUILD
+    BRKT_OP
+    buildContextDeclaration
+    BRKT_CL
+    CRLY_BRKT_OP
+    RETURN
+    declaration+
+    SEMICOLON
+    CRLY_BRKT_CL
+
+;
+
+
+// top tree body declarations
 declaration:
     dartVariabelsDeclaration
     |widgetsDeclaration
     |flutterVariabelsDeclaration
     ;
-
 
 
 // dart declarations

@@ -72,7 +72,12 @@ CREATE:
 CREATESTATE:
 'createState'
 ;
-
+WIDGET:
+'Widget'
+;
+BUILD:
+'build'
+;
 // widgets and widgets properties
 CONTAINER:
 'Container'
