@@ -107,7 +107,7 @@ buildMethodDeclaration:
     widgetsDeclaration+
     SEMICOLON
     CRLY_BRKT_CL
-;
+    ;
 
 
 // top tree body declarations
@@ -132,7 +132,7 @@ integerDeclaration:
     ASSIGN
     NUMBER
     SEMICOLON
-;
+    ;
 
 stringDeclaration:
     STRING
@@ -140,7 +140,7 @@ stringDeclaration:
     ASSIGN
     STRING_LINE
     SEMICOLON
-;
+    ;
 
 boolDeclaration:
     BOOL
@@ -148,65 +148,66 @@ boolDeclaration:
     ASSIGN
     booleans
     SEMICOLON
-;
+    ;
 
 booleans:
     TRUE
     |FALSE
-;
+    ;
 
 // dart List<int>, List<String>, List<bool>
 
 dartAllListsDeclaration:
-dartListStringDeclaration
-|dartListIntDeclaration
-|dartListBoolDeclaration
-;
+    dartListStringDeclaration
+    |dartListIntDeclaration
+    |dartListBoolDeclaration
+    ;
 dartListStringDeclaration :
-LIST
-(ANGLE_BRKT_OP
-STRING
-ANGLE_BRKT_CL)?
-NAME
-ASSIGN
-SQR_BRKT_OP
-(STRING_LINE
-(COMMA STRING_LINE)*
-)*
-COMMA?
-SQR_BRKT_CL
-SEMICOLON
-;
+    LIST
+    (ANGLE_BRKT_OP
+    STRING
+    ANGLE_BRKT_CL)?
+    NAME
+    ASSIGN
+    SQR_BRKT_OP
+    (STRING_LINE
+    (COMMA STRING_LINE)*
+    )?
+    COMMA?
+    SQR_BRKT_CL
+    SEMICOLON
+    ;
+
 dartListIntDeclaration :
-LIST
-(ANGLE_BRKT_OP
-INT
-ANGLE_BRKT_CL)?
-NAME
-ASSIGN
-SQR_BRKT_OP
-(NUMBER
-(COMMA NUMBER)*
-)*
-COMMA?
-SQR_BRKT_CL
-SEMICOLON
-;
+    LIST
+    (ANGLE_BRKT_OP
+    INT
+    ANGLE_BRKT_CL)?
+    NAME
+    ASSIGN
+    SQR_BRKT_OP
+    (NUMBER
+    (COMMA NUMBER)*
+    )?
+    COMMA?
+    SQR_BRKT_CL
+    SEMICOLON
+    ;
 dartListBoolDeclaration :
-LIST
-(ANGLE_BRKT_OP
-BOOL
-ANGLE_BRKT_CL)?
-NAME
-ASSIGN
-SQR_BRKT_OP
-(booleans
-(COMMA booleans)*
-)*
-COMMA?
-SQR_BRKT_CL
-SEMICOLON
-;
+    LIST
+    (ANGLE_BRKT_OP
+    BOOL
+    ANGLE_BRKT_CL)?
+    NAME
+    ASSIGN
+    SQR_BRKT_OP
+    (booleans
+    (COMMA booleans)*
+    )?
+    COMMA?
+    SQR_BRKT_CL
+    SEMICOLON
+    ;
 
 
 // flutter declaration
@@ -216,6 +217,11 @@ widgetsDeclaration:
     |expandedDeclaration
     |materialButtonDeclaration
     |materialAppDeclaration
+    |scaffoldDeclaration
+    |paddingDeclaration
+    |rowColumnDeclaration
+    |textDeclaration
+    |imageDeclaration
 ;
 
 expandedDeclaration:
@@ -224,7 +230,33 @@ expandedDeclaration:
     childPropertyDeclaration
     COMMA?
     BRKT_CL
-;
+    ;
+paddingDeclaration:
+    PADDING
+    BRKT_OP
+   ((paddingPropertyDeclaration COMMA
+     childPropertyDeclaration)
+    |(
+    childPropertyDeclaration COMMA
+    paddingPropertyDeclaration
+    ))
+    COMMA?
+    BRKT_CL
+    ;
+scaffoldDeclaration:
+    SCAFFOLD
+    BRKT_OP
+    bodyPropertyDeclaration
+    COMMA?
+    BRKT_CL
+    ;
+textDeclaration:
+    TEXT
+    BRKT_OP
+    STRING_LINE
+    COMMA?
+    BRKT_CL
+    ;
 
 materialAppDeclaration:
     MATERIALAPP
@@ -232,7 +264,7 @@ materialAppDeclaration:
     homePropertyDeclaration
     COMMA?
     BRKT_CL
-;
+    ;
 
 materialButtonDeclaration:
     MATERIALBUTTON
@@ -240,7 +272,7 @@ materialButtonDeclaration:
     childPropertyDeclaration
     COMMA?
     BRKT_CL
-;
+    ;
 
 conatinerDeclaration:
     CONTAINER
@@ -250,7 +282,22 @@ conatinerDeclaration:
     COMMA?
     BRKT_CL
     ;
-
+rowColumnDeclaration:
+(ROW|COLUMN)
+BRKT_OP
+childrenPropertyDeclaration
+COMMA?
+BRKT_CL
+COMMA?
+;
+imageDeclaration:
+IMAGE
+DOT
+NETWORK
+BRKT_OP
+(NAME|STRING_LINE)
+BRKT_CL
+;
 
 
 
@@ -263,6 +310,19 @@ conatinerPropertiesDeclaration:
     |childPropertyDeclaration
     ;
 
+paddingPropertyDeclaration:
+ PADDINGSMALL
+ COLON
+ edgeInsistAll
+;
+edgeInsistAll:
+    EDGEINSETS
+    DOT
+    ALL
+    BRKT_OP
+    NUMBER
+    BRKT_CL
+    ;
 heightPropertyDeclaration:
     HEIGHT
     COLON
@@ -285,6 +345,21 @@ homePropertyDeclaration:
 
 childPropertyDeclaration:
     CHILD
+    COLON
+    widgetsDeclaration
+    ;
+
+childrenPropertyDeclaration:
+    CHILDREN
+    COLON
+    SQR_BRKT_OP
+    (widgetsDeclaration
+    (COMMA widgetsDeclaration)*)?
+    COMMA?
+    SQR_BRKT_CL
+    ;
+bodyPropertyDeclaration:
+    BODY
     COLON
     widgetsDeclaration
     ;

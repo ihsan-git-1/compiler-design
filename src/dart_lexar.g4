@@ -39,6 +39,7 @@ PLUS: '+';
 EQUAL: '==';
 ASSIGN: '=';
 NOTEQUAL: '!=';
+DOT: '.';
 
 
 
@@ -61,6 +62,10 @@ EXTENDS:
 RETURN:
 'return'
 ;
+ALL:
+'all'
+;
+
 STRING_LINE:
  '"' ( ~[\\"] | '\\' . )* '"'
  ;
@@ -86,6 +91,7 @@ WIDGET:
 BUILD:
 'build'
 ;
+
 // widgets and widgets properties
 CONTAINER:
 'Container'
@@ -113,6 +119,39 @@ MATERIALAPP:
 ;
 HOME:
 'home'
+;
+SCAFFOLD:
+'Scaffold'
+;
+PADDING:
+'Padding'
+;
+PADDINGSMALL:
+'padding'
+;
+EDGEINSETS:
+'EdgeInsets'
+;
+ROW:
+'Row'
+;
+COLUMN:
+'Column'
+;
+IMAGE:
+'Image'
+;
+BODY:
+'body'
+;
+TEXT:
+'Text'
+;
+NETWORK:
+'network'
+;
+CHILDREN:
+'children'
 ;
 
 STATEFULL:
