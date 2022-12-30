@@ -127,27 +127,27 @@ variable
 integerDeclaration:
     INT
     NAME
-    ASSIGN
-    addExpression
+    (ASSIGN
+    addExpression)?
     ;
 doubleDeclaration:
     DOUBLE
     NAME
-    ASSIGN
-    addDoubleExpression
+    (ASSIGN
+    addDoubleExpression)?
     ;
 stringDeclaration:
     STRING
     NAME
-    ASSIGN
-    STRING_LINE
+    (ASSIGN
+    STRING_LINE)?
     ;
 
 boolDeclaration:
     BOOL
     NAME
-    ASSIGN
-    booleans
+    (ASSIGN
+    booleans)?
     ;
 
 addExpression
@@ -157,6 +157,7 @@ addExpression
 multiplyExpression
     :   NUMBER (('*' | '/') NUMBER)*
     ;
+
 addDoubleExpression
     :   multiplyDoubleExpression (('+' | '-') multiplyDoubleExpression)*
     ;
@@ -377,10 +378,6 @@ bodyPropertyDeclaration:
     BODY
     COLON
     widgetsDeclaration
-    ;
-
-flutterVariabelsDeclaration:
-    buildContextDeclaration
     ;
 
 buildContextDeclaration:
