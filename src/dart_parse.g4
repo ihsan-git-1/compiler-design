@@ -110,36 +110,37 @@ buildMethodDeclaration:
     ;
 
 
-// top tree body declarations
-declaration:
-    dartVariabelsDeclaration
-    |widgetsDeclaration
-    |flutterVariabelsDeclaration
-    ;
-
 // dart declarations
 dartVariabelsDeclaration:
-    integerDeclaration
-    |stringDeclaration
-    |boolDeclaration
+    variable
     |dartAllListsDeclaration
     ;
 
 // dart int, string, bool
+
+variable
+    :(FINAL | CONST )?
+    (integerDeclaration|stringDeclaration|boolDeclaration|doubleDeclaration)
+    SEMICOLON
+    ;
+
 integerDeclaration:
     INT
     NAME
     ASSIGN
-    NUMBER
-    SEMICOLON
+    addExpression
     ;
-
+doubleDeclaration:
+    DOUBLE
+    NAME
+    ASSIGN
+    addDoubleExpression
+    ;
 stringDeclaration:
     STRING
     NAME
     ASSIGN
     STRING_LINE
-    SEMICOLON
     ;
 
 boolDeclaration:
@@ -147,7 +148,21 @@ boolDeclaration:
     NAME
     ASSIGN
     booleans
-    SEMICOLON
+    ;
+
+addExpression
+    :   multiplyExpression (('+' | '-') multiplyExpression)*
+    ;
+
+multiplyExpression
+    :   NUMBER (('*' | '/') NUMBER)*
+    ;
+addDoubleExpression
+    :   multiplyDoubleExpression (('+' | '-') multiplyDoubleExpression)*
+    ;
+
+multiplyDoubleExpression
+    :   NUMBER|NUMBERDOUBLE (('*' | '/') NUMBER|NUMBERDOUBLE)*
     ;
 
 booleans:
@@ -283,21 +298,21 @@ conatinerDeclaration:
     BRKT_CL
     ;
 rowColumnDeclaration:
-(ROW|COLUMN)
-BRKT_OP
-childrenPropertyDeclaration
-COMMA?
-BRKT_CL
-COMMA?
-;
+    (ROW|COLUMN)
+    BRKT_OP
+    childrenPropertyDeclaration
+    COMMA?
+    BRKT_CL
+    COMMA?
+    ;
 imageDeclaration:
-IMAGE
-DOT
-NETWORK
-BRKT_OP
-(NAME|STRING_LINE)
-BRKT_CL
-;
+    IMAGE
+    DOT
+    NETWORK
+    BRKT_OP
+    (NAME|STRING_LINE)
+    BRKT_CL
+    ;
 
 
 
@@ -311,10 +326,10 @@ conatinerPropertiesDeclaration:
     ;
 
 paddingPropertyDeclaration:
- PADDINGSMALL
- COLON
- edgeInsistAll
-;
+    PADDINGSMALL
+    COLON
+    edgeInsistAll
+    ;
 edgeInsistAll:
     EDGEINSETS
     DOT

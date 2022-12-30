@@ -36,6 +36,9 @@ SEMICOLON:';';
 COMMA:',';
 COLON:':';
 PLUS: '+';
+MINUS: '-';
+MULTY:'*';
+DIVIDE:'/';
 EQUAL: '==';
 ASSIGN: '=';
 NOTEQUAL: '!=';
@@ -53,6 +56,9 @@ STRING :
 BOOL :
 'bool'
 ;
+DOUBLE:
+'double'
+;
 LIST :
 'List'
 ;
@@ -65,9 +71,18 @@ RETURN:
 ALL:
 'all'
 ;
-
+FINAL:
+'final'
+;
+CONST:
+'const'
+;
+VAR:
+'var'
+;
 STRING_LINE:
  '"' ( ~[\\"] | '\\' . )* '"'
+  |'\'' ( ~[\\"] | '\\' . )* '\''
  ;
 
 
@@ -153,6 +168,9 @@ NETWORK:
 CHILDREN:
 'children'
 ;
+DYNAMIC:
+'dynamic'
+;
 
 STATEFULL:
 EXTENDS WS* 'StatefulWidget'
@@ -171,7 +189,7 @@ FALSE:
 NAME :
 [a-zA-Z]+
     ;
-
+NUMBERDOUBLE : [0-9]+ '.' [0-9]+ ;
 NUMBER:
 [0-9][0-9]*
 ;
