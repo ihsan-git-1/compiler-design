@@ -125,26 +125,26 @@ variable
     ;
 
 integerDeclaration:
-    INT
+    INT?
     NAME
     (ASSIGN
     addExpression)?
     ;
 doubleDeclaration:
-    DOUBLE
+    DOUBLE?
     NAME
     (ASSIGN
     addDoubleExpression)?
     ;
 stringDeclaration:
-    STRING
+    STRING?
     NAME
     (ASSIGN
     STRING_LINE)?
     ;
 
 boolDeclaration:
-    BOOL
+    BOOL?
     NAME
     (ASSIGN
     booleans)?
