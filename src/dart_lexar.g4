@@ -175,6 +175,7 @@ DYNAMIC:
 STATEFULL:
 EXTENDS WS* 'StatefulWidget'
     ;
+
 STATELESS:
 EXTENDS WS* 'StatelessWidget'
     ;

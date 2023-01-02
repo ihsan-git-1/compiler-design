@@ -1,6 +1,6 @@
 //reules
 parser grammar dart_parse;
-options { tokenVocab=dart_lexar; }
+options {tokenVocab=dart_lexar;}
 
 // base declarations start code
 topTreeDeclaration :
@@ -118,9 +118,12 @@ dartVariabelsDeclaration:
 
 // dart int, string, bool
 
-variable
-    :(FINAL | CONST )?
-    (integerDeclaration|stringDeclaration|boolDeclaration|doubleDeclaration)
+variable:
+    (FINAL | CONST)?
+    (integerDeclaration
+    |stringDeclaration
+    |boolDeclaration
+    |doubleDeclaration)
     SEMICOLON
     ;
 
@@ -151,7 +154,7 @@ boolDeclaration:
     ;
 
 addExpression
-    :   multiplyExpression (('+' | '-') multiplyExpression)*
+    :   multiplyExpression (('+'|'-') multiplyExpression)*
     ;
 
 multiplyExpression
@@ -159,7 +162,7 @@ multiplyExpression
     ;
 
 addDoubleExpression
-    :   multiplyDoubleExpression (('+' | '-') multiplyDoubleExpression)*
+    :   multiplyDoubleExpression(('+'|'-')multiplyDoubleExpression)*
     ;
 
 multiplyDoubleExpression
@@ -384,13 +387,3 @@ buildContextDeclaration:
     BUILDCONTEXT
     NAME
     ;
-
-
-
-
-
-
-
-
-
-
