@@ -133,6 +133,7 @@ integerDeclaration:
     (ASSIGN
     addExpression)?
     ;
+
 doubleDeclaration:
     DOUBLE?
     NAME
@@ -353,7 +354,6 @@ widthPropertyDeclaration:
     COLON
     NUMBER
     ;
-
 homePropertyDeclaration:
     HOME
     COLON
