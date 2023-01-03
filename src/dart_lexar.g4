@@ -171,7 +171,6 @@ CHILDREN:
 DYNAMIC:
 'dynamic'
 ;
-
 STATEFULL:
 EXTENDS WS* 'StatefulWidget'
     ;

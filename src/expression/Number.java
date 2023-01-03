@@ -6,7 +6,7 @@ public class Number extends Expression{
     public Number(int num){
         this.num = num;
     }
-    public String toString() {
+    public String toString(){
         return String.valueOf(num);
     }
 }
