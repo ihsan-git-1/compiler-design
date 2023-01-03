@@ -159,7 +159,7 @@ addExpression
     ;
 
 multiplyExpression
-    :   NUMBER (('*' | '/') NUMBER)*
+    :   number (('*' | '/') number)*
     ;
 
 addDoubleExpression
@@ -167,7 +167,7 @@ addDoubleExpression
     ;
 
 multiplyDoubleExpression
-    :   NUMBER|NUMBERDOUBLE (('*' | '/') NUMBER|NUMBERDOUBLE)*
+    :   number|numberDouble (('*' | '/') number|numberDouble)*
     ;
 
 booleans:
@@ -206,8 +206,8 @@ dartListIntDeclaration :
     NAME
     ASSIGN
     SQR_BRKT_OP
-    (NUMBER
-    (COMMA NUMBER)*
+    (number
+    (COMMA number)*
     )?
     COMMA?
     SQR_BRKT_CL
@@ -340,19 +340,19 @@ edgeInsistAll:
     DOT
     ALL
     BRKT_OP
-    NUMBER
+    number
     BRKT_CL
     ;
 heightPropertyDeclaration:
     HEIGHT
     COLON
-    NUMBER
+    number
     ;
 
 widthPropertyDeclaration:
     WIDTH
     COLON
-    NUMBER
+    number
     ;
 homePropertyDeclaration:
     HOME
@@ -387,3 +387,10 @@ buildContextDeclaration:
     BUILDCONTEXT
     NAME
     ;
+number:
+NUMBER
+;
+numberDouble:
+NUMBERDOUBLE
+;
+
