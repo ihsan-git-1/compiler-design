@@ -3,12 +3,23 @@ import ast.nodes.TopTreeDeclaration;
 import gen.dart_parse;
 import gen.dart_parseBaseVisitor;
 
+
 public class NodesVisitor extends dart_parseBaseVisitor {
 
     @Override
-    public Object visitTopTreeDeclaration(dart_parse.TopTreeDeclarationContext ctx) {
-       return visitChildren(ctx);
-   }
+    public TopTreeDeclaration visitTopTreeDeclaration(dart_parse.TopTreeDeclarationContext ctx) {
+        TopTreeDeclaration topTreeDeclaration = new TopTreeDeclaration();
+
+        for (int i = 0; i < ctx.children.size() ; i++) {
+
+            if(ctx.children.get(i) != null) {
+                topTreeDeclaration.getTopTreeChildren().add(new ClassDeclaration());
+            }
+
+        }
+        return topTreeDeclaration;
+    }
+
     @Override
     public Object visitAllClassesDeclaration(dart_parse.AllClassesDeclarationContext ctx) {
         return super.visitAllClassesDeclaration(ctx);
