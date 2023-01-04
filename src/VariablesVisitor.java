@@ -34,10 +34,10 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
 
     @Override
     public DoubleDeclaration visitDoubleDeclaration(dart_parse.DoubleDeclarationContext ctx) {
-        String name = String.valueOf(ctx.get);
+        String name = String.valueOf(ctx.NAME());
         return new DoubleDeclaration(new AddDoubleExpression(ctx.addDoubleExpression()), name);
         //TODO : figure out why addDoubleExpression() is DoubleDeclarationContext
-        // todo : Solved just create an object from the received context
+        //todo solved: just create object from recived context
     }
 
     @Override
