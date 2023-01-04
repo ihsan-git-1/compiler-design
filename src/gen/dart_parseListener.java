@@ -497,14 +497,4 @@ public interface dart_parseListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitNumberDouble(dart_parse.NumberDoubleContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link dart_parse#name}.
-	 * @param ctx the parse tree
-	 */
-	void enterName(dart_parse.NameContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link dart_parse#name}.
-	 * @param ctx the parse tree
-	 */
-	void exitName(dart_parse.NameContext ctx);
 }

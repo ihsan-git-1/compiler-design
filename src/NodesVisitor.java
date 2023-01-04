@@ -1,6 +1,4 @@
-import ast.nodes.ClassDeclaration;
-import ast.nodes.TopTreeDeclaration;
-import ast.nodes.TopTreeDeclarationAbstractChild;
+import ast.nodes.*;
 import gen.dart_parse;
 import gen.dart_parseBaseVisitor;
 
@@ -14,24 +12,24 @@ public class NodesVisitor extends dart_parseBaseVisitor {
             if(ctx.allClassesDeclaration().get(i) != null) {
                 topTreeDeclaration
                         .getTopTreeChildrenList()
-                        .add((TopTreeDeclarationAbstractChild) visitAllClassesDeclaration(ctx.allClassesDeclaration(i)));
+                        .add(visitAllClassesDeclaration(ctx.allClassesDeclaration(i)));
             }
         }
         return topTreeDeclaration;
     }
 
     @Override
-    public Object visitAllClassesDeclaration(dart_parse.AllClassesDeclarationContext ctx) {
-        return super.visitAllClassesDeclaration(ctx);
+    public AllClassesDeclarationAbstractChild visitAllClassesDeclaration(dart_parse.AllClassesDeclarationContext ctx) {
+        return visitClassDeclaration(ctx.classDeclaration());
     }
 
     @Override
-    public Object visitClassDeclaration(dart_parse.ClassDeclarationContext ctx) {
-        ClassDeclaration classDec = new ClassDeclaration();
+    public ClassDeclaration visitClassDeclaration(dart_parse.ClassDeclarationContext ctx) {
+        ClassDeclaration classDec = new ClassDeclaration(ctx.NAME().toString());
         for (int i = 0; i < ctx.dartVariabelsDeclaration().size(); i++) {
             //  classDec.addChildren(ctx.dartVariabelsDeclaration().get(i));
         }
-        return super.visitClassDeclaration(ctx);
+        return classDec;
     }
 
     @Override

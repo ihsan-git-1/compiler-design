@@ -304,10 +304,4 @@ public interface dart_parseVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitNumberDouble(dart_parse.NumberDoubleContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link dart_parse#name}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitName(dart_parse.NameContext ctx);
 }
