@@ -600,18 +600,6 @@ public class dart_parseBaseListener implements dart_parseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitNumberDouble(dart_parse.NumberDoubleContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterName(dart_parse.NameContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitName(dart_parse.NameContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

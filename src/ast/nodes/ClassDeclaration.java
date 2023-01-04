@@ -20,6 +20,6 @@ public class ClassDeclaration extends AllClassesDeclarationAbstractChild {
 	
 	@Override
 	public String toString() {
-		return  name;
+		return  "Class "+ name;
 	}
 }
