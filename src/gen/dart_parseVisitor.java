@@ -1,4 +1,4 @@
-// Generated from java-escape by ANTLR 4.11.1
+package gen;// Generated from C:/Users/Lenovo/IdeaProjects/compiler-1/src\dart_parse.g4 by ANTLR 4.10.1
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -291,4 +291,16 @@ public interface dart_parseVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitBuildContextDeclaration(dart_parse.BuildContextDeclarationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link dart_parse#number}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNumber(dart_parse.NumberContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link dart_parse#numberDouble}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNumberDouble(dart_parse.NumberDoubleContext ctx);
 }
