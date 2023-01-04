@@ -15,7 +15,7 @@ allClassesDeclaration:
 
 classDeclaration :
     CLASS
-    NAME
+    name
     CRLY_BRKT_OP
     dartVariabelsDeclaration*
     CRLY_BRKT_CL
@@ -23,7 +23,7 @@ classDeclaration :
 
 statelessClassDeclaration :
     CLASS
-    NAME
+    name
     STATELESS
     CRLY_BRKT_OP
     dartVariabelsDeclaration*
@@ -38,7 +38,7 @@ statefullClassDeclaration :
 
 stfulFirstBody:
     CLASS
-    NAME
+    name
     STATEFULL
     CRLY_BRKT_OP
     dartVariabelsDeclaration*
@@ -48,11 +48,11 @@ stfulFirstBody:
 
 stfulSecondBody:
     CLASS
-    NAME
+    name
     EXTENDS
     STATE
     ANGLE_BRKT_OP
-    NAME
+    name
     ANGLE_BRKT_CL
     CRLY_BRKT_OP
     dartVariabelsDeclaration*
@@ -63,7 +63,7 @@ stfulSecondBody:
 statefullAssignStateClassDeclaration:
     STATE
     ANGLE_BRKT_OP
-    NAME
+    name
     ANGLE_BRKT_CL
     CREATESTATE
     BRKT_OP
@@ -79,7 +79,7 @@ returnStateTypes:
 functionReturnState:
     CRLY_BRKT_OP
     RETURN
-    NAME
+    name
     BRKT_OP
     BRKT_CL
     SEMICOLON
@@ -89,7 +89,7 @@ functionReturnState:
 returnArrowState:
     ASSIGN
     ANGLE_BRKT_CL
-    NAME
+    name
     BRKT_OP
     BRKT_CL
     SEMICOLON
@@ -129,27 +129,27 @@ variable:
 
 integerDeclaration:
     INT?
-    NAME
+    name
     (ASSIGN
     addExpression)?
     ;
 
 doubleDeclaration:
     DOUBLE?
-    NAME
+    name
     (ASSIGN
     addDoubleExpression)?
     ;
 stringDeclaration:
     STRING?
-    NAME
+    name
     (ASSIGN
     STRING_LINE)?
     ;
 
 boolDeclaration:
     BOOL?
-    NAME
+    name
     (ASSIGN
     booleans)?
     ;
@@ -187,7 +187,7 @@ dartListStringDeclaration :
     (ANGLE_BRKT_OP
     STRING
     ANGLE_BRKT_CL)?
-    NAME
+    name
     ASSIGN
     SQR_BRKT_OP
     (STRING_LINE
@@ -203,7 +203,7 @@ dartListIntDeclaration :
     (ANGLE_BRKT_OP
     INT
     ANGLE_BRKT_CL)?
-    NAME
+    name
     ASSIGN
     SQR_BRKT_OP
     (number
@@ -218,7 +218,7 @@ dartListBoolDeclaration :
     (ANGLE_BRKT_OP
     BOOL
     ANGLE_BRKT_CL)?
-    NAME
+    name
     ASSIGN
     SQR_BRKT_OP
     (booleans
@@ -315,7 +315,7 @@ imageDeclaration:
     DOT
     NETWORK
     BRKT_OP
-    (NAME|STRING_LINE)
+    (name|STRING_LINE)
     BRKT_CL
     ;
 
@@ -357,7 +357,7 @@ widthPropertyDeclaration:
 homePropertyDeclaration:
     HOME
     COLON
-    NAME
+    name
     BRKT_OP
     BRKT_CL
     ;
@@ -385,12 +385,15 @@ bodyPropertyDeclaration:
 
 buildContextDeclaration:
     BUILDCONTEXT
-    NAME
+    name
     ;
 number:
 NUMBER
 ;
 numberDouble:
 NUMBERDOUBLE
+;
+name:
+NAME
 ;
 

@@ -27,7 +27,7 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
 
     @Override
     public BooleanDeclaration visitBoolDeclaration(dart_parse.BoolDeclarationContext ctx) {
-        String name = String.valueOf(ctx.NAME());
+        String name = String.valueOf(ctx.name());
         TerminalNode bool = ctx.BOOL();
         return new BooleanDeclaration(name, bool);
     }
@@ -47,7 +47,7 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
 
     @Override
     public StringDeclaration visitStringDeclaration(dart_parse.StringDeclarationContext ctx) {
-        String name = String.valueOf(ctx.NAME());
+        String name = String.valueOf(ctx.name());
         String stringLine = String.valueOf(ctx.STRING_LINE());
         return new StringDeclaration(name, stringLine);
     }
