@@ -4,29 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TopTreeDeclaration extends Node{
-	List<TopTreeDeclarationAbstractChild> topTreeChildren;
-
-	public List<TopTreeDeclarationAbstractChild> getTopTreeChildren() {
-		return topTreeChildren;
+	List<TopTreeDeclarationAbstractChild> topTreeChildrenList;
+	public List<TopTreeDeclarationAbstractChild> getTopTreeChildrenList() {
+		return topTreeChildrenList;
 	}
-
-	public void setTopTreeChildren(List<TopTreeDeclarationAbstractChild> topTreeChildren) {
-		this.topTreeChildren = topTreeChildren;
+	public void setTopTreeChildrenList(List<TopTreeDeclarationAbstractChild> topTreeChildrenList) {
+		this.topTreeChildrenList = topTreeChildrenList;
 	}
 
 	public TopTreeDeclaration() {
-		this.topTreeChildren = new ArrayList<>();
+		this.topTreeChildrenList = new ArrayList<>();
 	}
-	//Todo : return to top class
-	//TopTreeDeclarationAbstractChild
 	public void addChildren(TopTreeDeclarationAbstractChild c) {
-		topTreeChildren.add(c);
+		topTreeChildrenList.add(c);
 	}
 
 	@Override
 	public String toString() {
 		return  "Page{" +
-				"TopTreeDeclarationList" + topTreeChildren +
-				"}";
+				"\nTopTreeDeclarationList" + topTreeChildrenList +
+				"\n}";
 	}
 }

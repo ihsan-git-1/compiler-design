@@ -10,9 +10,11 @@ public class NodesVisitor extends dart_parseBaseVisitor {
     @Override
     public TopTreeDeclaration visitTopTreeDeclaration(dart_parse.TopTreeDeclarationContext ctx) {
         TopTreeDeclaration topTreeDeclaration = new TopTreeDeclaration();
-        for (int i = 0; i < ctx.children.size() ; i++) {
-            if(ctx.children.get(i) != null) {
-                topTreeDeclaration.getTopTreeChildren().add(new ClassDeclaration());
+        for (int i = 0; i < ctx.allClassesDeclaration().size() ; i++) {
+            if(ctx.allClassesDeclaration().get(i) != null) {
+                topTreeDeclaration
+                        .getTopTreeChildrenList()
+                        .add((TopTreeDeclarationAbstractChild) visitAllClassesDeclaration(ctx.allClassesDeclaration(i)));
             }
         }
         return topTreeDeclaration;
@@ -28,8 +30,6 @@ public class NodesVisitor extends dart_parseBaseVisitor {
         ClassDeclaration classDec = new ClassDeclaration();
         for (int i = 0; i < ctx.dartVariabelsDeclaration().size(); i++) {
             //  classDec.addChildren(ctx.dartVariabelsDeclaration().get(i));
-
-
         }
         return super.visitClassDeclaration(ctx);
     }
