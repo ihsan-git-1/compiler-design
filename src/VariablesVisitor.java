@@ -32,18 +32,18 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
         return new BooleanDeclaration(name, bool);
     }
 
-    @Override
-    public DoubleDeclaration visitDoubleDeclaration(dart_parse.DoubleDeclarationContext ctx) {
-        String name = String.valueOf(ctx.NAME());
-        return new DoubleDeclaration(new AddDoubleExpression(ctx.addDoubleExpression()), name);
-        //TODO : figure out why addDoubleExpression() is DoubleDeclarationContext
-        //todo solved: just create object from recived context
-    }
+//    @Override
+//    public DoubleDeclaration visitDoubleDeclaration(dart_parse.DoubleDeclarationContext ctx) {
+//        String name = String.valueOf(ctx.NAME());
+//        return new DoubleDeclaration(new AddDoubleExpression(ctx.addDoubleExpression()), name);
+//        //TODO : figure out why addDoubleExpression() is DoubleDeclarationContext
+//        //todo solved: just create object from recived context
+//    }
 
-    @Override
-    public Object visitIntegerDeclaration(dart_parse.IntegerDeclarationContext ctx) {
-        return new IntegerDeclaration(String.valueOf(ctx.NAME()), ctx.addExpression());
-    }
+//    @Override
+//    public Object visitIntegerDeclaration(dart_parse.IntegerDeclarationContext ctx) {
+//        return new IntegerDeclaration(String.valueOf(ctx.NAME()), ctx.addExpression());
+//    }
 
     @Override
     public StringDeclaration visitStringDeclaration(dart_parse.StringDeclarationContext ctx) {
@@ -52,9 +52,9 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
         return new StringDeclaration(name, stringLine);
     }
 
-    @Override
-    public Object visitVariable(dart_parse.VariableContext ctx) {
-
-    }
+//    @Override
+//    public Object visitVariable(dart_parse.VariableContext ctx) {
+//
+//    }
 
 }

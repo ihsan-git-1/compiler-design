@@ -6,11 +6,11 @@ import java.util.ArrayList;
 public class ClassDeclaration extends AllClassesDeclarationAbstractChild {
 	List<DartVariablesDeclaration> children;
 	String name;
-	
+
 	public ClassDeclaration() {
-		this.children=new ArrayList<>();
+		this.children = new ArrayList<>();
 	}
-	
+
 	public void addChildren(DartVariablesDeclaration variable) {
 		children.add(variable);
 	}
