@@ -1,10 +1,14 @@
 import ast.nodes.ClassDeclaration;
+import ast.nodes.TopTreeDeclaration;
 import gen.dart_parse;
 import gen.dart_parseBaseVisitor;
 
 public class NodesVisitor extends dart_parseBaseVisitor {
 
-
+    @Override
+    public Object visitTopTreeDeclaration(dart_parse.TopTreeDeclarationContext ctx) {
+       return visitChildren(ctx);
+   }
     @Override
     public Object visitAllClassesDeclaration(dart_parse.AllClassesDeclarationContext ctx) {
         return super.visitAllClassesDeclaration(ctx);
