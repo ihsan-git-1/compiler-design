@@ -1,5 +1,6 @@
 import ast.nodes.ClassDeclaration;
 import ast.nodes.TopTreeDeclaration;
+import ast.nodes.TopTreeDeclarationAbstractChild;
 import gen.dart_parse;
 import gen.dart_parseBaseVisitor;
 
