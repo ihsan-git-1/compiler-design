@@ -21,6 +21,7 @@ public class Main {
         dart_parse parser = new dart_parse(token);
         ParseTree tree = parser.topTreeDeclaration();
         TopTreeDeclaration doc = (TopTreeDeclaration) new NodesVisitor().visit(tree);
+        System.out.println(doc);
     }
 
 }
