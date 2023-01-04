@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TopTreeDeclaration extends Node{
-	List<ClassDeclaration> topTreeChildren;
+	List<TopTreeDeclarationAbstractChild> topTreeChildren;
 
-	public List<ClassDeclaration> getTopTreeChildren() {
+	public List<TopTreeDeclarationAbstractChild> getTopTreeChildren() {
 		return topTreeChildren;
 	}
 
-	public void setTopTreeChildren(List<ClassDeclaration> topTreeChildren) {
+	public void setTopTreeChildren(List<TopTreeDeclarationAbstractChild> topTreeChildren) {
 		this.topTreeChildren = topTreeChildren;
 	}
 
@@ -19,7 +19,7 @@ public class TopTreeDeclaration extends Node{
 	}
 	//Todo : return to top class
 	//TopTreeDeclarationAbstractChild
-	public void addChildren(ClassDeclaration c) {
+	public void addChildren(TopTreeDeclarationAbstractChild c) {
 		topTreeChildren.add(c);
 	}
 
