@@ -163,11 +163,11 @@ multiplyExpression
     ;
 
 addDoubleExpression
-    :   multiplyDoubleExpression(('+'|'-')multiplyDoubleExpression)*
+    :   multiplyDoubleExpression (('+'|'-') multiplyDoubleExpression)*
     ;
 
 multiplyDoubleExpression
-    :   number|numberDouble (('*' | '/') number|numberDouble)*
+    :   (number|numberDouble) (('*' | '/') (number|numberDouble))*
     ;
 
 booleans:
