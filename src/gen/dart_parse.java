@@ -1,4 +1,5 @@
-package gen;// Generated from C:/Users/Lenovo/IdeaProjects/compiler-1/src\dart_parse.g4 by ANTLR 4.10.1
+// Generated from java-escape by ANTLR 4.11.1
+package gen;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -8,9 +9,9 @@ import java.util.List;
 import java.util.Iterator;
 import java.util.ArrayList;
 
-@SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
+@SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast", "CheckReturnValue"})
 public class dart_parse extends Parser {
-	static { RuntimeMetaData.checkVersion("4.10.1", RuntimeMetaData.VERSION); }
+	static { RuntimeMetaData.checkVersion("4.11.1", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
 	protected static final PredictionContextCache _sharedContextCache =
@@ -130,7 +131,7 @@ public class dart_parse extends Parser {
 	}
 
 	@Override
-	public String getGrammarFileName() { return "dart_parse.g4"; }
+	public String getGrammarFileName() { return "java-escape"; }
 
 	@Override
 	public String[] getRuleNames() { return ruleNames; }
@@ -146,6 +147,7 @@ public class dart_parse extends Parser {
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class TopTreeDeclarationContext extends ParserRuleContext {
 		public List<AllClassesDeclarationContext> allClassesDeclaration() {
 			return getRuleContexts(AllClassesDeclarationContext.class);
@@ -206,6 +208,7 @@ public class dart_parse extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class AllClassesDeclarationContext extends ParserRuleContext {
 		public ClassDeclarationContext classDeclaration() {
 			return getRuleContext(ClassDeclarationContext.class,0);
@@ -276,6 +279,7 @@ public class dart_parse extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class ClassDeclarationContext extends ParserRuleContext {
 		public TerminalNode CLASS() { return getToken(dart_parse.CLASS, 0); }
 		public TerminalNode NAME() { return getToken(dart_parse.NAME, 0); }
@@ -322,7 +326,7 @@ public class dart_parse extends Parser {
 			setState(115);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (((((_la - 21)) & ~0x3f) == 0 && ((1L << (_la - 21)) & ((1L << (INT - 21)) | (1L << (STRING - 21)) | (1L << (BOOL - 21)) | (1L << (DOUBLE - 21)) | (1L << (LIST - 21)) | (1L << (FINAL - 21)) | (1L << (CONST - 21)) | (1L << (NAME - 21)))) != 0)) {
+			while ((((_la - 21)) & ~0x3f) == 0 && ((1L << (_la - 21)) & 8796093023007L) != 0) {
 				{
 				{
 				setState(112);
@@ -348,6 +352,7 @@ public class dart_parse extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class StatelessClassDeclarationContext extends ParserRuleContext {
 		public TerminalNode CLASS() { return getToken(dart_parse.CLASS, 0); }
 		public TerminalNode NAME() { return getToken(dart_parse.NAME, 0); }
@@ -400,7 +405,7 @@ public class dart_parse extends Parser {
 			setState(127);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (((((_la - 21)) & ~0x3f) == 0 && ((1L << (_la - 21)) & ((1L << (INT - 21)) | (1L << (STRING - 21)) | (1L << (BOOL - 21)) | (1L << (DOUBLE - 21)) | (1L << (LIST - 21)) | (1L << (FINAL - 21)) | (1L << (CONST - 21)) | (1L << (NAME - 21)))) != 0)) {
+			while ((((_la - 21)) & ~0x3f) == 0 && ((1L << (_la - 21)) & 8796093023007L) != 0) {
 				{
 				{
 				setState(124);
@@ -428,6 +433,7 @@ public class dart_parse extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class StatefullClassDeclarationContext extends ParserRuleContext {
 		public StfulFirstBodyContext stfulFirstBody() {
 			return getRuleContext(StfulFirstBodyContext.class,0);
@@ -477,6 +483,7 @@ public class dart_parse extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class StfulFirstBodyContext extends ParserRuleContext {
 		public TerminalNode CLASS() { return getToken(dart_parse.CLASS, 0); }
 		public TerminalNode NAME() { return getToken(dart_parse.NAME, 0); }
@@ -529,7 +536,7 @@ public class dart_parse extends Parser {
 			setState(143);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (((((_la - 21)) & ~0x3f) == 0 && ((1L << (_la - 21)) & ((1L << (INT - 21)) | (1L << (STRING - 21)) | (1L << (BOOL - 21)) | (1L << (DOUBLE - 21)) | (1L << (LIST - 21)) | (1L << (FINAL - 21)) | (1L << (CONST - 21)) | (1L << (NAME - 21)))) != 0)) {
+			while ((((_la - 21)) & ~0x3f) == 0 && ((1L << (_la - 21)) & 8796093023007L) != 0) {
 				{
 				{
 				setState(140);
@@ -557,6 +564,7 @@ public class dart_parse extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class StfulSecondBodyContext extends ParserRuleContext {
 		public TerminalNode CLASS() { return getToken(dart_parse.CLASS, 0); }
 		public List<TerminalNode> NAME() { return getTokens(dart_parse.NAME); }
@@ -623,7 +631,7 @@ public class dart_parse extends Parser {
 			setState(160);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (((((_la - 21)) & ~0x3f) == 0 && ((1L << (_la - 21)) & ((1L << (INT - 21)) | (1L << (STRING - 21)) | (1L << (BOOL - 21)) | (1L << (DOUBLE - 21)) | (1L << (LIST - 21)) | (1L << (FINAL - 21)) | (1L << (CONST - 21)) | (1L << (NAME - 21)))) != 0)) {
+			while ((((_la - 21)) & ~0x3f) == 0 && ((1L << (_la - 21)) & 8796093023007L) != 0) {
 				{
 				{
 				setState(157);
@@ -651,6 +659,7 @@ public class dart_parse extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class StatefullAssignStateClassDeclarationContext extends ParserRuleContext {
 		public TerminalNode STATE() { return getToken(dart_parse.STATE, 0); }
 		public TerminalNode ANGLE_BRKT_OP() { return getToken(dart_parse.ANGLE_BRKT_OP, 0); }
@@ -716,6 +725,7 @@ public class dart_parse extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class ReturnStateTypesContext extends ParserRuleContext {
 		public ReturnArrowStateContext returnArrowState() {
 			return getRuleContext(ReturnArrowStateContext.class,0);
@@ -778,6 +788,7 @@ public class dart_parse extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class FunctionReturnStateContext extends ParserRuleContext {
 		public TerminalNode CRLY_BRKT_OP() { return getToken(dart_parse.CRLY_BRKT_OP, 0); }
 		public TerminalNode RETURN() { return getToken(dart_parse.RETURN, 0); }
@@ -838,6 +849,7 @@ public class dart_parse extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class ReturnArrowStateContext extends ParserRuleContext {
 		public TerminalNode ASSIGN() { return getToken(dart_parse.ASSIGN, 0); }
 		public TerminalNode ANGLE_BRKT_CL() { return getToken(dart_parse.ANGLE_BRKT_CL, 0); }
@@ -895,6 +907,7 @@ public class dart_parse extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class BuildMethodDeclarationContext extends ParserRuleContext {
 		public TerminalNode WIDGET() { return getToken(dart_parse.WIDGET, 0); }
 		public TerminalNode BUILD() { return getToken(dart_parse.BUILD, 0); }
@@ -960,7 +973,7 @@ public class dart_parse extends Parser {
 			setState(203);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (((((_la - 21)) & ~0x3f) == 0 && ((1L << (_la - 21)) & ((1L << (INT - 21)) | (1L << (STRING - 21)) | (1L << (BOOL - 21)) | (1L << (DOUBLE - 21)) | (1L << (LIST - 21)) | (1L << (FINAL - 21)) | (1L << (CONST - 21)) | (1L << (NAME - 21)))) != 0)) {
+			while ((((_la - 21)) & ~0x3f) == 0 && ((1L << (_la - 21)) & 8796093023007L) != 0) {
 				{
 				{
 				setState(200);
@@ -986,7 +999,7 @@ public class dart_parse extends Parser {
 				setState(210); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << CONTAINER) | (1L << EXPANDED) | (1L << MATERIALBUTTON) | (1L << MATERIALAPP) | (1L << SCAFFOLD) | (1L << PADDING) | (1L << ROW) | (1L << COLUMN) | (1L << IMAGE) | (1L << TEXT))) != 0) );
+			} while ( ((_la) & ~0x3f) == 0 && ((1L << _la) & 104501433394528256L) != 0 );
 			setState(212);
 			match(SEMICOLON);
 			setState(213);
@@ -1004,6 +1017,7 @@ public class dart_parse extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class DartVariabelsDeclarationContext extends ParserRuleContext {
 		public VariableContext variable() {
 			return getRuleContext(VariableContext.class,0);
@@ -1072,6 +1086,7 @@ public class dart_parse extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class VariableContext extends ParserRuleContext {
 		public TerminalNode SEMICOLON() { return getToken(dart_parse.SEMICOLON, 0); }
 		public IntegerDeclarationContext integerDeclaration() {
@@ -1175,6 +1190,7 @@ public class dart_parse extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class IntegerDeclarationContext extends ParserRuleContext {
 		public TerminalNode NAME() { return getToken(dart_parse.NAME, 0); }
 		public TerminalNode INT() { return getToken(dart_parse.INT, 0); }
@@ -1245,6 +1261,7 @@ public class dart_parse extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class DoubleDeclarationContext extends ParserRuleContext {
 		public TerminalNode NAME() { return getToken(dart_parse.NAME, 0); }
 		public TerminalNode DOUBLE() { return getToken(dart_parse.DOUBLE, 0); }
@@ -1315,6 +1332,7 @@ public class dart_parse extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class StringDeclarationContext extends ParserRuleContext {
 		public TerminalNode NAME() { return getToken(dart_parse.NAME, 0); }
 		public TerminalNode STRING() { return getToken(dart_parse.STRING, 0); }
@@ -1383,6 +1401,7 @@ public class dart_parse extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class BoolDeclarationContext extends ParserRuleContext {
 		public TerminalNode NAME() { return getToken(dart_parse.NAME, 0); }
 		public TerminalNode BOOL() { return getToken(dart_parse.BOOL, 0); }
@@ -1453,6 +1472,7 @@ public class dart_parse extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class AddExpressionContext extends ParserRuleContext {
 		public List<MultiplyExpressionContext> multiplyExpression() {
 			return getRuleContexts(MultiplyExpressionContext.class);
@@ -1533,6 +1553,7 @@ public class dart_parse extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class MultiplyExpressionContext extends ParserRuleContext {
 		public List<NumberContext> number() {
 			return getRuleContexts(NumberContext.class);
@@ -1613,6 +1634,7 @@ public class dart_parse extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class AddDoubleExpressionContext extends ParserRuleContext {
 		public List<MultiplyDoubleExpressionContext> multiplyDoubleExpression() {
 			return getRuleContexts(MultiplyDoubleExpressionContext.class);
@@ -1693,6 +1715,7 @@ public class dart_parse extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class MultiplyDoubleExpressionContext extends ParserRuleContext {
 		public List<NumberContext> number() {
 			return getRuleContexts(NumberContext.class);
@@ -1756,7 +1779,7 @@ public class dart_parse extends Parser {
 				setState(293);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				while (((((_la - 15)) & ~0x3f) == 0 && ((1L << (_la - 15)) & ((1L << (MULTY - 15)) | (1L << (DIVIDE - 15)) | (1L << (NUMBERDOUBLE - 15)))) != 0)) {
+				while ((((_la - 15)) & ~0x3f) == 0 && ((1L << (_la - 15)) & 1125899906842627L) != 0) {
 					{
 					setState(291);
 					_errHandler.sync(this);
@@ -1809,6 +1832,7 @@ public class dart_parse extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class BooleansContext extends ParserRuleContext {
 		public TerminalNode TRUE() { return getToken(dart_parse.TRUE, 0); }
 		public TerminalNode FALSE() { return getToken(dart_parse.FALSE, 0); }
@@ -1861,6 +1885,7 @@ public class dart_parse extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class DartAllListsDeclarationContext extends ParserRuleContext {
 		public DartListStringDeclarationContext dartListStringDeclaration() {
 			return getRuleContext(DartListStringDeclarationContext.class,0);
@@ -1931,6 +1956,7 @@ public class dart_parse extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class DartListStringDeclarationContext extends ParserRuleContext {
 		public TerminalNode LIST() { return getToken(dart_parse.LIST, 0); }
 		public TerminalNode NAME() { return getToken(dart_parse.NAME, 0); }
@@ -2053,6 +2079,7 @@ public class dart_parse extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class DartListIntDeclarationContext extends ParserRuleContext {
 		public TerminalNode LIST() { return getToken(dart_parse.LIST, 0); }
 		public TerminalNode NAME() { return getToken(dart_parse.NAME, 0); }
@@ -2177,6 +2204,7 @@ public class dart_parse extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class DartListBoolDeclarationContext extends ParserRuleContext {
 		public TerminalNode LIST() { return getToken(dart_parse.LIST, 0); }
 		public TerminalNode NAME() { return getToken(dart_parse.NAME, 0); }
@@ -2301,6 +2329,7 @@ public class dart_parse extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class WidgetsDeclarationContext extends ParserRuleContext {
 		public ConatinerDeclarationContext conatinerDeclaration() {
 			return getRuleContext(ConatinerDeclarationContext.class,0);
@@ -2434,6 +2463,7 @@ public class dart_parse extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class ExpandedDeclarationContext extends ParserRuleContext {
 		public TerminalNode EXPANDED() { return getToken(dart_parse.EXPANDED, 0); }
 		public TerminalNode BRKT_OP() { return getToken(dart_parse.BRKT_OP, 0); }
@@ -2499,6 +2529,7 @@ public class dart_parse extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class PaddingDeclarationContext extends ParserRuleContext {
 		public TerminalNode PADDING() { return getToken(dart_parse.PADDING, 0); }
 		public TerminalNode BRKT_OP() { return getToken(dart_parse.BRKT_OP, 0); }
@@ -2598,6 +2629,7 @@ public class dart_parse extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class ScaffoldDeclarationContext extends ParserRuleContext {
 		public TerminalNode SCAFFOLD() { return getToken(dart_parse.SCAFFOLD, 0); }
 		public TerminalNode BRKT_OP() { return getToken(dart_parse.BRKT_OP, 0); }
@@ -2663,6 +2695,7 @@ public class dart_parse extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class TextDeclarationContext extends ParserRuleContext {
 		public TerminalNode TEXT() { return getToken(dart_parse.TEXT, 0); }
 		public TerminalNode BRKT_OP() { return getToken(dart_parse.BRKT_OP, 0); }
@@ -2726,6 +2759,7 @@ public class dart_parse extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class MaterialAppDeclarationContext extends ParserRuleContext {
 		public TerminalNode MATERIALAPP() { return getToken(dart_parse.MATERIALAPP, 0); }
 		public TerminalNode BRKT_OP() { return getToken(dart_parse.BRKT_OP, 0); }
@@ -2791,6 +2825,7 @@ public class dart_parse extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class MaterialButtonDeclarationContext extends ParserRuleContext {
 		public TerminalNode MATERIALBUTTON() { return getToken(dart_parse.MATERIALBUTTON, 0); }
 		public TerminalNode BRKT_OP() { return getToken(dart_parse.BRKT_OP, 0); }
@@ -2856,6 +2891,7 @@ public class dart_parse extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class ConatinerDeclarationContext extends ParserRuleContext {
 		public TerminalNode CONTAINER() { return getToken(dart_parse.CONTAINER, 0); }
 		public TerminalNode BRKT_OP() { return getToken(dart_parse.BRKT_OP, 0); }
@@ -2904,7 +2940,7 @@ public class dart_parse extends Parser {
 			setState(451);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << CHILD) | (1L << WIDTH) | (1L << HEIGHT))) != 0)) {
+			if (((_la) & ~0x3f) == 0 && ((1L << _la) & 30786325577728L) != 0) {
 				{
 				setState(450);
 				conatinerPropertiesDeclaration();
@@ -2954,6 +2990,7 @@ public class dart_parse extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class RowColumnDeclarationContext extends ParserRuleContext {
 		public TerminalNode BRKT_OP() { return getToken(dart_parse.BRKT_OP, 0); }
 		public ChildrenPropertyDeclarationContext childrenPropertyDeclaration() {
@@ -3041,6 +3078,7 @@ public class dart_parse extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class ImageDeclarationContext extends ParserRuleContext {
 		public TerminalNode IMAGE() { return getToken(dart_parse.IMAGE, 0); }
 		public TerminalNode DOT() { return getToken(dart_parse.DOT, 0); }
@@ -3108,6 +3146,7 @@ public class dart_parse extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class ConatinerPropertiesDeclarationContext extends ParserRuleContext {
 		public HeightPropertyDeclarationContext heightPropertyDeclaration() {
 			return getRuleContext(HeightPropertyDeclarationContext.class,0);
@@ -3180,6 +3219,7 @@ public class dart_parse extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class PaddingPropertyDeclarationContext extends ParserRuleContext {
 		public TerminalNode PADDINGSMALL() { return getToken(dart_parse.PADDINGSMALL, 0); }
 		public TerminalNode COLON() { return getToken(dart_parse.COLON, 0); }
@@ -3230,6 +3270,7 @@ public class dart_parse extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class EdgeInsistAllContext extends ParserRuleContext {
 		public TerminalNode EDGEINSETS() { return getToken(dart_parse.EDGEINSETS, 0); }
 		public TerminalNode DOT() { return getToken(dart_parse.DOT, 0); }
@@ -3289,6 +3330,7 @@ public class dart_parse extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class HeightPropertyDeclarationContext extends ParserRuleContext {
 		public TerminalNode HEIGHT() { return getToken(dart_parse.HEIGHT, 0); }
 		public TerminalNode COLON() { return getToken(dart_parse.COLON, 0); }
@@ -3339,6 +3381,7 @@ public class dart_parse extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class WidthPropertyDeclarationContext extends ParserRuleContext {
 		public TerminalNode WIDTH() { return getToken(dart_parse.WIDTH, 0); }
 		public TerminalNode COLON() { return getToken(dart_parse.COLON, 0); }
@@ -3389,6 +3432,7 @@ public class dart_parse extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class HomePropertyDeclarationContext extends ParserRuleContext {
 		public TerminalNode HOME() { return getToken(dart_parse.HOME, 0); }
 		public TerminalNode COLON() { return getToken(dart_parse.COLON, 0); }
@@ -3443,6 +3487,7 @@ public class dart_parse extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class ChildPropertyDeclarationContext extends ParserRuleContext {
 		public TerminalNode CHILD() { return getToken(dart_parse.CHILD, 0); }
 		public TerminalNode COLON() { return getToken(dart_parse.COLON, 0); }
@@ -3493,6 +3538,7 @@ public class dart_parse extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class ChildrenPropertyDeclarationContext extends ParserRuleContext {
 		public TerminalNode CHILDREN() { return getToken(dart_parse.CHILDREN, 0); }
 		public TerminalNode COLON() { return getToken(dart_parse.COLON, 0); }
@@ -3544,7 +3590,7 @@ public class dart_parse extends Parser {
 			setState(527);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << CONTAINER) | (1L << EXPANDED) | (1L << MATERIALBUTTON) | (1L << MATERIALAPP) | (1L << SCAFFOLD) | (1L << PADDING) | (1L << ROW) | (1L << COLUMN) | (1L << IMAGE) | (1L << TEXT))) != 0)) {
+			if (((_la) & ~0x3f) == 0 && ((1L << _la) & 104501433394528256L) != 0) {
 				{
 				setState(519);
 				widgetsDeclaration();
@@ -3594,6 +3640,7 @@ public class dart_parse extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class BodyPropertyDeclarationContext extends ParserRuleContext {
 		public TerminalNode BODY() { return getToken(dart_parse.BODY, 0); }
 		public TerminalNode COLON() { return getToken(dart_parse.COLON, 0); }
@@ -3644,6 +3691,7 @@ public class dart_parse extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class BuildContextDeclarationContext extends ParserRuleContext {
 		public TerminalNode BUILDCONTEXT() { return getToken(dart_parse.BUILDCONTEXT, 0); }
 		public TerminalNode NAME() { return getToken(dart_parse.NAME, 0); }
@@ -3689,6 +3737,7 @@ public class dart_parse extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class NumberContext extends ParserRuleContext {
 		public TerminalNode NUMBER() { return getToken(dart_parse.NUMBER, 0); }
 		public NumberContext(ParserRuleContext parent, int invokingState) {
@@ -3731,6 +3780,7 @@ public class dart_parse extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class NumberDoubleContext extends ParserRuleContext {
 		public TerminalNode NUMBERDOUBLE() { return getToken(dart_parse.NUMBERDOUBLE, 0); }
 		public NumberDoubleContext(ParserRuleContext parent, int invokingState) {
