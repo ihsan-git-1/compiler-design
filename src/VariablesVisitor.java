@@ -4,6 +4,7 @@ import gen.dart_parseBaseVisitor;
 import org.antlr.v4.runtime.Token;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class VariablesVisitor extends dart_parseBaseVisitor {
@@ -13,8 +14,8 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
 
     @Override
     public NumberClass visitNumber(dart_parse.NumberContext ctx) {
-      String numText = ctx.getChild(0).getText();
-      int num = Integer.parseInt(numText);
+        String numText = ctx.getChild(0).getText();
+        int num = Integer.parseInt(numText);
         return new NumberClass(num);
 
     }
@@ -24,12 +25,12 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
         // INT() is a method generated from the grammar INT
         Token idToken = ctx.INT().getSymbol();
         int line = idToken.getLine();
-        int column = idToken.getCharPositionInLine()+1;
+        int column = idToken.getCharPositionInLine() + 1;
 
         String id = ctx.getChild(0).getText();
-        if(vars.contains(id)){
-            semanticErrors.add("Error: Integer"+id+"already declared ("+ line +","+ column +")");
-        }else{
+        if (vars.contains(id)) {
+            semanticErrors.add("Error: Integer" + id + "already declared (" + line + "," + column + ")");
+        } else {
             vars.add(id);
         }
         int value = Integer.parseInt(ctx.ASSIGN().getText());
@@ -38,14 +39,71 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
     }
 
     @Override
+    public Object visitVariable(dart_parse.VariableContext ctx) {
+        return super.visitVariable(ctx);
+    }
+
+    @Override
+    public Object visitDoubleDeclaration(dart_parse.DoubleDeclarationContext ctx) {
+        return super.visitDoubleDeclaration(ctx);
+    }
+
+    @Override
+    public Object visitStringDeclaration(dart_parse.StringDeclarationContext ctx) {
+        String name = "";
+        String stringLine = "";
+        if (ctx.NAME() != null) {
+            name = String.valueOf(ctx.NAME());
+        }
+        if (ctx.STRING_LINE() != null) {
+            stringLine = String.valueOf(ctx.STRING_LINE());
+        }
+        return new StringDeclaration(name, stringLine);
+    }
+
+    @Override
+    public Object visitBoolDeclaration(dart_parse.BoolDeclarationContext ctx) {
+        if (ctx.NAME() == null) {
+            //TODO add error Arraylist
+
+        }
+        if (ctx.booleans() == null) {
+            //TODO add error Arraylist
+        }
+        BooleanClass bool = visitBooleans(ctx.booleans());
+        return new BooleanDeclaration(ctx.NAME().toString(), bool);
+    }
+
+    @Override
+    public Object visitAddExpression(dart_parse.AddExpressionContext ctx) {
+        return super.visitAddExpression(ctx);
+    }
+
+    @Override
+    public ArrayList<MultiplyExpression> visitMultiplyExpression(dart_parse.MultiplyExpressionContext ctx) {
+        ArrayList<MultiplyExpression> multiExp = new ArrayList<>();
+        NumberClass num1;
+        NumberClass num2;
+        String operator = null;
+        for (int i = 0; i < ctx.number().size(); i++) {
+            if (ctx.number(i) != null && ctx.number(i + 1) != null) {
+                num1 = visitNumber(ctx.number(i));
+                num2 = visitNumber(ctx.number(i + 1));
+                if (ctx.MULTY(i).getText().equals("*")) {
+                    operator = "*";
+                } else if (ctx.MULTY(i).getText().equals("/")) {
+                    operator = "/";
+                }
+                multiExp.add(new MultiplyExpression(num1 ,num2,operator));
+            }
+        }
+        return multiExp;
+    }
+
+    @Override
     public Object visitAddDoubleExpression(dart_parse.AddDoubleExpressionContext ctx) {
         return super.visitAddDoubleExpression(ctx);
     }
-
-//    @Override
-//    public AddExpression visitAddExpression(dart_parse.AddExpressionContext ctx) {
-//        return super.visitAddExpression(ctx);
-//    }
 
     @Override
     public Object visitMultiplyDoubleExpression(dart_parse.MultiplyDoubleExpressionContext ctx) {
@@ -53,41 +111,19 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
     }
 
     @Override
-    public Object visitBooleans(dart_parse.BooleansContext ctx) {
-        return super.visitBooleans(ctx);
+    public BooleanClass visitBooleans(dart_parse.BooleansContext ctx) {
+        if (ctx.TRUE() != null) {
+            return new BooleanClass(ctx.TRUE().getText());
+        } else if (ctx.FALSE() != null) {
+            return new BooleanClass(ctx.FALSE().getText());
+        } else {
+            //TODO add error Arraylist
+            return null;
+        }
     }
-
-//    @Override
-//    public BooleanDeclaration visitBoolDeclaration(dart_parse.BoolDeclarationContext ctx) {
-//        String name = String.valueOf(ctx.NAME());
-//        TerminalNode bool = ctx.BOOL();
-//        return new BooleanDeclaration(name, bool);
-//    }
-
-//    @Override
-//    public DoubleDeclaration visitDoubleDeclaration(dart_parse.DoubleDeclarationContext ctx) {
-//        String name = String.valueOf(ctx.NAME());
-//        return new DoubleDeclaration(new AddDoubleExpression(ctx.addDoubleExpression()), name);
-//        //TODO : figure out why addDoubleExpression() is DoubleDeclarationContext
-//        //todo solved: just create object from recived context
-//    }
-
-//    @Override
-//    public Object visitIntegerDeclaration(dart_parse.IntegerDeclarationContext ctx) {
-//       AddExpression ad= visitAddExpression( ctx.addExpression());
-//        return new IntegerDeclaration(ad,String.valueOf(ctx.NAME()));
-//    }
 
     @Override
-    public StringDeclaration visitStringDeclaration(dart_parse.StringDeclarationContext ctx) {
-        String name = String.valueOf(ctx.NAME());
-        String stringLine = String.valueOf(ctx.STRING_LINE());
-        return new StringDeclaration(name, stringLine);
+    public Object visitNumberDouble(dart_parse.NumberDoubleContext ctx) {
+        return super.visitNumberDouble(ctx);
     }
-
-//    @Override
-//    public Object visitVariable(dart_parse.VariableContext ctx) {
-//
-//    }
-
 }

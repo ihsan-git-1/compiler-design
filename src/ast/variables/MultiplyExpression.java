@@ -1,5 +1,7 @@
 package ast.variables;
 
+import java.util.Objects;
+
 public class MultiplyExpression {
 	NumberClass left;
 	NumberClass right;
@@ -17,7 +19,7 @@ public class MultiplyExpression {
 	
 	@Override
 	public String toString() {
-		if(operation!="") {
+		if(!Objects.equals(operation, "")) {
 			return  left.toString();
 		}else {
 			return  left.toString() + operation + right.toString();
