@@ -10,10 +10,10 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
         return super.visitAddDoubleExpression(ctx);
     }
 
-    @Override
-    public Object visitAddExpression(dart_parse.AddExpressionContext ctx) {
-        return super.visitAddExpression(ctx);
-    }
+//    @Override
+//    public AddExpression visitAddExpression(dart_parse.AddExpressionContext ctx) {
+//        return super.visitAddExpression(ctx);
+//    }
 
     @Override
     public Object visitMultiplyDoubleExpression(dart_parse.MultiplyDoubleExpressionContext ctx) {
@@ -25,12 +25,12 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
         return super.visitBooleans(ctx);
     }
 
-    @Override
-    public BooleanDeclaration visitBoolDeclaration(dart_parse.BoolDeclarationContext ctx) {
-        String name = String.valueOf(ctx.NAME());
-        TerminalNode bool = ctx.BOOL();
-        return new BooleanDeclaration(name, bool);
-    }
+//    @Override
+//    public BooleanDeclaration visitBoolDeclaration(dart_parse.BoolDeclarationContext ctx) {
+//        String name = String.valueOf(ctx.NAME());
+//        TerminalNode bool = ctx.BOOL();
+//        return new BooleanDeclaration(name, bool);
+//    }
 
 //    @Override
 //    public DoubleDeclaration visitDoubleDeclaration(dart_parse.DoubleDeclarationContext ctx) {
@@ -42,7 +42,8 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
 
 //    @Override
 //    public Object visitIntegerDeclaration(dart_parse.IntegerDeclarationContext ctx) {
-//        return new IntegerDeclaration(String.valueOf(ctx.NAME()), ctx.addExpression());
+//       AddExpression ad= visitAddExpression( ctx.addExpression());
+//        return new IntegerDeclaration(ad,String.valueOf(ctx.NAME()));
 //    }
 
     @Override
