@@ -1,15 +1,15 @@
 package ast.variables;
 
-public class AddExpression {
-	MultiplyExpression left;
-	MultiplyExpression right;
+public class MultiplyDoubleExpression {
+	AbstractNumberClass left;
+	AbstractNumberClass right;
 	String operation;
 	
-	public AddExpression(MultiplyExpression left){
+	public MultiplyDoubleExpression(AbstractNumberClass left){
 		this.left=left;
 	}
 	
-	public AddExpression(MultiplyExpression left,MultiplyExpression right,String operation){
+	public MultiplyDoubleExpression(AbstractNumberClass left,AbstractNumberClass right,String operation){
 		this.left=left;
 		this.right=right;
 		this.operation=operation;
@@ -24,5 +24,4 @@ public class AddExpression {
 		}
 		
 	}
-	
 }
