@@ -10,6 +10,9 @@ public class ClassDeclaration extends AllClassesDeclarationAbstractChild {
 	public ClassDeclaration() {
 		this.children=new ArrayList<>();
 	}
+	public  ClassDeclaration(String name){
+		this.name = name;
+	}
 	
 	public void addChildren(DartVariablesDeclaration variable) {
 		children.add(variable);
@@ -17,6 +20,7 @@ public class ClassDeclaration extends AllClassesDeclarationAbstractChild {
 	
 	@Override
 	public String toString() {
-		return  name;
+
+		return  "Class "+ name;
 	}
 }
