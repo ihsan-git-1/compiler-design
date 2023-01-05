@@ -1,6 +1,7 @@
 package ast.variables;
+import ast.nodes.DartVariablesDeclarationAbstractChild;
 
-public class Variable {
+public class Variable extends DartVariablesDeclarationAbstractChild{
 	VariableDeclaration declaration;
 	
 	public Variable(VariableDeclaration declaration) {
