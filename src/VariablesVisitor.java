@@ -6,6 +6,13 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 public class VariablesVisitor extends dart_parseBaseVisitor {
 
     @Override
+    public NumberClass visitNumber(dart_parse.NumberContext ctx) {
+      String numText = ctx.getChild(0).getText();
+      int num = Integer.parseInt(numText);
+        return new NumberClass(num);
+    }
+
+    @Override
     public Object visitAddDoubleExpression(dart_parse.AddDoubleExpressionContext ctx) {
         return super.visitAddDoubleExpression(ctx);
     }
