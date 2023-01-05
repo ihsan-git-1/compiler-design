@@ -1,15 +1,39 @@
 import ast.variables.*;
 import gen.dart_parse;
 import gen.dart_parseBaseVisitor;
-import org.antlr.v4.runtime.tree.TerminalNode;
+import org.antlr.v4.runtime.Token;
+
+
+import java.util.List;
 
 public class VariablesVisitor extends dart_parseBaseVisitor {
+
+    private List<String> vars; //stores all the variables declared in the program so far
+    private List<String> semanticErrors; // 1. duplicate declaration // reference to undeclared variables
 
     @Override
     public NumberClass visitNumber(dart_parse.NumberContext ctx) {
       String numText = ctx.getChild(0).getText();
       int num = Integer.parseInt(numText);
         return new NumberClass(num);
+    }
+
+    @Override
+    public IntegerDeclaration visitIntegerDeclaration(dart_parse.IntegerDeclarationContext ctx) {
+        // INT() is a method generated from the grammar INT
+        Token idToken = ctx.INT().getSymbol();
+        int line = idToken.getLine();
+        int column = idToken.getCharPositionInLine()+1;
+
+        String id = ctx.getChild(0).getText();
+        if(vars.contains(id)){
+            semanticErrors.add("Error: Integer"+id+"already declared ("+ line +","+ column +")");
+        }else{
+            vars.add(id);
+        }
+        int value = Integer.parseInt(ctx.ASSIGN().getText());
+        return new IntegerDeclaration(id); //todo also needs AddExpression
+
     }
 
     @Override
