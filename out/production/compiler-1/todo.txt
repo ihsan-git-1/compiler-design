@@ -1,8 +1,0 @@
-add var
-add function
-add main
-add if , else
-
-add for loop
-add while
-some dot some
