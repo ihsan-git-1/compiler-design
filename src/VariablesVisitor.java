@@ -16,6 +16,7 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
       String numText = ctx.getChild(0).getText();
       int num = Integer.parseInt(numText);
         return new NumberClass(num);
+
     }
 
     @Override
