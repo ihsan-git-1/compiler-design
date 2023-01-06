@@ -4,13 +4,18 @@ public class StatefullAssignStateClassDeclaration {
 	String name;
 	ReturnStateTypes types;
 	
-	public StatefullAssignStateClassDeclaration(ReturnStateTypes types,String name) {
+	public StatefullAssignStateClassDeclaration(String name,ReturnStateTypes types) {
 		this.types = types;
 		this.name = name;
 	}
 	
 	@Override
 	public String toString() {
-		return  name;
+
+		return  "State<" +name +">"
+				+" createState()"
+				+" => "
+				+types
+				;
 	}
 }

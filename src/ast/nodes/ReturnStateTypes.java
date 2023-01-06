@@ -1,9 +1,14 @@
 package ast.nodes;
 
 public class ReturnStateTypes {
-	ReturnStateTypesAbstractChild returnStateTypesAbstractChild;
+	String name;
 	
-	public ReturnStateTypes(ReturnStateTypesAbstractChild child) {
-		this.returnStateTypesAbstractChild = child;
+	public ReturnStateTypes(String name) {
+		this.name = name;
+	}
+
+	@Override
+	public String toString() {
+		return name+"();\n";
 	}
 }

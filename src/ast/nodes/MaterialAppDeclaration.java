@@ -6,4 +6,12 @@ public class MaterialAppDeclaration extends WidgetAbstractChild {
 	public MaterialAppDeclaration(HomePropertyDeclaration homePropertyDeclaration) {
 		this.homePropertyDeclaration=homePropertyDeclaration;
 	}
+
+	@Override
+	public String toString() {
+		return "MaterialApp(\n"
+				+homePropertyDeclaration
+				+"\n)\n"
+				;
+	}
 }
