@@ -1,6 +1,6 @@
 package ast.nodes;
 
-public class ChildPropertyDeclaration {
+public class ChildPropertyDeclaration extends ContainerPropertiesDeclarationAbstractChild{
 	WidgetsDeclaration widgetsDeclaration;
 	
 	public ChildPropertyDeclaration(WidgetsDeclaration widgetsDeclaration) {

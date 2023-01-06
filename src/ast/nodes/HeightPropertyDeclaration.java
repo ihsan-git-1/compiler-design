@@ -11,6 +11,9 @@ public class HeightPropertyDeclaration extends ContainerPropertiesDeclarationAbs
 	
 	@Override
 	public String toString() {
-		return number.toString();
+
+		return "height : "
+				+number.toString()
+				;
 	}
 }

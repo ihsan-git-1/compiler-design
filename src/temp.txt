@@ -1,5 +1,1 @@
-List<String> Names=
- [
-
-  ];
- 
+String d="35*2+1/5";

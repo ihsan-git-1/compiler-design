@@ -21,4 +21,12 @@ public class ChildrenPropertyDeclaration {
 	public void setWidgetDeclarationList(List<WidgetsDeclaration> list) {
 		this.widgetsDeclarationList = list;
 	}
+
+	@Override
+	public String toString() {
+		return "children: \n"
+				+widgetsDeclarationList
+				+"\n"
+				;
+	}
 }
