@@ -27,7 +27,13 @@ public class NodesVisitor extends dart_parseBaseVisitor {
 
     @Override
     public AllClassesDeclarationAbstractChild visitAllClassesDeclaration(dart_parse.AllClassesDeclarationContext ctx) {
-        return visitClassDeclaration(ctx.classDeclaration());
+        if(ctx.classDeclaration() != null){
+            return visitClassDeclaration(ctx.classDeclaration());
+        }
+        if(ctx.statelessClassDeclaration() != null){
+            return visitStatelessClassDeclaration(ctx.statelessClassDeclaration());
+        }
+        return null;
     }
 
     @Override
@@ -39,9 +45,41 @@ public class NodesVisitor extends dart_parseBaseVisitor {
         }
         return classDec;
     }
+
     @Override
-    public Object visitStatelessClassDeclaration(dart_parse.StatelessClassDeclarationContext ctx) {
-        return super.visitStatelessClassDeclaration(ctx);
+    public StatelessClassDeclaration visitStatelessClassDeclaration(dart_parse.StatelessClassDeclarationContext ctx) {
+
+        StatelessClassDeclaration statelessClassDeclaration
+                = new StatelessClassDeclaration(ctx.NAME().getText(),
+                        visitBuildMethodDeclaration(ctx.buildMethodDeclaration()));
+
+        for (int i = 0; i < ctx.dartVariabelsDeclaration().size(); i++) {
+            statelessClassDeclaration.getDartVariablesDeclarationList()
+                    .add(visitDartVariabelsDeclaration(ctx.dartVariabelsDeclaration(i)));
+        }
+
+        return statelessClassDeclaration;
+    }
+
+    @Override
+    public BuildMethodDeclaration visitBuildMethodDeclaration(dart_parse.BuildMethodDeclarationContext ctx) {
+        BuildMethodDeclaration buildMethodDeclaration
+                = new BuildMethodDeclaration(
+                        visitWidgetsDeclaration(ctx.widgetsDeclaration()),
+                        visitBuildContextDeclaration(ctx.buildContextDeclaration()));
+
+        for (int i = 0; i < ctx.dartVariabelsDeclaration().size(); i++) {
+            buildMethodDeclaration.getDartVariables()
+                    .add(visitDartVariabelsDeclaration(ctx.dartVariabelsDeclaration(i)));
+        }
+
+        return buildMethodDeclaration;
+    }
+
+
+    @Override
+    public BuildContextDeclaration visitBuildContextDeclaration(dart_parse.BuildContextDeclarationContext ctx) {
+        return new BuildContextDeclaration(ctx.NAME().getText());
     }
 
     @Override
@@ -73,15 +111,6 @@ public class NodesVisitor extends dart_parseBaseVisitor {
     public Object visitFunctionReturnState(dart_parse.FunctionReturnStateContext ctx) {
         return super.visitFunctionReturnState(ctx);
     }
-
-    @Override
-    public Object visitBuildMethodDeclaration(dart_parse.BuildMethodDeclarationContext ctx) {
-        return super.visitBuildMethodDeclaration(ctx);
-    }
-
-
-
-
 
 
 
@@ -226,8 +255,6 @@ public class NodesVisitor extends dart_parseBaseVisitor {
 
 
         }
-
-
         return containerDeclaration;
     }
     @Override
@@ -248,7 +275,6 @@ public class NodesVisitor extends dart_parseBaseVisitor {
                     = new ContainerPropertiesDeclaration(visitChildPropertyDeclaration(ctx.childPropertyDeclaration()));
             return containerPropertiesDeclaration;
         }
-
         return null;
     }
 
@@ -280,6 +306,8 @@ public class NodesVisitor extends dart_parseBaseVisitor {
         }
         return childrenPropertyDeclaration;
     }
+
+
     //************************ dart visitors ****************************************//
 
     @Override

@@ -1,5 +1,5 @@
-class MyApp extends StatelessWidget {
 
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -8,11 +8,8 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
 class MyHomePage extends StatefulWidget {
-
   State<MyHomePage> createState() => MyHomePageState();
-
 }
 class MyHomePageState extends State<MyHomePage> {
 
