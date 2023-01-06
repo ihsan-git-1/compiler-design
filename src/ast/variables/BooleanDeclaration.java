@@ -1,15 +1,24 @@
 package ast.variables;
 
-public class BooleanDeclaration {
+public class BooleanDeclaration extends VariableDeclaration{
 	String name;
-	BooleanClass bool;
+	BooleanValueClass booleanValueClass;
 	
 	public BooleanDeclaration(String name) {
 		this.name=name;
 	}
 	
-	public BooleanDeclaration(String name,BooleanClass bool) {
+	public BooleanDeclaration(String name, BooleanValueClass booleanValueClass) {
 		this.name=name;
-		this.bool=bool;
+		this.booleanValueClass=booleanValueClass;
+	}
+
+	@Override
+	public String toString() {
+		return "bool "
+				+name
+				+" = "
+				+booleanValueClass
+				;
 	}
 }

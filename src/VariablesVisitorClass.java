@@ -2,16 +2,41 @@ import ast.variables.*;
 import gen.dart_parse;
 import gen.dart_parseBaseVisitor;
 import org.antlr.v4.runtime.Token;
-
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class VariablesVisitor extends dart_parseBaseVisitor {
+
+public class VariablesVisitorClass extends dart_parseBaseVisitor {
 
     private List<String> vars; //stores all the variables declared in the program so far
     private List<String> semanticErrors; // 1. duplicate declaration // reference to undeclared variables
 
+
+
+    @Override
+    public Variable visitVariable(dart_parse.VariableContext ctx) {
+        System.out.println(ctx.getText());
+
+        if (ctx.stringDeclaration() != null){
+            Variable variable = new Variable(visitStringDeclaration(ctx.stringDeclaration()));
+            return variable;
+        }
+
+        if (ctx.integerDeclaration() != null){
+            Variable variable = new Variable(visitIntegerDeclaration(ctx.integerDeclaration()));
+            return variable;
+        }
+        if (ctx.doubleDeclaration() != null){
+            Variable variable = new Variable(visitDoubleDeclaration(ctx.doubleDeclaration()));
+            return variable;
+        }
+        if (ctx.boolDeclaration() != null){
+            Variable variable = new Variable(visitBoolDeclaration(ctx.boolDeclaration()));
+            return variable;
+        }
+
+        return null;
+    }
     @Override
     public NumberClass visitNumber(dart_parse.NumberContext ctx) {
         String numText = ctx.getChild(0).getText();
@@ -19,7 +44,6 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
         return new NumberClass(num);
 
     }
-
     @Override
     public IntegerDeclaration visitIntegerDeclaration(dart_parse.IntegerDeclarationContext ctx) {
         // INT() is a method generated from the grammar INT
@@ -39,17 +63,12 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
     }
 
     @Override
-    public Object visitVariable(dart_parse.VariableContext ctx) {
-        return super.visitVariable(ctx);
+    public DoubleDeclaration visitDoubleDeclaration(dart_parse.DoubleDeclarationContext ctx) {
+        return null;
     }
 
     @Override
-    public Object visitDoubleDeclaration(dart_parse.DoubleDeclarationContext ctx) {
-        return super.visitDoubleDeclaration(ctx);
-    }
-
-    @Override
-    public Object visitStringDeclaration(dart_parse.StringDeclarationContext ctx) {
+    public StringDeclaration visitStringDeclaration(dart_parse.StringDeclarationContext ctx) {
         String name = "";
         String stringLine = "";
         if (ctx.NAME() != null) {
@@ -62,16 +81,16 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
     }
 
     @Override
-    public Object visitBoolDeclaration(dart_parse.BoolDeclarationContext ctx) {
+    public BooleanDeclaration visitBoolDeclaration(dart_parse.BoolDeclarationContext ctx) {
         if (ctx.NAME() == null) {
             //TODO add error Arraylist
-
         }
         if (ctx.booleans() == null) {
             //TODO add error Arraylist
         }
-        BooleanClass bool = visitBooleans(ctx.booleans());
-        return new BooleanDeclaration(ctx.NAME().toString(), bool);
+
+        BooleanValueClass booleanValueClass = visitBooleans(ctx.booleans());
+        return new BooleanDeclaration(ctx.NAME().toString(), booleanValueClass);
     }
 
     @Override
@@ -111,11 +130,15 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
     }
 
     @Override
-    public BooleanClass visitBooleans(dart_parse.BooleansContext ctx) {
+    public BooleanValueClass visitBooleans(dart_parse.BooleansContext ctx) {
         if (ctx.TRUE() != null) {
-            return new BooleanClass(ctx.TRUE().getText());
+
+            return new BooleanValueClass(ctx.TRUE().getText());
+
         } else if (ctx.FALSE() != null) {
-            return new BooleanClass(ctx.FALSE().getText());
+
+            return new BooleanValueClass(ctx.FALSE().getText());
+
         } else {
             //TODO add error Arraylist
             return null;

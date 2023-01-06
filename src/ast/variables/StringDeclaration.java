@@ -11,6 +11,10 @@ public class StringDeclaration extends VariableDeclaration{
 	
 	@Override
 	public String toString() {
-		return  name;
+		return "String " +
+				name +
+				"="+
+				stringLine
+				;
 	}
 }

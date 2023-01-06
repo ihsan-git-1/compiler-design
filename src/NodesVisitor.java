@@ -1,6 +1,8 @@
 import ast.nodes.*;
+import ast.variables.Variable;
 import gen.dart_parse;
 import gen.dart_parseBaseVisitor;
+
 
 
 public class NodesVisitor extends dart_parseBaseVisitor {
@@ -27,7 +29,8 @@ public class NodesVisitor extends dart_parseBaseVisitor {
     public ClassDeclaration visitClassDeclaration(dart_parse.ClassDeclarationContext ctx) {
         ClassDeclaration classDec = new ClassDeclaration(ctx.NAME().toString());
         for (int i = 0; i < ctx.dartVariabelsDeclaration().size(); i++) {
-            //  classDec.addChildren(ctx.dartVariabelsDeclaration().get(i));
+            classDec.getDartVariablesDeclarationList()
+                    .add(visitDartVariabelsDeclaration(ctx.dartVariabelsDeclaration(i)));
         }
         return classDec;
     }
@@ -73,8 +76,10 @@ public class NodesVisitor extends dart_parseBaseVisitor {
     }
 
     @Override
-    public Object visitDartVariabelsDeclaration(dart_parse.DartVariabelsDeclarationContext ctx) {
-        return super.visitDartVariabelsDeclaration(ctx);
+    public DartVariablesDeclaration visitDartVariabelsDeclaration(dart_parse.DartVariabelsDeclarationContext ctx) {
+        VariablesVisitorClass variablesVisitorClass = new VariablesVisitorClass();
+        return new DartVariablesDeclaration(variablesVisitorClass.visitVariable(ctx.variable()));
+
     }
 
     @Override
@@ -126,4 +131,5 @@ public class NodesVisitor extends dart_parseBaseVisitor {
     public Object visitEdgeInsistAll(dart_parse.EdgeInsistAllContext ctx) {
         return super.visitEdgeInsistAll(ctx);
     }
+
 }

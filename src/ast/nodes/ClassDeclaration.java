@@ -4,23 +4,34 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class ClassDeclaration extends AllClassesDeclarationAbstractChild {
-	List<DartVariablesDeclaration> children;
+	List<DartVariablesDeclaration> dartVariablesDeclarationList;
 	String name;
-	
+
+	public List<DartVariablesDeclaration> getDartVariablesDeclarationList() {
+		return dartVariablesDeclarationList;
+	}
+
+	public void setDartVariablesDeclarationList(List<DartVariablesDeclaration> dartVariablesDeclarationList) {
+		this.dartVariablesDeclarationList = dartVariablesDeclarationList;
+	}
+
 	public ClassDeclaration() {
-		this.children=new ArrayList<>();
+		this.dartVariablesDeclarationList =new ArrayList<>();
 	}
 	public  ClassDeclaration(String name){
 		this.name = name;
+		this.dartVariablesDeclarationList =new ArrayList<>();
 	}
 	
 	public void addChildren(DartVariablesDeclaration variable) {
-		children.add(variable);
+		dartVariablesDeclarationList.add(variable);
 	}
 	
 	@Override
 	public String toString() {
-
-		return  "Class "+ name;
+		return  "Class "
+				+name
+				+dartVariablesDeclarationList
+				;
 	}
 }
