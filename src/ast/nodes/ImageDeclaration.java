@@ -9,6 +9,9 @@ public class ImageDeclaration extends WidgetAbstractChild {
 	
 	@Override
 	public String toString() {
-		return str;
+		return
+				"Image "+
+
+				str;
 	}
 }
