@@ -6,4 +6,9 @@ public class ExpandedDeclaration extends WidgetAbstractChild {
 	public ExpandedDeclaration(ChildPropertyDeclaration childPropertyDeclaration) {
 		this.childPropertyDeclaration=childPropertyDeclaration;
 	}
+
+	@Override
+	public String toString() {
+		return "Expanded : \n"+childPropertyDeclaration;
+	}
 }
