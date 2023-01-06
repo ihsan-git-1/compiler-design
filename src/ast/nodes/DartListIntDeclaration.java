@@ -9,9 +9,8 @@ public class DartListIntDeclaration extends DartAllListsDeclarationAbstractChild
 	String name;
 	List<NumberClass> itemsList;
 	
-	public DartListIntDeclaration(String name,List<NumberClass> listItem) {
+	public DartListIntDeclaration(String name) {
 		this.name = name;
-		this.itemsList=new ArrayList<>();
 	}
 	
 	public List<NumberClass> getListItem(){
@@ -21,10 +20,19 @@ public class DartListIntDeclaration extends DartAllListsDeclarationAbstractChild
 	public void setItemsList(List<NumberClass> list) {
 		this.itemsList =  list;
 	}
-	
+	public void printList(List<NumberClass> list){
+		for(NumberClass item:list){
+			System.out.print(item.getNum());
+			System.out.print(" ");
+		}
+	}
+
 	@Override
 	public String toString() {
-
-		return  "Dart Int List "+ name;
+		String var = "Dart Int List "+ name;
+		System.out.print(var);
+		System.out.print(" List Items are ");
+		printList(this.itemsList);
+		return  "" ;
 	}
 }
