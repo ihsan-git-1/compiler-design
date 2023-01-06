@@ -2,6 +2,7 @@ import ast.nodes.DartAllListsDeclaration;
 import ast.nodes.DartListBoolDeclaration;
 import ast.nodes.DartListIntDeclaration;
 import ast.nodes.DartListStringDeclaration;
+import ast.variables.NumberClass;
 import ast.variables.Variable;
 import gen.dart_parse.DartAllListsDeclarationContext;
 import gen.dart_parse.DartListBoolDeclarationContext;
@@ -37,17 +38,14 @@ public class ListsVisitor extends dart_parseBaseVisitor{
 
 		String name = ctx.NAME().getText();
 		List<String> dartListStringItems = new ArrayList<>();
-		String strLine = ctx.getChild(7).getText();
 
-		if(!strLine.isEmpty()){
-			dartListStringItems.add(strLine);
-		}
-		for(int i=8;i<ctx.getChildCount();i++){
-			System.out.println(ctx.getChild(i).getText());
-			if(ctx.getChild(i).equals(ctx.STRING_LINE())){
-				System.out.println(true);
-				dartListStringItems.add(ctx.getChild(i).getText());
+
+		for(int i=7;i<ctx.getChildCount();i++){
+			String strLine = ctx.getChild(i).getText();
+			if((!strLine.equals("[")) && (!strLine.equals("]")) && (!strLine.equals(",")) && (!strLine.equals(";"))){
+				dartListStringItems.add(strLine);
 			}
+
 		}
 		DartListStringDeclaration dec = new DartListStringDeclaration(name);
 		dec.setItemsList(dartListStringItems);
@@ -56,7 +54,18 @@ public class ListsVisitor extends dart_parseBaseVisitor{
 
 	@Override
 	public DartListIntDeclaration visitDartListIntDeclaration(DartListIntDeclarationContext ctx) {
-		return null;
+		String name = ctx.NAME().getText();
+		List<NumberClass> dartListIntItems = new ArrayList<>();
+
+		for(int i=7;i<ctx.getChildCount();i++){
+			NumberClass number = (NumberClass) ctx.getChild(i);
+			if(){
+				dartListIntItems.add(num);
+			}
+		}
+		DartListIntDeclaration dec = new DartListIntDeclaration(name);
+		dec.setItemsList(dartListIntItems);
+		return dec;
 	}
 
 	@Override
