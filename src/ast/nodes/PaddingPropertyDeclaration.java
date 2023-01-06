@@ -6,4 +6,11 @@ public class PaddingPropertyDeclaration {
 	public PaddingPropertyDeclaration(EdgeInsistAll edgeInsistAll) {
 		this.edgeInsistAll=edgeInsistAll;
 	}
+
+	@Override
+	public String toString() {
+		return "padding : "
+				+ edgeInsistAll
+				;
+	}
 }

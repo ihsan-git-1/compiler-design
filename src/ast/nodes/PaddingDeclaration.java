@@ -8,4 +8,14 @@ public class PaddingDeclaration extends WidgetAbstractChild {
 		this.paddingPropertyDeclaration=paddingProperty;
 		this.childPropertyDeclaration=childProperty;
 	}
+
+	@Override
+	public String toString() {
+		return "Padding (\n"
+				+paddingPropertyDeclaration
+				+"\n"
+				+childPropertyDeclaration
+				+")"
+				;
+	}
 }
