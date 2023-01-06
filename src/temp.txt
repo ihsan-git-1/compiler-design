@@ -1,6 +1,7 @@
-Scaffold(
-body:Padding(
-padding: EdgeInsets.all(8),
-child: Image("hello"),
+Container(
+width:200,
+height:200,
+child:Container(
+height:200,
 )
-);
+)

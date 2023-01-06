@@ -9,7 +9,7 @@ import java.util.*;
 public class VariablesVisitor extends dart_parseBaseVisitor {
 
     private List<String> vars; //stores all the variables declared in the program so far
-    private List<String> semanticErrors; // 1. duplicate declaration // reference to undeclared variables
+    private List<String> semanticErrors = new ArrayList<>(); // 1. duplicate declaration // reference to undeclared variables
 
 
     @Override

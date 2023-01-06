@@ -2,13 +2,15 @@ import ast.nodes.*;
 import gen.dart_parse;
 import gen.dart_parseBaseVisitor;
 
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class NodesVisitor extends dart_parseBaseVisitor {
 
+    private List<String> semanticErrors = new ArrayList<>();
 
-
-  //********************* base declarations start code ********************************///
+    //********************* base declarations start code ********************************///
     @Override
     public TopTreeDeclaration visitTopTreeDeclaration(dart_parse.TopTreeDeclarationContext ctx) {
         TopTreeDeclaration topTreeDeclaration = new TopTreeDeclaration();
@@ -87,7 +89,7 @@ public class NodesVisitor extends dart_parseBaseVisitor {
 
     @Override
     public WidgetsDeclaration visitWidgetsDeclaration(dart_parse.WidgetsDeclarationContext ctx) {
-        //todo : add all widgets
+
         if(ctx.expandedDeclaration() != null){
             WidgetsDeclaration widgetsDeclaration
                     = new WidgetsDeclaration(visitExpandedDeclaration(ctx.expandedDeclaration()));
@@ -113,6 +115,13 @@ public class NodesVisitor extends dart_parseBaseVisitor {
                     = new WidgetsDeclaration(visitImageDeclaration(ctx.imageDeclaration()));
             return widgetsDeclaration;
         }
+        if(ctx.conatinerDeclaration() != null){
+            WidgetsDeclaration widgetsDeclaration
+                    = new WidgetsDeclaration(visitConatinerDeclaration(ctx.conatinerDeclaration()));
+
+            return widgetsDeclaration;
+        }
+
         return null;
     }
 
@@ -166,16 +175,62 @@ public class NodesVisitor extends dart_parseBaseVisitor {
 
     @Override
     public ContainerDeclaration visitConatinerDeclaration(dart_parse.ConatinerDeclarationContext ctx) {
-        // todo : finish container
-        return new ContainerDeclaration();
+        ContainerDeclaration containerDeclaration = new ContainerDeclaration();
+
+
+        List<Boolean> isAvailable = new ArrayList<Boolean>();
+        isAvailable.add(false); // width
+        isAvailable.add(false); // height
+        isAvailable.add(false); // child
+
+        for (int i = 0; i < ctx.conatinerPropertiesDeclaration().size() ; i++) {
+
+            // check if property already available;
+            if(isAvailable.get(0) && ctx.conatinerPropertiesDeclaration().get(i).widthPropertyDeclaration() != null){
+                semanticErrors.add("Error cant duplicate width");
+                System.out.println("Error cant duplicate width");
+            }
+            if(isAvailable.get(1) && ctx.conatinerPropertiesDeclaration().get(i).heightPropertyDeclaration() != null){
+                semanticErrors.add("Error cant duplicate height");
+                System.out.println("Error cant duplicate height");
+            }
+            if(isAvailable.get(2) && ctx.conatinerPropertiesDeclaration().get(i).childPropertyDeclaration() != null){
+                semanticErrors.add("Error cant duplicate child");
+                System.out.println("Error cant duplicate child");
+            }
+
+            // add property if not already available;
+            if(ctx.conatinerPropertiesDeclaration().get(i) != null) {
+                if(ctx.conatinerPropertiesDeclaration().get(i).widthPropertyDeclaration() != null &&  !isAvailable.get(0)){
+                    containerDeclaration.getContainerDeclarationList()
+                            .add(visitConatinerPropertiesDeclaration(ctx.conatinerPropertiesDeclaration(i)));
+                    isAvailable.set(0,true); // width
+
+                }
+                if(ctx.conatinerPropertiesDeclaration().get(i).heightPropertyDeclaration() != null &&  !isAvailable.get(1)){
+                    containerDeclaration.getContainerDeclarationList()
+                            .add(visitConatinerPropertiesDeclaration(ctx.conatinerPropertiesDeclaration(i)));
+                    isAvailable.set(1,true); // width
+                }
+                if( ctx.conatinerPropertiesDeclaration().get(i).childPropertyDeclaration() != null &&  !isAvailable.get(2)){
+                    containerDeclaration.getContainerDeclarationList()
+                            .add(visitConatinerPropertiesDeclaration(ctx.conatinerPropertiesDeclaration(i)));
+                    isAvailable.set(2,true); // width
+                }
+            }
+
+
+        }
+
+
+        return containerDeclaration;
     }
     @Override
     public ContainerPropertiesDeclaration visitConatinerPropertiesDeclaration(dart_parse.ConatinerPropertiesDeclarationContext ctx) {
-
         if(ctx.widthPropertyDeclaration() != null){
             ContainerPropertiesDeclaration containerPropertiesDeclaration
                     = new ContainerPropertiesDeclaration(visitWidthPropertyDeclaration(ctx.widthPropertyDeclaration()));
-            return  containerPropertiesDeclaration;
+            return containerPropertiesDeclaration;
         }
         if(ctx.heightPropertyDeclaration() != null){
             ContainerPropertiesDeclaration containerPropertiesDeclaration
@@ -184,11 +239,11 @@ public class NodesVisitor extends dart_parseBaseVisitor {
         }
         if(ctx.childPropertyDeclaration() != null){
             ContainerPropertiesDeclaration containerPropertiesDeclaration
-                    = new ContainerPropertiesDeclaration(visitChildPropertyDeclaration());
-            return  containerPropertiesDeclaration;
+                    = new ContainerPropertiesDeclaration(visitChildPropertyDeclaration(ctx.childPropertyDeclaration()));
+            return containerPropertiesDeclaration;
         }
 
-        return new ContainerPropertiesDeclaration();
+        return null;
     }
 
     @Override

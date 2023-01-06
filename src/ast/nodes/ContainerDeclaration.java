@@ -9,17 +9,20 @@ public class ContainerDeclaration extends WidgetAbstractChild{
 	public ContainerDeclaration() {
 		this.containerDeclarationList = new ArrayList<>();
 	}
-	
-	public void addChildren(ContainerPropertiesDeclaration propertyDeclaration) {
-		containerDeclarationList.add(propertyDeclaration);
-	}
-	
-	public List<ContainerPropertiesDeclaration> getContainerPropertiesDeclartionList() {
+
+	public List<ContainerPropertiesDeclaration> getContainerDeclarationList() {
 		return containerDeclarationList;
 	}
 
-	public void setContainerPropertiesDeclartionList(List<ContainerPropertiesDeclaration> list) {
-		this.containerDeclarationList = list;
+	public void setContainerDeclarationList(List<ContainerPropertiesDeclaration> containerDeclarationList) {
+		this.containerDeclarationList = containerDeclarationList;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Container(\n"
+				+getContainerDeclarationList()
+				+"\n )"
+				;
+	}
 }
