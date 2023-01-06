@@ -2,41 +2,41 @@ import ast.variables.*;
 import gen.dart_parse;
 import gen.dart_parseBaseVisitor;
 import org.antlr.v4.runtime.Token;
-import java.util.ArrayList;
-import java.util.List;
+
+import java.util.*;
 
 
-public class VariablesVisitorClass extends dart_parseBaseVisitor {
+public class VariablesVisitor extends dart_parseBaseVisitor {
 
     private List<String> vars; //stores all the variables declared in the program so far
     private List<String> semanticErrors; // 1. duplicate declaration // reference to undeclared variables
-
 
 
     @Override
     public Variable visitVariable(dart_parse.VariableContext ctx) {
         System.out.println(ctx.getText());
 
-        if (ctx.stringDeclaration() != null){
+        if (ctx.stringDeclaration() != null) {
             Variable variable = new Variable(visitStringDeclaration(ctx.stringDeclaration()));
             return variable;
         }
 
-        if (ctx.integerDeclaration() != null){
+        if (ctx.integerDeclaration() != null) {
             Variable variable = new Variable(visitIntegerDeclaration(ctx.integerDeclaration()));
             return variable;
         }
-        if (ctx.doubleDeclaration() != null){
+        if (ctx.doubleDeclaration() != null) {
             Variable variable = new Variable(visitDoubleDeclaration(ctx.doubleDeclaration()));
             return variable;
         }
-        if (ctx.boolDeclaration() != null){
+        if (ctx.boolDeclaration() != null) {
             Variable variable = new Variable(visitBoolDeclaration(ctx.boolDeclaration()));
             return variable;
         }
 
         return null;
     }
+
     @Override
     public NumberClass visitNumber(dart_parse.NumberContext ctx) {
         String numText = ctx.getChild(0).getText();
@@ -44,6 +44,7 @@ public class VariablesVisitorClass extends dart_parseBaseVisitor {
         return new NumberClass(num);
 
     }
+
     @Override
     public IntegerDeclaration visitIntegerDeclaration(dart_parse.IntegerDeclarationContext ctx) {
         // INT() is a method generated from the grammar INT
@@ -106,29 +107,44 @@ public class VariablesVisitorClass extends dart_parseBaseVisitor {
     }
 
     @Override
-    public Object visitAddExpression(dart_parse.AddExpressionContext ctx) {
-        return super.visitAddExpression(ctx);
+    public AddExpression visitAddExpression(dart_parse.AddExpressionContext ctx) {
+        //working on ittt
+        Queue<Object> queue = new LinkedList<>();
+        int value= Integer.parseInt(ctx.getChild(0).getText());
+        for (int i = 1; i < ctx.getChildCount(); i++) {
+            queue.add(ctx.getChild(i).getText());
+        }
+        while(!queue.isEmpty()) {
+            String operator = (String) queue.remove();
+            int num = Integer.parseInt((String) queue.remove());
+            if (operator.equals("+")) {
+                value += num;
+            } else if (operator.equals("-")) {
+                value -= num;
+            }
+        }
+        NumberClass num = new NumberClass(value);
+        return new AddExpression(num);
     }
 
     @Override
-    public ArrayList<MultiplyExpression> visitMultiplyExpression(dart_parse.MultiplyExpressionContext ctx) {
-        ArrayList<MultiplyExpression> multiExp = new ArrayList<>();
-        NumberClass num1;
-        NumberClass num2;
-        String operator = null;
-        for (int i = 0; i < ctx.number().size(); i++) {
-            if (ctx.number(i) != null && ctx.number(i + 1) != null) {
-                num1 = visitNumber(ctx.number(i));
-                num2 = visitNumber(ctx.number(i + 1));
-                if (ctx.MULTY(i).getText().equals("*")) {
-                    operator = "*";
-                } else if (ctx.MULTY(i).getText().equals("/")) {
-                    operator = "/";
-                }
-                multiExp.add(new MultiplyExpression(num1 ,num2,operator));
+    public MultiplyExpression visitMultiplyExpression(dart_parse.MultiplyExpressionContext ctx) {
+        Queue<Object> queue = new LinkedList<>();
+        int value= Integer.parseInt(ctx.getChild(0).getText());
+        for (int i = 1; i < ctx.getChildCount(); i++) {
+            queue.add(ctx.getChild(i).getText());
+        }
+        while(!queue.isEmpty()) {
+            String operator = (String) queue.remove();
+            int num = Integer.parseInt((String) queue.remove());
+            if (operator.equals("*")) {
+                value *= num;
+            } else if (operator.equals("/")) {
+                value /= num;
             }
         }
-        return multiExp;
+        NumberClass num = new NumberClass(value);
+        return new MultiplyExpression(num);
     }
 
     @Override

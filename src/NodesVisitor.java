@@ -1,5 +1,4 @@
 import ast.nodes.*;
-import ast.variables.Variable;
 import gen.dart_parse;
 import gen.dart_parseBaseVisitor;
 
@@ -77,8 +76,8 @@ public class NodesVisitor extends dart_parseBaseVisitor {
 
     @Override
     public DartVariablesDeclaration visitDartVariabelsDeclaration(dart_parse.DartVariabelsDeclarationContext ctx) {
-        VariablesVisitorClass variablesVisitorClass = new VariablesVisitorClass();
-        return new DartVariablesDeclaration(variablesVisitorClass.visitVariable(ctx.variable()));
+        VariablesVisitor variablesVisitor = new VariablesVisitor();
+        return new DartVariablesDeclaration(variablesVisitor.visitVariable(ctx.variable()));
 
     }
 
