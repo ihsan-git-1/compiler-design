@@ -64,7 +64,19 @@ public class VariablesVisitorClass extends dart_parseBaseVisitor {
 
     @Override
     public DoubleDeclaration visitDoubleDeclaration(dart_parse.DoubleDeclarationContext ctx) {
-        return null;
+
+        Token idToken = ctx.DOUBLE().getSymbol();
+        int line = idToken.getLine();
+        int column = idToken.getCharPositionInLine() + 1;
+        String id=ctx.getChild(0).getText();
+        if (vars.contains(id)) {
+            semanticErrors.add("Error: Double" + id + "already declared (" + line + "," + column + ")");
+        }
+        else {
+            vars.add(id);
+        }
+        double value = Double.parseDouble(ctx.ASSIGN().getText());
+        return new DoubleDeclaration(id);  //todo also needs addDoubleExpression
     }
 
     @Override
