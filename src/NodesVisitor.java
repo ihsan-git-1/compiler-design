@@ -145,7 +145,6 @@ public class NodesVisitor extends dart_parseBaseVisitor {
         return new EdgeInsistAll(variablesVisitor.visitNumber(ctx.number()));
     }
 
-
     @Override
     public ScaffoldDeclaration visitScaffoldDeclaration(dart_parse.ScaffoldDeclarationContext ctx) {
         return new ScaffoldDeclaration(visitBodyPropertyDeclaration(ctx.bodyPropertyDeclaration()));
@@ -157,14 +156,48 @@ public class NodesVisitor extends dart_parseBaseVisitor {
     }
 
     @Override
-    public Object visitConatinerDeclaration(dart_parse.ConatinerDeclarationContext ctx) {
-        return super.visitConatinerDeclaration(ctx);
+    public ContainerDeclaration visitConatinerDeclaration(dart_parse.ConatinerDeclarationContext ctx) {
+        // todo : finish container
+        return new ContainerDeclaration();
+    }
+    @Override
+    public ContainerPropertiesDeclaration visitConatinerPropertiesDeclaration(dart_parse.ConatinerPropertiesDeclarationContext ctx) {
+
+        if(ctx.widthPropertyDeclaration() != null){
+            ContainerPropertiesDeclaration containerPropertiesDeclaration
+                    = new ContainerPropertiesDeclaration(visitWidthPropertyDeclaration(ctx.widthPropertyDeclaration()));
+            return  containerPropertiesDeclaration;
+        }
+        if(ctx.heightPropertyDeclaration() != null){
+            ContainerPropertiesDeclaration containerPropertiesDeclaration
+                    = new ContainerPropertiesDeclaration(visitHeightPropertyDeclaration(ctx.heightPropertyDeclaration()));
+            return  containerPropertiesDeclaration;
+        }
+        if(ctx.childPropertyDeclaration() != null){
+            ContainerPropertiesDeclaration containerPropertiesDeclaration
+                    = new ContainerPropertiesDeclaration(visitChildPropertyDeclaration());
+            return  containerPropertiesDeclaration;
+        }
+
+        return new ContainerPropertiesDeclaration();
+    }
+
+    @Override
+    public HeightPropertyDeclaration visitHeightPropertyDeclaration(dart_parse.HeightPropertyDeclarationContext ctx) {
+        VariablesVisitor variablesVisitor = new VariablesVisitor();
+        return new HeightPropertyDeclaration(variablesVisitor.visitNumber(ctx.number()));
+    }
+    @Override
+    public WidthPropertyDeclaration visitWidthPropertyDeclaration(dart_parse.WidthPropertyDeclarationContext ctx) {
+        VariablesVisitor variablesVisitor = new VariablesVisitor();
+        return new WidthPropertyDeclaration(variablesVisitor.visitNumber(ctx.number()));
     }
 
     @Override
     public Object visitRowColumnDeclaration(dart_parse.RowColumnDeclarationContext ctx) {
         return super.visitRowColumnDeclaration(ctx);
     }
+
 
 
 
@@ -184,10 +217,7 @@ public class NodesVisitor extends dart_parseBaseVisitor {
         return super.visitImageDeclaration(ctx);
     }
 
-    @Override
-    public Object visitConatinerPropertiesDeclaration(dart_parse.ConatinerPropertiesDeclarationContext ctx) {
-        return super.visitConatinerPropertiesDeclaration(ctx);
-    }
+
 
 
 
