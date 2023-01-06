@@ -2,14 +2,14 @@ package ast.nodes;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DartListStringDeclaration extends DartAllListsDeclarationAbstractChild{
-	String name;
-	List<String> itemsList;
+	public String name;
+	public List<String> itemsList = new ArrayList<>();
 	
-	public DartListStringDeclaration(String name,List<String> listItem) {
+	public DartListStringDeclaration(String name) {
 		this.name = name;
-		this.itemsList=new ArrayList<>();
 	}
 	
 	public List<String> getListItem(){
@@ -19,10 +19,24 @@ public class DartListStringDeclaration extends DartAllListsDeclarationAbstractCh
 	public void setItemsList(List<String> list) {
 		this.itemsList =  list;
 	}
-	
+
+	public void printList(List<String> list){
+		for(String item:list){
+			System.out.print(item);
+			System.out.print(" ");
+		}
+	}
+
 	@Override
 	public String toString() {
-
-		return  "Dart String List "+ name;
+		String var = "Dart String List "+ name;
+		System.out.print(var);
+		System.out.print(" List Items are ");
+		printList(this.itemsList);
+		return  "" ;
 	}
+
+
+
+
 }
