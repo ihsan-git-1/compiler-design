@@ -223,17 +223,30 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
     @Override
     public BooleanValueClass visitBooleans(dart_parse.BooleansContext ctx) {
         if (ctx.TRUE() != null) {
-
-            return new BooleanValueClass(ctx.TRUE().getText());
-
+            if(ctx.TRUE().getText().equals("true")){
+                return new BooleanValueClass(Boolean.parseBoolean(ctx.TRUE().getText()));
+            }else{
+                Token boolToken = ctx.TRUE().getSymbol();
+                int line = boolToken.getLine();
+                int column = boolToken.getCharPositionInLine() + 1;
+                semanticErrors.add("Error: Undefined name " + ctx.TRUE().getText() + "(" + line + "," + column + ")");
+            }
         } else if (ctx.FALSE() != null) {
 
-            return new BooleanValueClass(ctx.FALSE().getText());
+            if(ctx.TRUE().getText().equals("false")){
+                return new BooleanValueClass(Boolean.parseBoolean(ctx.FALSE().getText()));
+            }else{
+                Token boolToken = ctx.FALSE().getSymbol();
+                int line = boolToken.getLine();
+                int column = boolToken.getCharPositionInLine() + 1;
+                semanticErrors.add("Error: Undefined name " + ctx.TRUE().getText() + "(" + line + "," + column + ")");
+            }
 
         } else {
             //TODO add error Arraylist
             return null;
         }
+        return null;
     }
 
     @Override

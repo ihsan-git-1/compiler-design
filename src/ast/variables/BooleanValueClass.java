@@ -1,14 +1,14 @@
 package ast.variables;
 
 public class BooleanValueClass {
-	String value;
+	boolean value;
 	
-	public BooleanValueClass(String value) {
+	public BooleanValueClass(boolean value) {
 		this.value = value;
 	}
 	
 	@Override
 	public String toString() {
-		return value;
+		return String.valueOf(value);
 	}
 }

@@ -21,8 +21,9 @@ public class Main{
         CommonTokenStream token = new CommonTokenStream(lexer);
         dart_parse parser = new dart_parse(token);
 
-        ParseTree tree = parser.variable();
-        Variable doc = (Variable) new VariablesVisitor().visit(tree);
+        ParseTree tree = parser.dartListBoolDeclaration();
+
+        DartListBoolDeclaration doc = (DartListBoolDeclaration) new ListsVisitor().visit(tree);
         System.out.println(doc);
     }
 
