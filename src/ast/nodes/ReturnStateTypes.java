@@ -1,9 +1,9 @@
 package ast.nodes;
 
 public class ReturnStateTypes {
-	ReturnStateTypesAbstractChild child;
+	ReturnStateTypesAbstractChild returnStateTypesAbstractChild;
 	
 	public ReturnStateTypes(ReturnStateTypesAbstractChild child) {
-		this.child = child;
+		this.returnStateTypesAbstractChild = child;
 	}
 }

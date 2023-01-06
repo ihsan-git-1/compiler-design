@@ -19,4 +19,21 @@ public class BuildMethodDeclaration {
 		widgets.add(widget);
 	}
 	
+	public List<DartVariablesDeclaration> getDartVariables() {
+		return dartVaraibles;
+	}
+
+	public void setDartVariables(List<DartVariablesDeclaration> dartVaraibles) {
+		this.dartVaraibles = dartVaraibles;
+	}
+	
+	public List<WidgetDeclaration> getWidgets() {
+		return widgets;
+	}
+
+	public void setWidgets(List<WidgetDeclaration> widgets) {
+		this.widgets = widgets;
+	}
+	
+	
 }

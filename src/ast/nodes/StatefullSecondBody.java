@@ -4,18 +4,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StatefullSecondBody {
-	List<DartVariablesDeclaration> children;
+	List<DartVariablesDeclaration> dartVariablesDeclarationList;
 	BuildMethodDeclaration methodDecleration;
 	String name;
 	
 	public StatefullSecondBody(BuildMethodDeclaration methodDecleration) {
 		this.methodDecleration=methodDecleration;
-		this.children=new ArrayList<>();
+		this.dartVariablesDeclarationList=new ArrayList<>();
 	}
 	
 	public void addChildren(DartVariablesDeclaration variable) {
-		children.add(variable);
+		dartVariablesDeclarationList.add(variable);
 	}
+	
+	public List<DartVariablesDeclaration> getDartVariablesDeclarationList() {
+		return dartVariablesDeclarationList;
+	}
+
+	public void setDartVariablesDeclarationList(List<DartVariablesDeclaration> list) {
+		this.dartVariablesDeclarationList = list;
+	}
+	
 	
 	@Override
 	public String toString() {
