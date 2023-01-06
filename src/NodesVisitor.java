@@ -121,6 +121,12 @@ public class NodesVisitor extends dart_parseBaseVisitor {
 
             return widgetsDeclaration;
         }
+        if(ctx.rowColumnDeclaration() != null){
+            WidgetsDeclaration widgetsDeclaration
+                    = new WidgetsDeclaration(visitRowColumnDeclaration(ctx.rowColumnDeclaration()));
+
+            return widgetsDeclaration;
+        }
 
         return null;
     }
@@ -177,7 +183,6 @@ public class NodesVisitor extends dart_parseBaseVisitor {
     public ContainerDeclaration visitConatinerDeclaration(dart_parse.ConatinerDeclarationContext ctx) {
         ContainerDeclaration containerDeclaration = new ContainerDeclaration();
 
-
         List<Boolean> isAvailable = new ArrayList<Boolean>();
         isAvailable.add(false); // width
         isAvailable.add(false); // height
@@ -232,6 +237,7 @@ public class NodesVisitor extends dart_parseBaseVisitor {
                     = new ContainerPropertiesDeclaration(visitWidthPropertyDeclaration(ctx.widthPropertyDeclaration()));
             return containerPropertiesDeclaration;
         }
+
         if(ctx.heightPropertyDeclaration() != null){
             ContainerPropertiesDeclaration containerPropertiesDeclaration
                     = new ContainerPropertiesDeclaration(visitHeightPropertyDeclaration(ctx.heightPropertyDeclaration()));
@@ -258,15 +264,22 @@ public class NodesVisitor extends dart_parseBaseVisitor {
     }
 
     @Override
-    public Object visitRowColumnDeclaration(dart_parse.RowColumnDeclarationContext ctx) {
-        return super.visitRowColumnDeclaration(ctx);
+    public RowColumnDeclaration visitRowColumnDeclaration(dart_parse.RowColumnDeclarationContext ctx) {
+        String name = "Column";
+        if(ctx.ROW() != null){
+            name = "Row";
+        }
+        return new RowColumnDeclaration(name,visitChildrenPropertyDeclaration(ctx.childrenPropertyDeclaration()));
     }
-
-
-
-
-
-
+    @Override
+    public ChildrenPropertyDeclaration visitChildrenPropertyDeclaration(dart_parse.ChildrenPropertyDeclarationContext ctx) {
+        ChildrenPropertyDeclaration childrenPropertyDeclaration = new ChildrenPropertyDeclaration();
+        for (int i = 0; i < ctx.widgetsDeclaration().size(); i++) {
+            childrenPropertyDeclaration.getWidgetDeclarationList()
+                    .add(visitWidgetsDeclaration(ctx.widgetsDeclaration(i)));
+        }
+        return childrenPropertyDeclaration;
+    }
     //************************ dart visitors ****************************************//
 
     @Override
