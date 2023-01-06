@@ -5,7 +5,7 @@ import java.util.List;
 public class BuildMethodDeclaration {
 	BuildContextDeclaration context;
 	List<DartVariablesDeclaration> dartVaraibles;
-	List<WidgetDeclaration> widgets;
+	List<WidgetsDeclaration> widgets;
 	
 	public BuildMethodDeclaration(BuildContextDeclaration context) {
 		this.context=context;
@@ -15,7 +15,7 @@ public class BuildMethodDeclaration {
 		dartVaraibles.add(variable);
 	}
 	
-	public void addWidgets(WidgetDeclaration widget) {
+	public void addWidgets(WidgetsDeclaration widget) {
 		widgets.add(widget);
 	}
 	
@@ -27,11 +27,11 @@ public class BuildMethodDeclaration {
 		this.dartVaraibles = dartVaraibles;
 	}
 	
-	public List<WidgetDeclaration> getWidgets() {
+	public List<WidgetsDeclaration> getWidgets() {
 		return widgets;
 	}
 
-	public void setWidgets(List<WidgetDeclaration> widgets) {
+	public void setWidgets(List<WidgetsDeclaration> widgets) {
 		this.widgets = widgets;
 	}
 	
