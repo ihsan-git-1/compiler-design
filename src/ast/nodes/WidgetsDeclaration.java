@@ -2,9 +2,14 @@ package ast.nodes;
 
 public class WidgetsDeclaration {
 	WidgetAbstractChild widgetAbstractChild;
-	
-	public WidgetsDeclaration(WidgetAbstractChild child) {
-		this.widgetAbstractChild = child;
+	public WidgetsDeclaration(WidgetAbstractChild widgetAbstractChild) {
+
+		this.widgetAbstractChild = widgetAbstractChild;
+
 	}
-	
+
+	@Override
+	public String toString() {
+		return "WidgetsDeclaration |"+widgetAbstractChild;
+	}
 }
