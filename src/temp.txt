@@ -1,1 +1,5 @@
-8*10*2/2
+Expanded(
+child:Expanded(
+child:Text("hello ")
+)
+);
