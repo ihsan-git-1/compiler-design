@@ -2,6 +2,7 @@
 add var
 add function
 add main
+add text widget
 
 some dot some
 
