@@ -8,8 +8,16 @@ public class StatefullClassDeclaration extends AllClassesDeclarationAbstractChil
 	StatefullSecondBody secondBody;
 	
 	
-	StatefullClassDeclaration(StatefullFirstBody firstBody,StatefullSecondBody secondBody){
+	public StatefullClassDeclaration(StatefullFirstBody firstBody,StatefullSecondBody secondBody){
 		this.firstBody=firstBody;
 		this.secondBody=secondBody;
+	}
+
+	@Override
+	public String toString() {
+		return ""
+				+firstBody
+				+secondBody
+				;
 	}
 }

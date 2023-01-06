@@ -1,13 +1,12 @@
 import ast.nodes.*;
 import gen.dart_parse;
 import gen.dart_parseBaseVisitor;
-
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class NodesVisitor extends dart_parseBaseVisitor {
 
+public class NodesVisitor extends dart_parseBaseVisitor {
 
 
     //********************* base declarations start code ********************************///
@@ -23,8 +22,6 @@ public class NodesVisitor extends dart_parseBaseVisitor {
         }
         return topTreeDeclaration;
     }
-
-
     @Override
     public AllClassesDeclarationAbstractChild visitAllClassesDeclaration(dart_parse.AllClassesDeclarationContext ctx) {
         if(ctx.classDeclaration() != null){
@@ -32,6 +29,9 @@ public class NodesVisitor extends dart_parseBaseVisitor {
         }
         if(ctx.statelessClassDeclaration() != null){
             return visitStatelessClassDeclaration(ctx.statelessClassDeclaration());
+        }
+        if(ctx.statefullClassDeclaration() != null){
+            return visitStatefullClassDeclaration(ctx.statefullClassDeclaration());
         }
         return null;
     }
@@ -48,7 +48,6 @@ public class NodesVisitor extends dart_parseBaseVisitor {
 
     @Override
     public StatelessClassDeclaration visitStatelessClassDeclaration(dart_parse.StatelessClassDeclarationContext ctx) {
-
         StatelessClassDeclaration statelessClassDeclaration
                 = new StatelessClassDeclaration(ctx.NAME().getText(),
                         visitBuildMethodDeclaration(ctx.buildMethodDeclaration()));
@@ -83,33 +82,59 @@ public class NodesVisitor extends dart_parseBaseVisitor {
     }
 
     @Override
-    public Object visitStatefullClassDeclaration(dart_parse.StatefullClassDeclarationContext ctx) {
-        return super.visitStatefullClassDeclaration(ctx);
+    public StatefullClassDeclaration visitStatefullClassDeclaration(dart_parse.StatefullClassDeclarationContext ctx) {
+        return new StatefullClassDeclaration(
+                visitStfulFirstBody(ctx.stfulFirstBody()),
+                visitStfulSecondBody(ctx.stfulSecondBody())
+        );
     }
 
     @Override
-    public Object visitStfulFirstBody(dart_parse.StfulFirstBodyContext ctx) {
-        return super.visitStfulFirstBody(ctx);
+    public StatefullFirstBody visitStfulFirstBody(dart_parse.StfulFirstBodyContext ctx) {
+        StatefullFirstBody statefullFirstBody
+                = new StatefullFirstBody(ctx.NAME().getText(),
+                visitStatefullAssignStateClassDeclaration(ctx.statefullAssignStateClassDeclaration()));
+
+        for (int i = 0; i < ctx.dartVariabelsDeclaration().size(); i++) {
+            statefullFirstBody.getDartVariablesDeclarationList()
+                    .add(visitDartVariabelsDeclaration(ctx.dartVariabelsDeclaration(i)));
+        }
+
+        return statefullFirstBody;
     }
 
     @Override
-    public Object visitStfulSecondBody(dart_parse.StfulSecondBodyContext ctx) {
-        return super.visitStfulSecondBody(ctx);
+    public StatefullSecondBody visitStfulSecondBody(dart_parse.StfulSecondBodyContext ctx) {
+        StatefullSecondBody statefullSecondBody
+                = new StatefullSecondBody(
+                        ctx.NAME(0).getText(),
+                ctx.NAME(1).getText(),
+                visitBuildMethodDeclaration(ctx.buildMethodDeclaration()));
+
+        for (int i = 0; i < ctx.dartVariabelsDeclaration().size(); i++) {
+            statefullSecondBody.getDartVariablesDeclarationList()
+                    .add(visitDartVariabelsDeclaration(ctx.dartVariabelsDeclaration(i)));
+        }
+
+        return statefullSecondBody;
     }
 
     @Override
-    public Object visitStatefullAssignStateClassDeclaration(dart_parse.StatefullAssignStateClassDeclarationContext ctx) {
-        return super.visitStatefullAssignStateClassDeclaration(ctx);
+    public StatefullAssignStateClassDeclaration visitStatefullAssignStateClassDeclaration(dart_parse.StatefullAssignStateClassDeclarationContext ctx) {
+        return new StatefullAssignStateClassDeclaration(ctx.NAME().getText(),visitReturnStateTypes(ctx.returnStateTypes()));
     }
 
     @Override
-    public Object visitReturnStateTypes(dart_parse.ReturnStateTypesContext ctx) {
-        return super.visitReturnStateTypes(ctx);
-    }
+    public ReturnStateTypes visitReturnStateTypes(dart_parse.ReturnStateTypesContext ctx) {
+        String name = "";
 
-    @Override
-    public Object visitFunctionReturnState(dart_parse.FunctionReturnStateContext ctx) {
-        return super.visitFunctionReturnState(ctx);
+        if(ctx.functionReturnState() != null){
+            name = ctx.functionReturnState().NAME().getText();
+        }
+        if(ctx.returnArrowState() != null){
+            name = ctx.returnArrowState().NAME().getText();
+        }
+        return new ReturnStateTypes(name);
     }
 
 
@@ -150,6 +175,18 @@ public class NodesVisitor extends dart_parseBaseVisitor {
 
             return widgetsDeclaration;
         }
+        if(ctx.materialButtonDeclaration() != null){
+            WidgetsDeclaration widgetsDeclaration
+                    = new WidgetsDeclaration(visitMaterialButtonDeclaration(ctx.materialButtonDeclaration()));
+
+            return widgetsDeclaration;
+        }
+        if(ctx.materialAppDeclaration() != null){
+            WidgetsDeclaration widgetsDeclaration
+                    = new WidgetsDeclaration(visitMaterialAppDeclaration(ctx.materialAppDeclaration()));
+
+            return widgetsDeclaration;
+        }
         if(ctx.rowColumnDeclaration() != null){
             WidgetsDeclaration widgetsDeclaration
                     = new WidgetsDeclaration(visitRowColumnDeclaration(ctx.rowColumnDeclaration()));
@@ -173,10 +210,26 @@ public class NodesVisitor extends dart_parseBaseVisitor {
     public ImageDeclaration visitImageDeclaration(dart_parse.ImageDeclarationContext ctx) {
         return new ImageDeclaration(ctx.STRING_LINE().getText());
     }
+
+    @Override
+    public MaterialAppDeclaration visitMaterialAppDeclaration(dart_parse.MaterialAppDeclarationContext ctx) {
+        return new MaterialAppDeclaration(visitHomePropertyDeclaration(ctx.homePropertyDeclaration()));
+    }
+
+    @Override
+    public HomePropertyDeclaration visitHomePropertyDeclaration(dart_parse.HomePropertyDeclarationContext ctx) {
+        return new HomePropertyDeclaration(ctx.NAME().getText());
+    }
+
     @Override
     public ExpandedDeclaration visitExpandedDeclaration(dart_parse.ExpandedDeclarationContext ctx) {
         ExpandedDeclaration expandedDeclaration = new ExpandedDeclaration(visitChildPropertyDeclaration(ctx.childPropertyDeclaration()));
         return expandedDeclaration;
+    }
+
+    @Override
+    public MaterialButtonDeclaration visitMaterialButtonDeclaration(dart_parse.MaterialButtonDeclarationContext ctx) {
+        return new MaterialButtonDeclaration(visitChildPropertyDeclaration(ctx.childPropertyDeclaration()));
     }
 
     @Override

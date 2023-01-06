@@ -13,22 +13,6 @@ class MyHomePage extends StatefulWidget {
 }
 class MyHomePageState extends State<MyHomePage> {
 
-  List<String> Names=
-  [
-    "ehsan",
-    "lady",
-    "rita",
-    "johny",
-  ];
-  List<String> Images=
-  [
-    "https://picsum.photos/250?image=1",
-    "https://picsum.photos/250?image=2",
-    "https://picsum.photos/250?image=3",
-    "https://picsum.photos/250?image=4",
-  ];
-
-
   String name="none";
   String image="https://picsum.photos/250?image=4";
 
@@ -46,7 +30,7 @@ class MyHomePageState extends State<MyHomePage> {
                   child: Column(
                     children:  [
                       Text("Hi"),
-                      Expanded(child: Image.network(image))
+                      Expanded(child: Image.network("image"))
                     ],
                   ),
                     )],

@@ -9,6 +9,6 @@ public class HomePropertyDeclaration {
 	
 	@Override
 	public String toString() {
-		return name;
+		return "home : "+name+"(),";
 	}
 }

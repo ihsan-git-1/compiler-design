@@ -8,25 +8,25 @@ public class StatefullFirstBody {
 	StatefullAssignStateClassDeclaration dec;
 	String name;
 	
-	public StatefullFirstBody(StatefullAssignStateClassDeclaration dec) {
-		this.dec=dec;
+	public StatefullFirstBody(String name,StatefullAssignStateClassDeclaration dec) {
+		this.name = name;
+		this.dec = dec;
 		this.dartVariablesDeclarationList=new ArrayList<>();
 	}
-	
-	public void addChildren(DartVariablesDeclaration variable) {
-		dartVariablesDeclarationList.add(variable);
-	}
-	
+
 	public List<DartVariablesDeclaration> getDartVariablesDeclarationList() {
 		return dartVariablesDeclarationList;
 	}
 
-	public void setDartVariablesDeclarationList(List<DartVariablesDeclaration> list) {
-		this.dartVariablesDeclarationList = list;
-	}
-	
 	@Override
 	public String toString() {
-		return  name;
+
+		return  "\nclass "
+				+name
+				+" extends StatefulWidget {\n"
+				+dartVariablesDeclarationList
+				+"\n"
+				+dec
+				;
 	}
 }

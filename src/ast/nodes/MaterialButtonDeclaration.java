@@ -6,4 +6,12 @@ public class MaterialButtonDeclaration extends WidgetAbstractChild {
 	public MaterialButtonDeclaration(ChildPropertyDeclaration childPropertyDeclaration) {
 		this.childPropertyDeclaration = childPropertyDeclaration;
 	}
+
+	@Override
+	public String toString() {
+		return "\nMaterialButton("
+				+childPropertyDeclaration
+				+")\n"
+				;
+	}
 }

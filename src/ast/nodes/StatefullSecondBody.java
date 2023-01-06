@@ -7,27 +7,29 @@ public class StatefullSecondBody {
 	List<DartVariablesDeclaration> dartVariablesDeclarationList;
 	BuildMethodDeclaration methodDecleration;
 	String name;
+	String stateName;
 	
-	public StatefullSecondBody(BuildMethodDeclaration methodDecleration) {
+	public StatefullSecondBody(String name,String stateName,BuildMethodDeclaration methodDecleration) {
+		this.name=name;
+		this.stateName=stateName;
 		this.methodDecleration=methodDecleration;
 		this.dartVariablesDeclarationList=new ArrayList<>();
 	}
-	
-	public void addChildren(DartVariablesDeclaration variable) {
-		dartVariablesDeclarationList.add(variable);
-	}
-	
+
 	public List<DartVariablesDeclaration> getDartVariablesDeclarationList() {
 		return dartVariablesDeclarationList;
 	}
 
-	public void setDartVariablesDeclarationList(List<DartVariablesDeclaration> list) {
-		this.dartVariablesDeclarationList = list;
-	}
-	
 	
 	@Override
 	public String toString() {
-		return  name;
+		return  "\nclass"
+				+name
+				+" extends State<"
+				+stateName
+				+"> {\n"
+				+methodDecleration
+				+"\n}"
+				;
 	}
 }
