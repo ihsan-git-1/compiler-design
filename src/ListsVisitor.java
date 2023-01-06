@@ -2,6 +2,7 @@ import ast.nodes.DartAllListsDeclaration;
 import ast.nodes.DartListBoolDeclaration;
 import ast.nodes.DartListIntDeclaration;
 import ast.nodes.DartListStringDeclaration;
+import ast.variables.BooleanValueClass;
 import ast.variables.NumberClass;
 import ast.variables.Variable;
 import gen.dart_parse.DartAllListsDeclarationContext;
@@ -58,9 +59,14 @@ public class ListsVisitor extends dart_parseBaseVisitor{
 		List<NumberClass> dartListIntItems = new ArrayList<>();
 
 		for(int i=7;i<ctx.getChildCount();i++){
-			NumberClass number = (NumberClass) ctx.getChild(i);
-			if(){
-				dartListIntItems.add(num);
+			String str = ctx.getChild(i).getText();
+			if(!str.equals(",") && !str.equals("]") && !str.equals(";")) {
+				try {
+					NumberClass number = new NumberClass(Integer.parseInt(ctx.getChild(i).getText()));
+					dartListIntItems.add(number);
+				} catch (Exception e) {
+
+				}
 			}
 		}
 		DartListIntDeclaration dec = new DartListIntDeclaration(name);
@@ -70,7 +76,27 @@ public class ListsVisitor extends dart_parseBaseVisitor{
 
 	@Override
 	public DartListBoolDeclaration visitDartListBoolDeclaration(DartListBoolDeclarationContext ctx) {
-		return null;
+		String name = ctx.NAME().getText();
+		List<BooleanValueClass> dartListBoolItems = new ArrayList<>();
+
+		for(int i=7;i<ctx.getChildCount();i++){
+			String str = ctx.getChild(i).getText();
+
+			if(!str.equals(",") && !str.equals("]") && !str.equals(";")) {
+
+				try {
+
+					BooleanValueClass b = new BooleanValueClass(Boolean.parseBoolean(ctx.getChild(i).getText()));
+					dartListBoolItems.add(b);
+				} catch (Exception e) {
+
+				}
+			}
+		}
+
+		DartListBoolDeclaration dec = new DartListBoolDeclaration(name);
+		dec.setItemsList(dartListBoolItems);
+		return dec;
 	}
 	
 }
