@@ -4,29 +4,29 @@
     <option name="perGrammarGenerationSettings">
       <list>
         <PerGrammarGenerationSettings>
-          <option name="fileName" value="$PROJECT_DIR$/src/dart_parse.g4" />
+          <option name="fileName" value="$PROJECT_DIR$/src/dart_lexar.g4" />
           <option name="autoGen" value="true" />
           <option name="outputDir" value="C:\Users\Lenovo\IdeaProjects\compiler-1\src" />
-          <option name="libDir" value="$PROJECT_DIR$/src" />
+          <option name="libDir" value="C:\Users\Lenovo\IdeaProjects\compiler-1\src" />
           <option name="encoding" value="" />
-          <option name="pkg" value="gen" />
+          <option name="pkg" value="" />
           <option name="language" value="" />
           <option name="generateVisitor" value="true" />
         </PerGrammarGenerationSettings>
         <PerGrammarGenerationSettings>
-          <option name="fileName" value="$PROJECT_DIR$/src/dart_lexar.g4" />
+          <option name="fileName" value="$PROJECT_DIR$/src/dart_parse.g4" />
           <option name="autoGen" value="true" />
-          <option name="outputDir" value="$PROJECT_DIR$/src" />
-          <option name="libDir" value="$PROJECT_DIR$/src" />
+          <option name="outputDir" value="C:\Users\Lenovo\IdeaProjects\compiler-1\src" />
+          <option name="libDir" value="C:\Users\Lenovo\IdeaProjects\compiler-1\src" />
           <option name="encoding" value="" />
-          <option name="pkg" value="gen" />
+          <option name="pkg" value="" />
           <option name="language" value="" />
           <option name="generateVisitor" value="true" />
         </PerGrammarGenerationSettings>
       </list>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_19" default="true" project-jdk-name="openjdk-19" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" project-jdk-name="openjdk-19" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>

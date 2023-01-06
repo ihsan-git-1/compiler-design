@@ -1,4 +1,1 @@
-class a{
-String a = "asd";
-bool a = true;
-}
+8/2*10*2
