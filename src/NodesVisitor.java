@@ -6,6 +6,9 @@ import gen.dart_parseBaseVisitor;
 
 public class NodesVisitor extends dart_parseBaseVisitor {
 
+
+
+  // base declarations start code ///
     @Override
     public TopTreeDeclaration visitTopTreeDeclaration(dart_parse.TopTreeDeclarationContext ctx) {
         TopTreeDeclaration topTreeDeclaration = new TopTreeDeclaration();
@@ -35,11 +38,26 @@ public class NodesVisitor extends dart_parseBaseVisitor {
         return classDec;
     }
 
+
+
+    // flutter visitors //
+
     @Override
     public WidgetsDeclaration visitWidgetsDeclaration(dart_parse.WidgetsDeclarationContext ctx) {
-        WidgetsDeclaration widgetsDeclaration
-                = new WidgetsDeclaration(visitExpandedDeclaration(ctx.expandedDeclaration()));
-        return widgetsDeclaration;
+        //todo : add all widgets
+        if(ctx.expandedDeclaration() != null){
+            WidgetsDeclaration widgetsDeclaration
+                    = new WidgetsDeclaration(visitExpandedDeclaration(ctx.expandedDeclaration()));
+            return widgetsDeclaration;
+
+        }
+        if(ctx.textDeclaration() != null){
+            WidgetsDeclaration widgetsDeclaration
+                    = new WidgetsDeclaration(visitTextDeclaration(ctx.textDeclaration()));
+            return widgetsDeclaration;
+
+        }
+        return null;
     }
 
     @Override
@@ -47,6 +65,10 @@ public class NodesVisitor extends dart_parseBaseVisitor {
         return new ChildPropertyDeclaration(visitWidgetsDeclaration(ctx.widgetsDeclaration()));
     }
 
+    @Override
+    public TextDeclaration visitTextDeclaration(dart_parse.TextDeclarationContext ctx) {
+        return new TextDeclaration(ctx.STRING_LINE().getText());
+    }
     @Override
     public ExpandedDeclaration visitExpandedDeclaration(dart_parse.ExpandedDeclarationContext ctx) {
       ExpandedDeclaration expandedDeclaration = new ExpandedDeclaration(visitChildPropertyDeclaration(ctx.childPropertyDeclaration()));
