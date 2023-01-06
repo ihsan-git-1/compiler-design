@@ -3,6 +3,8 @@ import ast.variables.*;
 import gen.*;
 
 import java.io.IOException;
+import java.util.List;
+
 import org.antlr.v4.runtime.CharStream;
 import org. antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
@@ -17,10 +19,11 @@ public class Main{
 
         dart_lexar lexer = new dart_lexar(cs);
         CommonTokenStream token = new CommonTokenStream(lexer);
-
         dart_parse parser = new dart_parse(token);
-        ParseTree tree = parser.widgetsDeclaration();
-        WidgetsDeclaration doc = (WidgetsDeclaration) new NodesVisitor().visit(tree);
+
+        ParseTree tree = parser.dartListStringDeclaration();
+
+        DartListStringDeclaration doc = (DartListStringDeclaration) new ListsVisitor().visit(tree);
         System.out.println(doc);
     }
 
