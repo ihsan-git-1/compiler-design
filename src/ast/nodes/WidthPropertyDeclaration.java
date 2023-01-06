@@ -11,6 +11,8 @@ public class WidthPropertyDeclaration extends ContainerPropertiesDeclarationAbst
 	
 	@Override
 	public String toString() {
-		return number.toString();
+
+		return "width : "
+				+number.toString();
 	}
 }

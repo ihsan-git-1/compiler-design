@@ -9,13 +9,12 @@ import java.util.*;
 public class VariablesVisitor extends dart_parseBaseVisitor {
 
     private List<String> vars; //stores all the variables declared in the program so far
-    private List<String> semanticErrors; // 1. duplicate declaration // reference to undeclared variables
+    private List<String> semanticErrors = new ArrayList<>(); // 1. duplicate declaration // reference to undeclared variables
+
 
 
     @Override
     public Variable visitVariable(dart_parse.VariableContext ctx) {
-        System.out.println(ctx.getText());
-
         if (ctx.stringDeclaration() != null) {
             return new Variable(visitStringDeclaration(ctx.stringDeclaration()));
         }
@@ -47,32 +46,36 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
         Token idToken = ctx.INT().getSymbol();
         int line = idToken.getLine();
         int column = idToken.getCharPositionInLine() + 1;
-
-        String id = ctx.getChild(0).getText();
-        if (vars.contains(id)) {
-            semanticErrors.add("Error: Integer" + id + "already declared (" + line + "," + column + ")");
-        } else {
-            vars.add(id);
+        String id = ctx.NAME().getText();
+//        if (vars.contains(id)) {
+//            semanticErrors.add("Error: Integer" + id + "already declared (" + line + "," + column + ")");
+//        } else {
+//            vars.add(id);
+//        }
+        if (ctx.addExpression() != null) {
+            AddExpression expr = visitAddExpression(ctx.addExpression());
+            return new IntegerDeclaration(expr, id);
         }
-        int value = Integer.parseInt(ctx.ASSIGN().getText());
         return new IntegerDeclaration(id); //todo also needs AddExpression
-
     }
 
     @Override
     public DoubleDeclaration visitDoubleDeclaration(dart_parse.DoubleDeclarationContext ctx) {
-
         Token idToken = ctx.DOUBLE().getSymbol();
         int line = idToken.getLine();
         int column = idToken.getCharPositionInLine() + 1;
         String id = ctx.getChild(0).getText();
-        if (vars.contains(id)) {
-            semanticErrors.add("Error: Double" + id + "already declared (" + line + "," + column + ")");
-        } else {
-            vars.add(id);
+        String name= String.valueOf(ctx.NAME());
+//        if (vars.contains(id)) {
+//            semanticErrors.add("Error: Double" + id + "already declared (" + line + "," + column + ")");
+//        } else {
+//            vars.add(id);
+//        }
+        if (ctx.addDoubleExpression() != null) {
+            AddDoubleExpression expr = visitAddDoubleExpression(ctx.addDoubleExpression());
+            return new DoubleDeclaration(expr,name);
         }
-        double value = Double.parseDouble(ctx.ASSIGN().getText());
-        return new DoubleDeclaration(id);  //todo also needs addDoubleExpression
+        return new DoubleDeclaration(name);
     }
 
     @Override
@@ -134,7 +137,8 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
                 value -= num;
             }
         }
-        NumberClass numClass = new NumberClass(value);
+        int intValue = (int) value;
+        NumberClass numClass = new NumberClass(intValue);
         return new AddExpression(numClass);
     }
 
@@ -154,18 +158,66 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
                 value /= num;
             }
         }
-        NumberClass num = new NumberClass(value);
+        int intValue = (int) value;
+        NumberClass num = new NumberClass(intValue);
         return new MultiplyExpression(num);
     }
 
     @Override
-    public Object visitAddDoubleExpression(dart_parse.AddDoubleExpressionContext ctx) {
-        return super.visitAddDoubleExpression(ctx);
+    public AddDoubleExpression visitAddDoubleExpression(dart_parse.AddDoubleExpressionContext ctx) {
+        double num;
+        double value;
+        Queue<Object> queue = new LinkedList<>();
+        if (ctx.getChild(0) instanceof dart_parse.MultiplyDoubleExpressionContext) {
+            MultiplyDoubleExpression expr = visitMultiplyDoubleExpression((dart_parse.MultiplyDoubleExpressionContext) ctx.getChild(0));
+            value = expr.getValue().getNum();
+        } else {
+            value = Double.parseDouble(ctx.getChild(0).getText());
+        }
+        for (int i = 1; i < ctx.getChildCount(); i++) {
+            if (ctx.getChild(i) instanceof dart_parse.MultiplyDoubleExpressionContext) {
+                MultiplyDoubleExpression expr = visitMultiplyDoubleExpression((dart_parse.MultiplyDoubleExpressionContext) ctx.getChild(i));
+                double n = expr.getValue().getNum();
+                queue.add(n);
+            } else {
+                queue.add(ctx.getChild(i).getText());
+            }
+        }
+        while (!queue.isEmpty()) {
+            String operator = (String) queue.remove();
+            if (queue.peek() instanceof Double) {
+                num = (double) queue.remove();
+            } else {
+                num = Double.parseDouble((String) queue.remove());
+            }
+            if (operator.equals("+")) {
+                value += num;
+            } else if (operator.equals("-")) {
+                value -= num;
+            }
+        }
+        NumberDoubleClass numClass = new NumberDoubleClass(value);
+        return new AddDoubleExpression(numClass);
     }
 
     @Override
-    public Object visitMultiplyDoubleExpression(dart_parse.MultiplyDoubleExpressionContext ctx) {
-        return super.visitMultiplyDoubleExpression(ctx);
+    public MultiplyDoubleExpression visitMultiplyDoubleExpression(dart_parse.MultiplyDoubleExpressionContext ctx) {
+        Queue<Object> queue = new LinkedList<>();
+        double value = Double.parseDouble(ctx.getChild(0).getText());
+        for (int i = 1; i < ctx.getChildCount(); i++) {
+            queue.add(ctx.getChild(i).getText());
+        }
+        while (!queue.isEmpty()) {
+            String operator = (String) queue.remove();
+            double num = Double.parseDouble((String) queue.remove());
+            if (operator.equals("*")) {
+                value *= num;
+            } else if (operator.equals("/")) {
+                value /= num;
+            }
+        }
+        NumberDoubleClass num = new NumberDoubleClass(value);
+        return new MultiplyDoubleExpression(num);
     }
 
     @Override
@@ -185,7 +237,8 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
     }
 
     @Override
-    public Object visitNumberDouble(dart_parse.NumberDoubleContext ctx) {
-        return super.visitNumberDouble(ctx);
+    public NumberDoubleClass visitNumberDouble(dart_parse.NumberDoubleContext ctx) {
+        double number = Double.parseDouble(ctx.NUMBERDOUBLE().getText());
+        return new NumberDoubleClass(number);
     }
 }
