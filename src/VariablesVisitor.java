@@ -8,9 +8,6 @@ import java.util.*;
 
 public class VariablesVisitor extends dart_parseBaseVisitor {
 
-    private List<String> vars; //stores all the variables declared in the program so far
-    private List<String> semanticErrors = new ArrayList<>(); // 1. duplicate declaration // reference to undeclared variables
-
 
 
     @Override
@@ -47,10 +44,10 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
         int line = idToken.getLine();
         int column = idToken.getCharPositionInLine() + 1;
         String id = ctx.NAME().getText();
-//        if (vars.contains(id)) {
+//        if (dart_parseBaseVisitor.vars.contains(id)) {
 //            semanticErrors.add("Error: Integer" + id + "already declared (" + line + "," + column + ")");
 //        } else {
-//            vars.add(id);
+//            dart_parseBaseVisitor.vars.add(id);
 //        }
         if (ctx.addExpression() != null) {
             AddExpression expr = visitAddExpression(ctx.addExpression());
@@ -67,9 +64,9 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
         String id = ctx.getChild(0).getText();
         String name= String.valueOf(ctx.NAME());
 //        if (vars.contains(id)) {
-//            semanticErrors.add("Error: Double" + id + "already declared (" + line + "," + column + ")");
+//            dart_parseBaseVisitor.dartsemanticErrors.add("Error: Double" + id + "already declared (" + line + "," + column + ")");
 //        } else {
-//            vars.add(id);
+//            dart_parseBaseVisitor.vars.add(id);
 //        }
         if (ctx.addDoubleExpression() != null) {
             AddDoubleExpression expr = visitAddDoubleExpression(ctx.addDoubleExpression());
@@ -229,7 +226,7 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
                 Token boolToken = ctx.TRUE().getSymbol();
                 int line = boolToken.getLine();
                 int column = boolToken.getCharPositionInLine() + 1;
-                semanticErrors.add("Error: Undefined name " + ctx.TRUE().getText() + "(" + line + "," + column + ")");
+                dart_parseBaseVisitor.semanticErrors.add("Error: Undefined name " + ctx.TRUE().getText() + "(" + line + "," + column + ")");
             }
         } else if (ctx.FALSE() != null) {
 
@@ -239,7 +236,7 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
                 Token boolToken = ctx.FALSE().getSymbol();
                 int line = boolToken.getLine();
                 int column = boolToken.getCharPositionInLine() + 1;
-                semanticErrors.add("Error: Undefined name " + ctx.TRUE().getText() + "(" + line + "," + column + ")");
+                dart_parseBaseVisitor.semanticErrors.add("Error: Undefined name " + ctx.TRUE().getText() + "(" + line + "," + column + ")");
             }
 
         } else {

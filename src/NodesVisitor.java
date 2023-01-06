@@ -8,7 +8,7 @@ import java.util.List;
 
 public class NodesVisitor extends dart_parseBaseVisitor {
 
-    private List<String> semanticErrors = new ArrayList<>();
+
 
     //********************* base declarations start code ********************************///
     @Override
@@ -221,15 +221,15 @@ public class NodesVisitor extends dart_parseBaseVisitor {
 
             // check if property already available;
             if(isAvailable.get(0) && ctx.conatinerPropertiesDeclaration().get(i).widthPropertyDeclaration() != null){
-                semanticErrors.add("Error cant duplicate width");
+                dart_parseBaseVisitor.semanticErrors.add("Error cant duplicate width");
                 System.out.println("Error cant duplicate width");
             }
             if(isAvailable.get(1) && ctx.conatinerPropertiesDeclaration().get(i).heightPropertyDeclaration() != null){
-                semanticErrors.add("Error cant duplicate height");
+                dart_parseBaseVisitor.semanticErrors.add("Error cant duplicate height");
                 System.out.println("Error cant duplicate height");
             }
             if(isAvailable.get(2) && ctx.conatinerPropertiesDeclaration().get(i).childPropertyDeclaration() != null){
-                semanticErrors.add("Error cant duplicate child");
+                dart_parseBaseVisitor.semanticErrors.add("Error cant duplicate child");
                 System.out.println("Error cant duplicate child");
             }
 
