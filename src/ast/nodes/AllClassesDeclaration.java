@@ -9,5 +9,7 @@ public class AllClassesDeclaration {
 	}
 	
 	
-	
+	public String toString() {
+		return "All Classes "+child.toString();
+	}
 }
