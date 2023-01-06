@@ -104,7 +104,7 @@ buildMethodDeclaration:
     CRLY_BRKT_OP
     dartVariabelsDeclaration*
     RETURN
-    widgetsDeclaration+
+    widgetsDeclaration
     SEMICOLON
     CRLY_BRKT_CL
     ;

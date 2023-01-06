@@ -1,39 +1,30 @@
 package ast.nodes;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BuildMethodDeclaration {
 	BuildContextDeclaration context;
 	List<DartVariablesDeclaration> dartVaraibles;
-	List<WidgetsDeclaration> widgets;
+	WidgetsDeclaration widgets;
 	
-	public BuildMethodDeclaration(BuildContextDeclaration context) {
-		this.context=context;
+	public BuildMethodDeclaration(WidgetsDeclaration widgets,BuildContextDeclaration context) {
+		dartVaraibles = new ArrayList<>();
+		this.widgets = widgets;
+		this.context = context;
 	}
-	
-	public void addDartVariables(DartVariablesDeclaration variable) {
-		dartVaraibles.add(variable);
-	}
-	
-	public void addWidgets(WidgetsDeclaration widget) {
-		widgets.add(widget);
-	}
-	
+
 	public List<DartVariablesDeclaration> getDartVariables() {
 		return dartVaraibles;
 	}
 
-	public void setDartVariables(List<DartVariablesDeclaration> dartVaraibles) {
-		this.dartVaraibles = dartVaraibles;
-	}
-	
-	public List<WidgetsDeclaration> getWidgets() {
-		return widgets;
-	}
 
-	public void setWidgets(List<WidgetsDeclaration> widgets) {
-		this.widgets = widgets;
+	@Override
+	public String toString() {
+		return "Widget build("+context+")" +"{\n"
+				+dartVaraibles
+				+"\nreturn "+widgets
+				+"\n}\n"
+				;
 	}
-	
-	
 }

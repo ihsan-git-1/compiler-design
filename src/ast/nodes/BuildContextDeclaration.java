@@ -8,6 +8,6 @@ public class BuildContextDeclaration {
 	}
 	
 	public String toString() {
-		return "Build Context Declaration"+name;
+		return "BuildContext "+name;
 	}
 }

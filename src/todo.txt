@@ -1,8 +1,8 @@
 
 add var
 add function
-add main
-add set state + on pressed
-// TODO: 06/01/2023 add syntax error
+add set state
++ on pressed
+
 some dot some
 
