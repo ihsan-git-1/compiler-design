@@ -1,7 +1,7 @@
 import  ast.nodes.*;
-import ast.variables.AddExpression;
-import ast.variables.MultiplyExpression;
-import gen.dart_parse;
+import ast.variables.*;
+import gen.*;
+
 import java.io.IOException;
 import org.antlr.v4.runtime.CharStream;
 import org. antlr.v4.runtime.CommonTokenStream;
@@ -14,12 +14,13 @@ public class Main{
 
         String source = "src/temp.txt";
         CharStream cs = fromFileName(source);
+
         dart_lexar lexer = new dart_lexar(cs);
         CommonTokenStream token = new CommonTokenStream(lexer);
 
         dart_parse parser = new dart_parse(token);
-        ParseTree tree = parser.addExpression();
-        AddExpression doc = (AddExpression) new VariablesVisitor().visit(tree);
+        ParseTree tree = parser.widgetsDeclaration();
+        WidgetsDeclaration doc = (WidgetsDeclaration) new NodesVisitor().visit(tree);
         System.out.println(doc);
     }
 

@@ -2,9 +2,7 @@
 add var
 add function
 add main
-add if , else
+add text widget
 
-add for loop
-add while
 some dot some
 

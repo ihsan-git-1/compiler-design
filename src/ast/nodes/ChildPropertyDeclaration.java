@@ -6,4 +6,11 @@ public class ChildPropertyDeclaration {
 	public ChildPropertyDeclaration(WidgetsDeclaration widgetsDeclaration) {
 		this.widgetsDeclaration=widgetsDeclaration;
 	}
+
+	@Override
+	public String toString() {
+		return "child : "
+				+ widgetsDeclaration
+				;
+	}
 }

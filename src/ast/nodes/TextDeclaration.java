@@ -9,6 +9,6 @@ public class TextDeclaration extends WidgetAbstractChild {
 	
 	@Override
 	public String toString() {
-		return strline;
+		return "Text : \n"+strline;
 	}
 }
