@@ -49,13 +49,11 @@ public class NodesVisitor extends dart_parseBaseVisitor {
             WidgetsDeclaration widgetsDeclaration
                     = new WidgetsDeclaration(visitExpandedDeclaration(ctx.expandedDeclaration()));
             return widgetsDeclaration;
-
         }
         if(ctx.textDeclaration() != null){
             WidgetsDeclaration widgetsDeclaration
                     = new WidgetsDeclaration(visitTextDeclaration(ctx.textDeclaration()));
             return widgetsDeclaration;
-
         }
         return null;
     }
