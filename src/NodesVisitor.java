@@ -169,7 +169,7 @@ public class NodesVisitor extends dart_parseBaseVisitor {
         // todo : finish container
         return new ContainerDeclaration();
     }
-    @Override
+    /**@Override
     public ContainerPropertiesDeclaration visitConatinerPropertiesDeclaration(dart_parse.ConatinerPropertiesDeclarationContext ctx) {
 
         if(ctx.widthPropertyDeclaration() != null){
@@ -189,7 +189,7 @@ public class NodesVisitor extends dart_parseBaseVisitor {
         }
 
         return new ContainerPropertiesDeclaration();
-    }
+    }**/
 
     @Override
     public HeightPropertyDeclaration visitHeightPropertyDeclaration(dart_parse.HeightPropertyDeclarationContext ctx) {
