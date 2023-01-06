@@ -2,6 +2,10 @@
 package gen;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 /**
  * This class provides an empty implementation of {@link dart_parseVisitor},
  * which can be extended to create a visitor which only needs to handle a subset
@@ -12,6 +16,8 @@ import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
  */
 @SuppressWarnings("CheckReturnValue")
 public class dart_parseBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements dart_parseVisitor<T> {
+	public static List<String> semanticErrors = new ArrayList<>();
+	public static List<String> vars; //stores all the variables declared in the program so far
 	/**
 	 * {@inheritDoc}
 	 *
