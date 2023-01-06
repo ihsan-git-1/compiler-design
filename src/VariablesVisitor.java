@@ -124,7 +124,8 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
             }
         }
         NumberClass num = new NumberClass(value);
-        return new AddExpression(num);
+        System.out.println(ctx.getText());
+        return new AddExpression(visitMultiplyExpression(ctx.multiplyExpression(0)));
     }
 
     @Override
