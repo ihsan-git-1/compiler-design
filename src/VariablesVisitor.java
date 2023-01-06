@@ -17,21 +17,17 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
         System.out.println(ctx.getText());
 
         if (ctx.stringDeclaration() != null) {
-            Variable variable = new Variable(visitStringDeclaration(ctx.stringDeclaration()));
-            return variable;
+            return new Variable(visitStringDeclaration(ctx.stringDeclaration()));
         }
 
         if (ctx.integerDeclaration() != null) {
-            Variable variable = new Variable(visitIntegerDeclaration(ctx.integerDeclaration()));
-            return variable;
+            return new Variable(visitIntegerDeclaration(ctx.integerDeclaration()));
         }
         if (ctx.doubleDeclaration() != null) {
-            Variable variable = new Variable(visitDoubleDeclaration(ctx.doubleDeclaration()));
-            return variable;
+            return new Variable(visitDoubleDeclaration(ctx.doubleDeclaration()));
         }
         if (ctx.boolDeclaration() != null) {
-            Variable variable = new Variable(visitBoolDeclaration(ctx.boolDeclaration()));
-            return variable;
+            return new Variable(visitBoolDeclaration(ctx.boolDeclaration()));
         }
 
         return null;
@@ -69,11 +65,10 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
         Token idToken = ctx.DOUBLE().getSymbol();
         int line = idToken.getLine();
         int column = idToken.getCharPositionInLine() + 1;
-        String id=ctx.getChild(0).getText();
+        String id = ctx.getChild(0).getText();
         if (vars.contains(id)) {
             semanticErrors.add("Error: Double" + id + "already declared (" + line + "," + column + ")");
-        }
-        else {
+        } else {
             vars.add(id);
         }
         double value = Double.parseDouble(ctx.ASSIGN().getText());
@@ -108,35 +103,51 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
 
     @Override
     public AddExpression visitAddExpression(dart_parse.AddExpressionContext ctx) {
-        //working on ittt
+        double num;
+        double value;
         Queue<Object> queue = new LinkedList<>();
-        int value= Integer.parseInt(ctx.getChild(0).getText());
-        for (int i = 1; i < ctx.getChildCount(); i++) {
-            queue.add(ctx.getChild(i).getText());
+        if (ctx.getChild(0) instanceof dart_parse.MultiplyExpressionContext) {
+            MultiplyExpression expr = visitMultiplyExpression((dart_parse.MultiplyExpressionContext) ctx.getChild(0));
+            value = expr.getValue().getNum();
+        } else {
+            value = Double.parseDouble(ctx.getChild(0).getText());
         }
-        while(!queue.isEmpty()) {
+        for (int i = 1; i < ctx.getChildCount(); i++) {
+            if (ctx.getChild(i) instanceof dart_parse.MultiplyExpressionContext) {
+                MultiplyExpression expr = visitMultiplyExpression((dart_parse.MultiplyExpressionContext) ctx.getChild(i));
+                double n = expr.getValue().getNum();
+                queue.add(n);
+            } else {
+                queue.add(ctx.getChild(i).getText());
+            }
+        }
+        while (!queue.isEmpty()) {
             String operator = (String) queue.remove();
-            int num = Integer.parseInt((String) queue.remove());
+            if (queue.peek() instanceof Double) {
+                num = (double) queue.remove();
+            } else {
+                num = Double.parseDouble((String) queue.remove());
+            }
             if (operator.equals("+")) {
                 value += num;
             } else if (operator.equals("-")) {
                 value -= num;
             }
         }
-        NumberClass num = new NumberClass(value);
-        return new AddExpression(num);
+        NumberClass numClass = new NumberClass(value);
+        return new AddExpression(numClass);
     }
 
     @Override
     public MultiplyExpression visitMultiplyExpression(dart_parse.MultiplyExpressionContext ctx) {
         Queue<Object> queue = new LinkedList<>();
-        int value= Integer.parseInt(ctx.getChild(0).getText());
+        double value = Double.parseDouble(ctx.getChild(0).getText());
         for (int i = 1; i < ctx.getChildCount(); i++) {
             queue.add(ctx.getChild(i).getText());
         }
-        while(!queue.isEmpty()) {
+        while (!queue.isEmpty()) {
             String operator = (String) queue.remove();
-            int num = Integer.parseInt((String) queue.remove());
+            double num = Double.parseDouble((String) queue.remove());
             if (operator.equals("*")) {
                 value *= num;
             } else if (operator.equals("/")) {

@@ -1,13 +1,21 @@
 package ast.variables;
 
 public class NumberClass extends AbstractNumberClass{
-	int num;
-	
-	public NumberClass(int num) {
+	double num;
+
+	public double getNum() {
+		return num;
+	}
+
+	public void setNum(double num) {
+		this.num = num;
+	}
+
+	public NumberClass(double num) {
 		this.num = num;
 	}
 	
 	public String toString() {
-		return  Integer.valueOf(num).toString();
+		return  Double.valueOf(num).toString();
 	}
 }

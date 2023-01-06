@@ -1,4 +1,5 @@
 import  ast.nodes.*;
+import ast.variables.AddExpression;
 import ast.variables.MultiplyExpression;
 import gen.dart_parse;
 import java.io.IOException;
@@ -17,8 +18,8 @@ public class Main{
         CommonTokenStream token = new CommonTokenStream(lexer);
 
         dart_parse parser = new dart_parse(token);
-        ParseTree tree = parser.multiplyExpression();
-        MultiplyExpression doc = (MultiplyExpression) new VariablesVisitor().visit(tree);
+        ParseTree tree = parser.addExpression();
+        AddExpression doc = (AddExpression) new VariablesVisitor().visit(tree);
         System.out.println(doc);
     }
 
