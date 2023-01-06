@@ -108,6 +108,11 @@ public class NodesVisitor extends dart_parseBaseVisitor {
                     = new WidgetsDeclaration(visitScaffoldDeclaration(ctx.scaffoldDeclaration()));
             return widgetsDeclaration;
         }
+        if(ctx.imageDeclaration() != null){
+            WidgetsDeclaration widgetsDeclaration
+                    = new WidgetsDeclaration(visitImageDeclaration(ctx.imageDeclaration()));
+            return widgetsDeclaration;
+        }
         return null;
     }
 
@@ -119,6 +124,10 @@ public class NodesVisitor extends dart_parseBaseVisitor {
     @Override
     public TextDeclaration visitTextDeclaration(dart_parse.TextDeclarationContext ctx) {
         return new TextDeclaration(ctx.STRING_LINE().getText());
+    }
+    @Override
+    public ImageDeclaration visitImageDeclaration(dart_parse.ImageDeclarationContext ctx) {
+        return new ImageDeclaration(ctx.STRING_LINE().getText());
     }
     @Override
     public ExpandedDeclaration visitExpandedDeclaration(dart_parse.ExpandedDeclarationContext ctx) {
@@ -212,10 +221,7 @@ public class NodesVisitor extends dart_parseBaseVisitor {
 
     }
 
-    @Override
-    public Object visitImageDeclaration(dart_parse.ImageDeclarationContext ctx) {
-        return super.visitImageDeclaration(ctx);
-    }
+
 
 
 
