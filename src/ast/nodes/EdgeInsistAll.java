@@ -11,6 +11,10 @@ public class EdgeInsistAll {
 	
 	@Override
 	public String toString() {
-		return number.toString();
+
+		return "EdgeInsist.all("
+				+number.toString()
+				+")"
+				;
 	}
 }

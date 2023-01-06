@@ -6,4 +6,12 @@ public class ScaffoldDeclaration extends WidgetAbstractChild {
 	public ScaffoldDeclaration(BodyPropertyDeclaration bodyPropertyDeclaration) {
 		this.bodyPropertyDeclaration = bodyPropertyDeclaration;
 	}
+
+	@Override
+	public String toString() {
+		return "Scaffold( \n"
+				+bodyPropertyDeclaration
+				+")"
+				;
+	}
 }

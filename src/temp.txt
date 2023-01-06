@@ -1,5 +1,6 @@
-Expanded(
-child:Expanded(
+Scaffold(
+body:Padding(
+padding: EdgeInsets.all(8),
 child: Text("hello"),
 )
 );
