@@ -37,16 +37,22 @@ public class NodesVisitor extends dart_parseBaseVisitor {
 
     @Override
     public WidgetsDeclaration visitWidgetsDeclaration(dart_parse.WidgetsDeclarationContext ctx) {
-        WidgetsDeclaration widgetsDeclaration = new WidgetsDeclaration();
-    }//todo
+        WidgetsDeclaration widgetsDeclaration
+                = new WidgetsDeclaration(visitExpandedDeclaration(ctx.expandedDeclaration()));
+        return widgetsDeclaration;
+    }
+
     @Override
-    public Object visitChildPropertyDeclaration(dart_parse.ChildPropertyDeclarationContext ctx) {
-        return super.visitChildPropertyDeclaration(ctx);
-    }//todo
+    public ChildPropertyDeclaration visitChildPropertyDeclaration(dart_parse.ChildPropertyDeclarationContext ctx) {
+        return new ChildPropertyDeclaration(visitWidgetsDeclaration(ctx.widgetsDeclaration()));
+    }
+
     @Override
     public ExpandedDeclaration visitExpandedDeclaration(dart_parse.ExpandedDeclarationContext ctx) {
-      ExpandedDeclaration expandedDeclaration = new ExpandedDeclaration()
-    }//todo
+      ExpandedDeclaration expandedDeclaration = new ExpandedDeclaration(visitChildPropertyDeclaration(ctx.childPropertyDeclaration()));
+      return expandedDeclaration;
+    }
+
     @Override
     public Object visitStatelessClassDeclaration(dart_parse.StatelessClassDeclarationContext ctx) {
         return super.visitStatelessClassDeclaration(ctx);
@@ -93,10 +99,6 @@ public class NodesVisitor extends dart_parseBaseVisitor {
         return new DartVariablesDeclaration(variablesVisitor.visitVariable(ctx.variable()));
 
     }
-
-
-
-
 
     @Override
     public Object visitPaddingDeclaration(dart_parse.PaddingDeclarationContext ctx) {
