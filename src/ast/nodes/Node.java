@@ -5,6 +5,9 @@ public class Node {
     private int line;
     private int col;
 
+    public Node(int line){
+        this.line=line;
+    }
     public void setLine(int line) {
         this.line = line;
     }
