@@ -23,6 +23,7 @@ public class StatefullFirstBody extends Node{
 	public String toString() {
 
 		return  "Statefull First Body Name  " +name + " line: "+getLine() + " parent "+getParent()
+				+" Child Count =  "+getChildCount()+" Type = "+getType()+"\n"
 				+dartVariablesDeclarationList+"\n"
 				+dec+"\n"
 				;

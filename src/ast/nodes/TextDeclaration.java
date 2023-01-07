@@ -10,7 +10,8 @@ public class TextDeclaration extends WidgetAbstractChild {
 	
 	@Override
 	public String toString() {
-		return "Text Declaration text = "+strline.toString()+" line: "+getLine()+" parent "+getParent()+"\n";
+		return "Text Declaration text = "+strline.toString()+" line: "+getLine()+" parent "+getParent()
+				+" Child Count =  "+getChildCount()+" Type = "+getType()+"\n";
 
 	}
 }

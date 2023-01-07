@@ -9,7 +9,8 @@ public class WidgetsDeclaration extends Node{
 
 	@Override
 	public String toString() {
-		return "Widget Declaration line: "+getLine()+" parent "+getParent()+"\n"+
+		return "Widget Declaration line: "+getLine()+" parent "+getParent()
+				+" Child Count =  "+getChildCount()+" Type = "+getType()+"\n"+
 				widgetAbstractChild.toString();
 	}
 }

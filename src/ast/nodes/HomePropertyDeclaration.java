@@ -10,6 +10,7 @@ public class HomePropertyDeclaration extends Node{
 	
 	@Override
 	public String toString() {
-		return "Home Property Declaration Name  "+name+ " line: "+getLine() + " parent "+ getParent();
+		return "Home Property Declaration Name  "+name+ " line: "+getLine() + " parent "+ getParent()
+				+" Child Count =  "+getChildCount()+" Type = "+getType();
 	}
 }

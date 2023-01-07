@@ -10,7 +10,8 @@ public class ChildPropertyDeclaration extends ContainerPropertiesDeclarationAbst
 
 	@Override
 	public String toString() {
-		return "Child Property Declaration line: "+getLine()+" parent " +getParent()+"\n"
+		return "Child Property Declaration line: "+getLine()+" parent " +getParent()
+				+" Child Count =  "+getChildCount()+" Type = "+getType()+"\n"
 				+widgetsDeclaration;
 	}
 }
