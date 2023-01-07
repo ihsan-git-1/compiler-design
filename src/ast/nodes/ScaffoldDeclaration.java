@@ -3,8 +3,8 @@ package ast.nodes;
 public class ScaffoldDeclaration extends WidgetAbstractChild {
 	BodyPropertyDeclaration bodyPropertyDeclaration;
 	
-	public ScaffoldDeclaration(BodyPropertyDeclaration bodyPropertyDeclaration,int line ,String parent) {
-		super(line,parent);
+	public ScaffoldDeclaration(BodyPropertyDeclaration bodyPropertyDeclaration,int line ,String parent,String type,int childCount) {
+		super(line,parent, type, childCount);
 		this.bodyPropertyDeclaration = bodyPropertyDeclaration;
 	}
 

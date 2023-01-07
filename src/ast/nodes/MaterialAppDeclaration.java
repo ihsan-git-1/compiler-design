@@ -3,8 +3,8 @@ package ast.nodes;
 public class MaterialAppDeclaration extends WidgetAbstractChild {
 	HomePropertyDeclaration homePropertyDeclaration;
 	
-	public MaterialAppDeclaration(HomePropertyDeclaration homePropertyDeclaration,int line ,String parent) {
-		super(line,parent);
+	public MaterialAppDeclaration(HomePropertyDeclaration homePropertyDeclaration,int line ,String parent,String type,int childCount) {
+		super(line,parent, type, childCount);
 		this.homePropertyDeclaration=homePropertyDeclaration;
 	}
 

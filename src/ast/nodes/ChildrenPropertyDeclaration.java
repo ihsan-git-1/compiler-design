@@ -6,8 +6,8 @@ import java.util.List;
 public class ChildrenPropertyDeclaration extends Node{
 	List<WidgetsDeclaration> widgetsDeclarationList;
 	
-	public ChildrenPropertyDeclaration(int line ,String parent) {
-		super(line,parent);
+	public ChildrenPropertyDeclaration(int line ,String parent,String type,int childCount) {
+		super(line,parent, type, childCount);
 		this.widgetsDeclarationList = new ArrayList<>();
 	}
 	

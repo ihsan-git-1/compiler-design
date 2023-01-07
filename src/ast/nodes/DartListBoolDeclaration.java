@@ -9,8 +9,8 @@ public class DartListBoolDeclaration extends DartAllListsDeclarationAbstractChil
 	String name;
 	List<BooleanValueClass> itemsList;
 	
-	public DartListBoolDeclaration(String name,int line,String parent) {
-		super(line,parent);
+	public DartListBoolDeclaration(String name,int line,String parent,String type,int childCount) {
+		super(line,parent, type, childCount);
 		this.name = name;
 		this.itemsList=new ArrayList<>();
 	}

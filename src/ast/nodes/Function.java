@@ -9,8 +9,8 @@ public class Function extends Node {
     Block block;
 
 
-    public Function(int line, String parent, FunctionType functionType, String name, Parameter parameters, Block block) {
-        super(line, parent);
+    public Function(int line, String parent,String type,int childCount,FunctionType functionType, String name, Parameter parameters, Block block) {
+        super(line, parent, type, childCount);
         this.name = name;
         this.functionType = functionType;
         this.parameters = parameters;

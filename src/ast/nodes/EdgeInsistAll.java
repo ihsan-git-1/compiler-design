@@ -5,8 +5,8 @@ import ast.variables.NumberClass;
 public class EdgeInsistAll extends Node{
 	NumberClass number;
 	
-	public EdgeInsistAll(NumberClass number,int line ,String parent) {
-		super(line,parent);
+	public EdgeInsistAll(NumberClass number,int line ,String parent,String type,int childCount) {
+		super(line,parent, type, childCount);
 		this.number = number;
 	}
 	

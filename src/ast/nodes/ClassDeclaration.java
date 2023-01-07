@@ -15,12 +15,12 @@ public class ClassDeclaration extends AllClassesDeclarationAbstractChild {
 		this.dartVariablesDeclarationList = dartVariablesDeclarationList;
 	}
 
-	public ClassDeclaration(int line,String parent) {
-		super(line,parent);
+	public ClassDeclaration(int line,String parent,String type,int childCount) {
+		super(line,parent, type, childCount);
 		this.dartVariablesDeclarationList =new ArrayList<>();
 	}
-	public  ClassDeclaration(String name,int line,String parent){
-		super(line,parent);
+	public  ClassDeclaration(String name,int line,String parent,String type,int childCount){
+		super(line,parent, type, childCount);
 		this.name = name;
 		this.dartVariablesDeclarationList =new ArrayList<>();
 	}

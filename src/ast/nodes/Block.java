@@ -13,8 +13,8 @@ public class Block extends Node {
         this.statements = statements;
     }
 
-    public Block(int line, String parent, List<StatementDeclaration> statements) {
-        super(line, parent);
+    public Block(int line, String parent, List<StatementDeclaration> statements,String type,int childCount) {
+        super(line, parent,type,childCount);
         this.statements = statements;
     }
 

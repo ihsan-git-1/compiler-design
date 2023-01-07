@@ -8,8 +8,8 @@ public class StatefullFirstBody extends Node{
 	StatefullAssignStateClassDeclaration dec;
 	String name;
 	
-	public StatefullFirstBody(String name,StatefullAssignStateClassDeclaration dec,int line,String parent) {
-		super(line,parent);
+	public StatefullFirstBody(String name,StatefullAssignStateClassDeclaration dec,int line,String parent,String type,int childCount) {
+		super(line,parent, type, childCount);
 		this.name = name;
 		this.dec = dec;
 		this.dartVariablesDeclarationList=new ArrayList<>();

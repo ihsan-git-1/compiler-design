@@ -9,8 +9,8 @@ public class StatefullSecondBody extends Node{
 	String name;
 	String stateName;
 	
-	public StatefullSecondBody(String name,String stateName,BuildMethodDeclaration methodDecleration,int line,String parent) {
-		super(line,parent);
+	public StatefullSecondBody(String name,String stateName,BuildMethodDeclaration methodDecleration,int line,String parent,String type,int childCount) {
+		super(line,parent, type, childCount);
 		this.name=name;
 		this.stateName=stateName;
 		this.methodDecleration=methodDecleration;

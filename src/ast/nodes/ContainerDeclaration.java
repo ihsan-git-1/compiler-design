@@ -6,8 +6,8 @@ import java.util.List;
 public class ContainerDeclaration extends WidgetAbstractChild{
 	List<ContainerPropertiesDeclaration> containerDeclarationList;
 	
-	public ContainerDeclaration(int line ,String parent) {
-		super(line,parent);
+	public ContainerDeclaration(int line ,String parent,String type,int childCount) {
+		super(line,parent, type, childCount);
 		this.containerDeclarationList = new ArrayList<>();
 	}
 

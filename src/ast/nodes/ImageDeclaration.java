@@ -3,8 +3,8 @@ package ast.nodes;
 public class ImageDeclaration extends WidgetAbstractChild {
 	String str;
 	
-	public ImageDeclaration(String str,int line ,String parent) {
-		super(line,parent);
+	public ImageDeclaration(String str,int line ,String parent,String type,int childCount) {
+		super(line,parent, type, childCount);
 		this.str=str;
 	}
 	

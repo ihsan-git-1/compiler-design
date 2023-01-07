@@ -8,8 +8,8 @@ public class BuildMethodDeclaration extends Node{
 	List<DartVariablesDeclaration> dartVaraibles;
 	WidgetsDeclaration widgets;
 	
-	public BuildMethodDeclaration(WidgetsDeclaration widgets,BuildContextDeclaration context,int line ,String parent) {
-		super(line,parent);
+	public BuildMethodDeclaration(WidgetsDeclaration widgets,BuildContextDeclaration context,int line ,String parent,String type,int childCount) {
+		super(line,parent, type, childCount);
 		dartVaraibles = new ArrayList<>();
 		this.widgets = widgets;
 		this.context = context;

@@ -3,8 +3,8 @@ package ast.nodes;
 public class BuildContextDeclaration extends Node{
 	String name;
 	
-	public BuildContextDeclaration(String name,int line ,String parent) {
-		super(line,parent);
+	public BuildContextDeclaration(String name,int line ,String parent,String type,int childCount) {
+		super(line,parent, type,childCount);
 		this.name=name;
 	}
 	
