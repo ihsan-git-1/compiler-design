@@ -9,10 +9,9 @@ public class WidthPropertyDeclaration extends ContainerPropertiesDeclarationAbst
 		super(line,parent);
 		this.number = number;
 	}
-	
+
 	@Override
 	public String toString() {
-
 		return "Width Property width = "+number.toString()+" Declaration line: "+getLine() + " parent "+getParent()+"\n";
 	}
 }
