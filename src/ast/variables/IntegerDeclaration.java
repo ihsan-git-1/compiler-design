@@ -4,11 +4,13 @@ public class IntegerDeclaration extends VariableDeclaration {
     String name;
     AddExpression expr;
 
-    public IntegerDeclaration(String name) {
+    public IntegerDeclaration(String name, int line, String parent) {
+        super(line, parent);
         this.name = name;
     }
 
-    public IntegerDeclaration(AddExpression expr, String name) {
+    public IntegerDeclaration(AddExpression expr, String name, int line, String parent) {
+        super(line, parent);
         this.expr = expr;
         this.name = name;
     }
@@ -18,7 +20,8 @@ public class IntegerDeclaration extends VariableDeclaration {
         if (expr != null) {
             return "\nint " + name + " = " + expr;
         } else {
-            return "\nint " + name;
+            return "Integer Declaration "+expr.value +" line: "+ getLine() + "parent: "+ getParent()+"\n"
+                    ;
         }
     }
 }	

@@ -1,14 +1,18 @@
 package ast.variables;
 
-public class BooleanValueClass {
+import ast.nodes.Node;
+
+public class BooleanValueClass extends Node {
 	boolean value;
 	
-	public BooleanValueClass(boolean value) {
+	public BooleanValueClass(boolean value, int line, String parent) {
+		super(line, parent);
 		this.value = value;
 	}
 	
 	@Override
 	public String toString() {
-		return String.valueOf(value);
+		return "bool " + value + " line: "+getLine()+" parent: "+getParent()
+				;
 	}
 }
