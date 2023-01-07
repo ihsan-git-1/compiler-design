@@ -17,12 +17,16 @@ public class NodesVisitor extends dart_parseBaseVisitor {
         TopTreeDeclaration topTreeDeclaration = new TopTreeDeclaration(line,parent);
         for (int i = 0; i < ctx.allClassesDeclaration().size() ; i++) {
             if(ctx.allClassesDeclaration().get(i) != null) {
-
                 topTreeDeclaration
                         .getTopTreeChildrenList()
                         .add(visitAllClassesDeclaration(ctx.allClassesDeclaration(i)));
             }
         }
+        for (int i = 0; i < ctx.dartVariabelsDeclaration().size(); i++) {
+            topTreeDeclaration.getDartVariablesDeclarationList()
+                    .add(visitDartVariabelsDeclaration(ctx.dartVariabelsDeclaration(i)));
+        }
+
         return topTreeDeclaration;
     }
     @Override
@@ -48,6 +52,7 @@ public class NodesVisitor extends dart_parseBaseVisitor {
             classDec.getDartVariablesDeclarationList()
                     .add(visitDartVariabelsDeclaration(ctx.dartVariabelsDeclaration(i)));
         }
+
         return classDec;
     }
 
@@ -90,6 +95,36 @@ public class NodesVisitor extends dart_parseBaseVisitor {
         int line = ctx.start.getLine();
         String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$","").replace("Context","");
         return new BuildContextDeclaration(ctx.NAME().getText(),line,parent);
+    }
+
+    @Override
+    public Object visitIfStatement(dart_parse.IfStatementContext ctx) {
+        return super.visitIfStatement(ctx);
+    }
+
+    @Override
+    public Object visitWhileStatement(dart_parse.WhileStatementContext ctx) {
+        return super.visitWhileStatement(ctx);
+    }
+
+    @Override
+    public Object visitBlock(dart_parse.BlockContext ctx) {
+        return super.visitBlock(ctx);
+    }
+
+    @Override
+    public Object visitFunction(dart_parse.FunctionContext ctx) {
+        return super.visitFunction(ctx);
+    }
+
+    @Override
+    public Object visitFunctionType(dart_parse.FunctionTypeContext ctx) {
+        return super.visitFunctionType(ctx);
+    }
+
+    @Override
+    public Object visitParameters(dart_parse.ParametersContext ctx) {
+        return super.visitParameters(ctx);
     }
 
     @Override
@@ -157,6 +192,15 @@ public class NodesVisitor extends dart_parseBaseVisitor {
         return new ReturnStateTypes(name,line ,parent);
     }
 
+    @Override
+    public Object visitFunctionReturnState(dart_parse.FunctionReturnStateContext ctx) {
+        return super.visitFunctionReturnState(ctx);
+    }
+
+    @Override
+    public Object visitReturnArrowState(dart_parse.ReturnArrowStateContext ctx) {
+        return super.visitReturnArrowState(ctx);
+    }
 
 
     //******************************* flutter visitors ****************************************//
@@ -304,6 +348,11 @@ public class NodesVisitor extends dart_parseBaseVisitor {
     @Override
     public StatementDeclaration visitStatement(dart_parse.StatementContext ctx) {
         return new StatementDeclaration(visitDartVariabelsDeclaration(ctx.dartVariabelsDeclaration()));
+    }
+
+    @Override
+    public Object visitForStatement(dart_parse.ForStatementContext ctx) {
+        return super.visitForStatement(ctx);
     }
 
 
@@ -470,10 +519,10 @@ public class NodesVisitor extends dart_parseBaseVisitor {
 
     }
 
-
-
-
-
+    @Override
+    public Object visitBooleanOperation(dart_parse.BooleanOperationContext ctx) {
+        return super.visitBooleanOperation(ctx);
+    }
 
 
 }

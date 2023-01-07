@@ -3,7 +3,9 @@ package gen;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * This class provides an empty implementation of {@link dart_parseVisitor},
@@ -18,12 +20,11 @@ public class dart_parseBaseVisitor<T> extends AbstractParseTreeVisitor<T> implem
 	public static List<String> semanticErrors = new ArrayList<>();
 	public static List<String> vars= new ArrayList<>();
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
+
+
+	// scopes + symbol + value
+	public static Map<String, Map<String, String>> symbolTable = new HashMap<>();
+
 	@Override public T visitTopTreeDeclaration(dart_parse.TopTreeDeclarationContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}

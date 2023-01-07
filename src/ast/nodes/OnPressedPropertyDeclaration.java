@@ -15,4 +15,11 @@ public class OnPressedPropertyDeclaration {
         statementDeclaration = new ArrayList<>();
     };
 
+    @Override
+    public String toString() {
+        return "\nonPressed("
+                +statementDeclaration
+                +")"
+                ;
+    }
 }
