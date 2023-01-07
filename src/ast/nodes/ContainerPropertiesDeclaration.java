@@ -1,14 +1,16 @@
 package ast.nodes;
 
-public class ContainerPropertiesDeclaration {
+public class ContainerPropertiesDeclaration extends Node {
 	ContainerPropertiesDeclarationAbstractChild containerPropertiesDeclarationAbstractChild;
 	
-	public ContainerPropertiesDeclaration(ContainerPropertiesDeclarationAbstractChild child) {
+	public ContainerPropertiesDeclaration(ContainerPropertiesDeclarationAbstractChild child,int line ,String parent) {
+		super(line,parent);
 		this.containerPropertiesDeclarationAbstractChild = child;
 	}
 
 	@Override
 	public String toString() {
-		return containerPropertiesDeclarationAbstractChild.toString();
+		return "Container Property Declaration line: "+getLine()+" parent "+getParent()
+				+containerPropertiesDeclarationAbstractChild.toString();
 	}
 }

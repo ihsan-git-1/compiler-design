@@ -31,7 +31,7 @@ public class ClassDeclaration extends AllClassesDeclarationAbstractChild {
 	
 	@Override
 	public String toString() {
-		return  "Class Declaration Name is "+name+"line "+getLine()+" parent "+getParent()+"\n"+
+		return  "Class Declaration Name is "+name+"line: "+getLine()+" parent "+getParent()+"\n"+
 				dartVariablesDeclarationList
 				;
 	}
