@@ -9,7 +9,8 @@ public class DartListIntDeclaration extends DartAllListsDeclarationAbstractChild
 	String name;
 	List<NumberClass> itemsList;
 	
-	public DartListIntDeclaration(String name) {
+	public DartListIntDeclaration(String name,int line ,String parent) {
+		super(line,parent);
 		this.name = name;
 	}
 	
@@ -29,7 +30,7 @@ public class DartListIntDeclaration extends DartAllListsDeclarationAbstractChild
 
 	@Override
 	public String toString() {
-		String var = "Dart Int List "+ name;
+		String var = "Dart Int List "+ name + "line:" +getLine()+" parent "+getParent();
 		System.out.print(var);
 		System.out.print(" List Items are ");
 		printList(this.itemsList);

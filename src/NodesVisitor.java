@@ -163,53 +163,64 @@ public class NodesVisitor extends dart_parseBaseVisitor {
 
     @Override
     public WidgetsDeclaration visitWidgetsDeclaration(dart_parse.WidgetsDeclarationContext ctx) {
+        int line = ctx.start.getLine();
+        String parent = ctx.getParent().getText();
 
         if(ctx.expandedDeclaration() != null){
             WidgetsDeclaration widgetsDeclaration
-                    = new WidgetsDeclaration(visitExpandedDeclaration(ctx.expandedDeclaration()));
+                    = new WidgetsDeclaration(visitExpandedDeclaration(ctx.expandedDeclaration()),
+                    line,parent);
             return widgetsDeclaration;
         }
         if(ctx.textDeclaration() != null){
             WidgetsDeclaration widgetsDeclaration
-                    = new WidgetsDeclaration(visitTextDeclaration(ctx.textDeclaration()));
+                    = new WidgetsDeclaration(visitTextDeclaration(ctx.textDeclaration()),
+                    line,parent);
             return widgetsDeclaration;
         }
         if(ctx.paddingDeclaration() != null){
             WidgetsDeclaration widgetsDeclaration
-                    = new WidgetsDeclaration(visitPaddingDeclaration(ctx.paddingDeclaration()));
+                    = new WidgetsDeclaration(visitPaddingDeclaration(ctx.paddingDeclaration()),
+                    line,parent);
             return widgetsDeclaration;
         }
         if(ctx.scaffoldDeclaration() != null){
             WidgetsDeclaration widgetsDeclaration
-                    = new WidgetsDeclaration(visitScaffoldDeclaration(ctx.scaffoldDeclaration()));
+                    = new WidgetsDeclaration(visitScaffoldDeclaration(ctx.scaffoldDeclaration()),
+                    line,parent);
             return widgetsDeclaration;
         }
         if(ctx.imageDeclaration() != null){
             WidgetsDeclaration widgetsDeclaration
-                    = new WidgetsDeclaration(visitImageDeclaration(ctx.imageDeclaration()));
+                    = new WidgetsDeclaration(visitImageDeclaration(ctx.imageDeclaration()),
+                    line,parent);
             return widgetsDeclaration;
         }
         if(ctx.conatinerDeclaration() != null){
             WidgetsDeclaration widgetsDeclaration
-                    = new WidgetsDeclaration(visitConatinerDeclaration(ctx.conatinerDeclaration()));
+                    = new WidgetsDeclaration(visitConatinerDeclaration(ctx.conatinerDeclaration()),
+                    line,parent);
 
             return widgetsDeclaration;
         }
         if(ctx.materialButtonDeclaration() != null){
             WidgetsDeclaration widgetsDeclaration
-                    = new WidgetsDeclaration(visitMaterialButtonDeclaration(ctx.materialButtonDeclaration()));
+                    = new WidgetsDeclaration(visitMaterialButtonDeclaration(ctx.materialButtonDeclaration()),
+                    line,parent);
 
             return widgetsDeclaration;
         }
         if(ctx.materialAppDeclaration() != null){
             WidgetsDeclaration widgetsDeclaration
-                    = new WidgetsDeclaration(visitMaterialAppDeclaration(ctx.materialAppDeclaration()));
+                    = new WidgetsDeclaration(visitMaterialAppDeclaration(ctx.materialAppDeclaration()),
+                    line,parent);
 
             return widgetsDeclaration;
         }
         if(ctx.rowColumnDeclaration() != null){
             WidgetsDeclaration widgetsDeclaration
-                    = new WidgetsDeclaration(visitRowColumnDeclaration(ctx.rowColumnDeclaration()));
+                    = new WidgetsDeclaration(visitRowColumnDeclaration(ctx.rowColumnDeclaration()),
+                    line,parent);
 
             return widgetsDeclaration;
         }
@@ -219,21 +230,29 @@ public class NodesVisitor extends dart_parseBaseVisitor {
 
     @Override
     public ChildPropertyDeclaration visitChildPropertyDeclaration(dart_parse.ChildPropertyDeclarationContext ctx) {
-        return new ChildPropertyDeclaration(visitWidgetsDeclaration(ctx.widgetsDeclaration()));
+        int line = ctx.start.getLine();
+        String parent = ctx.getParent().getText();
+        return new ChildPropertyDeclaration(visitWidgetsDeclaration(ctx.widgetsDeclaration()),line,parent);
     }
 
     @Override
     public TextDeclaration visitTextDeclaration(dart_parse.TextDeclarationContext ctx) {
-        return new TextDeclaration(ctx.STRING_LINE().getText());
+        int line = ctx.start.getLine();
+        String parent = ctx.getParent().getText();
+        return new TextDeclaration(ctx.STRING_LINE().getText(),line,parent);
     }
     @Override
     public ImageDeclaration visitImageDeclaration(dart_parse.ImageDeclarationContext ctx) {
-        return new ImageDeclaration(ctx.STRING_LINE().getText());
+        int line = ctx.start.getLine();
+        String parent = ctx.getParent().getText();
+        return new ImageDeclaration(ctx.STRING_LINE().getText(),line,parent);
     }
 
     @Override
     public MaterialAppDeclaration visitMaterialAppDeclaration(dart_parse.MaterialAppDeclarationContext ctx) {
-        return new MaterialAppDeclaration(visitHomePropertyDeclaration(ctx.homePropertyDeclaration()));
+        int line = ctx.start.getLine();
+        String parent = ctx.getParent().getText();
+        return new MaterialAppDeclaration(visitHomePropertyDeclaration(ctx.homePropertyDeclaration()),line,parent);
     }
 
     @Override
@@ -243,47 +262,64 @@ public class NodesVisitor extends dart_parseBaseVisitor {
 
     @Override
     public ExpandedDeclaration visitExpandedDeclaration(dart_parse.ExpandedDeclarationContext ctx) {
-        ExpandedDeclaration expandedDeclaration = new ExpandedDeclaration(visitChildPropertyDeclaration(ctx.childPropertyDeclaration()));
+        int line = ctx.start.getLine();
+        String parent = ctx.getParent().getText();
+        ExpandedDeclaration expandedDeclaration = new ExpandedDeclaration(visitChildPropertyDeclaration(ctx.childPropertyDeclaration()),line,parent);
         return expandedDeclaration;
     }
 
     @Override
     public MaterialButtonDeclaration visitMaterialButtonDeclaration(dart_parse.MaterialButtonDeclarationContext ctx) {
-        return new MaterialButtonDeclaration(visitChildPropertyDeclaration(ctx.childPropertyDeclaration()));
+        int line = ctx.start.getLine();
+        String parent = ctx.getParent().getText();
+        return new MaterialButtonDeclaration(visitChildPropertyDeclaration(ctx.childPropertyDeclaration()),line,parent);
     }
 
     @Override
     public PaddingDeclaration visitPaddingDeclaration(dart_parse.PaddingDeclarationContext ctx) {
+
+        int line = ctx.start.getLine();
+        String parent = ctx.getParent().getText();
         return new PaddingDeclaration(
                 visitPaddingPropertyDeclaration(ctx.paddingPropertyDeclaration())
-                ,visitChildPropertyDeclaration(ctx.childPropertyDeclaration())
+                ,visitChildPropertyDeclaration(ctx.childPropertyDeclaration()),line,parent
         );
     }
 
     @Override
     public PaddingPropertyDeclaration visitPaddingPropertyDeclaration(dart_parse.PaddingPropertyDeclarationContext ctx) {
-        return new PaddingPropertyDeclaration(visitEdgeInsistAll(ctx.edgeInsistAll()));
+        int line = ctx.start.getLine();
+        String parent = ctx.getParent().getText();
+        return new PaddingPropertyDeclaration(visitEdgeInsistAll(ctx.edgeInsistAll()),line,parent);
     }
 
     @Override
     public EdgeInsistAll visitEdgeInsistAll(dart_parse.EdgeInsistAllContext ctx) {
+        int line = ctx.start.getLine();
+        String parent = ctx.getParent().getText();
         VariablesVisitor variablesVisitor = new VariablesVisitor();
-        return new EdgeInsistAll(variablesVisitor.visitNumber(ctx.number()));
+        return new EdgeInsistAll(variablesVisitor.visitNumber(ctx.number()),line,parent);
     }
 
     @Override
     public ScaffoldDeclaration visitScaffoldDeclaration(dart_parse.ScaffoldDeclarationContext ctx) {
-        return new ScaffoldDeclaration(visitBodyPropertyDeclaration(ctx.bodyPropertyDeclaration()));
+        int line = ctx.start.getLine();
+        String parent = ctx.getParent().getText();
+        return new ScaffoldDeclaration(visitBodyPropertyDeclaration(ctx.bodyPropertyDeclaration()),line,parent);
     }
 
     @Override
     public BodyPropertyDeclaration visitBodyPropertyDeclaration(dart_parse.BodyPropertyDeclarationContext ctx) {
-        return new BodyPropertyDeclaration(visitWidgetsDeclaration(ctx.widgetsDeclaration()));
+        int line = ctx.start.getLine();
+        String parent = ctx.getParent().getText();
+        return new BodyPropertyDeclaration(visitWidgetsDeclaration(ctx.widgetsDeclaration()),line,parent);
     }
 
     @Override
     public ContainerDeclaration visitConatinerDeclaration(dart_parse.ConatinerDeclarationContext ctx) {
-        ContainerDeclaration containerDeclaration = new ContainerDeclaration();
+        int line = ctx.start.getLine();
+        String parent = ctx.getParent().getText();
+        ContainerDeclaration containerDeclaration = new ContainerDeclaration(line,parent);
 
         List<Boolean> isAvailable = new ArrayList<Boolean>();
         isAvailable.add(false); // width
@@ -332,20 +368,22 @@ public class NodesVisitor extends dart_parseBaseVisitor {
     }
     @Override
     public ContainerPropertiesDeclaration visitConatinerPropertiesDeclaration(dart_parse.ConatinerPropertiesDeclarationContext ctx) {
+        int line = ctx.start.getLine();
+        String parent = ctx.getParent().getText();
         if(ctx.widthPropertyDeclaration() != null){
             ContainerPropertiesDeclaration containerPropertiesDeclaration
-                    = new ContainerPropertiesDeclaration(visitWidthPropertyDeclaration(ctx.widthPropertyDeclaration()));
+                    = new ContainerPropertiesDeclaration(visitWidthPropertyDeclaration(ctx.widthPropertyDeclaration()),line,parent);
             return containerPropertiesDeclaration;
         }
 
         if(ctx.heightPropertyDeclaration() != null){
             ContainerPropertiesDeclaration containerPropertiesDeclaration
-                    = new ContainerPropertiesDeclaration(visitHeightPropertyDeclaration(ctx.heightPropertyDeclaration()));
+                    = new ContainerPropertiesDeclaration(visitHeightPropertyDeclaration(ctx.heightPropertyDeclaration()),line,parent);
             return  containerPropertiesDeclaration;
         }
         if(ctx.childPropertyDeclaration() != null){
             ContainerPropertiesDeclaration containerPropertiesDeclaration
-                    = new ContainerPropertiesDeclaration(visitChildPropertyDeclaration(ctx.childPropertyDeclaration()));
+                    = new ContainerPropertiesDeclaration(visitChildPropertyDeclaration(ctx.childPropertyDeclaration()),line,parent);
             return containerPropertiesDeclaration;
         }
         return null;
@@ -354,25 +392,33 @@ public class NodesVisitor extends dart_parseBaseVisitor {
     @Override
     public HeightPropertyDeclaration visitHeightPropertyDeclaration(dart_parse.HeightPropertyDeclarationContext ctx) {
         VariablesVisitor variablesVisitor = new VariablesVisitor();
-        return new HeightPropertyDeclaration(variablesVisitor.visitNumber(ctx.number()));
+        int line = ctx.start.getLine();
+        String parent = ctx.getParent().getText();
+        return new HeightPropertyDeclaration(variablesVisitor.visitNumber(ctx.number()),line,parent);
     }
     @Override
     public WidthPropertyDeclaration visitWidthPropertyDeclaration(dart_parse.WidthPropertyDeclarationContext ctx) {
+        int line = ctx.start.getLine();
+        String parent = ctx.getParent().getText();
         VariablesVisitor variablesVisitor = new VariablesVisitor();
-        return new WidthPropertyDeclaration(variablesVisitor.visitNumber(ctx.number()));
+        return new WidthPropertyDeclaration(variablesVisitor.visitNumber(ctx.number()),line,parent);
     }
 
     @Override
     public RowColumnDeclaration visitRowColumnDeclaration(dart_parse.RowColumnDeclarationContext ctx) {
+        int line = ctx.start.getLine();
+        String parent = ctx.getParent().getText();
         String name = "Column";
         if(ctx.ROW() != null){
             name = "Row";
         }
-        return new RowColumnDeclaration(name,visitChildrenPropertyDeclaration(ctx.childrenPropertyDeclaration()));
+        return new RowColumnDeclaration(name,visitChildrenPropertyDeclaration(ctx.childrenPropertyDeclaration()),line,parent);
     }
     @Override
     public ChildrenPropertyDeclaration visitChildrenPropertyDeclaration(dart_parse.ChildrenPropertyDeclarationContext ctx) {
-        ChildrenPropertyDeclaration childrenPropertyDeclaration = new ChildrenPropertyDeclaration();
+        int line = ctx.start.getLine();
+        String parent = ctx.getParent().getText();
+        ChildrenPropertyDeclaration childrenPropertyDeclaration = new ChildrenPropertyDeclaration(line,parent);
         for (int i = 0; i < ctx.widgetsDeclaration().size(); i++) {
             childrenPropertyDeclaration.getWidgetDeclarationList()
                     .add(visitWidgetsDeclaration(ctx.widgetsDeclaration(i)));
@@ -385,10 +431,10 @@ public class NodesVisitor extends dart_parseBaseVisitor {
 
     @Override
     public DartVariablesDeclaration visitDartVariabelsDeclaration(dart_parse.DartVariabelsDeclarationContext ctx) {
-        VariablesVisitor variablesVisitor = new VariablesVisitor();
         int line = ctx.start.getLine();
         String parent = ctx.getParent().getText();
-        return new DartVariablesDeclaration(variablesVisitor.visitVariable(ctx.variable()), line, parent);
+        VariablesVisitor variablesVisitor = new VariablesVisitor();
+        return new DartVariablesDeclaration(variablesVisitor.visitVariable(ctx.variable()),line,parent);
 
     }
 

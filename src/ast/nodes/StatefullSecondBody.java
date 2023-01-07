@@ -24,7 +24,7 @@ public class StatefullSecondBody extends Node{
 	
 	@Override
 	public String toString() {
-		return  "\nStatefull Second Body Name "+name + " line "+getLine() + " parent "+ getParent()
+		return  "Statefull Second Body Name "+name + " line: "+getLine() + " parent "+ getParent()
 				+stateName +"\n"
 				+methodDecleration +"\n"
 				;

@@ -4,7 +4,8 @@ public class DartAllListsDeclaration extends DartVariablesDeclarationAbstractChi
 
 	DartAllListsDeclarationAbstractChild dartAllListsDeclarationAbstractChild;
 	
-	public DartAllListsDeclaration(DartAllListsDeclarationAbstractChild child) {
+	public DartAllListsDeclaration(DartAllListsDeclarationAbstractChild child,int line ,String parent) {
+		super(line,parent);
 		this.dartAllListsDeclarationAbstractChild=child;
 	}
 
