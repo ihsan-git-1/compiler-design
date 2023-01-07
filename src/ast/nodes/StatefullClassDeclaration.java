@@ -8,16 +8,17 @@ public class StatefullClassDeclaration extends AllClassesDeclarationAbstractChil
 	StatefullSecondBody secondBody;
 	
 	
-	public StatefullClassDeclaration(StatefullFirstBody firstBody,StatefullSecondBody secondBody){
+	public StatefullClassDeclaration(StatefullFirstBody firstBody,StatefullSecondBody secondBody,int line,String parent){
+		super(line,parent);
 		this.firstBody=firstBody;
 		this.secondBody=secondBody;
 	}
 
 	@Override
 	public String toString() {
-		return ""
-				+firstBody
-				+secondBody
+		return "Statefull Class Declaration line "+getLine() + "parent "+getParent()+
+				firstBody+"\n"+
+				secondBody+"\n"
 				;
 	}
 }

@@ -14,8 +14,8 @@ public class TopTreeDeclaration extends Node{
 		this.topTreeChildrenList = topTreeChildrenList;
 	}
 
-	public TopTreeDeclaration(int line) {
-		super(line);
+	public TopTreeDeclaration(int line,String parent) {
+		super(line,parent);
 		this.topTreeChildrenList = new ArrayList<>();
 	}
 	
@@ -27,14 +27,9 @@ public class TopTreeDeclaration extends Node{
 
 	@Override
 	public String toString() {
-//		return "Top Tree Declaration {\n"+
-//				topTreeChildrenList.toString()
-//						.replace(",", "")
-//						.replace("[", "")
-//						.replace("]", "")
-//						.trim()+"\n"+
-//				"}";
 
-		return "Top Tree Declaration line "+getLine();
+		return "Top Tree Declaration line "+ getLine() + "\n"+
+				topTreeChildrenList
+				;
 	}
 }

@@ -2,11 +2,14 @@ package ast.nodes;
 
 public class Node {
 
-    private int line;
-    private int col;
+    public int line;
+    public int col;
 
-    public Node(int line){
+    public String parent;
+
+    public Node(int line,String parent){
         this.line=line;
+        this.parent=parent;
     }
     public void setLine(int line) {
         this.line = line;
@@ -22,5 +25,9 @@ public class Node {
 
     public int getCol() {
         return col;
+    }
+
+    public String getParent(){
+        return parent;
     }
 }

@@ -1,9 +1,10 @@
 package ast.nodes;
 
-public class BuildContextDeclaration {
+public class BuildContextDeclaration extends Node{
 	String name;
 	
-	public BuildContextDeclaration(String name) {
+	public BuildContextDeclaration(String name,int line ,String parent) {
+		super(line,parent);
 		this.name=name;
 	}
 	

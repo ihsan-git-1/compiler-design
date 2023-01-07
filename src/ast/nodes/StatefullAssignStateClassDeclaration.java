@@ -1,10 +1,11 @@
 package ast.nodes;
 
-public class StatefullAssignStateClassDeclaration {
+public class StatefullAssignStateClassDeclaration extends Node{
 	String name;
 	ReturnStateTypes types;
 	
-	public StatefullAssignStateClassDeclaration(String name,ReturnStateTypes types) {
+	public StatefullAssignStateClassDeclaration(String name,ReturnStateTypes types,int line,String parent) {
+		super(line,parent);
 		this.types = types;
 		this.name = name;
 	}
@@ -12,10 +13,8 @@ public class StatefullAssignStateClassDeclaration {
 	@Override
 	public String toString() {
 
-		return  "State<" +name +">"
-				+" createState()"
-				+" => "
-				+types
+		return  "StatefullAssignStateClassDeclaration Name " +name + " line "+ getLine() + " parent "+ getParent()
+				+types+"\n"
 				;
 	}
 }

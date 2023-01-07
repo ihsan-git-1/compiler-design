@@ -3,12 +3,13 @@ package ast.nodes;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BuildMethodDeclaration {
+public class BuildMethodDeclaration extends Node{
 	BuildContextDeclaration context;
 	List<DartVariablesDeclaration> dartVaraibles;
 	WidgetsDeclaration widgets;
 	
-	public BuildMethodDeclaration(WidgetsDeclaration widgets,BuildContextDeclaration context) {
+	public BuildMethodDeclaration(WidgetsDeclaration widgets,BuildContextDeclaration context,int line ,String parent) {
+		super(line,parent);
 		dartVaraibles = new ArrayList<>();
 		this.widgets = widgets;
 		this.context = context;
@@ -21,10 +22,11 @@ public class BuildMethodDeclaration {
 
 	@Override
 	public String toString() {
-		return "Widget build("+context+")" +"{"
-				+dartVaraibles
-				+"\nreturn "+widgets
-				+"}\n"
+		return "Build Method Declaration line "+ getLine() + " parent "+ getParent()
+				+context+"\n"
+				+dartVaraibles+"\n"
+				+widgets+"\n"
+
 				;
 	}
 }

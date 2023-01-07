@@ -9,7 +9,8 @@ List<DartVariablesDeclaration> dartVariablesDeclarationList;
 BuildMethodDeclaration methodDecleration;
 String name;
 
-	public StatelessClassDeclaration(String name,BuildMethodDeclaration methodDecleration) {
+	public StatelessClassDeclaration(String name,BuildMethodDeclaration methodDecleration,int line,String parent) {
+		super(line,parent);
 		this.name = name;
 		this.dartVariablesDeclarationList = new ArrayList<>();
 		this.methodDecleration = methodDecleration;
@@ -30,13 +31,11 @@ String name;
 
 	@Override
 	public String toString() {
-		return  "class "
-				+name
-				+" extends StatelessWidget {"
+		return  "Stateless Class Declaration Name "+name + " line "+ getLine() + "parent "+ getParent()
 				+dartVariablesDeclarationList
 				+"\n"
 				+methodDecleration
-				+"}\n"
+				+"\n"
 				;
 	}
 }
