@@ -24,7 +24,7 @@ public class ChildrenPropertyDeclaration {
 
 	@Override
 	public String toString() {
-		return "children: \n"
+		return "children:"+ "\n"
 				+widgetsDeclarationList
 				+"\n"
 				;

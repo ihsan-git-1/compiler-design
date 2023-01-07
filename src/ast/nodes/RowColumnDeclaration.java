@@ -12,7 +12,7 @@ public class RowColumnDeclaration extends WidgetAbstractChild {
 	@Override
 	public String toString() {
 		return name
-				+"("
+				+" (\n"
 				+childrenPropertyDeclaration
 				+"\n)"
 				;
