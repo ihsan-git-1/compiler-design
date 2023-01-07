@@ -5,8 +5,8 @@ import ast.variables.NumberClass;
 public class HeightPropertyDeclaration extends ContainerPropertiesDeclarationAbstractChild{
 	NumberClass number ;
 	
-	public HeightPropertyDeclaration(NumberClass number,int line ,String parent) {
-		super(line,parent);
+	public HeightPropertyDeclaration(NumberClass number,int line ,String parent,String type,int childCount) {
+		super(line,parent, type,childCount);
 		this.number = number;
 	}
 	

@@ -9,8 +9,8 @@ List<DartVariablesDeclaration> dartVariablesDeclarationList;
 BuildMethodDeclaration methodDecleration;
 String name;
 
-	public StatelessClassDeclaration(String name,BuildMethodDeclaration methodDecleration,int line,String parent) {
-		super(line,parent);
+	public StatelessClassDeclaration(String name,BuildMethodDeclaration methodDecleration,int line,String parent,String type,int childCount) {
+		super(line,parent, type, childCount);
 		this.name = name;
 		this.dartVariablesDeclarationList = new ArrayList<>();
 		this.methodDecleration = methodDecleration;

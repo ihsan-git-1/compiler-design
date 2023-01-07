@@ -8,8 +8,8 @@ public class DartListStringDeclaration extends DartAllListsDeclarationAbstractCh
 	public String name;
 	public List<String> itemsList = new ArrayList<>();
 	
-	public DartListStringDeclaration(String name,int line ,String parent) {
-		super(line,parent);
+	public DartListStringDeclaration(String name,int line ,String parent,String type,int childCount) {
+		super(line,parent, type, childCount);
 		this.name = name;
 	}
 	

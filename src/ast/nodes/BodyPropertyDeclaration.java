@@ -3,8 +3,8 @@ package ast.nodes;
 public class BodyPropertyDeclaration extends Node{
 	WidgetsDeclaration widgetsDeclaration;
 	
-	public BodyPropertyDeclaration(WidgetsDeclaration widgetsDeclaration,int line ,String parent) {
-		super(line,parent);
+	public BodyPropertyDeclaration(WidgetsDeclaration widgetsDeclaration,int line ,String parent,String type,int childCount) {
+		super(line,parent, type, childCount);
 		this.widgetsDeclaration=widgetsDeclaration;
 	}
 

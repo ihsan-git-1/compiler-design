@@ -6,12 +6,18 @@ public enum NodeType {
     FUNCTION("function"),
     CLASS("class"),
     WIDGET("widget"),
-
+    PROPERTY("property"),
     BOOL("bool"),
     STRING("string"),
     INT("int"),
-    DOUBLE("double");
-
+    DOUBLE("double"),
+    OBJECT("object"),
+    CONDITION("condition"),
+    BLOCK("block"),
+    RETURN("return"),
+    CONTAINER("container"),
+    ROW("row"),
+    COLUMN("column");
     private final String text;
 
     NodeType(final String text) {

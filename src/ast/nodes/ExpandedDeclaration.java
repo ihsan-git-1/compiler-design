@@ -3,8 +3,8 @@ package ast.nodes;
 public class ExpandedDeclaration extends WidgetAbstractChild {
 	ChildPropertyDeclaration childPropertyDeclaration;
 	
-	public ExpandedDeclaration(ChildPropertyDeclaration childPropertyDeclaration,int line ,String parent) {
-		super(line,parent);
+	public ExpandedDeclaration(ChildPropertyDeclaration childPropertyDeclaration,int line ,String parent,String type,int childCount) {
+		super(line,parent, type, childCount);
 		this.childPropertyDeclaration=childPropertyDeclaration;
 	}
 

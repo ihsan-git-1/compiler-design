@@ -9,8 +9,8 @@ public class IfStatementDeclaration extends Node {
     Block elseBlock;
 
 
-    public IfStatementDeclaration(int line, String parent, BooleanOperation booleanOperation, Block block, List<Block> elseIfBlock, Block elseBlock) {
-        super(line, parent);
+    public IfStatementDeclaration(int line, String parent,String type,int childCount, BooleanOperation booleanOperation, Block block, List<Block> elseIfBlock, Block elseBlock) {
+        super(line, parent, type,childCount);
         this.booleanOperation = booleanOperation;
         this.block = block;
         this.elseIfBlock = elseIfBlock;

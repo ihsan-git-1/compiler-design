@@ -8,8 +8,8 @@ public class StatefullClassDeclaration extends AllClassesDeclarationAbstractChil
 	StatefullSecondBody secondBody;
 	
 	
-	public StatefullClassDeclaration(StatefullFirstBody firstBody,StatefullSecondBody secondBody,int line,String parent){
-		super(line,parent);
+	public StatefullClassDeclaration(StatefullFirstBody firstBody,StatefullSecondBody secondBody,int line,String parent,String type,int childCount){
+		super(line,parent, type, childCount);
 		this.firstBody=firstBody;
 		this.secondBody=secondBody;
 	}

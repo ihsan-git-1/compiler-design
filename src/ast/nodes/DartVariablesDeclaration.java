@@ -4,8 +4,8 @@ public class DartVariablesDeclaration extends Node
 		implements StatementDeclarationAbstractChild {
 	DartVariablesDeclarationAbstractChild dartVariablesDeclarationAbstractChild;
 
-	public DartVariablesDeclaration(DartVariablesDeclarationAbstractChild dartVariablesDeclarationAbstractChild,int line ,String parent) {
-		super(line,parent);
+	public DartVariablesDeclaration(DartVariablesDeclarationAbstractChild dartVariablesDeclarationAbstractChild,int line ,String parent,String type,int childCount) {
+		super(line,parent, type,childCount);
 		this.dartVariablesDeclarationAbstractChild = dartVariablesDeclarationAbstractChild;
 	}
 

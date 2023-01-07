@@ -4,8 +4,8 @@ package ast.nodes;
 public class AllClassesDeclaration extends Node{
 	AllClassesDeclarationAbstractChild child;
 	
-	public AllClassesDeclaration(AllClassesDeclarationAbstractChild child,int line ,String parent) {
-		super(line,parent);
+	public AllClassesDeclaration(AllClassesDeclarationAbstractChild child,int line ,String parent,String type,int childCount) {
+		super(line,parent,type,childCount);
 		this.child=child;
 	}
 	

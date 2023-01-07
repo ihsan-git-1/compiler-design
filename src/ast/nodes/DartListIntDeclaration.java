@@ -9,8 +9,8 @@ public class DartListIntDeclaration extends DartAllListsDeclarationAbstractChild
 	String name;
 	List<NumberClass> itemsList;
 	
-	public DartListIntDeclaration(String name,int line ,String parent) {
-		super(line,parent);
+	public DartListIntDeclaration(String name,int line ,String parent,String type,int childCount) {
+		super(line,parent, type, childCount);
 		this.name = name;
 	}
 	

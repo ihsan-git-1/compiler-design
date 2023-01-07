@@ -4,8 +4,8 @@ public class StatefullAssignStateClassDeclaration extends Node{
 	String name;
 	ReturnStateTypes types;
 	
-	public StatefullAssignStateClassDeclaration(String name,ReturnStateTypes types,int line,String parent) {
-		super(line,parent);
+	public StatefullAssignStateClassDeclaration(String name,ReturnStateTypes types,int line,String parent,String type,int childCount) {
+		super(line,parent, type, childCount);
 		this.types = types;
 		this.name = name;
 	}

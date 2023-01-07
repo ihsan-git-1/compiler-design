@@ -4,8 +4,8 @@ public class WhileStatement extends Node {
     BooleanOperation booleanOperation;
     Block block;
 
-    public WhileStatement(int line, String parent, BooleanOperation booleanOperation, Block block) {
-        super(line, parent);
+    public WhileStatement(int line, String parent,String type,int childCount ,BooleanOperation booleanOperation, Block block) {
+        super(line, parent, type, childCount);
         this.booleanOperation = booleanOperation;
         this.block = block;
     }
