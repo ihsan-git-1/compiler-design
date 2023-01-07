@@ -11,7 +11,8 @@ public class NumberDoubleClass extends AbstractNumberClass{
 		this.num = num;
 	}
 
-	public NumberDoubleClass(double num) {
+	public NumberDoubleClass(double num, int line, String parent) {
+		super(line, parent);
 		this.num = num;
 	}
 	
