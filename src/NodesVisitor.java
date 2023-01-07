@@ -274,8 +274,38 @@ public class NodesVisitor extends dart_parseBaseVisitor {
     public MaterialButtonDeclaration visitMaterialButtonDeclaration(dart_parse.MaterialButtonDeclarationContext ctx) {
         int line = ctx.start.getLine();
         String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$","").replace("Context","");
-        return new MaterialButtonDeclaration(visitChildPropertyDeclaration(ctx.childPropertyDeclaration()),line,parent);
+        return new MaterialButtonDeclaration(
+                visitOnPressedPropertyDeclaration(ctx.onPressedPropertyDeclaration()),
+                visitChildPropertyDeclaration(ctx.childPropertyDeclaration()),line,parent);
     }
+
+    @Override
+    public OnPressedPropertyDeclaration visitOnPressedPropertyDeclaration(dart_parse.OnPressedPropertyDeclarationContext ctx) {
+        OnPressedPropertyDeclaration onPressedPropertyDeclaration = new OnPressedPropertyDeclaration();
+
+        for(int i = 0; i < ctx.statement().size(); i++) {
+            onPressedPropertyDeclaration.getStatementDeclaration()
+                    .add(visitStatement(ctx.statement(i)));
+        }
+
+        return onPressedPropertyDeclaration;
+    }
+    @Override
+    public SetStatePressedDeclaration visitSetStatePressedDeclaration(dart_parse.SetStatePressedDeclarationContext ctx) {
+        SetStatePressedDeclaration setStatePressedDeclaration = new SetStatePressedDeclaration();
+
+        for (int i = 0; i < ctx.statement().size(); i++) {
+            setStatePressedDeclaration.getStatementDeclaration()
+                    .add(visitStatement(ctx.statement(i)));
+        }
+
+        return setStatePressedDeclaration;
+    }
+    @Override
+    public StatementDeclaration visitStatement(dart_parse.StatementContext ctx) {
+        return new StatementDeclaration(visitDartVariabelsDeclaration(ctx.dartVariabelsDeclaration()));
+    }
+
 
     @Override
     public PaddingDeclaration visitPaddingDeclaration(dart_parse.PaddingDeclarationContext ctx) {

@@ -1,6 +1,7 @@
 package ast.nodes;
 
-public class DartVariablesDeclaration extends ClassDeclaration {
+public class DartVariablesDeclaration extends ClassDeclaration
+		implements StatementDeclarationAbstractChild {
 	DartVariablesDeclarationAbstractChild dartVariablesDeclarationAbstractChild;
 
 	public DartVariablesDeclaration(DartVariablesDeclarationAbstractChild dartVariablesDeclarationAbstractChild,int line ,String parent) {
