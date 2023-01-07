@@ -113,7 +113,8 @@ buildMethodDeclaration:
 
 // dart declarations
 dartVariabelsDeclaration:
-    variable
+    function
+    |variable
     |function
     |dartAllListsDeclaration
     ;
@@ -175,6 +176,7 @@ multiplyDoubleExpression
 booleans:
     TRUE
     |FALSE
+    |booleanOperation
     ;
 
 booleanOperation:
@@ -183,7 +185,9 @@ booleanOperation:
     (number|numberDouble|NAME)
     ;
 
+
 // dart List<int>, List<String>, List<bool>
+
 
 dartAllListsDeclaration:
     dartListStringDeclaration
