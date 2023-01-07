@@ -12,10 +12,8 @@ public class RowColumnDeclaration extends WidgetAbstractChild {
 
 	@Override
 	public String toString() {
-		return name
-				+" (\n"
-				+childrenPropertyDeclaration
-				+"\n)"
-				;
+
+		return "Row Column Declaration Name " +name+" line: "+getLine() + " parent "+getParent()+"\n"
+				+childrenPropertyDeclaration;
 	}
 }

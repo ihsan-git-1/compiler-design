@@ -11,7 +11,7 @@ public class MaterialButtonDeclaration extends WidgetAbstractChild {
 
 	@Override
 	public String toString() {
-		return "MaterialButton line: "+getLine() + " parent "+getParent()
+		return "MaterialButton line: "+getLine() + " parent "+getParent()+"\n"
 				+childPropertyDeclaration
 
 				;

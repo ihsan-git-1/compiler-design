@@ -20,28 +20,28 @@ public class ListsVisitor extends dart_parseBaseVisitor{
 	public DartAllListsDeclaration visitDartAllListsDeclaration(DartAllListsDeclarationContext ctx) {
 
 		int line = ctx.start.getLine();
-		String parent = ctx.getParent().getText();
+		String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$","").replace("Context","");
 
 		if (ctx.dartListStringDeclaration() != null) {
 			DartAllListsDeclaration decl = new DartAllListsDeclaration(visitDartListStringDeclaration(ctx.dartListStringDeclaration()),line,parent);
-            return decl;
-        }else if(ctx.dartListIntDeclaration() != null) {
-        	DartAllListsDeclaration decl = new DartAllListsDeclaration(visitDartListIntDeclaration(ctx.dartListIntDeclaration()),line,parent);
-            return decl;
-        }else if(ctx.dartListBoolDeclaration() != null) {
-        	DartAllListsDeclaration decl = new DartAllListsDeclaration(visitDartListBoolDeclaration(ctx.dartListBoolDeclaration()),line,parent);
-            return decl;
-        }else {
-        	return null;
-        }
-	
+			return decl;
+		}else if(ctx.dartListIntDeclaration() != null) {
+			DartAllListsDeclaration decl = new DartAllListsDeclaration(visitDartListIntDeclaration(ctx.dartListIntDeclaration()),line,parent);
+			return decl;
+		}else if(ctx.dartListBoolDeclaration() != null) {
+			DartAllListsDeclaration decl = new DartAllListsDeclaration(visitDartListBoolDeclaration(ctx.dartListBoolDeclaration()),line,parent);
+			return decl;
+		}else {
+			return null;
+		}
+
 	}
 
 	@Override
 	public DartListStringDeclaration visitDartListStringDeclaration(DartListStringDeclarationContext ctx) {
 
 		int line = ctx.start.getLine();
-		String parent = ctx.getParent().getText();
+		String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$","").replace("Context","");
 
 		String name = ctx.NAME().getText();
 		List<String> dartListStringItems = new ArrayList<>();
@@ -59,7 +59,7 @@ public class ListsVisitor extends dart_parseBaseVisitor{
 	@Override
 	public DartListIntDeclaration visitDartListIntDeclaration(DartListIntDeclarationContext ctx) {
 		int line = ctx.start.getLine();
-		String parent = ctx.getParent().getText();
+		String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$","").replace("Context","");
 		String name = ctx.NAME().getText();
 		List<NumberClass> dartListIntItems = new ArrayList<>();
 
@@ -67,8 +67,8 @@ public class ListsVisitor extends dart_parseBaseVisitor{
 			String str = ctx.getChild(i).getText();
 			if(!str.equals(",") && !str.equals("]") && !str.equals(";")) {
 				try {
-					int line = ctx.start.getLine();
-					String parent = ctx.getParent().getText();
+					int numLine = ctx.start.getLine();
+					String numParent = ctx.getParent().getClass().getName().replace("gen.dart_parse$","").replace("Context","");
 					NumberClass number = new NumberClass(Integer.parseInt(ctx.getChild(i).getText()), line, parent);
 					dartListIntItems.add(number);
 				} catch (Exception e) {
@@ -84,7 +84,7 @@ public class ListsVisitor extends dart_parseBaseVisitor{
 	@Override
 	public DartListBoolDeclaration visitDartListBoolDeclaration(DartListBoolDeclarationContext ctx) {
 		int line = ctx.start.getLine();
-		String parent = ctx.getParent().getText();
+		String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$","").replace("Context","");
 		String name = ctx.NAME().getText();
 		List<BooleanValueClass> dartListBoolItems = new ArrayList<>();
 
@@ -94,8 +94,8 @@ public class ListsVisitor extends dart_parseBaseVisitor{
 			if(!str.equals(",") && !str.equals("]") && !str.equals(";")) {
 
 				try {
-					int line = ctx.start.getLine();
-					String parent = ctx.getParent().getText();
+					int boolLine = ctx.start.getLine();
+					String boolParent = ctx.getParent().getClass().getName().replace("gen.dart_parse$","").replace("Context","");
 					BooleanValueClass b = new BooleanValueClass(Boolean.parseBoolean(ctx.getChild(i).getText()), line, parent);
 					dartListBoolItems.add(b);
 				} catch (Exception e) {
@@ -108,5 +108,5 @@ public class ListsVisitor extends dart_parseBaseVisitor{
 		dec.setItemsList(dartListBoolItems);
 		return dec;
 	}
-	
+
 }
