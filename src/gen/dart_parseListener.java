@@ -238,6 +238,16 @@ public interface dart_parseListener extends ParseTreeListener {
 	 */
 	void exitBooleans(dart_parse.BooleansContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link dart_parse#booleanOperation}.
+	 * @param ctx the parse tree
+	 */
+	void enterBooleanOperation(dart_parse.BooleanOperationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#booleanOperation}.
+	 * @param ctx the parse tree
+	 */
+	void exitBooleanOperation(dart_parse.BooleanOperationContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link dart_parse#dartAllListsDeclaration}.
 	 * @param ctx the parse tree
 	 */
@@ -408,6 +418,26 @@ public interface dart_parseListener extends ParseTreeListener {
 	 */
 	void exitEdgeInsistAll(dart_parse.EdgeInsistAllContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link dart_parse#onPressedPropertyDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterOnPressedPropertyDeclaration(dart_parse.OnPressedPropertyDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#onPressedPropertyDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitOnPressedPropertyDeclaration(dart_parse.OnPressedPropertyDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#setStatePressedDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterSetStatePressedDeclaration(dart_parse.SetStatePressedDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#setStatePressedDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitSetStatePressedDeclaration(dart_parse.SetStatePressedDeclarationContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link dart_parse#heightPropertyDeclaration}.
 	 * @param ctx the parse tree
 	 */
@@ -497,4 +527,84 @@ public interface dart_parseListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitNumberDouble(dart_parse.NumberDoubleContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#ifStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterIfStatement(dart_parse.IfStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#ifStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitIfStatement(dart_parse.IfStatementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#whileStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterWhileStatement(dart_parse.WhileStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#whileStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitWhileStatement(dart_parse.WhileStatementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#block}.
+	 * @param ctx the parse tree
+	 */
+	void enterBlock(dart_parse.BlockContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#block}.
+	 * @param ctx the parse tree
+	 */
+	void exitBlock(dart_parse.BlockContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#function}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunction(dart_parse.FunctionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#function}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunction(dart_parse.FunctionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#functionType}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunctionType(dart_parse.FunctionTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#functionType}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunctionType(dart_parse.FunctionTypeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#parameters}.
+	 * @param ctx the parse tree
+	 */
+	void enterParameters(dart_parse.ParametersContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#parameters}.
+	 * @param ctx the parse tree
+	 */
+	void exitParameters(dart_parse.ParametersContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterStatement(dart_parse.StatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitStatement(dart_parse.StatementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#forStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterForStatement(dart_parse.ForStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#forStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitForStatement(dart_parse.ForStatementContext ctx);
 }
