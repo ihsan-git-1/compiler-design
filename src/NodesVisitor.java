@@ -23,11 +23,6 @@ public class NodesVisitor extends dart_parseBaseVisitor {
                         .add(visitAllClassesDeclaration(ctx.allClassesDeclaration(i)));
             }
         }
-        for (int i = 0; i < ctx.dartVariabelsDeclaration().size(); i++) {
-            topTreeDeclaration.getDartVariablesDeclarationList()
-                    .add(visitDartVariabelsDeclaration(ctx.dartVariabelsDeclaration(i)));
-        }
-
         return topTreeDeclaration;
     }
     @Override
