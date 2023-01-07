@@ -149,6 +149,12 @@ public interface dart_parseVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitBooleans(dart_parse.BooleansContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link dart_parse#booleanOperation}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBooleanOperation(dart_parse.BooleanOperationContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link dart_parse#dartAllListsDeclaration}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -251,6 +257,18 @@ public interface dart_parseVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitEdgeInsistAll(dart_parse.EdgeInsistAllContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link dart_parse#onPressedPropertyDeclaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOnPressedPropertyDeclaration(dart_parse.OnPressedPropertyDeclarationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link dart_parse#setStatePressedDeclaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSetStatePressedDeclaration(dart_parse.SetStatePressedDeclarationContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link dart_parse#heightPropertyDeclaration}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -304,4 +322,52 @@ public interface dart_parseVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitNumberDouble(dart_parse.NumberDoubleContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link dart_parse#ifStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIfStatement(dart_parse.IfStatementContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link dart_parse#whileStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWhileStatement(dart_parse.WhileStatementContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link dart_parse#block}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBlock(dart_parse.BlockContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link dart_parse#function}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunction(dart_parse.FunctionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link dart_parse#functionType}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunctionType(dart_parse.FunctionTypeContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link dart_parse#parameters}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitParameters(dart_parse.ParametersContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link dart_parse#statement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStatement(dart_parse.StatementContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link dart_parse#forStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitForStatement(dart_parse.ForStatementContext ctx);
 }
