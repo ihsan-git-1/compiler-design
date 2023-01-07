@@ -13,7 +13,8 @@ public class NodesVisitor extends dart_parseBaseVisitor {
     @Override
     public TopTreeDeclaration visitTopTreeDeclaration(dart_parse.TopTreeDeclarationContext ctx) {
         int line = ctx.start.getLine();
-        TopTreeDeclaration topTreeDeclaration = new TopTreeDeclaration(line);
+        String parent = "";
+        TopTreeDeclaration topTreeDeclaration = new TopTreeDeclaration(line,parent);
         for (int i = 0; i < ctx.allClassesDeclaration().size() ; i++) {
             if(ctx.allClassesDeclaration().get(i) != null) {
 
@@ -40,7 +41,9 @@ public class NodesVisitor extends dart_parseBaseVisitor {
 
     @Override
     public ClassDeclaration visitClassDeclaration(dart_parse.ClassDeclarationContext ctx) {
-        ClassDeclaration classDec = new ClassDeclaration(ctx.NAME().toString());
+        int line = ctx.start.getLine();
+        String parent = ctx.getParent().getText();
+        ClassDeclaration classDec = new ClassDeclaration(ctx.NAME().toString(),line,parent);
         for (int i = 0; i < ctx.dartVariabelsDeclaration().size(); i++) {
             classDec.getDartVariablesDeclarationList()
                     .add(visitDartVariabelsDeclaration(ctx.dartVariabelsDeclaration(i)));
@@ -50,9 +53,11 @@ public class NodesVisitor extends dart_parseBaseVisitor {
 
     @Override
     public StatelessClassDeclaration visitStatelessClassDeclaration(dart_parse.StatelessClassDeclarationContext ctx) {
+        int line = ctx.start.getLine();
+        String parent = ctx.getParent().getText();
         StatelessClassDeclaration statelessClassDeclaration
                 = new StatelessClassDeclaration(ctx.NAME().getText(),
-                        visitBuildMethodDeclaration(ctx.buildMethodDeclaration()));
+                        visitBuildMethodDeclaration(ctx.buildMethodDeclaration()),line,parent);
 
         for (int i = 0; i < ctx.dartVariabelsDeclaration().size(); i++) {
             statelessClassDeclaration.getDartVariablesDeclarationList()
@@ -64,10 +69,12 @@ public class NodesVisitor extends dart_parseBaseVisitor {
 
     @Override
     public BuildMethodDeclaration visitBuildMethodDeclaration(dart_parse.BuildMethodDeclarationContext ctx) {
+        int line = ctx.start.getLine();
+        String parent = ctx.getParent().getText();
         BuildMethodDeclaration buildMethodDeclaration
                 = new BuildMethodDeclaration(
                         visitWidgetsDeclaration(ctx.widgetsDeclaration()),
-                        visitBuildContextDeclaration(ctx.buildContextDeclaration()));
+                        visitBuildContextDeclaration(ctx.buildContextDeclaration()),line,parent);
 
         for (int i = 0; i < ctx.dartVariabelsDeclaration().size(); i++) {
             buildMethodDeclaration.getDartVariables()
@@ -80,22 +87,28 @@ public class NodesVisitor extends dart_parseBaseVisitor {
 
     @Override
     public BuildContextDeclaration visitBuildContextDeclaration(dart_parse.BuildContextDeclarationContext ctx) {
-        return new BuildContextDeclaration(ctx.NAME().getText());
+        int line = ctx.start.getLine();
+        String parent = ctx.getParent().getText();
+        return new BuildContextDeclaration(ctx.NAME().getText(),line,parent);
     }
 
     @Override
     public StatefullClassDeclaration visitStatefullClassDeclaration(dart_parse.StatefullClassDeclarationContext ctx) {
+        int line = ctx.start.getLine();
+        String parent = ctx.getParent().getText();
         return new StatefullClassDeclaration(
                 visitStfulFirstBody(ctx.stfulFirstBody()),
-                visitStfulSecondBody(ctx.stfulSecondBody())
+                visitStfulSecondBody(ctx.stfulSecondBody()),line,parent
         );
     }
 
     @Override
     public StatefullFirstBody visitStfulFirstBody(dart_parse.StfulFirstBodyContext ctx) {
+        int line = ctx.start.getLine();
+        String parent = ctx.getParent().getText();
         StatefullFirstBody statefullFirstBody
                 = new StatefullFirstBody(ctx.NAME().getText(),
-                visitStatefullAssignStateClassDeclaration(ctx.statefullAssignStateClassDeclaration()));
+                visitStatefullAssignStateClassDeclaration(ctx.statefullAssignStateClassDeclaration()),line,parent);
 
         for (int i = 0; i < ctx.dartVariabelsDeclaration().size(); i++) {
             statefullFirstBody.getDartVariablesDeclarationList()
@@ -107,11 +120,13 @@ public class NodesVisitor extends dart_parseBaseVisitor {
 
     @Override
     public StatefullSecondBody visitStfulSecondBody(dart_parse.StfulSecondBodyContext ctx) {
+        int line = ctx.start.getLine();
+        String parent = ctx.getParent().getText();
         StatefullSecondBody statefullSecondBody
                 = new StatefullSecondBody(
                         ctx.NAME(0).getText(),
                 ctx.NAME(1).getText(),
-                visitBuildMethodDeclaration(ctx.buildMethodDeclaration()));
+                visitBuildMethodDeclaration(ctx.buildMethodDeclaration()),line,parent);
 
         for (int i = 0; i < ctx.dartVariabelsDeclaration().size(); i++) {
             statefullSecondBody.getDartVariablesDeclarationList()
@@ -123,20 +138,23 @@ public class NodesVisitor extends dart_parseBaseVisitor {
 
     @Override
     public StatefullAssignStateClassDeclaration visitStatefullAssignStateClassDeclaration(dart_parse.StatefullAssignStateClassDeclarationContext ctx) {
-        return new StatefullAssignStateClassDeclaration(ctx.NAME().getText(),visitReturnStateTypes(ctx.returnStateTypes()));
+        int line = ctx.start.getLine();
+        String parent = ctx.getParent().getText();
+        return new StatefullAssignStateClassDeclaration(ctx.NAME().getText(),visitReturnStateTypes(ctx.returnStateTypes()),line, parent);
     }
 
     @Override
     public ReturnStateTypes visitReturnStateTypes(dart_parse.ReturnStateTypesContext ctx) {
         String name = "";
-
+        int line = ctx.start.getLine();
+        String parent = ctx.getParent().getText();
         if(ctx.functionReturnState() != null){
             name = ctx.functionReturnState().NAME().getText();
         }
         if(ctx.returnArrowState() != null){
             name = ctx.returnArrowState().NAME().getText();
         }
-        return new ReturnStateTypes(name);
+        return new ReturnStateTypes(name,line ,parent);
     }
 
 

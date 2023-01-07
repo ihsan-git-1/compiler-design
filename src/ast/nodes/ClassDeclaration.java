@@ -15,10 +15,12 @@ public class ClassDeclaration extends AllClassesDeclarationAbstractChild {
 		this.dartVariablesDeclarationList = dartVariablesDeclarationList;
 	}
 
-	public ClassDeclaration() {
+	public ClassDeclaration(int line,String parent) {
+		super(line,parent);
 		this.dartVariablesDeclarationList =new ArrayList<>();
 	}
-	public  ClassDeclaration(String name){
+	public  ClassDeclaration(String name,int line,String parent){
+		super(line,parent);
 		this.name = name;
 		this.dartVariablesDeclarationList =new ArrayList<>();
 	}
@@ -29,9 +31,8 @@ public class ClassDeclaration extends AllClassesDeclarationAbstractChild {
 	
 	@Override
 	public String toString() {
-		return  "Class "
-				+name
-				+dartVariablesDeclarationList
+		return  "Class Declaration Name is "+name+"line "+getLine()+" parent "+getParent()+"\n"+
+				dartVariablesDeclarationList
 				;
 	}
 }
