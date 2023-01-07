@@ -5,6 +5,7 @@ public enum NodeType {
     TOPTREEDECLARATION("toptreedeclaration"),
     BOOLEAN("boolean"),
     BOOLEANDECLARATION("boolean declaration"),
+    STATEMENTDECLARATION("statement declaration"),
     MULTIPLYDOUBLEEXPRESSION("multiplication expression (type double)"),
     ADDDOUBLEEXPRESSION("addition expression (type double)"),
     ADDEXPRESSION("addition expression (type integer)"),
