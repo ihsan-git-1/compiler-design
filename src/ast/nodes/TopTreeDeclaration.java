@@ -5,6 +5,11 @@ import java.util.List;
 
 public class TopTreeDeclaration extends Node{
 	List<AllClassesDeclarationAbstractChild> topTreeChildrenList;
+	List<DartVariablesDeclaration> dartVariablesDeclarationList;
+	public List<DartVariablesDeclaration> getDartVariablesDeclarationList() {
+		return dartVariablesDeclarationList;
+	}
+
 
 	public List<AllClassesDeclarationAbstractChild> getTopTreeChildrenList() {
 		return topTreeChildrenList;
@@ -34,6 +39,7 @@ public class TopTreeDeclaration extends Node{
 						.replace("[", "")
 						.replace("]", "")
 						.trim()
-				+"\n";
+				+"\n"
+				+dartVariablesDeclarationList;
 	}
 }

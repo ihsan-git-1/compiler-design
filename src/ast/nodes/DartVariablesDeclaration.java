@@ -11,11 +11,11 @@ public class DartVariablesDeclaration extends ClassDeclaration
 
 	@Override
 	public String toString() {
-
 		return "\nDartVariablesDeclaration"
 				+"\n|\n"
 				+dartVariablesDeclarationAbstractChild
 				+";"
 				+'\n';
+
 	}
 }

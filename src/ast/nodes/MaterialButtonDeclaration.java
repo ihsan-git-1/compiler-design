@@ -16,7 +16,7 @@ public class MaterialButtonDeclaration extends WidgetAbstractChild {
 	public String toString() {
 		return "MaterialButton line: "+getLine() + " parent "+getParent()+"\n"
 				+childPropertyDeclaration
-
+				+onPressedPropertyDeclaration
 				;
 	}
 }

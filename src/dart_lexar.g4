@@ -6,6 +6,20 @@ CLASS:
 'class'
 	;
 
+FOR:
+'for';
+
+IF:
+'if';
+
+ELSEIF:
+'else if';
+
+ELSE:
+'else';
+
+WHILE:
+'while';
 // brackets
 CRLY_BRKT_OP:
 '{'
@@ -88,15 +102,7 @@ VOID:
 FUNCTION:
 'Function'
 ;
-IF:
-'if'
-;
-WHILE:
-'while'
-;
-FOR:
-'for'
-;
+
 SETSTATE:
 'setState'
 ;
@@ -150,6 +156,7 @@ HEIGHT:
 COLOR:
 'color'
 ;
+
 MATERIALAPP:
 'MaterialApp'
 ;

@@ -16,4 +16,11 @@ public class SetStatePressedDeclaration {
         statementDeclaration = new ArrayList<>();
     };
 
+    @Override
+    public String toString() {
+        return "\nsetState"
+                +statementDeclaration
+                ;
+    }
+
 }
