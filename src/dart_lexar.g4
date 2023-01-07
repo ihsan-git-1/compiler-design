@@ -42,6 +42,8 @@ DIVIDE:'/';
 EQUAL: '==';
 ASSIGN: '=';
 NOTEQUAL: '!=';
+GRATEREQUAL: '<=';
+LESSEQUAL: '>=';
 DOT: '.';
 
 
@@ -80,6 +82,24 @@ CONST:
 VAR:
 'var'
 ;
+VOID:
+'void'
+;
+FUNCTION:
+'Function'
+;
+IF:
+'if'
+;
+WHILE:
+'while'
+;
+FOR:
+'for'
+;
+SETSTATE:
+'setState'
+;
 STRING_LINE:
  '"' ( ~[\\"] | '\\' . )* '"'
   |'\'' ( ~[\\"] | '\\' . )* '\''
@@ -94,6 +114,7 @@ BUILDCONTEXT:
 STATE:
 'State'
 ;
+
 CREATE:
 'create'
 ;
@@ -153,6 +174,9 @@ ROW:
 COLUMN:
 'Column'
 ;
+ONPRESSED:
+'onPressed'
+;
 IMAGE:
 'Image'
 ;
@@ -187,7 +211,7 @@ FALSE:
 ;
 
 NAME :
-[a-zA-Z]+
+[a-zA-Z-+]+
     ;
 NUMBERDOUBLE : [0-9]+ '.' [0-9]+ ;
 NUMBER:
