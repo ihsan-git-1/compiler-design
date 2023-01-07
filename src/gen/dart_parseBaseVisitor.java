@@ -18,12 +18,6 @@ public class dart_parseBaseVisitor<T> extends AbstractParseTreeVisitor<T> implem
 	public static List<String> semanticErrors = new ArrayList<>();
 	public static List<String> vars= new ArrayList<>();
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
 	@Override public T visitTopTreeDeclaration(dart_parse.TopTreeDeclarationContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
