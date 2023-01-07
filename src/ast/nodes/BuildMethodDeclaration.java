@@ -22,7 +22,8 @@ public class BuildMethodDeclaration extends Node{
 
 	@Override
 	public String toString() {
-		return "Build Method Declaration line: "+ getLine() + " parent "+ getParent()+"\n"
+		return "Build Method Declaration line: "+ getLine() + " parent "+ getParent()
+				+" Child Count =  "+getChildCount()+" Type = "+getType()+"\n"
 				+context
 				+dartVaraibles+"\n"
 				+widgets+"\n"

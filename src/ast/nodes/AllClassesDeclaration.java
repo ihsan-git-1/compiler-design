@@ -12,7 +12,8 @@ public class AllClassesDeclaration extends Node{
 	
 	public String toString() {
 
-		return "All Classes Declaration line: "+ getLine() + "parent "+ getParent()+"\n"+
+		return "All Classes Declaration line: "+ getLine() + "parent "+ getParent()
+				+" Child Count =  "+getChildCount()+" Type = "+getType()+"\n"+
 				child
 				;
 	}

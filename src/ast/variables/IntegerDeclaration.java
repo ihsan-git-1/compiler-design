@@ -4,13 +4,13 @@ public class IntegerDeclaration extends VariableDeclaration {
     String name;
     AddExpression expr;
 
-    public IntegerDeclaration(String name, int line, String parent) {
-        super(line, parent);
+    public IntegerDeclaration(String name, int line, String parent,String type,int childCount) {
+        super(line, parent, type, childCount);
         this.name = name;
     }
 
-    public IntegerDeclaration(AddExpression expr, String name, int line, String parent) {
-        super(line, parent);
+    public IntegerDeclaration(AddExpression expr, String name, int line, String parent,String type,int childCount) {
+        super(line, parent, type, childCount);
         this.expr = expr;
         this.name = name;
     }
@@ -18,7 +18,9 @@ public class IntegerDeclaration extends VariableDeclaration {
     @Override
     public String toString() {
         if (expr != null) {
-            return "Integer Declaration: " +name+" line: "+ getLine() + " parent: "+ getParent()+"\n" + expr;
+            return "Integer Declaration: " +name+" line: "+ getLine() + " parent: "+ getParent()
+                    +" Child Count =  "+getChildCount()+" Type = "+getType()+"\n"
+                    + expr;
         } else {
             return "\n";
         }

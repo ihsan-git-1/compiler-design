@@ -11,6 +11,7 @@ public class ImageDeclaration extends WidgetAbstractChild {
 	@Override
 	public String toString() {
 		return
-				"Image Declaration src = "+str+ " line: "+getLine() + " parent "+getParent()+"\n";
+				"Image Declaration src = "+str+ " line: "+getLine() + " parent "+getParent()
+						+" Child Count =  "+getChildCount()+" Type = "+getType()+"\n";
 	}
 }

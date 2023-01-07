@@ -5,8 +5,8 @@ import ast.nodes.DartVariablesDeclarationAbstractChild;
 public class Variable extends DartVariablesDeclarationAbstractChild {
     VariableDeclaration declaration;
 
-    public Variable(VariableDeclaration declaration, int line, String parent) {
-        super(line, parent);
+    public Variable(VariableDeclaration declaration, int line, String parent,String type,int childCount) {
+        super(line, parent, type, childCount);
         this.declaration = declaration;
     }
 

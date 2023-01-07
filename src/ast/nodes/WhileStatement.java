@@ -28,6 +28,8 @@ public class WhileStatement extends Node {
 
     @Override
     public String toString() {
-        return "WhileStatement{" + "booleanOperation=" + booleanOperation + ", block=" + block + ", line=" + line + ", parent='" + parent + '\'' + '}';
+        return "WhileStatement{" + "booleanOperation=" + booleanOperation + ", block=" + block + ", line=" + line + ", parent='" + parent
+                +" Child Count =  "+getChildCount()+" Type = "+getType()+
+        '\'' + '}';
     }
 }

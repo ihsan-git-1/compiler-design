@@ -13,7 +13,8 @@ public class EdgeInsistAll extends Node{
 	@Override
 	public String toString() {
 
-		return "Edge Insist All , Number "+number.toString()+ " line:"+getLine() + " parent "+getParent()+"\n"
+		return "Edge Insist All , Number "+number.toString()+ " line:"+getLine() + " parent "+getParent()
+				+" Child Count =  "+getChildCount()+" Type = "+getType()+"\n"
 
 				;
 	}

@@ -13,13 +13,14 @@ public class MultiplyDoubleExpression extends Node {
 		this.value = value;
 	}
 
-	public MultiplyDoubleExpression(NumberDoubleClass value, int line, String parent) {
-		super(line, parent);
+	public MultiplyDoubleExpression(NumberDoubleClass value, int line, String parent,String type,int childCount) {
+		super(line, parent, type, childCount);
 		this.value = value;
 	}
 
 	@Override
 	public String toString() {
-		return "Multiply Double Expression: "+value +" line: " + getLine() + "parent "+ getParent()+"\n";
+		return "Multiply Double Expression: "+value +" line: " + getLine() + "parent "+ getParent()
+				+" Child Count =  "+getChildCount()+" Type = "+getType()+"\n";
 	}
 }

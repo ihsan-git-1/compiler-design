@@ -1,3 +1,4 @@
+import ast.NodeType;
 import ast.variables.*;
 import gen.dart_parse;
 import gen.dart_parseBaseVisitor;
@@ -15,23 +16,31 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
         if (ctx.stringDeclaration() != null) {
             int line = ctx.start.getLine();
             String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$","").replace("Context","");
-            return new Variable(visitStringDeclaration(ctx.stringDeclaration()), line, parent);
+            String type = NodeType.VARIABLE.toString();
+            int childCount = ctx.getChildCount();
+            return new Variable(visitStringDeclaration(ctx.stringDeclaration()), line, parent, type, childCount);
         }
 
         if (ctx.integerDeclaration() != null) {
             int line = ctx.start.getLine();
             String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$","").replace("Context","");
-            return new Variable(visitIntegerDeclaration(ctx.integerDeclaration()), line, parent);
+            String type = NodeType.VARIABLE.toString();
+            int childCount = ctx.getChildCount();
+            return new Variable(visitIntegerDeclaration(ctx.integerDeclaration()), line, parent, type, childCount);
         }
         if (ctx.doubleDeclaration() != null) {
             int line = ctx.start.getLine();
             String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$","").replace("Context","");
-            return new Variable(visitDoubleDeclaration(ctx.doubleDeclaration()), line, parent);
+            String type = NodeType.VARIABLE.toString();
+            int childCount = ctx.getChildCount();
+            return new Variable(visitDoubleDeclaration(ctx.doubleDeclaration()), line, parent, type, childCount);
         }
         if (ctx.boolDeclaration() != null) {
             int line = ctx.start.getLine();
             String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$","").replace("Context","");
-            return new Variable(visitBoolDeclaration(ctx.boolDeclaration()), line, parent);
+            String type = NodeType.VARIABLE.toString();
+            int childCount = ctx.getChildCount();
+            return new Variable(visitBoolDeclaration(ctx.boolDeclaration()), line, parent, type, childCount);
         }
 
         return null;
@@ -43,7 +52,9 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
         int num = Integer.parseInt(numText);
         int line = ctx.start.getLine();
         String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$","").replace("Context","");
-        return new NumberClass(num, line, parent);
+        String type = NodeType.NUMBER.toString();
+        int childCount = ctx.getChildCount();
+        return new NumberClass(num, line, parent, type, childCount);
 
     }
 
@@ -66,11 +77,15 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
             AddExpression expr = visitAddExpression(ctx.addExpression());
             int linee = ctx.start.getLine();
             String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$","").replace("Context","");
-            return new IntegerDeclaration(expr, id, linee, parent);
+            String type = NodeType.INTEGERDECLARATION.toString();
+            int childCount = ctx.getChildCount();
+            return new IntegerDeclaration(expr, id, linee, parent, type, childCount);
         }
         int linee = ctx.start.getLine();
         String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$","").replace("Context","");
-        return new IntegerDeclaration(id, linee, parent);
+        String type = NodeType.INTEGERDECLARATION.toString();
+        int childCount = ctx.getChildCount();
+        return new IntegerDeclaration(id, linee, parent, type, childCount);
     }
 
     @Override
@@ -89,11 +104,15 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
             AddDoubleExpression expr = visitAddDoubleExpression(ctx.addDoubleExpression());
             int linee = ctx.start.getLine();
             String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$","").replace("Context","");
-            return new DoubleDeclaration(expr,name,linee, parent);
+            String type = NodeType.DOUBLEDECLARATION.toString();
+            int childCount = ctx.getChildCount();
+            return new DoubleDeclaration(expr,name,linee, parent, type, childCount);
         }
         int linee = ctx.start.getLine();
         String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$","").replace("Context","");
-        return new DoubleDeclaration(name, linee, parent);
+        String type = NodeType.DOUBLEDECLARATION.toString();
+        int childCount = ctx.getChildCount();
+        return new DoubleDeclaration(name, linee, parent, type, childCount);
     }
 
     @Override
@@ -108,7 +127,9 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
         }
         int line = ctx.start.getLine();
         String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$","").replace("Context","");
-        return new StringDeclaration(name, stringLine, line, parent);
+        String type = NodeType.TOPTREEDECLARATION.toString();
+        int childCount = ctx.getChildCount();
+        return new StringDeclaration(name, stringLine, line, parent, type, childCount);
     }
 
     @Override
@@ -123,7 +144,9 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
         BooleanValueClass booleanValueClass = visitBooleans(ctx.booleans());
         int line = ctx.start.getLine();
         String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$","").replace("Context","");
-        return new BooleanDeclaration(ctx.NAME().toString(), booleanValueClass, line, parent);
+        String type = NodeType.BOOLEANDECLARATION.toString();
+        int childCount = ctx.getChildCount();
+        return new BooleanDeclaration(ctx.NAME().toString(), booleanValueClass, line, parent, type, childCount);
     }
 
     @Override
@@ -162,8 +185,12 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
         int intValue = (int) value;
         int line = ctx.start.getLine();
         String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$","").replace("Context","");
-        NumberClass numClass = new NumberClass(intValue, line, "Add Expression");
-        return new AddExpression(numClass, line, parent);
+        String type = NodeType.NUMBER.toString();
+        int childCount = ctx.getChildCount();
+        NumberClass numClass = new NumberClass(intValue, line, "Add Expression", type, childCount);
+        type = NodeType.ADDEXPRESSION.toString();
+        childCount = ctx.getChildCount();
+        return new AddExpression(numClass, line, parent, type, childCount);
     }
 
     @Override
@@ -185,8 +212,12 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
         int intValue = (int) value;
         int line = ctx.start.getLine();
         String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$","").replace("Context","");
-        NumberClass num = new NumberClass(intValue, line, "Multiply Expression");
-        return new MultiplyExpression(num, line, parent);
+        String type = NodeType.NUMBER.toString();
+        int childCount = ctx.getChildCount();
+        NumberClass num = new NumberClass(intValue, line, "Multiply Expression", type, childCount);
+        type = NodeType.MULTIPLYEXPRESSION.toString();
+        childCount = ctx.getChildCount();
+        return new MultiplyExpression(num, line, parent, type, childCount);
     }
 
     @Override
@@ -224,8 +255,12 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
         }
         int line = ctx.start.getLine();
         String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$","").replace("Context","");
-        NumberDoubleClass numClass = new NumberDoubleClass(value, line, "Add Double Expression");
-        return new AddDoubleExpression(numClass, line, parent);
+        String type = NodeType.NUMBERDOUBLE.toString();
+        int childCount = ctx.getChildCount();
+        NumberDoubleClass numClass = new NumberDoubleClass(value, line, "Add Double Expression", type, childCount);
+        String type = NodeType.ADDDOUBLEEXPRESSION.toString();
+        int childCount = ctx.getChildCount();
+        return new AddDoubleExpression(numClass, line, parent, type, childCount);
     }
 
     @Override
@@ -246,8 +281,12 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
         }
         int line = ctx.start.getLine();
         String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$","").replace("Context","");
-        NumberDoubleClass num = new NumberDoubleClass(value, line, "Multiply Double Expression");
-        return new MultiplyDoubleExpression(num, line, parent);
+        String type = NodeType.NUMBERDOUBLE.toString();
+        int childCount = ctx.getChildCount();
+        NumberDoubleClass num = new NumberDoubleClass(value, line, "Multiply Double Expression", type, childCount);
+        type = NodeType.MULTIPLYDOUBLEEXPRESSION.toString();
+        childCount = ctx.getChildCount();
+        return new MultiplyDoubleExpression(num, line, parent, type, childCount);
     }
 
     @Override
@@ -256,7 +295,9 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
             if(ctx.TRUE().getText().equals("true")){
                 int line = ctx.start.getLine();
                 String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$","").replace("Context","");
-                return new BooleanValueClass(Boolean.parseBoolean(ctx.TRUE().getText()), line, parent);
+                String type = NodeType.BOOLEAN.toString();
+                int childCount = ctx.getChildCount();
+                return new BooleanValueClass(Boolean.parseBoolean(ctx.TRUE().getText()), line, parent, type, childCount);
             }else{
                 Token boolToken = ctx.TRUE().getSymbol();
                 int line = boolToken.getLine();
@@ -268,7 +309,9 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
             if(ctx.TRUE().getText().equals("false")){
                 int line = ctx.start.getLine();
                 String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$","").replace("Context","");
-                return new BooleanValueClass(Boolean.parseBoolean(ctx.FALSE().getText()), line, parent);
+                String type = NodeType.BOOLEAN.toString();
+                int childCount = ctx.getChildCount();
+                return new BooleanValueClass(Boolean.parseBoolean(ctx.FALSE().getText()), line, parent, type, childCount);
             }else{
                 Token boolToken = ctx.FALSE().getSymbol();
                 int line = boolToken.getLine();
@@ -288,6 +331,8 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
         double number = Double.parseDouble(ctx.NUMBERDOUBLE().getText());
         int line = ctx.start.getLine();
         String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$","").replace("Context","");
-        return new NumberDoubleClass(number, line, parent);
+        String type = NodeType.NUMBERDOUBLE.toString();
+        int childCount = ctx.getChildCount();
+        return new NumberDoubleClass(number, line, parent, type, childCount);
     }
 }
