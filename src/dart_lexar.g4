@@ -150,6 +150,12 @@ HEIGHT:
 COLOR:
 'color'
 ;
+ELSEIF:
+'else if'
+;
+ELSE:
+'else'
+;
 MATERIALAPP:
 'MaterialApp'
 ;
