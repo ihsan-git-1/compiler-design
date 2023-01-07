@@ -10,7 +10,7 @@ public class ScaffoldDeclaration extends WidgetAbstractChild {
 
 	@Override
 	public String toString() {
-		return "Scaffold Declaration line: "+getLine()+" parent "+getParent()
+		return "Scaffold Declaration line: "+getLine()+" parent "+getParent()+"\n"
 				+bodyPropertyDeclaration
 				;
 	}

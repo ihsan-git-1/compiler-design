@@ -25,9 +25,8 @@ public class ChildrenPropertyDeclaration extends Node{
 
 	@Override
 	public String toString() {
-		return "Children Property Declaration line: "+getLine() + " parent "+getParent()
+		return "Children Property Declaration line: "+getLine() + " parent "+getParent()+"\n"
 				+widgetsDeclarationList
-
 				;
 	}
 }
