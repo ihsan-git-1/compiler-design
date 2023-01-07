@@ -9,6 +9,6 @@ public class BuildContextDeclaration extends Node{
 	}
 	
 	public String toString() {
-		return "BuildContext "+name;
+		return "BuildContext Name "+name + " line: "+getLine() + " parent "+getParent();
 	}
 }

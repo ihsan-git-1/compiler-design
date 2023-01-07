@@ -13,8 +13,7 @@ public class HeightPropertyDeclaration extends ContainerPropertiesDeclarationAbs
 	@Override
 	public String toString() {
 
-		return "Height Property Declaration line: "+getLine() +" parent "+getParent()
-				+number
+		return "Height Property height = "+number.toString()+"+ Declaration line: "+getLine() +" parent "+getParent()+"\n"
 				;
 	}
 }

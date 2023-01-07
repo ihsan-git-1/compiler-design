@@ -10,7 +10,7 @@ public class ContainerPropertiesDeclaration extends Node {
 
 	@Override
 	public String toString() {
-		return "Container Property Declaration line: "+getLine()+" parent "+getParent()
+		return "Container Property Declaration line: "+getLine()+" parent "+getParent()+"\n"
 				+containerPropertiesDeclarationAbstractChild.toString();
 	}
 }

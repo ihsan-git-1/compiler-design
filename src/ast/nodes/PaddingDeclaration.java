@@ -12,7 +12,7 @@ public class PaddingDeclaration extends WidgetAbstractChild {
 
 	@Override
 	public String toString() {
-		return "Padding Declaration line: "+getLine()+ " parent "+getParent()
+		return "Padding Declaration line: "+getLine()+ " parent "+getParent()+"\n"
 				+paddingPropertyDeclaration
 				+childPropertyDeclaration
 				;

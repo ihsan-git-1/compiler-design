@@ -10,7 +10,7 @@ public class MaterialAppDeclaration extends WidgetAbstractChild {
 
 	@Override
 	public String toString() {
-		return "Material App Declaration line: "+getLine()+" parent "+getParent()
+		return "Material App Declaration line: "+getLine()+" parent "+getParent()+"\n"
 				+homePropertyDeclaration
 				;
 	}
