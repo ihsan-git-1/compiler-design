@@ -29,7 +29,8 @@ public enum NodeType {
     RETURN("return"),
     CONTAINER("container"),
     ROW("row"),
-    COLUMN("column");
+    COLUMN("column"),
+    LIST("list");
     private final String text;
 
     NodeType(final String text) {
