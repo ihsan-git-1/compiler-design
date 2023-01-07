@@ -4,12 +4,14 @@ import java.util.List;
 
 public class Function extends Node {
     FunctionType functionType;
-    List<Parameter> parameters;
+    String name;
+    Parameter parameters;
     Block block;
 
 
-    public Function(int line, String parent, FunctionType functionType, List<Parameter> parameters, Block block) {
+    public Function(int line, String parent, FunctionType functionType, String name, Parameter parameters, Block block) {
         super(line, parent);
+        this.name = name;
         this.functionType = functionType;
         this.parameters = parameters;
         this.block = block;
@@ -23,11 +25,11 @@ public class Function extends Node {
         this.functionType = functionType;
     }
 
-    public List<Parameter> getParameters() {
+    public Parameter getParameters() {
         return parameters;
     }
 
-    public void setParameters(List<Parameter> parameters) {
+    public void setParameters(Parameter parameters) {
         this.parameters = parameters;
     }
 
@@ -41,12 +43,6 @@ public class Function extends Node {
 
     @Override
     public String toString() {
-        return "Function{" +
-                "functionType=" + functionType +
-                ", parameters=" + parameters +
-                ", block=" + block +
-                ", line=" + line +
-                ", parent='" + parent + '\'' +
-                '}';
+        return "Function " + "name: " + name + ", functionType: " + functionType + ", parameters: " + parameters + ", block: " + block + ", line: " + line + ", parent: '" + parent + '\'';
     }
 }
