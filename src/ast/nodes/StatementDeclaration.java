@@ -10,8 +10,6 @@ public class StatementDeclaration {
 
     @Override
     public String toString() {
-        return  ""
-                +statementDeclarationAbstractChild
-                ;
+        return  statementDeclarationAbstractChild.toString();
     }
 }
