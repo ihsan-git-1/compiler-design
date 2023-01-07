@@ -4,7 +4,6 @@ import java.util.List;
 
 public class Function extends Node {
     FunctionType functionType;
-
     String name;
     Parameter parameters;
     Block block;

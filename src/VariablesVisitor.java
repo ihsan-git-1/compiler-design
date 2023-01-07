@@ -50,9 +50,8 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
     @Override
     public IntegerDeclaration visitIntegerDeclaration(dart_parse.IntegerDeclarationContext ctx) {
         // INT() is a method generated from the grammar INT
-        Token idToken = ctx.INT().getSymbol();
-        int line = idToken.getLine();
-        int column = idToken.getCharPositionInLine() + 1;
+        int line = ctx.start.getLine();
+        int column = ctx.start.getCharPositionInLine() + 1;
         String id = ctx.NAME().getText();
 
         if (dart_parseBaseVisitor.vars.contains(id)) {
@@ -99,8 +98,8 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
 
     @Override
     public StringDeclaration visitStringDeclaration(dart_parse.StringDeclarationContext ctx) {
-        String name = "";
-        String stringLine = "";
+        String name = null;
+        String stringLine = null;
         if (ctx.NAME() != null) {
             name = String.valueOf(ctx.NAME());
         }
