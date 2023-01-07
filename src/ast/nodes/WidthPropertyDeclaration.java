@@ -13,7 +13,6 @@ public class WidthPropertyDeclaration extends ContainerPropertiesDeclarationAbst
 	@Override
 	public String toString() {
 
-		return "Width Property Declaration line: "+getLine() + " parent "+getParent()
-				+number.toString();
+		return "Width Property width = "+number.toString()+" Declaration line: "+getLine() + " parent "+getParent()+"\n";
 	}
 }

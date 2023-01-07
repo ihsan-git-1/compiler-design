@@ -29,7 +29,11 @@ public class TopTreeDeclaration extends Node{
 	public String toString() {
 
 		return "Top Tree Declaration line: "+ getLine() + "\n"+
-				topTreeChildrenList
-				;
+				topTreeChildrenList.toString()
+						.replace(",", "")
+						.replace("[", "")
+						.replace("]", "")
+						.trim()
+				+"\n";
 	}
 }

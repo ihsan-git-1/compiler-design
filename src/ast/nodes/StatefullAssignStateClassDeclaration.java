@@ -13,8 +13,8 @@ public class StatefullAssignStateClassDeclaration extends Node{
 	@Override
 	public String toString() {
 
-		return  "StatefullAssignStateClassDeclaration Name " +name + " line: "+ getLine() + " parent "+ getParent()
-				+types+"\n"
+		return  "StatefullAssignStateClassDeclaration Name " +name + " line: "+ getLine() + " parent "+ getParent()+"\n"
+				+types
 				;
 	}
 }
