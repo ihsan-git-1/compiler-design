@@ -9,7 +9,7 @@ import java.util.List;
 public class NodesVisitor extends dart_parseBaseVisitor {
 
 
-    //********************* base declarations start code ********************************///
+    //**************************** base declarations start code ********************************///
     @Override
     public TopTreeDeclaration visitTopTreeDeclaration(dart_parse.TopTreeDeclarationContext ctx) {
         TopTreeDeclaration topTreeDeclaration = new TopTreeDeclaration();
@@ -139,7 +139,7 @@ public class NodesVisitor extends dart_parseBaseVisitor {
 
 
 
-    //************************ flutter visitors ****************************************//
+    //******************************* flutter visitors ****************************************//
 
     @Override
     public WidgetsDeclaration visitWidgetsDeclaration(dart_parse.WidgetsDeclarationContext ctx) {
@@ -361,7 +361,7 @@ public class NodesVisitor extends dart_parseBaseVisitor {
     }
 
 
-    //************************ dart visitors ****************************************//
+    //******************************* dart visitors ****************************************//
 
     @Override
     public DartVariablesDeclaration visitDartVariabelsDeclaration(dart_parse.DartVariabelsDeclarationContext ctx) {
