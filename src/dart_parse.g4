@@ -304,7 +304,7 @@ materialAppDeclaration:
 materialButtonDeclaration:
     MATERIALBUTTON
     BRKT_OP
-    onPressedPropertyDeclaration
+    onPressedPropertyDeclaration?
     childPropertyDeclaration
     COMMA?
     BRKT_CL
