@@ -12,7 +12,6 @@ public class BooleanValueClass extends Node {
 	
 	@Override
 	public String toString() {
-		return "bool " + value + " line: "+getLine()+" parent: "+getParent()
-				;
+		return "Bool " + value + " line: "+getLine()+" parent: "+getParent();
 	}
 }

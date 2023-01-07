@@ -18,9 +18,8 @@ public class DoubleDeclaration extends VariableDeclaration {
     @Override
     public String toString() {
         if (expr != null) {
-            return "\n" + name + " = " + expr;
+            return "Double Declaration: "+"name:" +name + " value: "+expr.value.num +" line: "+ getLine() + " parent: "+ getParent()+"\n"+expr;
         }
-        return "Double Declaration "+expr.value +" line: "+ getLine() + "parent: "+ getParent()+"\n"
-                ;
+        return "\n";
     }
 }

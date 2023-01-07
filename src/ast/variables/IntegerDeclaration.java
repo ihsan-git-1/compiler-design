@@ -18,10 +18,9 @@ public class IntegerDeclaration extends VariableDeclaration {
     @Override
     public String toString() {
         if (expr != null) {
-            return "\nint " + name + " = " + expr;
+            return "Integer Declaration: " +name+" line: "+ getLine() + " parent: "+ getParent()+"\n" + expr;
         } else {
-            return "Integer Declaration "+expr.value +" line: "+ getLine() + "parent: "+ getParent()+"\n"
-                    ;
+            return "\n";
         }
     }
 }	

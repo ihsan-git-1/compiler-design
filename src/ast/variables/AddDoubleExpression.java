@@ -13,7 +13,6 @@ public class AddDoubleExpression extends Node {
 
 	@Override
 	public String toString() {
-		return "Add Double Expression: "+value +" line: " + getLine() + "parent "+ getParent()+"\n"
-		;
+		return "Add Double Expression: "+value.num +" line: " + getLine() + " parent "+ getParent()+"\n" + value;
 	}
 }

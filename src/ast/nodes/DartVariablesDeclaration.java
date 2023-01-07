@@ -1,6 +1,6 @@
 package ast.nodes;
 
-public class DartVariablesDeclaration extends ClassDeclaration
+public class DartVariablesDeclaration extends Node
 		implements StatementDeclarationAbstractChild {
 	DartVariablesDeclarationAbstractChild dartVariablesDeclarationAbstractChild;
 
@@ -11,11 +11,6 @@ public class DartVariablesDeclaration extends ClassDeclaration
 
 	@Override
 	public String toString() {
-		return "\nDartVariablesDeclaration"
-				+"\n|\n"
-				+dartVariablesDeclarationAbstractChild
-				+";"
-				+'\n';
-
+		return "Dart Variable Declaration: " + " line: "+ getLine() + " parent: " + getParent()+"\n"+ dartVariablesDeclarationAbstractChild;
 	}
 }
