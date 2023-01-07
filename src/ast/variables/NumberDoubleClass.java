@@ -17,6 +17,6 @@ public class NumberDoubleClass extends AbstractNumberClass{
 	}
 	
 	public String toString() {
-		return  Double.valueOf(num).toString();
+		return  "Number Double Class: "+"num= " +num + " line: "+ getLine() + " parent: "+ getParent()+"\n";
 	}
 }

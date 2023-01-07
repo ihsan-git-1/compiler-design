@@ -10,8 +10,8 @@ public class Variable extends DartVariablesDeclarationAbstractChild {
         this.declaration = declaration;
     }
 
-//    @Override
-//    public String toString() {
-//        return declaration.toString();
-//    }
+    @Override
+    public String toString() {
+        return declaration.toString();
+    }
 }

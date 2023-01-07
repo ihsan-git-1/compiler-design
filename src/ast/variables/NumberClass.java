@@ -17,6 +17,6 @@ public class NumberClass extends AbstractNumberClass{
 	}
 	
 	public String toString() {
-		return  Integer.valueOf(num).toString();	//todo what should i do here
+		return  "number class: value: "+ num + " line: "+getLine() + " parent: "+ getParent()+"\n";
 	}
 }
