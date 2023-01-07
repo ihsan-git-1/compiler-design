@@ -11,12 +11,13 @@ public class NumberDoubleClass extends AbstractNumberClass{
 		this.num = num;
 	}
 
-	public NumberDoubleClass(double num, int line, String parent) {
-		super(line, parent);
+	public NumberDoubleClass(double num, int line, String parent,String type,int childCount) {
+		super(line, parent, type, childCount);
 		this.num = num;
 	}
 	
 	public String toString() {
-		return  "Number Double Class: "+"num= " +num + " line: "+ getLine() + " parent: "+ getParent()+"\n";
+		return  "Number Double Class: "+"num= " +num + " line: "+ getLine() + " parent: "+ getParent()+
+				" Child Count =  "+getChildCount()+" Type = "+getType()+"\n";
 	}
 }

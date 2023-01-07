@@ -32,6 +32,7 @@ String name;
 	@Override
 	public String toString() {
 		return  "Stateless Class Declaration Name "+name + " line: "+ getLine() + " parent "+ getParent()
+				+" Child Count =  "+getChildCount()+" Type = "+getType()+"\n"
 				+dartVariablesDeclarationList
 				+"\n"
 				+methodDecleration

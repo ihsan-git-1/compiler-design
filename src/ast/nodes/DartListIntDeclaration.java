@@ -30,7 +30,7 @@ public class DartListIntDeclaration extends DartAllListsDeclarationAbstractChild
 
 	@Override
 	public String toString() {
-		String var = "Dart Int List "+ name + "line:" +getLine()+" parent "+getParent();
+		String var = "Dart Int List "+ name + "line:" +getLine()+" parent "+getParent()+" Child Count =  "+getChildCount()+" Type = "+getType();
 		System.out.print(var);
 		System.out.print(" List Items are ");
 		printList(this.itemsList);
