@@ -1,10 +1,11 @@
 package ast.nodes;
 
-public class WhileStatement {
+public class WhileStatement extends Node {
     BooleanOperation booleanOperation;
     Block block;
 
-    public WhileStatement(BooleanOperation booleanOperation, Block block) {
+    public WhileStatement(int line, String parent, BooleanOperation booleanOperation, Block block) {
+        super(line, parent);
         this.booleanOperation = booleanOperation;
         this.block = block;
     }
@@ -27,6 +28,6 @@ public class WhileStatement {
 
     @Override
     public String toString() {
-        return "WhileStatement{" + "booleanOperation=" + booleanOperation + ", block=" + block + '}';
+        return "WhileStatement{" + "booleanOperation=" + booleanOperation + ", block=" + block + ", line=" + line + ", parent='" + parent + '\'' + '}';
     }
 }

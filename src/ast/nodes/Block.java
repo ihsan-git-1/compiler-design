@@ -20,6 +20,6 @@ public class Block extends Node {
 
     @Override
     public String toString() {
-        return "Block{" + "statements=" + statements + '}';
+        return statements.toString();
     }
 }
