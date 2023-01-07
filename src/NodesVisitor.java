@@ -12,7 +12,8 @@ public class NodesVisitor extends dart_parseBaseVisitor {
     //**************************** base declarations start code ********************************///
     @Override
     public TopTreeDeclaration visitTopTreeDeclaration(dart_parse.TopTreeDeclarationContext ctx) {
-        TopTreeDeclaration topTreeDeclaration = new TopTreeDeclaration();
+        int line = ctx.start.getLine();
+        TopTreeDeclaration topTreeDeclaration = new TopTreeDeclaration(line);
         for (int i = 0; i < ctx.allClassesDeclaration().size() ; i++) {
             if(ctx.allClassesDeclaration().get(i) != null) {
 

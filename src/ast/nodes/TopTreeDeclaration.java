@@ -14,7 +14,8 @@ public class TopTreeDeclaration extends Node{
 		this.topTreeChildrenList = topTreeChildrenList;
 	}
 
-	public TopTreeDeclaration() {
+	public TopTreeDeclaration(int line) {
+		super(line);
 		this.topTreeChildrenList = new ArrayList<>();
 	}
 	
@@ -26,12 +27,14 @@ public class TopTreeDeclaration extends Node{
 
 	@Override
 	public String toString() {
-		return "Top Tree Declaration {\n"+
-				topTreeChildrenList.toString()
-						.replace(",", "")
-						.replace("[", "")
-						.replace("]", "")
-						.trim()+"\n"+
-				"}";
+//		return "Top Tree Declaration {\n"+
+//				topTreeChildrenList.toString()
+//						.replace(",", "")
+//						.replace("[", "")
+//						.replace("]", "")
+//						.trim()+"\n"+
+//				"}";
+
+		return "Top Tree Declaration line "+getLine();
 	}
 }
