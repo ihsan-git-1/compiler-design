@@ -1,15 +1,10 @@
 import  ast.nodes.*;
-import ast.variables.*;
 import gen.*;
-
 import java.io.IOException;
-import java.util.List;
-
 import org.antlr.v4.runtime.CharStream;
 import org. antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 import static org.antlr.v4.runtime.CharStreams.fromFileName;
-
 
 public class Main{
     public static void main(String[] args) throws IOException {

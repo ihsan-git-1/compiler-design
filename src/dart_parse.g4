@@ -4,7 +4,8 @@ options {tokenVocab=dart_lexar;}
 
 // base declarations start code
 topTreeDeclaration :
-    allClassesDeclaration*
+    (allClassesDeclaration
+    |dartVariabelsDeclaration)*
     ;
 
 allClassesDeclaration:
@@ -113,6 +114,7 @@ buildMethodDeclaration:
 // dart declarations
 dartVariabelsDeclaration:
     variable
+    |function
     |dartAllListsDeclaration
     ;
 
@@ -175,6 +177,12 @@ booleans:
     |FALSE
     ;
 
+booleanOperation:
+    (number|numberDouble|NAME)
+    (EQUAL | NOTEQUAL | ANGLE_BRKT_CL | ANGLE_BRKT_OP | GRATEREQUAL | LESSEQUAL)
+    (number|numberDouble|NAME)
+    ;
+
 // dart List<int>, List<String>, List<bool>
 
 dartAllListsDeclaration:
@@ -182,6 +190,7 @@ dartAllListsDeclaration:
     |dartListIntDeclaration
     |dartListBoolDeclaration
     ;
+
 dartListStringDeclaration :
     LIST
     (ANGLE_BRKT_OP
@@ -263,6 +272,7 @@ paddingDeclaration:
     COMMA?
     BRKT_CL
     ;
+
 scaffoldDeclaration:
     SCAFFOLD
     BRKT_OP
@@ -270,6 +280,7 @@ scaffoldDeclaration:
     COMMA?
     BRKT_CL
     ;
+
 textDeclaration:
     TEXT
     BRKT_OP
@@ -289,6 +300,7 @@ materialAppDeclaration:
 materialButtonDeclaration:
     MATERIALBUTTON
     BRKT_OP
+    onPressedPropertyDeclaration
     childPropertyDeclaration
     COMMA?
     BRKT_CL
@@ -343,6 +355,31 @@ edgeInsistAll:
     number
     BRKT_CL
     ;
+
+// todo add set state
+onPressedPropertyDeclaration:
+    ONPRESSED
+    COLON
+    BRKT_OP
+    BRKT_CL
+    CRLY_BRKT_OP
+    (statement|setStatePressedDeclaration)*
+    CRLY_BRKT_CL
+    COMMA
+    ;
+
+setStatePressedDeclaration:
+    SETSTATE
+    BRKT_OP
+    BRKT_OP
+    BRKT_CL
+    CRLY_BRKT_OP
+    statement*
+    CRLY_BRKT_CL
+    BRKT_CL
+    SEMICOLON
+    ;
+
 heightPropertyDeclaration:
     HEIGHT
     COLON
@@ -394,4 +431,68 @@ numberDouble:
 NUMBERDOUBLE
 ;
 
+
+
+/// dart statements
+
+ifStatement:
+    IF
+    BRKT_OP
+    booleanOperation
+    BRKT_CL
+    block
+    (ELSEIF block)*
+    (ELSE block)?
+    ;
+
+whileStatement:
+    WHILE
+    BRKT_OP
+    booleanOperation
+    BRKT_CL
+    block
+    ;
+
+
+block:
+    CRLY_BRKT_OP
+    statement*
+    CRLY_BRKT_CL
+    ;
+function:
+    (
+    (FUNCTION? functionType)
+    |FUNCTION
+    )
+    NAME '(' parameters? ')' block
+    ;
+functionType:
+    (STRING | INT | DOUBLE| BOOL| VAR| VOID)
+    ;
+
+parameters:
+    dartVariabelsDeclaration
+    (',' dartVariabelsDeclaration)*
+    COMMA?
+    ;
+
+//todo : add |forStatement if solved
+statement:
+    dartVariabelsDeclaration
+    |ifStatement
+    |whileStatement
+    |function
+    ;
+
+forStatement:
+    FOR
+    BRKT_OP
+    (integerDeclaration | doubleDeclaration)
+    SEMICOLON
+    booleanOperation
+    SEMICOLON
+    (integerDeclaration | doubleDeclaration)
+    BRKT_CL
+    block
+    ;
 
