@@ -7,4 +7,11 @@ public class StatementDeclaration {
     public StatementDeclaration(StatementDeclarationAbstractChild statementDeclarationAbstractChild){
         this.statementDeclarationAbstractChild = statementDeclarationAbstractChild;
     }
+
+    @Override
+    public String toString() {
+        return  ""
+                +statementDeclarationAbstractChild
+                ;
+    }
 }
