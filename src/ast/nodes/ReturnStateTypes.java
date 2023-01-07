@@ -9,6 +9,6 @@ public class ReturnStateTypes {
 
 	@Override
 	public String toString() {
-		return name+"();\n";
+		return name+"();";
 	}
 }

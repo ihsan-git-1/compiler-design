@@ -15,6 +15,7 @@ public class NodesVisitor extends dart_parseBaseVisitor {
         TopTreeDeclaration topTreeDeclaration = new TopTreeDeclaration();
         for (int i = 0; i < ctx.allClassesDeclaration().size() ; i++) {
             if(ctx.allClassesDeclaration().get(i) != null) {
+
                 topTreeDeclaration
                         .getTopTreeChildrenList()
                         .add(visitAllClassesDeclaration(ctx.allClassesDeclaration(i)));
