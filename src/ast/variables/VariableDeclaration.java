@@ -1,5 +1,9 @@
 package ast.variables;
 
-public abstract class VariableDeclaration {
+import ast.nodes.Node;
 
+public abstract class VariableDeclaration extends Node {
+    public VariableDeclaration(int line, String parent) {
+        super(line, parent);
+    }
 }
