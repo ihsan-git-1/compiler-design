@@ -44,16 +44,21 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
         int line = idToken.getLine();
         int column = idToken.getCharPositionInLine() + 1;
         String id = ctx.NAME().getText();
-//        if (dart_parseBaseVisitor.vars.contains(id)) {
-//            semanticErrors.add("Error: Integer" + id + "already declared (" + line + "," + column + ")");
-//        } else {
-//            dart_parseBaseVisitor.vars.add(id);
-//        }
+
+        if (dart_parseBaseVisitor.vars.contains(id)) {
+           dart_parseBaseVisitor.semanticErrors.add("Error: Integer" + id + "already declared (" + line + "," + column + ")");
+
+
+        } else {
+            dart_parseBaseVisitor.vars.add(id);
+
+        }
         if (ctx.addExpression() != null) {
             AddExpression expr = visitAddExpression(ctx.addExpression());
             return new IntegerDeclaration(expr, id);
         }
-        return new IntegerDeclaration(id); //todo also needs AddExpression
+
+        return new IntegerDeclaration(id);
     }
 
     @Override
@@ -63,11 +68,11 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
         int column = idToken.getCharPositionInLine() + 1;
         String id = ctx.getChild(0).getText();
         String name= String.valueOf(ctx.NAME());
-//        if (vars.contains(id)) {
-//            dart_parseBaseVisitor.dartsemanticErrors.add("Error: Double" + id + "already declared (" + line + "," + column + ")");
-//        } else {
-//            dart_parseBaseVisitor.vars.add(id);
-//        }
+       if (dart_parseBaseVisitor.vars.contains(id)) {
+            dart_parseBaseVisitor.semanticErrors.add("Error: Double" + id + "already declared (" + line + "," + column + ")");
+        } else {
+            dart_parseBaseVisitor.vars.add(id);
+        }
         if (ctx.addDoubleExpression() != null) {
             AddDoubleExpression expr = visitAddDoubleExpression(ctx.addDoubleExpression());
             return new DoubleDeclaration(expr,name);

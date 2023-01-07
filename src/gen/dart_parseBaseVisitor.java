@@ -17,7 +17,8 @@ import java.util.List;
 @SuppressWarnings("CheckReturnValue")
 public class dart_parseBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements dart_parseVisitor<T> {
 	public static List<String> semanticErrors = new ArrayList<>();
-	public static List<String> vars; //stores all the variables declared in the program so far
+	public static List<String> vars= new ArrayList<>();;//stores all the variables declared in the program so far
+
 	/**
 	 * {@inheritDoc}
 	 *
