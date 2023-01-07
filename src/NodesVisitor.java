@@ -386,7 +386,9 @@ public class NodesVisitor extends dart_parseBaseVisitor {
     @Override
     public DartVariablesDeclaration visitDartVariabelsDeclaration(dart_parse.DartVariabelsDeclarationContext ctx) {
         VariablesVisitor variablesVisitor = new VariablesVisitor();
-        return new DartVariablesDeclaration(variablesVisitor.visitVariable(ctx.variable()));
+        int line = ctx.start.getLine();
+        String parent = ctx.getParent().getText();
+        return new DartVariablesDeclaration(variablesVisitor.visitVariable(ctx.variable()), line, parent);
 
     }
 
