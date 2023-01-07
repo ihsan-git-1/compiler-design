@@ -1,9 +1,10 @@
+import ast.NodeType;
 import ast.nodes.*;
 import gen.dart_parse;
 import gen.dart_parseBaseVisitor;
 import java.util.ArrayList;
 import java.util.List;
-
+import ast.NodeType;
 
 
 public class NodesVisitor extends dart_parseBaseVisitor {
@@ -12,9 +13,11 @@ public class NodesVisitor extends dart_parseBaseVisitor {
     //**************************** base declarations start code ********************************///
     @Override
     public TopTreeDeclaration visitTopTreeDeclaration(dart_parse.TopTreeDeclarationContext ctx) {
+        String type = NodeType.TOPTREEDECLARATION.toString();
+        int childCount = ctx.getChildCount();
         int line = ctx.start.getLine();
         String parent = "";
-        TopTreeDeclaration topTreeDeclaration = new TopTreeDeclaration(line,parent);
+        TopTreeDeclaration topTreeDeclaration = new TopTreeDeclaration(line,parent,type,childCount);
         for (int i = 0; i < ctx.allClassesDeclaration().size() ; i++) {
             if(ctx.allClassesDeclaration().get(i) != null) {
 

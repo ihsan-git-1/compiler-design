@@ -14,8 +14,8 @@ public class TopTreeDeclaration extends Node{
 		this.topTreeChildrenList = topTreeChildrenList;
 	}
 
-	public TopTreeDeclaration(int line,String parent) {
-		super(line,parent);
+	public TopTreeDeclaration(int line,String parent,String type,int childCount) {
+		super(line,parent,type,childCount);
 		this.topTreeChildrenList = new ArrayList<>();
 	}
 	
@@ -34,6 +34,7 @@ public class TopTreeDeclaration extends Node{
 						.replace("[", "")
 						.replace("]", "")
 						.trim()
-				+"\n";
+				+" Child Count =  "+getChildCount()+" Type = "+getType()+"\n"
+				;
 	}
 }
