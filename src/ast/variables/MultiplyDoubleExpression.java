@@ -20,7 +20,6 @@ public class MultiplyDoubleExpression extends Node {
 
 	@Override
 	public String toString() {
-		return "Multiply Double Expression: "+value +" line: " + getLine() + "parent "+ getParent()+"\n"
-				;
+		return "Multiply Double Expression: "+value +" line: " + getLine() + "parent "+ getParent()+"\n";
 	}
 }

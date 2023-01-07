@@ -12,7 +12,6 @@ public class StringDeclaration extends VariableDeclaration{
 	
 	@Override
 	public String toString() {
-		return "String " +name +" = " +stringLine + " line: "+getLine()+" parent: "+getParent()
-				;
+		return "String Declaration: " +name+ "=" +stringLine+" line: "+ getLine() + " parent: "+ getParent()+"\n" ;
 	}
 }

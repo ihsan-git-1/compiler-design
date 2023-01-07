@@ -14,6 +14,6 @@ public class AddExpression extends Node {
 
 	@Override
 	public String toString() {
-		return "add expression: "+ value + " line: " + getLine() + " parent: " + getParent();
+		return "Add expression: " +"value: "+value.num+ " line: " + getLine() + " parent: " + getParent()+"\n" + value;
 	}
 }
