@@ -22,15 +22,16 @@ public class ListsVisitor extends dart_parseBaseVisitor{
 
 		int line = ctx.start.getLine();
 		String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$","").replace("Context","");
-
+		String type = NodeType.LIST.toString();
+		int childCount = ctx.getChildCount();
 		if (ctx.dartListStringDeclaration() != null) {
-			DartAllListsDeclaration decl = new DartAllListsDeclaration(visitDartListStringDeclaration(ctx.dartListStringDeclaration()),line,parent);
+			DartAllListsDeclaration decl = new DartAllListsDeclaration(visitDartListStringDeclaration(ctx.dartListStringDeclaration()),line,parent,type,childCount);
 			return decl;
 		}else if(ctx.dartListIntDeclaration() != null) {
-			DartAllListsDeclaration decl = new DartAllListsDeclaration(visitDartListIntDeclaration(ctx.dartListIntDeclaration()),line,parent);
+			DartAllListsDeclaration decl = new DartAllListsDeclaration(visitDartListIntDeclaration(ctx.dartListIntDeclaration()),line,parent,type,childCount);
 			return decl;
 		}else if(ctx.dartListBoolDeclaration() != null) {
-			DartAllListsDeclaration decl = new DartAllListsDeclaration(visitDartListBoolDeclaration(ctx.dartListBoolDeclaration()),line,parent);
+			DartAllListsDeclaration decl = new DartAllListsDeclaration(visitDartListBoolDeclaration(ctx.dartListBoolDeclaration()),line,parent,type,childCount);
 			return decl;
 		}else {
 			return null;
@@ -43,7 +44,8 @@ public class ListsVisitor extends dart_parseBaseVisitor{
 
 		int line = ctx.start.getLine();
 		String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$","").replace("Context","");
-
+		String type = NodeType.LIST.toString();
+		int childCount = ctx.getChildCount();
 		String name = ctx.NAME().getText();
 		List<String> dartListStringItems = new ArrayList<>();
 		for(int i=7;i<ctx.getChildCount();i++){
@@ -52,7 +54,7 @@ public class ListsVisitor extends dart_parseBaseVisitor{
 				dartListStringItems.add(strLine);
 			}
 		}
-		DartListStringDeclaration dec = new DartListStringDeclaration(name,line,parent);
+		DartListStringDeclaration dec = new DartListStringDeclaration(name,line,parent,type,childCount);
 		dec.setItemsList(dartListStringItems);
 		return dec;
 	}
@@ -79,7 +81,9 @@ public class ListsVisitor extends dart_parseBaseVisitor{
 				}
 			}
 		}
-		DartListIntDeclaration dec = new DartListIntDeclaration(name,line,parent);
+		String type = NodeType.LIST.toString();
+		int childCount = ctx.getChildCount();
+		DartListIntDeclaration dec = new DartListIntDeclaration(name,line,parent, type, childCount);
 		dec.setItemsList(dartListIntItems);
 		return dec;
 	}
@@ -108,8 +112,9 @@ public class ListsVisitor extends dart_parseBaseVisitor{
 				}
 			}
 		}
-
-		DartListBoolDeclaration dec = new DartListBoolDeclaration(name,line,parent);
+		String type = NodeType.LIST.toString();
+		int childCount = ctx.getChildCount();
+		DartListBoolDeclaration dec = new DartListBoolDeclaration(name,line,parent,type,childCount);
 		dec.setItemsList(dartListBoolItems);
 		return dec;
 	}

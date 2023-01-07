@@ -28,13 +28,13 @@ public class TopTreeDeclaration extends Node{
 	@Override
 	public String toString() {
 
-		return "Top Tree Declaration line: "+ getLine() + "\n"+
+		return "Top Tree Declaration line: "+ getLine() +" Child Count =  "+getChildCount()+" Type = "+getType()+ "\n"+
 				topTreeChildrenList.toString()
 						.replace(",", "")
 						.replace("[", "")
 						.replace("]", "")
 						.trim()
-				+" Child Count =  "+getChildCount()+" Type = "+getType()+"\n"
+
 				;
 	}
 }
