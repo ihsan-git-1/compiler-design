@@ -3,10 +3,11 @@ package ast.nodes;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChildrenPropertyDeclaration {
+public class ChildrenPropertyDeclaration extends Node{
 	List<WidgetsDeclaration> widgetsDeclarationList;
 	
-	public ChildrenPropertyDeclaration() {
+	public ChildrenPropertyDeclaration(int line ,String parent) {
+		super(line,parent);
 		this.widgetsDeclarationList = new ArrayList<>();
 	}
 	
@@ -24,9 +25,9 @@ public class ChildrenPropertyDeclaration {
 
 	@Override
 	public String toString() {
-		return "children:"+ "\n"
+		return "Children Property Declaration line: "+getLine() + " parent "+getParent()
 				+widgetsDeclarationList
-				+"\n"
+
 				;
 	}
 }

@@ -8,7 +8,8 @@ public class DartListStringDeclaration extends DartAllListsDeclarationAbstractCh
 	public String name;
 	public List<String> itemsList = new ArrayList<>();
 	
-	public DartListStringDeclaration(String name) {
+	public DartListStringDeclaration(String name,int line ,String parent) {
+		super(line,parent);
 		this.name = name;
 	}
 	
@@ -29,7 +30,7 @@ public class DartListStringDeclaration extends DartAllListsDeclarationAbstractCh
 
 	@Override
 	public String toString() {
-		String var = "Dart String List "+ name;
+		String var = "Dart String List "+ name + " line: "+getLine() + " parent "+getParent();
 		System.out.print(var);
 		System.out.print(" List Items are ");
 		printList(this.itemsList);

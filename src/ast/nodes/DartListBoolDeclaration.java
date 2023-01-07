@@ -9,7 +9,8 @@ public class DartListBoolDeclaration extends DartAllListsDeclarationAbstractChil
 	String name;
 	List<BooleanValueClass> itemsList;
 	
-	public DartListBoolDeclaration(String name) {
+	public DartListBoolDeclaration(String name,int line,String parent) {
+		super(line,parent);
 		this.name = name;
 		this.itemsList=new ArrayList<>();
 	}
@@ -31,7 +32,7 @@ public class DartListBoolDeclaration extends DartAllListsDeclarationAbstractChil
 
 	@Override
 	public String toString() {
-		String var = "Dart Bool List "+ name;
+		String var = "Dart Bool List "+ name + " line: "+getLine()+" parent "+getParent();
 		System.out.print(var);
 		System.out.print(" List Items are ");
 		printList(this.itemsList);
