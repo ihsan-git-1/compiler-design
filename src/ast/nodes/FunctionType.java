@@ -2,11 +2,10 @@ package ast.nodes;
 
 import java.util.List;
 
-public class FunctionType extends Function {
+public class FunctionType {
     String type;
 
-    public FunctionType(int line, String parent, FunctionType functionType, List<Parameter> parameters, Block block, String type) {
-        super(line, parent, functionType, parameters, block);
+    public FunctionType(String type) {
         this.type = type;
     }
 
@@ -20,13 +19,6 @@ public class FunctionType extends Function {
 
     @Override
     public String toString() {
-        return "FunctionType{" +
-                "type='" + type + '\'' +
-                ", functionType=" + functionType +
-                ", parameters=" + parameters +
-                ", block=" + block +
-                ", line=" + line +
-                ", parent='" + parent + '\'' +
-                '}';
+        return type;
     }
 }

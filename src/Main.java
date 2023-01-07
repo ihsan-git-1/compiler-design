@@ -16,8 +16,8 @@ public class Main{
         CommonTokenStream token = new CommonTokenStream(lexer);
         dart_parse parser = new dart_parse(token);
 
-        ParseTree tree = parser.topTreeDeclaration();
-        TopTreeDeclaration doc = (TopTreeDeclaration) new NodesVisitor().visit(tree);
+        ParseTree tree = parser.function();
+        Function doc = (Function) new NodesVisitor().visit(tree);
         System.out.println(doc);
     }
 
