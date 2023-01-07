@@ -28,7 +28,7 @@ public class TopTreeDeclaration extends Node{
 	@Override
 	public String toString() {
 
-		return "Top Tree Declaration line "+ getLine() + "\n"+
+		return "Top Tree Declaration line: "+ getLine() + "\n"+
 				topTreeChildrenList
 				;
 	}

@@ -22,7 +22,7 @@ public class StatefullFirstBody extends Node{
 	@Override
 	public String toString() {
 
-		return  "\nStatefull First Body Name  " +name + " line "+getLine() + " parent "+getParent()
+		return  "Statefull First Body Name  " +name + " line: "+getLine() + " parent "+getParent()
 				+dartVariablesDeclarationList+"\n"
 				+dec+"\n"
 				;

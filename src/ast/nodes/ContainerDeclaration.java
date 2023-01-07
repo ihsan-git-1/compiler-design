@@ -6,7 +6,8 @@ import java.util.List;
 public class ContainerDeclaration extends WidgetAbstractChild{
 	List<ContainerPropertiesDeclaration> containerDeclarationList;
 	
-	public ContainerDeclaration() {
+	public ContainerDeclaration(int line ,String parent) {
+		super(line,parent);
 		this.containerDeclarationList = new ArrayList<>();
 	}
 
@@ -20,9 +21,8 @@ public class ContainerDeclaration extends WidgetAbstractChild{
 
 	@Override
 	public String toString() {
-		return "Container(\n"
-				+getContainerDeclarationList()
-				+"\n )"
+		return "Container line:"+getLine() + " parent "+getParent()+
+				getContainerDeclarationList()
 				;
 	}
 }

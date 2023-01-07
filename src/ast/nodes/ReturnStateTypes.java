@@ -10,6 +10,6 @@ public class ReturnStateTypes extends Node{
 
 	@Override
 	public String toString() {
-		return name+"();";
+		return "Return State Type Name "+ name + " line: "+ getLine() + " parent "+getParent();
 	}
 }

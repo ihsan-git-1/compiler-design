@@ -1,13 +1,15 @@
 package ast.nodes;
 
-public class WidgetsDeclaration {
+public class WidgetsDeclaration extends Node{
 	WidgetAbstractChild widgetAbstractChild;
-	public WidgetsDeclaration(WidgetAbstractChild widgetAbstractChild) {
+	public WidgetsDeclaration(WidgetAbstractChild widgetAbstractChild,int line,String parent) {
+		super(line,parent);
 		this.widgetAbstractChild = widgetAbstractChild;
 	}
 
 	@Override
 	public String toString() {
-		return widgetAbstractChild.toString();
+		return "Widget Declaration line:"+getLine()+" parent "+getParent()+
+				widgetAbstractChild.toString();
 	}
 }
