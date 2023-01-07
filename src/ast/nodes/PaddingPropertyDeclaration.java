@@ -11,7 +11,8 @@ public class PaddingPropertyDeclaration extends Node{
 
 	@Override
 	public String toString() {
-		return "Padding property Declaration line: "+getLine() + " parent "+getParent()+"\n"
+		return "Padding property Declaration line: "+getLine() + " parent "+getParent()
+				+" Child Count =  "+getChildCount()+" Type = "+getType()+"\n"
 				+ edgeInsistAll
 				;
 	}

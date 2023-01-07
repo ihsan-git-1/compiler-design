@@ -43,6 +43,6 @@ public class Function extends Node {
 
     @Override
     public String toString() {
-        return "Function " + "name: " + name + ", functionType: " + functionType + ", parameters: " + parameters + ", block: " + block + ", line: " + line + ", parent: '" + parent + '\'';
+        return "Function " + "name: " + name + ", functionType: " + functionType + ", parameters: " + parameters + ", block: " + block + ", line: " + line + ", parent: '" + parent +" Child Count =  "+getChildCount()+" Type = "+getType() +"\n";
     }
 }

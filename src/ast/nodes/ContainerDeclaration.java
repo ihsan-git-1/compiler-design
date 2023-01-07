@@ -21,7 +21,8 @@ public class ContainerDeclaration extends WidgetAbstractChild{
 
 	@Override
 	public String toString() {
-		return "Container line:"+getLine() + " parent "+getParent()+"\n"+
+		return "Container line:"+getLine() + " parent "+getParent()
+				+" Child Count =  "+getChildCount()+" Type = "+getType()+"\n"+
 				getContainerDeclarationList()
 				;
 	}

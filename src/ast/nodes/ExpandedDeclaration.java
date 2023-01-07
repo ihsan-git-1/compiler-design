@@ -11,7 +11,8 @@ public class ExpandedDeclaration extends WidgetAbstractChild {
 	@Override
 	public String toString() {
 
-		return "Expanded line: "+getLine()+" parent "+getParent()+"\n"
+		return "Expanded line: "+getLine()+" parent "+getParent()
+				+" Child Count =  "+getChildCount()+" Type = "+getType()+"\n"
 				+childPropertyDeclaration;
 	}
 }

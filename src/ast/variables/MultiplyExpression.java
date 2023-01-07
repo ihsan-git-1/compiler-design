@@ -13,13 +13,15 @@ public class MultiplyExpression extends Node {
         this.value = value;
     }
 
-    public MultiplyExpression(NumberClass value, int line, String parent) {
-        super(line, parent);
+    public MultiplyExpression(NumberClass value, int line, String parent,String type,int childCount) {
+        super(line, parent, type, childCount);
         this.value = value;
     }
 
     @Override
     public String toString() {
-        return "Multiply Expression: "+value +" line: " + getLine() + "parent "+ getParent()+"\n";
+        return "Multiply Expression: "+value +" line: " + getLine() + "parent "+ getParent()
+                +" Child Count =  "+getChildCount()+" Type = "+getType()+"\n"
+                ;
     }
 }

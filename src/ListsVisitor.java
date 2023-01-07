@@ -1,3 +1,4 @@
+import ast.NodeType;
 import ast.nodes.DartAllListsDeclaration;
 import ast.nodes.DartListBoolDeclaration;
 import ast.nodes.DartListIntDeclaration;
@@ -69,7 +70,9 @@ public class ListsVisitor extends dart_parseBaseVisitor{
 				try {
 					int numLine = ctx.start.getLine();
 					String numParent = ctx.getParent().getClass().getName().replace("gen.dart_parse$","").replace("Context","");
-					NumberClass number = new NumberClass(Integer.parseInt(ctx.getChild(i).getText()), line, parent);
+					String type = NodeType.NUMBER.toString();
+					int childCount = ctx.getChildCount();
+					NumberClass number = new NumberClass(Integer.parseInt(ctx.getChild(i).getText()), line, parent, type, childCount);
 					dartListIntItems.add(number);
 				} catch (Exception e) {
 
@@ -96,7 +99,9 @@ public class ListsVisitor extends dart_parseBaseVisitor{
 				try {
 					int boolLine = ctx.start.getLine();
 					String boolParent = ctx.getParent().getClass().getName().replace("gen.dart_parse$","").replace("Context","");
-					BooleanValueClass b = new BooleanValueClass(Boolean.parseBoolean(ctx.getChild(i).getText()), line, parent);
+					String type = NodeType.BOOLEAN.toString();
+					int childCount = ctx.getChildCount();
+					BooleanValueClass b = new BooleanValueClass(Boolean.parseBoolean(ctx.getChild(i).getText()), line, parent, type, childCount);
 					dartListBoolItems.add(b);
 				} catch (Exception e) {
 

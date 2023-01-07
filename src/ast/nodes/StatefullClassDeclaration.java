@@ -16,7 +16,8 @@ public class StatefullClassDeclaration extends AllClassesDeclarationAbstractChil
 
 	@Override
 	public String toString() {
-		return "Statefull Class Declaration line: "+getLine() + " parent "+getParent()+"\n"+
+		return "Statefull Class Declaration line: "+getLine() + " parent "+getParent()
+				+" Child Count =  "+getChildCount()+" Type = "+getType()+"\n"+
 				firstBody+
 				secondBody
 				;
