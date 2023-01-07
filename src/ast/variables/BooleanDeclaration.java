@@ -17,7 +17,6 @@ public class BooleanDeclaration extends VariableDeclaration{
 
 	@Override
 	public String toString() {
-		return "bool " +name +" = " +booleanValueClass + " line: "+getLine()+" parent: "+getParent()
-				;
+		return "Boolean Declaration: " +name+" line: "+ getLine() + " parent: "+ getParent()+"\n" + booleanValueClass;
 	}
 }
