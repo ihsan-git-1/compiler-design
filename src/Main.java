@@ -1,11 +1,9 @@
-import ast.nodes.*;
+import  ast.nodes.*;
 import gen.*;
 import java.io.IOException;
 import org.antlr.v4.runtime.CharStream;
 import org. antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
-
-import static gen.dart_parseBaseVisitor.symbolTable;
 import static org.antlr.v4.runtime.CharStreams.fromFileName;
 
 public class Main{
@@ -21,7 +19,6 @@ public class Main{
         ParseTree tree = parser.function();
         Function doc = (Function) new NodesVisitor().visit(tree);
         System.out.println(doc);
-
     }
 
 }

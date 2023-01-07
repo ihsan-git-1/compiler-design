@@ -39,7 +39,6 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
 
     @Override
     public NumberClass visitNumber(dart_parse.NumberContext ctx) {
-
         String numText = ctx.getChild(0).getText();
         int num = Integer.parseInt(numText);
         int line = ctx.start.getLine();
@@ -51,7 +50,6 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
     @Override
     public IntegerDeclaration visitIntegerDeclaration(dart_parse.IntegerDeclarationContext ctx) {
         // INT() is a method generated from the grammar INT
-
         Token idToken = ctx.INT().getSymbol();
         int line = idToken.getLine();
         int column = idToken.getCharPositionInLine() + 1;
@@ -59,18 +57,16 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
 
         if (dart_parseBaseVisitor.vars.contains(id)) {
             dart_parseBaseVisitor.semanticErrors.add("Error: Integer" + id + "already declared (" + line + "," + column + ")");
+
+
         } else {
             dart_parseBaseVisitor.vars.add(id);
+
         }
         if (ctx.addExpression() != null) {
             AddExpression expr = visitAddExpression(ctx.addExpression());
             int linee = ctx.start.getLine();
             String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$","").replace("Context","");
-
-            System.out.println("add"+ parent+"{"+id+ expr.line+"}");
-            symbolTable.put(parent,new HashMap<>());
-            symbolTable.get(parent).put(id, String.valueOf(expr.line));
-
             return new IntegerDeclaration(expr, id, linee, parent);
         }
         int linee = ctx.start.getLine();
