@@ -11,11 +11,12 @@ public class NumberClass extends AbstractNumberClass{
 		this.num = num;
 	}
 
-	public NumberClass(int num) {
+	public NumberClass(int num, int line, String parent) {
+		super(line, parent);
 		this.num = num;
 	}
 	
 	public String toString() {
-		return  Integer.valueOf(num).toString();
+		return  Integer.valueOf(num).toString();	//todo what should i do here
 	}
 }

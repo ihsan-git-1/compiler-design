@@ -62,7 +62,9 @@ public class ListsVisitor extends dart_parseBaseVisitor{
 			String str = ctx.getChild(i).getText();
 			if(!str.equals(",") && !str.equals("]") && !str.equals(";")) {
 				try {
-					NumberClass number = new NumberClass(Integer.parseInt(ctx.getChild(i).getText()));
+					int line = ctx.start.getLine();
+					String parent = ctx.getParent().getText();
+					NumberClass number = new NumberClass(Integer.parseInt(ctx.getChild(i).getText()), line, parent);
 					dartListIntItems.add(number);
 				} catch (Exception e) {
 
@@ -85,8 +87,9 @@ public class ListsVisitor extends dart_parseBaseVisitor{
 			if(!str.equals(",") && !str.equals("]") && !str.equals(";")) {
 
 				try {
-
-					BooleanValueClass b = new BooleanValueClass(Boolean.parseBoolean(ctx.getChild(i).getText()));
+					int line = ctx.start.getLine();
+					String parent = ctx.getParent().getText();
+					BooleanValueClass b = new BooleanValueClass(Boolean.parseBoolean(ctx.getChild(i).getText()), line, parent);
 					dartListBoolItems.add(b);
 				} catch (Exception e) {
 

@@ -1,6 +1,8 @@
 package ast.variables;
 
-public class MultiplyExpression {
+import ast.nodes.Node;
+
+public class MultiplyExpression extends Node {
     NumberClass value;
 
     public NumberClass getValue() {
@@ -11,13 +13,14 @@ public class MultiplyExpression {
         this.value = value;
     }
 
-    public MultiplyExpression(NumberClass value) {
+    public MultiplyExpression(NumberClass value, int line, String parent) {
+        super(line, parent);
         this.value = value;
-
     }
 
     @Override
     public String toString() {
-            return value.toString();
+        return "Multiply Expression: "+value +" line: " + getLine() + "parent "+ getParent()+"\n"
+                ;
     }
 }
