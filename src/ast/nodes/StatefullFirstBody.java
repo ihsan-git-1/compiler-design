@@ -23,7 +23,7 @@ public class StatefullFirstBody {
 
 		return  "\nclass "
 				+name
-				+" extends StatefulWidget {\n"
+				+" extends StatefulWidget {"
 				+dartVariablesDeclarationList
 				+"\n"
 				+dec

@@ -23,7 +23,7 @@ public class StatefullSecondBody {
 	
 	@Override
 	public String toString() {
-		return  "\nclass"
+		return  "\nclass "
 				+name
 				+" extends State<"
 				+stateName

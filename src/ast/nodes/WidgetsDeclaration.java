@@ -8,6 +8,6 @@ public class WidgetsDeclaration {
 
 	@Override
 	public String toString() {
-		return "WidgetsDeclaration |"+widgetAbstractChild;
+		return widgetAbstractChild.toString();
 	}
 }

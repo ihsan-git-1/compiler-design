@@ -26,15 +26,17 @@ String name;
 	public void setDartVariablesDeclarationList(List<DartVariablesDeclaration> list) {
 		this.dartVariablesDeclarationList = list;
 	}
+
+
 	@Override
 	public String toString() {
 		return  "class "
 				+name
-				+" extends StatelessWidget {\n"
+				+" extends StatelessWidget {"
 				+dartVariablesDeclarationList
 				+"\n"
 				+methodDecleration
-				+"\n}\n"
+				+"}\n"
 				;
 	}
 }

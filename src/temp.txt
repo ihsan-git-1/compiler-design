@@ -1,13 +1,4 @@
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: MyHomePage(),
-    );
-  }
-}
-
 class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => MyHomePageState();
 }

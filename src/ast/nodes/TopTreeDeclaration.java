@@ -22,10 +22,16 @@ public class TopTreeDeclaration extends Node{
 		topTreeChildrenList.add(c);
 	}
 
+
+
 	@Override
 	public String toString() {
-		return "Top Tree Declaration{"+
-				topTreeChildrenList+
+		return "Top Tree Declaration {\n"+
+				topTreeChildrenList.toString()
+						.replace(",", "")
+						.replace("[", "")
+						.replace("]", "")
+						.trim()+"\n"+
 				"}";
 	}
 }

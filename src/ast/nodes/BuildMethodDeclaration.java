@@ -21,10 +21,10 @@ public class BuildMethodDeclaration {
 
 	@Override
 	public String toString() {
-		return "Widget build("+context+")" +"{\n"
+		return "Widget build("+context+")" +"{"
 				+dartVaraibles
 				+"\nreturn "+widgets
-				+"\n}\n"
+				+"}\n"
 				;
 	}
 }
