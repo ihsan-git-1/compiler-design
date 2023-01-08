@@ -21,7 +21,10 @@ public class Main {
         dart_parse parser = new dart_parse(token);
 
         ParseTree tree = parser.topTreeDeclaration();
+//        long beforeUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
         TopTreeDeclaration doc = (TopTreeDeclaration) new NodesVisitor().visit(tree);
+//        long afterUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
+//        long actualMemUsed=afterUsedMem-beforeUsedMem;
         System.out.println("\n*********** AST ************\n");
         System.out.println(doc);
 
@@ -32,6 +35,7 @@ public class Main {
             System.out.println("Identifier " + mapElement.getKey() + ", Type " + mapElement.getValue().type +
                     ", Value " + mapElement.getValue().value);
         }
+//        System.out.println("memory usage: "+ actualMemUsed);
     }
 
 }
