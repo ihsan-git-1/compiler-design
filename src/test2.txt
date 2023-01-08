@@ -4,7 +4,7 @@ class test {
         String a = "Statement 1";
         String b = "Statement 2";
         int num = 3;
-        double dNumber = 5;
+        int dNumber = 5;
 
             while(a != b){
 
