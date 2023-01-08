@@ -21,19 +21,19 @@ public class DartListIntDeclaration extends DartAllListsDeclarationAbstractChild
 	public void setItemsList(List<NumberClass> list) {
 		this.itemsList =  list;
 	}
-	public void printList(List<NumberClass> list){
+	public String printList(List<NumberClass> list){
+		String s = "";
 		for(NumberClass item:list){
-			System.out.print(item.getNum());
-			System.out.print(" ");
+			s += item.getNum();
+			s+=" ";
 		}
+		
+		return s;
 	}
 
 	@Override
 	public String toString() {
-		String var = "Dart Int List "+ name + "line:" +getLine()+" parent "+getParent()+" Child Count =  "+getChildCount()+" Type = "+getType();
-		System.out.print(var);
-		System.out.print(" List Items are ");
-		printList(this.itemsList);
-		return  "" ;
+		String s= printList(itemsList);
+		return "Dart Int List "+ name + ", line:" +getLine()+", parent: "+getParent()+", Child Count:  "+getChildCount()+" Type: "+getType()+", list Content: "+s;
 	}
 }

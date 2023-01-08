@@ -27,6 +27,7 @@ public class NodesVisitor extends dart_parseBaseVisitor {
                 topTreeDeclaration.getTopTreeChildrenList().add(visitAllClassesDeclaration(ctx.allClassesDeclaration(i)));
             }
         }
+
         return topTreeDeclaration;
     }
 
@@ -610,6 +611,10 @@ public class NodesVisitor extends dart_parseBaseVisitor {
             return new DartVariablesDeclaration(variablesVisitor.visitVariable(ctx.variable()), line, parent, type, childCount);
         } else if (ctx.function() != null) {
             return new DartVariablesDeclaration(visitFunction(ctx.function()), line, parent, type, childCount);
+        }
+        else if (ctx.dartAllListsDeclaration() != null) {
+            ListsVisitor listsVisitor = new ListsVisitor();
+            return new DartVariablesDeclaration(listsVisitor.visitDartAllListsDeclaration(ctx.dartAllListsDeclaration()), line, parent, type, childCount);
         }
         return null;
     }

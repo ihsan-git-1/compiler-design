@@ -9,5 +9,13 @@ public class DartAllListsDeclaration extends DartVariablesDeclarationAbstractChi
 		this.dartAllListsDeclarationAbstractChild=child;
 	}
 
-	 
+	@Override
+	public String toString() {
+		return "DartAllListsDeclaration: " + dartAllListsDeclarationAbstractChild +
+				", line:" + line +
+				", col: " + col +
+				", type: " + type + '\'' +
+				", childCount:" + childCount +
+				", parent: " + parent + '\n';
+	}
 }
