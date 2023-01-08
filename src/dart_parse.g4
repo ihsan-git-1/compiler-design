@@ -113,8 +113,7 @@ buildMethodDeclaration:
 
 // dart declarations
 dartVariabelsDeclaration:
-    function
-    |variable
+    variable
     |function
     |dartAllListsDeclaration
     ;
