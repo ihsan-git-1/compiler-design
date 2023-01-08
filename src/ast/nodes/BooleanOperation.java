@@ -1,16 +1,21 @@
 package ast.nodes;
 
 
+import ast.SymbolTableObject;
 import ast.variables.AbstractNumberClass;
 
 public class BooleanOperation {
     AbstractNumberClass num1;
     AbstractNumberClass num2;
+    SymbolTableObject s1;
+    SymbolTableObject s2;
     String operation;
 
-    public BooleanOperation(AbstractNumberClass num1, AbstractNumberClass num2, String operation) {
+    public BooleanOperation(AbstractNumberClass num1, AbstractNumberClass num2, SymbolTableObject s1, SymbolTableObject s2, String operation) {
         this.num1 = num1;
         this.num2 = num2;
+        this.s1 = s1;
+        this.s2 = s2;
         this.operation = operation;
     }
 
@@ -40,7 +45,9 @@ public class BooleanOperation {
 
     @Override
     public String toString() {
-        return "BooleanOperation{" + "num1=" + num1 + ", num2=" + num2 + ", operation='" + operation + '\'' + '}';
+        if (num1 != null && num2 != null) {
+            return num1 + " " + operation + " " + num2;
+        } else return s1.value + " " + operation + " " + s2.value;
     }
 
 }

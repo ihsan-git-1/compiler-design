@@ -1,5 +1,0 @@
-class A {
-
-   bool b = false;
-   bool c = true;
-}

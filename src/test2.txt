@@ -1,0 +1,18 @@
+class test {
+
+    Function int a(){
+        String a = "Statement 1";
+        String b = "Statement 2";
+        int num = 3;
+        double dNumber = 1.9;
+
+            while(a != b){
+
+                if(num > dNumber){
+
+            int count = 3;
+
+                     }
+            }
+        }
+    }

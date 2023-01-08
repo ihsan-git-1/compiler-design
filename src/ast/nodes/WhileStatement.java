@@ -1,6 +1,6 @@
 package ast.nodes;
 
-public class WhileStatement extends Node {
+public class WhileStatement extends Node  implements StatementDeclarationAbstractChild{
     BooleanOperation booleanOperation;
     Block block;
 
@@ -28,8 +28,7 @@ public class WhileStatement extends Node {
 
     @Override
     public String toString() {
-        return "WhileStatement{" + "booleanOperation=" + booleanOperation + ", block=" + block + ", line=" + line + ", parent='" + parent
-                +" Child Count =  "+getChildCount()+" Type = "+getType()+
-        '\'' + '}';
+        return "WhileStatement: " + "condition: " + booleanOperation + ", block: " + block + ", line: " + line + ", parent: '" + parent
+                +" Child Count:  "+getChildCount()+" Type:  "+getType();
     }
 }
