@@ -1,9 +1,7 @@
 import ast.SymbolTableObject;
 import ast.nodes.*;
 import gen.*;
-
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.Map;
 
 import org.antlr.v4.runtime.CharStream;

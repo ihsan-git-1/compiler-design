@@ -1,5 +1,3 @@
-void main(){
-}
 class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => MyHomePageState();
 }
