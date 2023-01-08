@@ -1,6 +1,10 @@
+import ast.SymbolTableObject;
 import  ast.nodes.*;
 import gen.*;
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.Map;
+
 import org.antlr.v4.runtime.CharStream;
 import org. antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
@@ -18,7 +22,15 @@ public class Main{
 
         ParseTree tree = parser.topTreeDeclaration();
         TopTreeDeclaration doc = (TopTreeDeclaration) new NodesVisitor().visit(tree);
-        System.out.println(doc);
+        //System.out.println(doc);
+
+
+        for (Map.Entry<String,SymbolTableObject> mapElement : dart_parseBaseVisitor.symbolTable.entrySet()) {
+
+            // Printing mark corresponding to string entries
+            System.out.println("Identifier "+ mapElement.getKey() + " Type "+ mapElement.getValue().type +
+                    " Value " +mapElement.getValue().value);
+        }
     }
 
 }

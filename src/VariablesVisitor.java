@@ -1,4 +1,5 @@
 import ast.NodeType;
+import ast.SymbolTableObject;
 import ast.variables.*;
 import gen.dart_parse;
 import gen.dart_parseBaseVisitor;
@@ -65,21 +66,21 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
         int column = ctx.start.getCharPositionInLine() + 1;
         String id = ctx.NAME().getText();
 
-        if (dart_parseBaseVisitor.vars.contains(id)) {
+        if (dart_parseBaseVisitor.symbolTable.containsKey(id)) {
             dart_parseBaseVisitor.semanticErrors.add("Error: Integer" + id + "already declared (" + line + "," + column + ")");
 
 
         } else {
-            dart_parseBaseVisitor.vars.add(id);
 
-        }
-        if (ctx.addExpression() != null) {
-            AddExpression expr = visitAddExpression(ctx.addExpression());
-            int linee = ctx.start.getLine();
-            String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$","").replace("Context","");
-            String type = NodeType.INTEGERDECLARATION.toString();
-            int childCount = ctx.getChildCount();
-            return new IntegerDeclaration(expr, id, linee, parent, type, childCount);
+             if (ctx.addExpression() != null) {
+                AddExpression expr = visitAddExpression(ctx.addExpression());
+                dart_parseBaseVisitor.symbolTable.put(id,new SymbolTableObject(NodeType.INT.toString(),String.valueOf(expr.value.getNum())));
+                int linee = ctx.start.getLine();
+                String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$","").replace("Context","");
+                String type = NodeType.INTEGERDECLARATION.toString();
+                int childCount = ctx.getChildCount();
+                return new IntegerDeclaration(expr, id, linee, parent, type, childCount);
+            }
         }
         int linee = ctx.start.getLine();
         String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$","").replace("Context","");
@@ -95,19 +96,20 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
         int column = idToken.getCharPositionInLine() + 1;
         String id = ctx.getChild(0).getText();
         String name= String.valueOf(ctx.NAME());
-        if (dart_parseBaseVisitor.vars.contains(id)) {
+        if (dart_parseBaseVisitor.symbolTable.containsKey(id)) {
             dart_parseBaseVisitor.semanticErrors.add("Error: Double" + id + "already declared (" + line + "," + column + ")");
         } else {
-            dart_parseBaseVisitor.vars.add(id);
+            if (ctx.addDoubleExpression() != null) {
+                AddDoubleExpression expr = visitAddDoubleExpression(ctx.addDoubleExpression());
+                dart_parseBaseVisitor.symbolTable.put(id,new SymbolTableObject(NodeType.DOUBLE.toString() ,String.valueOf(expr.value.getNum())));
+                int linee = ctx.start.getLine();
+                String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$","").replace("Context","");
+                String type = NodeType.DOUBLEDECLARATION.toString();
+                int childCount = ctx.getChildCount();
+                return new DoubleDeclaration(expr,name,linee, parent, type, childCount);
+            }
         }
-        if (ctx.addDoubleExpression() != null) {
-            AddDoubleExpression expr = visitAddDoubleExpression(ctx.addDoubleExpression());
-            int linee = ctx.start.getLine();
-            String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$","").replace("Context","");
-            String type = NodeType.DOUBLEDECLARATION.toString();
-            int childCount = ctx.getChildCount();
-            return new DoubleDeclaration(expr,name,linee, parent, type, childCount);
-        }
+
         int linee = ctx.start.getLine();
         String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$","").replace("Context","");
         String type = NodeType.DOUBLEDECLARATION.toString();
@@ -129,6 +131,8 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
         String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$","").replace("Context","");
         String type = NodeType.TOPTREEDECLARATION.toString();
         int childCount = ctx.getChildCount();
+
+        dart_parseBaseVisitor.symbolTable.put(name,new SymbolTableObject(NodeType.STRING.toString(), stringLine));
         return new StringDeclaration(name, stringLine, line, parent, type, childCount);
     }
 
@@ -140,12 +144,16 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
         if (ctx.booleans() == null) {
             //TODO add error Arraylist
         }
+        String id  = ctx.NAME().getText();
+
+        dart_parseBaseVisitor.symbolTable.put(id,new SymbolTableObject(NodeType.BOOL.toString(),ctx.booleans().getText()));
 
         BooleanValueClass booleanValueClass = visitBooleans(ctx.booleans());
         int line = ctx.start.getLine();
         String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$","").replace("Context","");
         String type = NodeType.BOOLEANDECLARATION.toString();
         int childCount = ctx.getChildCount();
+
         return new BooleanDeclaration(ctx.NAME().toString(), booleanValueClass, line, parent, type, childCount);
     }
 
@@ -306,7 +314,7 @@ public class VariablesVisitor extends dart_parseBaseVisitor {
             }
         } else if (ctx.FALSE() != null) {
 
-            if(ctx.TRUE().getText().equals("false")){
+            if(ctx.FALSE().getText().equals("false")){
                 int line = ctx.start.getLine();
                 String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$","").replace("Context","");
                 String type = NodeType.BOOLEAN.toString();

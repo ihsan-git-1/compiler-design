@@ -13,6 +13,7 @@ public class NodesVisitor extends dart_parseBaseVisitor {
     //**************************** base declarations start code ********************************///
     @Override
     public TopTreeDeclaration visitTopTreeDeclaration(dart_parse.TopTreeDeclarationContext ctx) {
+
         int line = ctx.start.getLine();
         String parent = "";
         String type = NodeType.TOPTREEDECLARATION.toString();
