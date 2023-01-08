@@ -5,8 +5,14 @@ import java.util.List;
 
 public class TopTreeDeclaration extends Node{
 	List<AllClassesDeclarationAbstractChild> topTreeChildrenList;
+	List<DartVariablesDeclaration> dartVariablesDeclarationsList;
+
+	public List<DartVariablesDeclaration> getDartVariablesDeclarationsList() {
+		return dartVariablesDeclarationsList;
+	}
 
 	public List<AllClassesDeclarationAbstractChild> getTopTreeChildrenList() {
+
 		return topTreeChildrenList;
 	}
 
@@ -17,6 +23,7 @@ public class TopTreeDeclaration extends Node{
 	public TopTreeDeclaration(int line,String parent,String type,int childCount) {
 		super(line,parent,type,childCount);
 		this.topTreeChildrenList = new ArrayList<>();
+		this.dartVariablesDeclarationsList = new ArrayList<>();
 	}
 	
 	public void addChildren(AllClassesDeclarationAbstractChild c) {
