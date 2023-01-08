@@ -12,6 +12,6 @@ public class ImageDeclaration extends WidgetAbstractChild {
 	public String toString() {
 		return
 				"Image Declaration src = "+str+ " line: "+getLine() + " parent "+getParent()
-						+" Child Count =  "+getChildCount()+" Type = "+getType()+"\n";
+						+" Child Count =  "+getChildCount()+" Type = "+getType();
 	}
 }

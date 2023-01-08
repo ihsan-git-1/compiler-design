@@ -11,6 +11,6 @@ public class ReturnStateTypes extends Node{
 	@Override
 	public String toString() {
 		return "Return State Type Name "+ name + " line: "+ getLine() + " parent "+getParent()
-				+" Child Count =  "+getChildCount()+" Type = "+getType()+"\n";
+				+" Child Count =  "+getChildCount()+" Type = "+getType();
 	}
 }

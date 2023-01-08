@@ -3,7 +3,7 @@ package ast.nodes;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OnPressedPropertyDeclaration {
+public class OnPressedPropertyDeclaration extends Node{
 
 
     List<StatementDeclaration> statementDeclaration;
@@ -11,15 +11,16 @@ public class OnPressedPropertyDeclaration {
     public List<StatementDeclaration> getStatementDeclaration() {
         return statementDeclaration;
     }
-    public OnPressedPropertyDeclaration(){
+    public OnPressedPropertyDeclaration(int line,String parent,String type,int childCount){
+        super(line,parent,type,childCount);
         statementDeclaration = new ArrayList<>();
     };
 
     @Override
     public String toString() {
-        return "\nonPressed("
+        return "\nonPressed "+" line: "+getLine() + " parent "+getParent()+
+                " Child Count =  "+getChildCount()+" Type = "+getType()+"\n"
                 +statementDeclaration
-                +")"
                 ;
     }
 }

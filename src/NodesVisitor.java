@@ -418,7 +418,12 @@ public class NodesVisitor extends dart_parseBaseVisitor {
 
     @Override
     public OnPressedPropertyDeclaration visitOnPressedPropertyDeclaration(dart_parse.OnPressedPropertyDeclarationContext ctx) {
-        OnPressedPropertyDeclaration onPressedPropertyDeclaration = new OnPressedPropertyDeclaration();
+        int line = ctx.start.getLine();
+        String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
+        String type = NodeType.PROPERTY.toString();
+        int childCount = ctx.getChildCount();
+
+        OnPressedPropertyDeclaration onPressedPropertyDeclaration = new OnPressedPropertyDeclaration(line,parent,type,childCount);
 
         for (int i = 0; i < ctx.statement().size(); i++) {
             onPressedPropertyDeclaration.getStatementDeclaration()
