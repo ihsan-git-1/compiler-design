@@ -448,7 +448,11 @@ public class NodesVisitor extends dart_parseBaseVisitor {
 
     @Override
     public StatementDeclaration visitStatement(dart_parse.StatementContext ctx) {
-        return new StatementDeclaration(visitDartVariabelsDeclaration(ctx.dartVariabelsDeclaration()));
+        int line = ctx.start.getLine();
+        String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
+        String type = NodeType.STATEMENTDECLARATION.toString();
+        int childCount = ctx.getChildCount();
+        return new StatementDeclaration(visitDartVariabelsDeclaration(ctx.dartVariabelsDeclaration()), line, parent, type, childCount);
     }
 
     @Override

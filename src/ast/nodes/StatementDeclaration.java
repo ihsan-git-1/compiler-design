@@ -1,10 +1,11 @@
 package ast.nodes;
 
-public class StatementDeclaration {
+public class StatementDeclaration extends Node{
 
     StatementDeclarationAbstractChild statementDeclarationAbstractChild;
 
-    public StatementDeclaration(StatementDeclarationAbstractChild statementDeclarationAbstractChild){
+    public StatementDeclaration(StatementDeclarationAbstractChild statementDeclarationAbstractChild,int line ,String parent,String type,int childCount){
+        super(line, parent, type, childCount);
         this.statementDeclarationAbstractChild = statementDeclarationAbstractChild;
     }
 
