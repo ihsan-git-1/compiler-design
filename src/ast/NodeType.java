@@ -2,7 +2,7 @@ package ast;
 
 public enum NodeType {
 
-    TOPTREEDECLARATION("toptreedeclaration"),
+    TOPTREEDECLARATION("top tree declaration"),
     BOOLEAN("boolean"),
     BOOLEANDECLARATION("boolean declaration"),
     STATEMENTDECLARATION("statement declaration"),

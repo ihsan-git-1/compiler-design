@@ -2,17 +2,16 @@ package ast.nodes;
 
 import java.util.List;
 
-public class Function extends Node {
+public class Function extends DartVariablesDeclarationAbstractChild implements StatementDeclarationAbstractChild{
     FunctionType functionType;
     String name;
     Parameter parameters;
     Block block;
 
-
-    public Function(int line, String parent,String type,int childCount,FunctionType functionType, String name, Parameter parameters, Block block) {
+    public Function(int line, String parent, String type, int childCount, FunctionType functionType, String name, Parameter parameters, Block block) {
         super(line, parent, type, childCount);
-        this.name = name;
         this.functionType = functionType;
+        this.name = name;
         this.parameters = parameters;
         this.block = block;
     }
