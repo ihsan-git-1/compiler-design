@@ -636,9 +636,11 @@ public class NodesVisitor extends dart_parseBaseVisitor {
             return new BooleanOperation(num1, num2,null,null, operator);
         }
         else if(ctx.NAME(0)!=null && ctx.NAME(1)!=null) {
+
             String key1=  ctx.NAME(0).getText();
             String key2= ctx.NAME(1).getText();
            if(symbolTable.containsKey(key1) && symbolTable.containsKey(key2)){
+
                SymbolTableObject s1 = symbolTable.get(key1);
                SymbolTableObject s2=symbolTable.get(key2);
                String operator = ctx.getChild(1).toString();
