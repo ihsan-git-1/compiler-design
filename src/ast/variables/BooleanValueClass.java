@@ -3,7 +3,7 @@ package ast.variables;
 import ast.nodes.Node;
 
 public class BooleanValueClass extends Node {
-	boolean value;
+	public boolean value;
 	
 	public BooleanValueClass(boolean value, int line, String parent, String type, int childCount) {
 		super(line, parent, type, childCount);

@@ -3,7 +3,7 @@ package ast.variables;
 import ast.nodes.Node;
 
 public class AddExpression extends Node {
-	NumberClass value;
+	public NumberClass value;
 
 
 	public AddExpression(NumberClass value, int line, String parent,String type,int childCount) {

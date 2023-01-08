@@ -2,7 +2,7 @@ package ast.variables;
 
 public class BooleanDeclaration extends VariableDeclaration{
 	String name;
-	BooleanValueClass booleanValueClass;
+	public BooleanValueClass booleanValueClass;
 	
 	public BooleanDeclaration(String name, int line, String parent,String type,int childCount) {
 		super(line , parent,type,childCount);
