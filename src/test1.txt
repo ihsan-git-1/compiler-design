@@ -1,10 +1,8 @@
+
 class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => MyHomePageState();
 }
 class MyHomePageState extends State<MyHomePage> {
-
-  String name="welcome home";
-  String image="https://picsum.photos/250?image=4";
 
   Widget build(BuildContext context) {
   return Scaffold(
