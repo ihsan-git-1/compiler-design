@@ -1,8 +1,6 @@
 package ast.nodes;
 
-import java.util.List;
-
-public class Function extends DartVariablesDeclarationAbstractChild implements StatementDeclarationAbstractChild{
+public class Function extends DartVariablesDeclarationAbstractChild implements StatementAbstractChild {
     FunctionType functionType;
     String name;
     Parameter parameters;

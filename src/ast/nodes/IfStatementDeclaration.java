@@ -2,7 +2,7 @@ package ast.nodes;
 
 import java.util.List;
 
-public class IfStatementDeclaration extends Node  implements StatementDeclarationAbstractChild{
+public class IfStatementDeclaration extends Node  implements StatementAbstractChild {
     BooleanOperation booleanOperation;
     Block block;
     List<Block> elseIfBlock;
