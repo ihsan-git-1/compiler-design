@@ -140,7 +140,7 @@ public class NodesVisitor extends dart_parseBaseVisitor {
         String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
         String type = NodeType.BLOCK.toString();
         int childCount = ctx.getChildCount();
-        List<StatementDeclaration> statements = new ArrayList<>();
+        List<Statement> statements = new ArrayList<>();
         for (int i = 0; i < ctx.statement().size(); i++) {
             statements.add(visitStatement(ctx.statement(i)));
         }
@@ -387,7 +387,7 @@ public class NodesVisitor extends dart_parseBaseVisitor {
         OnPressedPropertyDeclaration onPressedPropertyDeclaration = new OnPressedPropertyDeclaration(line, parent, type, childCount);
 
         for (int i = 0; i < ctx.statement().size(); i++) {
-            onPressedPropertyDeclaration.getStatementDeclaration().add(visitStatement(ctx.statement(i)));
+            onPressedPropertyDeclaration.getStatement().add(visitStatement(ctx.statement(i)));
         }
 
         return onPressedPropertyDeclaration;
@@ -398,29 +398,29 @@ public class NodesVisitor extends dart_parseBaseVisitor {
         SetStatePressedDeclaration setStatePressedDeclaration = new SetStatePressedDeclaration();
 
         for (int i = 0; i < ctx.statement().size(); i++) {
-            setStatePressedDeclaration.getStatementDeclaration().add(visitStatement(ctx.statement(i)));
+            setStatePressedDeclaration.getStatement().add(visitStatement(ctx.statement(i)));
         }
 
         return setStatePressedDeclaration;
     }
 
     @Override
-    public StatementDeclaration visitStatement(dart_parse.StatementContext ctx) {
+    public Statement visitStatement(dart_parse.StatementContext ctx) {
         int line = ctx.start.getLine();
         String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
-        String type = NodeType.STATEMENTDECLARATION.toString();
+        String type = NodeType.STATEMENT.toString();
         int childCount = ctx.getChildCount();
         if (ctx.dartVariabelsDeclaration() != null) {
-            return new StatementDeclaration(visitDartVariabelsDeclaration(ctx.dartVariabelsDeclaration()), line, parent, type, childCount);
+            return new Statement(visitDartVariabelsDeclaration(ctx.dartVariabelsDeclaration()), line, parent, type, childCount);
         }
         if (ctx.function() != null) {
-            return new StatementDeclaration(visitFunction(ctx.function()), line, parent, type, childCount);
+            return new Statement(visitFunction(ctx.function()), line, parent, type, childCount);
         }
         if (ctx.whileStatement() != null) {
-            return new StatementDeclaration(visitWhileStatement(ctx.whileStatement()), line, parent, type, childCount);
+            return new Statement(visitWhileStatement(ctx.whileStatement()), line, parent, type, childCount);
         }
         if (ctx.ifStatement() != null) {
-            return new StatementDeclaration(visitIfStatement(ctx.ifStatement()), line, parent, type, childCount);
+            return new Statement(visitIfStatement(ctx.ifStatement()), line, parent, type, childCount);
         }
         return null;
     }

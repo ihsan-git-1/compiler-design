@@ -1,6 +1,6 @@
 package ast.nodes;
 
-public class ForStatement  implements StatementDeclarationAbstractChild{
+public class ForStatement  implements StatementAbstractChild {
 
 
     BooleanOperation booleanOperation;

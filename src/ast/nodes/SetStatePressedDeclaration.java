@@ -6,20 +6,20 @@ import java.util.List;
 public class SetStatePressedDeclaration {
 
 
-    List<StatementDeclaration> statementDeclaration;
+    List<Statement> statement;
 
-    public List<StatementDeclaration> getStatementDeclaration() {
-        return statementDeclaration;
+    public List<Statement> getStatement() {
+        return statement;
     }
 
     public SetStatePressedDeclaration(){
-        statementDeclaration = new ArrayList<>();
-    };
+        statement = new ArrayList<>();
+    }
 
     @Override
     public String toString() {
         return "\nsetState"
-                +statementDeclaration
+                + statement
                 ;
     }
 

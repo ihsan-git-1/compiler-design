@@ -1,6 +1,6 @@
 package ast.nodes;
 
-public class WhileStatement extends Node  implements StatementDeclarationAbstractChild{
+public class WhileStatement extends Node  implements StatementAbstractChild {
     BooleanOperation booleanOperation;
     Block block;
 
