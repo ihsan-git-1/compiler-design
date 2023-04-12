@@ -29,7 +29,7 @@ public class Main {
         System.out.println(doc);
 
         System.out.println("\n*********** SYMBOL TABLE ************\n");
-        for (Map.Entry<String, SymbolTableObject> mapElement : dart_parseBaseVisitor.symbolTable.entrySet()) {
+        for (Map.Entry<String, SymbolTableObject> mapElement : dart_parseBaseVisitorChild.symbolTable.entrySet()) {
 
             // Printing mark corresponding to string entries
             System.out.println("Identifier " + mapElement.getKey() + ", Type " + mapElement.getValue().type +
