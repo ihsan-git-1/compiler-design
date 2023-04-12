@@ -1,12 +1,7 @@
-// Generated from java-escape by ANTLR 4.11.1
+// Generated from dart_parse.g4 by ANTLR 4.10.1
 package gen;
-import ast.SymbolTableObject;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 
 /**
@@ -19,10 +14,7 @@ import java.util.Map;
  */
 @SuppressWarnings("CheckReturnValue")
 public class dart_parseBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements dart_parseVisitor<T> {
-	public static List<String> semanticErrors = new ArrayList<>();
-//	public static List<String> vars= new ArrayList<>();
 
-	public static Map<String,SymbolTableObject> symbolTable = new HashMap<>();
 	@Override public T visitTopTreeDeclaration(dart_parse.TopTreeDeclarationContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
