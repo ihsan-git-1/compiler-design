@@ -6,6 +6,7 @@ import ast.nodes.DartListStringDeclaration;
 import ast.variables.BooleanValueClass;
 import ast.variables.NumberClass;
 import ast.variables.Variable;
+import gen.dart_parseBaseVisitorChild;
 import gen.dart_parse.DartAllListsDeclarationContext;
 import gen.dart_parse.DartListBoolDeclarationContext;
 import gen.dart_parse.DartListIntDeclarationContext;
@@ -15,7 +16,7 @@ import gen.dart_parseBaseVisitor;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListsVisitor extends dart_parseBaseVisitor{
+public class ListsVisitor extends dart_parseBaseVisitorChild{
 
 	@Override
 	public DartAllListsDeclaration visitDartAllListsDeclaration(DartAllListsDeclarationContext ctx) {

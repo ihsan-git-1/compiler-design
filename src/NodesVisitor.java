@@ -3,13 +3,13 @@ import ast.SymbolTableObject;
 import ast.nodes.*;
 import ast.variables.AbstractNumberClass;
 import gen.dart_parse;
-import gen.dart_parseBaseVisitor;
+import gen.dart_parseBaseVisitorChild;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class NodesVisitor extends dart_parseBaseVisitor {
+public class NodesVisitor extends dart_parseBaseVisitorChild {
 
 
     //**************************** base declarations start code ********************************///
@@ -495,15 +495,15 @@ public class NodesVisitor extends dart_parseBaseVisitor {
 
             // check if property already available;
             if (isAvailable.get(0) && ctx.conatinerPropertiesDeclaration().get(i).widthPropertyDeclaration() != null) {
-                dart_parseBaseVisitor.semanticErrors.add("Error cant duplicate width");
+                dart_parseBaseVisitorChild.semanticErrors.add("Error cant duplicate width");
                 System.out.println("Error cant duplicate width");
             }
             if (isAvailable.get(1) && ctx.conatinerPropertiesDeclaration().get(i).heightPropertyDeclaration() != null) {
-                dart_parseBaseVisitor.semanticErrors.add("Error cant duplicate height");
+                dart_parseBaseVisitorChild.semanticErrors.add("Error cant duplicate height");
                 System.out.println("Error cant duplicate height");
             }
             if (isAvailable.get(2) && ctx.conatinerPropertiesDeclaration().get(i).childPropertyDeclaration() != null) {
-                dart_parseBaseVisitor.semanticErrors.add("Error cant duplicate child");
+                dart_parseBaseVisitorChild.semanticErrors.add("Error cant duplicate child");
                 System.out.println("Error cant duplicate child");
             }
 
