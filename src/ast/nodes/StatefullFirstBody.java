@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StatefullFirstBody extends Node{
-	List<DartVariablesDeclaration> dartVariablesDeclarationList;
+	List<DartDeclaration> dartDeclarationList;
 	StatefullAssignStateClassDeclaration dec;
 	String name;
 	
@@ -12,11 +12,11 @@ public class StatefullFirstBody extends Node{
 		super(line,parent, type, childCount);
 		this.name = name;
 		this.dec = dec;
-		this.dartVariablesDeclarationList=new ArrayList<>();
+		this.dartDeclarationList =new ArrayList<>();
 	}
 
-	public List<DartVariablesDeclaration> getDartVariablesDeclarationList() {
-		return dartVariablesDeclarationList;
+	public List<DartDeclaration> getDartDeclarationList() {
+		return dartDeclarationList;
 	}
 
 	@Override
@@ -24,7 +24,7 @@ public class StatefullFirstBody extends Node{
 
 		return  "Statefull First Body Name  " +name + " line: "+getLine() + " parent "+getParent()
 				+" Child Count =  "+getChildCount()+" Type = "+getType()
-				+dartVariablesDeclarationList+"\n"
+				+ dartDeclarationList +"\n"
 				+dec+"\n"
 				;
 	}

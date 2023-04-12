@@ -1,8 +1,8 @@
 package ast.nodes;
 
-public class DartVariablesDeclarationAbstractChild extends Node{
+public class DartDeclarationAbstractChild extends Node{
 
-    public DartVariablesDeclarationAbstractChild(int line,String parent,String type,int childCount){
+    public DartDeclarationAbstractChild(int line, String parent, String type, int childCount){
         super(line,parent, type, childCount);
     }
 

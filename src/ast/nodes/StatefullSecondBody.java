@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StatefullSecondBody extends Node{
-	List<DartVariablesDeclaration> dartVariablesDeclarationList;
+	List<DartDeclaration> dartDeclarationList;
 	BuildMethodDeclaration methodDecleration;
 	String name;
 	String stateName;
@@ -14,11 +14,11 @@ public class StatefullSecondBody extends Node{
 		this.name=name;
 		this.stateName=stateName;
 		this.methodDecleration=methodDecleration;
-		this.dartVariablesDeclarationList=new ArrayList<>();
+		this.dartDeclarationList =new ArrayList<>();
 	}
 
-	public List<DartVariablesDeclaration> getDartVariablesDeclarationList() {
-		return dartVariablesDeclarationList;
+	public List<DartDeclaration> getDartDeclarationList() {
+		return dartDeclarationList;
 	}
 
 	
