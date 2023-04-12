@@ -5,18 +5,18 @@ import java.util.List;
 
 public class BuildMethodDeclaration extends Node{
 	BuildContextDeclaration context;
-	List<DartVariablesDeclaration> dartVaraibles;
+	List<DartDeclaration> dartDeclaration;
 	WidgetsDeclaration widgets;
 	
 	public BuildMethodDeclaration(WidgetsDeclaration widgets,BuildContextDeclaration context,int line ,String parent,String type,int childCount) {
 		super(line,parent, type, childCount);
-		dartVaraibles = new ArrayList<>();
+		dartDeclaration = new ArrayList<>();
 		this.widgets = widgets;
 		this.context = context;
 	}
 
-	public List<DartVariablesDeclaration> getDartVariables() {
-		return dartVaraibles;
+	public List<DartDeclaration> getDartDeclarations() {
+		return dartDeclaration;
 	}
 
 
@@ -25,7 +25,7 @@ public class BuildMethodDeclaration extends Node{
 		return "Build Method Declaration line: "+ getLine() + " parent "+ getParent()
 				+" Child Count =  "+getChildCount()+" Type = "+getType()+"\n"
 				+context
-				+dartVaraibles+"\n"
+				+ dartDeclaration +"\n"
 				+widgets+"\n"
 
 				;

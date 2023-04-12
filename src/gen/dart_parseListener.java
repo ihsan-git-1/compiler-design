@@ -1,4 +1,4 @@
-// Generated from java-escape by ANTLR 4.11.1
+// Generated from C:/Users/Vision/Downloads/Desktop/Compiler/src\dart_parse.g4 by ANTLR 4.10.1
 package gen;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -128,15 +128,15 @@ public interface dart_parseListener extends ParseTreeListener {
 	 */
 	void exitBuildMethodDeclaration(dart_parse.BuildMethodDeclarationContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link dart_parse#dartVariabelsDeclaration}.
+	 * Enter a parse tree produced by {@link dart_parse#dartDeclaration}.
 	 * @param ctx the parse tree
 	 */
-	void enterDartVariabelsDeclaration(dart_parse.DartVariabelsDeclarationContext ctx);
+	void enterDartDeclaration(dart_parse.DartDeclarationContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link dart_parse#dartVariabelsDeclaration}.
+	 * Exit a parse tree produced by {@link dart_parse#dartDeclaration}.
 	 * @param ctx the parse tree
 	 */
-	void exitDartVariabelsDeclaration(dart_parse.DartVariabelsDeclarationContext ctx);
+	void exitDartDeclaration(dart_parse.DartDeclarationContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link dart_parse#variable}.
 	 * @param ctx the parse tree

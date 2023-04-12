@@ -1,6 +1,6 @@
 package ast.nodes;
 
-public class DartAllListsDeclaration extends DartVariablesDeclarationAbstractChild{
+public class DartAllListsDeclaration extends DartDeclarationAbstractChild {
 
 	DartAllListsDeclarationAbstractChild dartAllListsDeclarationAbstractChild;
 	

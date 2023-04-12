@@ -1,4 +1,4 @@
-// Generated from java-escape by ANTLR 4.11.1
+// Generated from C:/Users/Vision/Downloads/Desktop/Compiler/src\dart_parse.g4 by ANTLR 4.10.1
 package gen;
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -10,7 +10,6 @@ import org.antlr.v4.runtime.tree.TerminalNode;
  * which can be extended to create a listener which only needs to handle a subset
  * of the available methods.
  */
-@SuppressWarnings("CheckReturnValue")
 public class dart_parseBaseListener implements dart_parseListener {
 	/**
 	 * {@inheritDoc}
@@ -161,13 +160,13 @@ public class dart_parseBaseListener implements dart_parseListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDartVariabelsDeclaration(dart_parse.DartVariabelsDeclarationContext ctx) { }
+	@Override public void enterDartDeclaration(dart_parse.DartDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitDartVariabelsDeclaration(dart_parse.DartVariabelsDeclarationContext ctx) { }
+	@Override public void exitDartDeclaration(dart_parse.DartDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

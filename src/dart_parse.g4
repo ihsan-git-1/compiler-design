@@ -5,7 +5,7 @@ options {tokenVocab=dart_lexar;}
 // base declarations start code
 topTreeDeclaration :
     (allClassesDeclaration
-    |dartVariabelsDeclaration)*
+    |dartDeclaration)*
     ;
 
 allClassesDeclaration:
@@ -18,7 +18,7 @@ classDeclaration :
     CLASS
     NAME
     CRLY_BRKT_OP
-    dartVariabelsDeclaration*
+    dartDeclaration*
     CRLY_BRKT_CL
     ;
 
@@ -27,7 +27,7 @@ statelessClassDeclaration :
     NAME
     STATELESS
     CRLY_BRKT_OP
-    dartVariabelsDeclaration*
+    dartDeclaration*
     buildMethodDeclaration
     CRLY_BRKT_CL
     ;
@@ -42,7 +42,7 @@ stfulFirstBody:
     NAME
     STATEFULL
     CRLY_BRKT_OP
-    dartVariabelsDeclaration*
+    dartDeclaration*
     statefullAssignStateClassDeclaration
     CRLY_BRKT_CL
 ;
@@ -56,7 +56,7 @@ stfulSecondBody:
     NAME
     ANGLE_BRKT_CL
     CRLY_BRKT_OP
-    dartVariabelsDeclaration*
+    dartDeclaration*
     buildMethodDeclaration
     CRLY_BRKT_CL
 ;
@@ -103,7 +103,7 @@ buildMethodDeclaration:
     buildContextDeclaration
     BRKT_CL
     CRLY_BRKT_OP
-    dartVariabelsDeclaration*
+    dartDeclaration*
     RETURN
     widgetsDeclaration
     SEMICOLON
@@ -112,7 +112,7 @@ buildMethodDeclaration:
 
 
 // dart declarations
-dartVariabelsDeclaration:
+dartDeclaration:
     variable
     |function
     |dartAllListsDeclaration
@@ -474,13 +474,13 @@ functionType:
     ;
 
 parameters:
-    dartVariabelsDeclaration
-    (',' dartVariabelsDeclaration)*
+    dartDeclaration
+    (',' dartDeclaration)*
     COMMA?
     ;
 
 statement:
-    dartVariabelsDeclaration
+    dartDeclaration
     |ifStatement
     |whileStatement
     |function
