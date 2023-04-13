@@ -1,0 +1,8 @@
+void main(){
+
+int x,y,t,r,e, u;
+x=3;
+t=5;
+u=2;
+
+}

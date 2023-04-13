@@ -122,38 +122,58 @@ dartDeclaration:
 
 variable:
     (FINAL | CONST)?
-    (integerDeclaration
-    |stringDeclaration
-    |boolDeclaration
-    |doubleDeclaration)
+    (integerDeclarationLine
+    |stringDeclarationLine
+    |booleanDeclarationLine
+    |doubleDeclarationLine)
     SEMICOLON
     ;
 
-integerDeclaration:
+integerDeclarationLine:
     INT?
+    integerDeclaration
+    (COMMA integerDeclaration)*
+    ;
+
+integerDeclaration:
     NAME
     (ASSIGN
     addExpression)?
     ;
 
-doubleDeclaration:
+doubleDeclarationLine:
     DOUBLE?
+    doubleDeclaration
+    (COMMA doubleDeclaration)*
+    ;
+
+doubleDeclaration:
     NAME
     (ASSIGN
     addDoubleExpression)?
     ;
-stringDeclaration:
+
+stringDeclarationLine:
     STRING?
+    stringDeclaration
+    (COMMA stringDeclaration)*
+    ;
+
+stringDeclaration:
     NAME
     (ASSIGN
     STRING_LINE)?
     ;
 
-boolDeclaration:
+booleanDeclarationLine:
     BOOL?
+    booleanDeclaration
+    (COMMA booleanDeclaration)*
+    ;
+
+booleanDeclaration:
     NAME
-    (ASSIGN
-    booleans)?
+    (ASSIGN booleans)?
     ;
 
 addExpression

@@ -9,6 +9,10 @@ public class BooleanValueClass extends Node {
 		super(line, parent, type, childCount);
 		this.value = value;
 	}
+
+	public boolean getBool(){
+		return value;
+	}
 	
 	@Override
 	public String toString() {

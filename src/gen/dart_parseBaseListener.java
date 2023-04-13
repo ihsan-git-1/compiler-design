@@ -1,4 +1,4 @@
-// Generated from java-escape by ANTLR 4.11.1
+// Generated from dart_parse.g4 by ANTLR 4.10.1
 package gen;
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -10,7 +10,6 @@ import org.antlr.v4.runtime.tree.TerminalNode;
  * which can be extended to create a listener which only needs to handle a subset
  * of the available methods.
  */
-@SuppressWarnings("CheckReturnValue")
 public class dart_parseBaseListener implements dart_parseListener {
 	/**
 	 * {@inheritDoc}
@@ -185,6 +184,18 @@ public class dart_parseBaseListener implements dart_parseListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterIntegerDeclarationLine(dart_parse.IntegerDeclarationLineContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitIntegerDeclarationLine(dart_parse.IntegerDeclarationLineContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterIntegerDeclaration(dart_parse.IntegerDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -192,6 +203,18 @@ public class dart_parseBaseListener implements dart_parseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitIntegerDeclaration(dart_parse.IntegerDeclarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterDoubleDeclarationLine(dart_parse.DoubleDeclarationLineContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDoubleDeclarationLine(dart_parse.DoubleDeclarationLineContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -209,6 +232,18 @@ public class dart_parseBaseListener implements dart_parseListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterStringDeclarationLine(dart_parse.StringDeclarationLineContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitStringDeclarationLine(dart_parse.StringDeclarationLineContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterStringDeclaration(dart_parse.StringDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -221,13 +256,25 @@ public class dart_parseBaseListener implements dart_parseListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterBoolDeclaration(dart_parse.BoolDeclarationContext ctx) { }
+	@Override public void enterBooleanDeclarationLine(dart_parse.BooleanDeclarationLineContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitBoolDeclaration(dart_parse.BoolDeclarationContext ctx) { }
+	@Override public void exitBooleanDeclarationLine(dart_parse.BooleanDeclarationLineContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterBooleanDeclaration(dart_parse.BooleanDeclarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitBooleanDeclaration(dart_parse.BooleanDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
