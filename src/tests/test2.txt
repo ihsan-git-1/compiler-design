@@ -3,7 +3,7 @@ class test {
             int b = 3;
             while(a != b){
                 if(num > dNumber){
-                    b=2.3;
+                    b=2;
                     int count = 3;
 
                 }

@@ -18,8 +18,8 @@ public class BooleanDeclaration extends VariableDeclaration{
 	@Override
 	public String toString() {
 		return "Boolean Declaration: " +name+" line: "+ getLine() + " parent: "+ getParent()
-				+" Child Count =  "+getChildCount()+" Type = "+getType()+"\n"
-				+ booleanValueClass
+				+" Child Count =  "+getChildCount()+" Type = "+getType()
+				+ " value: " + booleanValueClass +"\n"
 				;
 	}
 }

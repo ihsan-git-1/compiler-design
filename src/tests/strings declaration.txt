@@ -1,0 +1,7 @@
+void main(){
+t="ssssssssssssssss";
+String x,y,t;
+x="ssss";
+y="aaaa";
+
+}

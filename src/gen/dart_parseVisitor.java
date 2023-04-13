@@ -1,4 +1,4 @@
-// Generated from java-escape by ANTLR 4.11.1
+// Generated from dart_parse.g4 by ANTLR 4.10.1
 package gen;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
@@ -95,11 +95,23 @@ public interface dart_parseVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitVariable(dart_parse.VariableContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link dart_parse#integerDeclarationLine}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIntegerDeclarationLine(dart_parse.IntegerDeclarationLineContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link dart_parse#integerDeclaration}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitIntegerDeclaration(dart_parse.IntegerDeclarationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link dart_parse#doubleDeclarationLine}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDoubleDeclarationLine(dart_parse.DoubleDeclarationLineContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link dart_parse#doubleDeclaration}.
 	 * @param ctx the parse tree
@@ -107,17 +119,29 @@ public interface dart_parseVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitDoubleDeclaration(dart_parse.DoubleDeclarationContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link dart_parse#stringDeclarationLine}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStringDeclarationLine(dart_parse.StringDeclarationLineContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link dart_parse#stringDeclaration}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitStringDeclaration(dart_parse.StringDeclarationContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link dart_parse#boolDeclaration}.
+	 * Visit a parse tree produced by {@link dart_parse#booleanDeclarationLine}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitBoolDeclaration(dart_parse.BoolDeclarationContext ctx);
+	T visitBooleanDeclarationLine(dart_parse.BooleanDeclarationLineContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link dart_parse#booleanDeclaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBooleanDeclaration(dart_parse.BooleanDeclarationContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link dart_parse#addExpression}.
 	 * @param ctx the parse tree

@@ -1,4 +1,4 @@
-// Generated from java-escape by ANTLR 4.11.1
+// Generated from dart_parse.g4 by ANTLR 4.10.1
 package gen;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -148,6 +148,16 @@ public interface dart_parseListener extends ParseTreeListener {
 	 */
 	void exitVariable(dart_parse.VariableContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link dart_parse#integerDeclarationLine}.
+	 * @param ctx the parse tree
+	 */
+	void enterIntegerDeclarationLine(dart_parse.IntegerDeclarationLineContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#integerDeclarationLine}.
+	 * @param ctx the parse tree
+	 */
+	void exitIntegerDeclarationLine(dart_parse.IntegerDeclarationLineContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link dart_parse#integerDeclaration}.
 	 * @param ctx the parse tree
 	 */
@@ -157,6 +167,16 @@ public interface dart_parseListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitIntegerDeclaration(dart_parse.IntegerDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#doubleDeclarationLine}.
+	 * @param ctx the parse tree
+	 */
+	void enterDoubleDeclarationLine(dart_parse.DoubleDeclarationLineContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#doubleDeclarationLine}.
+	 * @param ctx the parse tree
+	 */
+	void exitDoubleDeclarationLine(dart_parse.DoubleDeclarationLineContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link dart_parse#doubleDeclaration}.
 	 * @param ctx the parse tree
@@ -168,6 +188,16 @@ public interface dart_parseListener extends ParseTreeListener {
 	 */
 	void exitDoubleDeclaration(dart_parse.DoubleDeclarationContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link dart_parse#stringDeclarationLine}.
+	 * @param ctx the parse tree
+	 */
+	void enterStringDeclarationLine(dart_parse.StringDeclarationLineContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#stringDeclarationLine}.
+	 * @param ctx the parse tree
+	 */
+	void exitStringDeclarationLine(dart_parse.StringDeclarationLineContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link dart_parse#stringDeclaration}.
 	 * @param ctx the parse tree
 	 */
@@ -178,15 +208,25 @@ public interface dart_parseListener extends ParseTreeListener {
 	 */
 	void exitStringDeclaration(dart_parse.StringDeclarationContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link dart_parse#boolDeclaration}.
+	 * Enter a parse tree produced by {@link dart_parse#booleanDeclarationLine}.
 	 * @param ctx the parse tree
 	 */
-	void enterBoolDeclaration(dart_parse.BoolDeclarationContext ctx);
+	void enterBooleanDeclarationLine(dart_parse.BooleanDeclarationLineContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link dart_parse#boolDeclaration}.
+	 * Exit a parse tree produced by {@link dart_parse#booleanDeclarationLine}.
 	 * @param ctx the parse tree
 	 */
-	void exitBoolDeclaration(dart_parse.BoolDeclarationContext ctx);
+	void exitBooleanDeclarationLine(dart_parse.BooleanDeclarationLineContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#booleanDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterBooleanDeclaration(dart_parse.BooleanDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#booleanDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitBooleanDeclaration(dart_parse.BooleanDeclarationContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link dart_parse#addExpression}.
 	 * @param ctx the parse tree
