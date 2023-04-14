@@ -13,7 +13,7 @@ import static org.antlr.v4.runtime.CharStreams.fromFileName;
 public class Main {
     public static void main(String[] args) throws IOException {
 
-        String source = "src/test2.txt";
+        String source = "src/test4.txt";
         CharStream cs = fromFileName(source);
 
         dart_lexar lexer = new dart_lexar(cs);
