@@ -4,26 +4,37 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TopTreeDeclaration extends Node{
-	List<AllClassesDeclarationAbstractChild> topTreeChildrenList;
+	List<AllClassesDeclarationAbstractChild> topTreeClassesChildrenList;
+	List<DartDeclaration> topTreeDartVariablesChildrenList;
 
 
-	public List<AllClassesDeclarationAbstractChild> getTopTreeChildrenList() {
+	public List<AllClassesDeclarationAbstractChild> getTopTreeClassesChildrenList() {
 
-		return topTreeChildrenList;
+		return topTreeClassesChildrenList;
 	}
 
-	public void setTopTreeChildrenList(List<AllClassesDeclarationAbstractChild> topTreeChildrenList) {
-		this.topTreeChildrenList = topTreeChildrenList;
+	public List<DartDeclaration> getTopTreeDartVariablesChildrenList() {
+
+		return topTreeDartVariablesChildrenList;
+	}
+
+	public void setTopTreeClassesChildrenList(List<AllClassesDeclarationAbstractChild> topTreeClassesChildrenList) {
+		this.topTreeClassesChildrenList = topTreeClassesChildrenList;
+	}
+
+	public void setTopTreeDartVariablesChildrenList(List<DartDeclaration> topTreeDartVariablesChildrenList) {
+		this.topTreeDartVariablesChildrenList = topTreeDartVariablesChildrenList;
 	}
 
 	public TopTreeDeclaration(int line,String parent,String type,int childCount) {
 		super(line,parent,type,childCount);
-		this.topTreeChildrenList = new ArrayList<>();
+		this.topTreeClassesChildrenList = new ArrayList<>();
+		this.topTreeDartVariablesChildrenList = new ArrayList<>();
 	}
 	
-	public void addChildren(AllClassesDeclarationAbstractChild c) {
-		topTreeChildrenList.add(c);
-	}
+	//public void addChildren(AllClassesDeclarationAbstractChild c) {
+	//	topTreeClassesChildrenList.add(c);
+	//}
 
 
 
@@ -31,11 +42,16 @@ public class TopTreeDeclaration extends Node{
 	public String toString() {
 
 		return "Top Tree Declaration line: "+ getLine() +" Child Count =  "+getChildCount()+" Type = "+getType()+ "\n"+
-				topTreeChildrenList.toString()
+				topTreeClassesChildrenList.toString()
 						.replace(",", "")
 						.replace("[", "")
 						.replace("]", "")
-						.trim()
+						.trim() + " ,  "+
+				topTreeDartVariablesChildrenList.toString()
+					.replace(",", "")
+					.replace("[", "")
+					.replace("]", "")
+					.trim()
 
 				;
 	}
