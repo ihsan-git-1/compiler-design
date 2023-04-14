@@ -1,3 +1,5 @@
+package visitors;
+
 import ast.NodeType;
 import ast.nodes.DartAllListsDeclaration;
 import ast.nodes.DartListBoolDeclaration;
