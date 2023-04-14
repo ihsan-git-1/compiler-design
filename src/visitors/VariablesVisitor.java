@@ -1,6 +1,7 @@
 package visitors;
 
 import ast.NodeType;
+import ast.Scope;
 import ast.SymbolTableObject;
 import ast.variables.*;
 import gen.dart_parse;
@@ -17,6 +18,7 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
 
     @Override
     public Variable visitVariable(dart_parse.VariableContext ctx) {
+
         if (ctx.stringDeclaration() != null) {
             int line = ctx.start.getLine();
             String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$","").replace("Context","");
@@ -64,21 +66,26 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
 
     @Override
     public IntegerDeclaration visitIntegerDeclaration(dart_parse.IntegerDeclarationContext ctx) {
+
         // INT() is a method generated from the grammar INT
         int line = ctx.start.getLine();
         int column = ctx.start.getCharPositionInLine() + 1;
         String id = ctx.NAME().getText();
 
-        if (symbolTable.containsKey(id)) {
+        if (CheckExistanceInScope(id,index)) {
             semanticErrors.add("Error: Integer" + id + "already declared (" + line + "," + column + ")");
 
 
         } else {
 
              if (ctx.addExpression() != null) {
-                AddExpression expr = visitAddExpression(ctx.addExpression());
-                 symbolTable.put(id,new SymbolTableObject(NodeType.INT.toString(),String.valueOf(expr.value.getNum())));
-                int linee = ctx.start.getLine();
+
+                 AddExpression expr = visitAddExpression(ctx.addExpression());
+
+
+                 scopes.get(index-1).getSymbolMap().put(id,new SymbolTableObject(NodeType.INT.toString(),String.valueOf(expr.value.getNum())));
+
+                 int linee = ctx.start.getLine();
                 String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$","").replace("Context","");
                 String type = NodeType.INTEGERDECLARATION.toString();
                 int childCount = ctx.getChildCount();
@@ -99,12 +106,12 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
         int column = idToken.getCharPositionInLine() + 1;
         String id = ctx.getChild(0).getText();
         String name= String.valueOf(ctx.NAME());
-        if (symbolTable.containsKey(id)) {
+        if (CheckExistanceInScope(id,index)) {
             semanticErrors.add("Error: Double" + id + "already declared (" + line + "," + column + ")");
         } else {
             if (ctx.addDoubleExpression() != null) {
                 AddDoubleExpression expr = visitAddDoubleExpression(ctx.addDoubleExpression());
-                symbolTable.put(id,new SymbolTableObject(NodeType.DOUBLE.toString() ,String.valueOf(expr.value.getNum())));
+                scopes.get(index-1).getSymbolMap().put(id,new SymbolTableObject(NodeType.DOUBLE.toString() ,String.valueOf(expr.value.getNum())));
                 int linee = ctx.start.getLine();
                 String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$","").replace("Context","");
                 String type = NodeType.DOUBLEDECLARATION.toString();
@@ -135,7 +142,8 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
         String type = NodeType.TOPTREEDECLARATION.toString();
         int childCount = ctx.getChildCount();
 
-        symbolTable.put(name,new SymbolTableObject(NodeType.STRING.toString(), stringLine));
+
+        scopes.get(index-1).getSymbolMap().put(name,new SymbolTableObject(NodeType.STRING.toString(), stringLine));
         return new StringDeclaration(name, stringLine, line, parent, type, childCount);
     }
 
@@ -149,7 +157,7 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
         }
         String id  = ctx.NAME().getText();
 
-        symbolTable.put(id,new SymbolTableObject(NodeType.BOOL.toString(),ctx.booleans().getText()));
+        scopes.get(index-1).getSymbolMap().put(id,new SymbolTableObject(NodeType.BOOL.toString(),ctx.booleans().getText()));
 
         BooleanValueClass booleanValueClass = visitBooleans(ctx.booleans());
         int line = ctx.start.getLine();

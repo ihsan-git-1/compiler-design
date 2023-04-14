@@ -8,12 +8,9 @@ class test {
         List<int> tester =[2,3,4,5];
 
             while(a != b){
-
                 if(num > dNumber){
-
-            int count = 3;
-
-                     }
+                    int count = 3;
+                }
             }
         }
     }

@@ -1,6 +1,7 @@
 package visitors;
 
 import ast.NodeType;
+import ast.Scope;
 import ast.SymbolTableObject;
 import ast.nodes.*;
 import ast.variables.AbstractNumberClass;
@@ -8,6 +9,7 @@ import gen.dart_parse;
 import gen.dart_parseBaseVisitorChild;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -17,6 +19,15 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
     //**************************** base declarations start code ********************************///
     @Override
     public TopTreeDeclaration visitTopTreeDeclaration(dart_parse.TopTreeDeclarationContext ctx) {
+
+
+        Scope s = new Scope();
+        s.setId(index);
+        s.setScopeName("Global Scope (0)");
+        s.setParent(null);
+        scopes.add(s);
+
+
 
         int line = ctx.start.getLine();
         String parent = "";
@@ -110,6 +121,14 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
 
     @Override
     public IfStatementDeclaration visitIfStatement(dart_parse.IfStatementContext ctx) {
+
+        Scope s = new Scope();
+        s.setId(index);
+        s.setScopeName("If Scope ("+index+")");
+        s.setParent(scopes.get(index-1));
+        index  = index +1 ;
+        scopes.add(s);
+
         int line = ctx.start.getLine();
         //String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
         String type = NodeType.CONDITION.toString();
@@ -135,6 +154,13 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
 
     @Override
     public WhileStatement visitWhileStatement(dart_parse.WhileStatementContext ctx) {
+        Scope s = new Scope();
+        s.setId(index);
+        s.setScopeName("While Scope ("+index+")");
+        s.setParent(scopes.get(index-1));
+        index  = index +1 ;
+        scopes.add(s);
+
         int line = ctx.start.getLine();
       //  String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
         BooleanOperation booleanOperation =  visitBooleanOperation(ctx.booleanOperation());
@@ -159,6 +185,14 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
 
     @Override
     public Function visitFunction(dart_parse.FunctionContext ctx) {
+
+        Scope s = new Scope();
+        s.setId(index);
+        s.setScopeName("Function Scope ("+index+")");
+        s.setParent(scopes.get(index-1));
+        index  = index +1 ;
+        scopes.add(s);
+
         Parameter parameters = null;
         int line = ctx.start.getLine();
         //String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
@@ -611,12 +645,15 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
     //******************************* dart visitors ****************************************//
 
     public DartDeclaration visitDartDeclaration(dart_parse.DartDeclarationContext ctx) {
+
+
         int line = ctx.start.getLine();
         String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
         VariablesVisitor variablesVisitor = new VariablesVisitor();
         String type = NodeType.OBJECT.toString();
         int childCount = ctx.getChildCount();
         if (ctx.variable() != null) {
+
             return new DartDeclaration(variablesVisitor.visitVariable(ctx.variable()), line, parent, type, childCount);
         } else if (ctx.function() != null) {
             return new DartDeclaration(visitFunction(ctx.function()), line, parent, type, childCount);
@@ -651,10 +688,11 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
 
             String key1=  ctx.NAME(0).getText();
             String key2= ctx.NAME(1).getText();
-           if(symbolTable.containsKey(key1) && symbolTable.containsKey(key2)){
 
-               SymbolTableObject s1 = symbolTable.get(key1);
-               SymbolTableObject s2=symbolTable.get(key2);
+           if(scopes.get(index-1).getSymbolMap().containsKey(key1) && scopes.get(index-1).getSymbolMap().containsKey(key2)){
+
+               SymbolTableObject s1 = scopes.get(index-1).getSymbolMap().get(key1);
+               SymbolTableObject s2 = scopes.get(index-1).getSymbolMap().get(key2);
                String operator = ctx.getChild(1).toString();
                return new BooleanOperation(null, null,s1,s2, operator);
            }
