@@ -57,6 +57,7 @@ EQUAL: '==';
 ASSIGN: '=';
 NOTEQUAL: '!=';
 GRATEREQUAL: '<=';
+NULL: 'null';
 LESSEQUAL: '>=';
 DOT: '.';
 
@@ -234,3 +235,4 @@ PRIVATE
  : '_' ~[\r\n]* -> skip
  ;
 WS : [ \t\n\r]+ -> skip ;
+

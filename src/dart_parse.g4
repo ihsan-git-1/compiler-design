@@ -497,4 +497,21 @@ forStatement:
     BRKT_CL
     block
     ;
+expression : literal
+           | identifier
+           | functionCall
+//           | binaryExpression
+//           | unaryExpression
+           | '(' expression ')'
+           ;
+
+literal : INT | DOUBLE | STRING | TRUE | FALSE | NULL ;
+
+identifier : NAME ;
+
+functionCall : identifier '(' arguments? ')' ;
+
+arguments : expression (',' expression)* ;
+
+
 
