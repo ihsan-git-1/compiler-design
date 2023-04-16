@@ -1,4 +1,4 @@
-// Generated from C:/Users/Vision/Downloads/Desktop/Compiler/src\dart_parse.g4 by ANTLR 4.10.1
+// Generated from java-escape by ANTLR 4.11.1
 package gen;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
@@ -370,4 +370,82 @@ public interface dart_parseVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitForStatement(dart_parse.ForStatementContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link dart_parse#forInit}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitForInit(dart_parse.ForInitContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link dart_parse#expressionList}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpressionList(dart_parse.ExpressionListContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link dart_parse#conditionExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitConditionExpr(dart_parse.ConditionExprContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link dart_parse#logicalExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLogicalExpression(dart_parse.LogicalExpressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link dart_parse#binaryExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBinaryExpr(dart_parse.BinaryExprContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link dart_parse#term}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTerm(dart_parse.TermContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link dart_parse#prefixUnaryOperator}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPrefixUnaryOperator(dart_parse.PrefixUnaryOperatorContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link dart_parse#postfixUnaryOperator}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPostfixUnaryOperator(dart_parse.PostfixUnaryOperatorContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link dart_parse#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpression(dart_parse.ExpressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link dart_parse#literal}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLiteral(dart_parse.LiteralContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link dart_parse#identifier}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIdentifier(dart_parse.IdentifierContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link dart_parse#functionCall}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunctionCall(dart_parse.FunctionCallContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link dart_parse#arguments}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitArguments(dart_parse.ArgumentsContext ctx);
 }
