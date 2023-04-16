@@ -1,4 +1,4 @@
-// Generated from C:/Users/Vision/Downloads/Desktop/Compiler/src\dart_parse.g4 by ANTLR 4.10.1
+// Generated from java-escape by ANTLR 4.11.1
 package gen;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -607,4 +607,134 @@ public interface dart_parseListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitForStatement(dart_parse.ForStatementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#forInit}.
+	 * @param ctx the parse tree
+	 */
+	void enterForInit(dart_parse.ForInitContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#forInit}.
+	 * @param ctx the parse tree
+	 */
+	void exitForInit(dart_parse.ForInitContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#expressionList}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpressionList(dart_parse.ExpressionListContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#expressionList}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpressionList(dart_parse.ExpressionListContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#conditionExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterConditionExpr(dart_parse.ConditionExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#conditionExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitConditionExpr(dart_parse.ConditionExprContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#logicalExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterLogicalExpression(dart_parse.LogicalExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#logicalExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitLogicalExpression(dart_parse.LogicalExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#binaryExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterBinaryExpr(dart_parse.BinaryExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#binaryExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitBinaryExpr(dart_parse.BinaryExprContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#term}.
+	 * @param ctx the parse tree
+	 */
+	void enterTerm(dart_parse.TermContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#term}.
+	 * @param ctx the parse tree
+	 */
+	void exitTerm(dart_parse.TermContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#prefixUnaryOperator}.
+	 * @param ctx the parse tree
+	 */
+	void enterPrefixUnaryOperator(dart_parse.PrefixUnaryOperatorContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#prefixUnaryOperator}.
+	 * @param ctx the parse tree
+	 */
+	void exitPrefixUnaryOperator(dart_parse.PrefixUnaryOperatorContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#postfixUnaryOperator}.
+	 * @param ctx the parse tree
+	 */
+	void enterPostfixUnaryOperator(dart_parse.PostfixUnaryOperatorContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#postfixUnaryOperator}.
+	 * @param ctx the parse tree
+	 */
+	void exitPostfixUnaryOperator(dart_parse.PostfixUnaryOperatorContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpression(dart_parse.ExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpression(dart_parse.ExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#literal}.
+	 * @param ctx the parse tree
+	 */
+	void enterLiteral(dart_parse.LiteralContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#literal}.
+	 * @param ctx the parse tree
+	 */
+	void exitLiteral(dart_parse.LiteralContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#identifier}.
+	 * @param ctx the parse tree
+	 */
+	void enterIdentifier(dart_parse.IdentifierContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#identifier}.
+	 * @param ctx the parse tree
+	 */
+	void exitIdentifier(dart_parse.IdentifierContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#functionCall}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunctionCall(dart_parse.FunctionCallContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#functionCall}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunctionCall(dart_parse.FunctionCallContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#arguments}.
+	 * @param ctx the parse tree
+	 */
+	void enterArguments(dart_parse.ArgumentsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#arguments}.
+	 * @param ctx the parse tree
+	 */
+	void exitArguments(dart_parse.ArgumentsContext ctx);
 }

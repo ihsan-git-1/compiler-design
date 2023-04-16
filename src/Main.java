@@ -17,19 +17,14 @@ public class Main {
 
         String source = "src/tests/test2.txt";
         CharStream cs = fromFileName(source);
-
         dart_lexar lexer = new dart_lexar(cs);
         CommonTokenStream token = new CommonTokenStream(lexer);
         dart_parse parser = new dart_parse(token);
-
         ParseTree tree = parser.topTreeDeclaration();
         TopTreeDeclaration doc = (TopTreeDeclaration) new NodesVisitor().visit(tree);
         System.out.println("\n*********** AST ************\n");
         System.out.println(doc);
-
         System.out.println("\n*********** SYMBOL TABLE ************\n");
-
-
         for (Scope s: dart_parseBaseVisitorChild.scopes ){
             System.out.println(" { Scope Name : "+s.getScopeName()+"  ");
 

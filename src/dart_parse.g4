@@ -180,7 +180,7 @@ booleans:
 
 booleanOperation:
     (number|numberDouble|NAME)
-    (EQUAL | NOTEQUAL | ANGLE_BRKT_CL | ANGLE_BRKT_OP | GRATEREQUAL | LESSEQUAL)
+    (EQUAL | NOTEQUAL | ANGLE_BRKT_CL | ANGLE_BRKT_OP | GTE | LTE)
     (number|numberDouble|NAME)
     ;
 
@@ -441,17 +441,17 @@ NUMBERDOUBLE
 ifStatement:
     IF
     BRKT_OP
-    booleanOperation
+    conditionExpr
     BRKT_CL
     block
-    (ELSEIF block)*
+    ((ELSEIF BRKT_OP conditionExpr BRKT_CL block)* (ELSE block))?
     (ELSE block)?
     ;
 
 whileStatement:
     WHILE
     BRKT_OP
-    booleanOperation
+    conditionExpr
     BRKT_CL
     block
     ;
@@ -482,6 +482,7 @@ parameters:
 statement:
     dartDeclaration
     |ifStatement
+    |forStatement
     |whileStatement
     |function
     ;
@@ -489,19 +490,39 @@ statement:
 forStatement:
     FOR
     BRKT_OP
-    (integerDeclaration | doubleDeclaration)
+    forInit?
+    conditionExpr?
     SEMICOLON
-    booleanOperation
-    SEMICOLON
-    (integerDeclaration | doubleDeclaration)
+    expressionList?
     BRKT_CL
-    block
-    ;
-expression : literal
-           | identifier
+    block ;
+
+forInit: variable     //TODO i think we should change its name to "variable declaration" and be saparated from assignment
+       | expressionList ;
+
+expressionList: addExpression (COMMA addExpression)* ;
+
+conditionExpr:
+    booleans
+        | logicalExpression
+        | BRKT_OP conditionExpr BRKT_CL ;
+
+
+logicalExpression: binaryExpr ((AND | OR) binaryExpr)* ;
+
+binaryExpr: term ((EQUAL | NOTEQUAL | LTE | GTE) term)* ;
+
+term: addExpression | addDoubleExpression ;
+
+prefixUnaryOperator : INC | DEC | NOT;
+
+postfixUnaryOperator: INC | DEC;
+
+expression : identifier
+           | prefixUnaryOperator expression
+           | expression postfixUnaryOperator
+           | addExpression postfixUnaryOperator
            | functionCall
-//           | binaryExpression
-//           | unaryExpression
            | '(' expression ')'
            ;
 
@@ -512,6 +533,4 @@ identifier : NAME ;
 functionCall : identifier '(' arguments? ')' ;
 
 arguments : expression (',' expression)* ;
-
-
 

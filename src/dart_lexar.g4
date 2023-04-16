@@ -20,6 +20,7 @@ ELSE:
 
 WHILE:
 'while';
+
 // brackets
 CRLY_BRKT_OP:
 '{'
@@ -45,23 +46,36 @@ SQR_BRKT_OP:
 SQR_BRKT_CL:
 ']'
     ;
+
 // operators
+
 SEMICOLON:';';
 COMMA:',';
 COLON:':';
+DOT: '.';
+
+// binary operators
 PLUS: '+';
 MINUS: '-';
 MULTY:'*';
 DIVIDE:'/';
+MOD: '%';
 EQUAL: '==';
 ASSIGN: '=';
 NOTEQUAL: '!=';
-GRATEREQUAL: '<=';
+GTE: '>=';
+LTE: '<=';
+
+// logical operators
+AND:'&&' ;
+OR:'||';
+
+// unary operators
+INC: '++';
+DEC: '--';
+NOT: '!';
+
 NULL: 'null';
-LESSEQUAL: '>=';
-DOT: '.';
-
-
 
 // dart variabels data types
 INT :
