@@ -8,6 +8,7 @@ import ast.variables.AbstractNumberClass;
 import gen.dart_parse;
 import gen.dart_parseBaseVisitorChild;
 
+import javax.swing.plaf.nimbus.State;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -121,10 +122,10 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
     public IfStatement visitIfStatement(dart_parse.IfStatementContext ctx) {
 
         Scope s = new Scope();
-        s.setId(index);
         s.setScopeName("If Scope (" + index + ")");
         s.setParent(scopes.get(index - 1));
         index = index + 1;
+        s.setId(index);
         scopes.add(s);
 
         int line = ctx.start.getLine();
@@ -135,14 +136,17 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
         Block elseBlock = null;
        // ConditionExpr conditionExpr = visitConditionExpr(ctx.conditionExpr());
         Block ifBlock = visitBlock(ctx.block(0));
-        if (ctx.ELSE() != null) {
+
+        if (!ctx.ELSE().isEmpty()) {
+
             elseBlock = visitBlock(ctx.block(ctx.block().size() - 1));
         }
-        if (ctx.ELSEIF() != null) {
+        if (!ctx.ELSEIF().isEmpty()) {
+
             for (int i = 1; i < ctx.ELSEIF().size(); i++) {
                 elseIfBlocks.add(visitBlock(ctx.block(i)));
             }
-            if (ctx.ELSE() == null) {
+            if (!ctx.ELSE().isEmpty()) {
                 elseIfBlocks.add(visitBlock(ctx.block(ctx.block().size() - 1)));
 
             }
@@ -152,16 +156,17 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
 
     @Override
     public WhileStatement visitWhileStatement(dart_parse.WhileStatementContext ctx) {
+
         Scope s = new Scope();
-        s.setId(index);
         s.setScopeName("While Scope (" + index + ")");
         s.setParent(scopes.get(index - 1));
         index = index + 1;
+        s.setId(index);
         scopes.add(s);
 
         int line = ctx.start.getLine();
-        //  String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
-      //  BooleanOperation booleanOperation = visitBooleanOperation(ctx.booleanOperation());
+        //String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
+        // BooleanOperation booleanOperation = visitBooleanOperation(ctx.booleanOperation());
         Block block = visitBlock(ctx.block());
         String type = NodeType.CONDITION.toString();
         int childCount = ctx.getChildCount();
@@ -175,9 +180,12 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
         String type = NodeType.BLOCK.toString();
         int childCount = ctx.getChildCount();
         List<Statement> statements = new ArrayList<>();
+
         for (int i = 0; i < ctx.statement().size(); i++) {
+
             statements.add(visitStatement(ctx.statement(i)));
         }
+
         return new Block(line, parent, statements, type, childCount);
     }
 
@@ -185,10 +193,10 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
     public Function visitFunction(dart_parse.FunctionContext ctx) {
 
         Scope s = new Scope();
-        s.setId(index);
         s.setScopeName("Function Scope (" + index + ")");
         s.setParent(scopes.get(index - 1));
         index = index + 1;
+        s.setId(index);
         scopes.add(s);
 
         Parameter parameters = null;
@@ -199,6 +207,7 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
         FunctionType type = null;
         String name = ctx.NAME().getText();
         if (ctx.functionType() != null) {
+
             type = visitFunctionType(ctx.functionType());
         }
         if (ctx.parameters() != null) {
@@ -221,6 +230,7 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
 
         for (int i = 0; i < ctx.dartDeclaration().size(); i++) {
             if (ctx.dartDeclaration(i) != null) {
+
                 DartDeclaration var = visitDartDeclaration(ctx.dartDeclaration(i));
                 vars.add(var);
             }
@@ -443,12 +453,14 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
         String type = NodeType.STATEMENT.toString();
         int childCount = ctx.getChildCount();
         if (ctx.dartDeclaration() != null) {
+
             return new Statement(visitDartDeclaration(ctx.dartDeclaration()), line, parent, type, childCount);
         }
         if (ctx.function() != null) {
             return new Statement(visitFunction(ctx.function()), line, parent, type, childCount);
         }
         if (ctx.whileStatement() != null) {
+
             return new Statement(visitWhileStatement(ctx.whileStatement()), line, parent, type, childCount);
         }
         if (ctx.ifStatement() != null) {

@@ -22,6 +22,13 @@ public class Main {
         dart_parse parser = new dart_parse(token);
         ParseTree tree = parser.topTreeDeclaration();
         TopTreeDeclaration doc = (TopTreeDeclaration) new NodesVisitor().visit(tree);
+
+        if(dart_parseBaseVisitorChild.semanticErrors.size()>0) {
+            for (String error : dart_parseBaseVisitorChild.semanticErrors) {
+                System.err.println(error);
+            }
+            return ;
+        }
         System.out.println("\n*********** AST ************\n");
         System.out.println(doc);
         System.out.println("\n*********** SYMBOL TABLE ************\n");
