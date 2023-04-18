@@ -1,15 +1,13 @@
 class test {
 
     Function int a(){
-        String a = "Statement 1";
-        String b = "Statement 2";
-        int num = 3;
-        int dNumber = 5;
-        List<int> tester =[2,3,4,5];
-
+            int b =3;
+            double b =2;
             while(a != b){
                 if(num > dNumber){
+
                     int count = 3;
+
                 }
             }
         }

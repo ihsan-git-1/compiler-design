@@ -16,13 +16,11 @@ public class dart_parseBaseVisitorChild extends dart_parseBaseVisitor{
 
 
     public boolean CheckExistanceInScope(String id , int index ){
-        for(Scope s : scopes){
 
+        for(Scope s : scopes){
             if(s.getId() == index){
                 for (Map.Entry<String, SymbolTableObject> mapElement : s.getSymbolMap().entrySet()) {
-
-
-                    if(mapElement.getKey()==id){
+                    if(mapElement.getKey().equals(id)){
                         return true;
                     }
                 }
