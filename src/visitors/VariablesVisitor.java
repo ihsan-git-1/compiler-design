@@ -77,7 +77,7 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
         int column = ctx.start.getCharPositionInLine() + 1;
         String id = ctx.NAME().getText();
 
-        if(ctx.INT()==null){
+        if(ctx.INT()==null && !CheckExistanceInParentScope(id,index)){
             semanticErrors.add("Undefined name " + id + " at (" + line + "," + column + ")");
         }
 
