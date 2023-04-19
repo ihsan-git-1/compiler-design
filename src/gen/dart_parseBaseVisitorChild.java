@@ -28,4 +28,18 @@ public class dart_parseBaseVisitorChild extends dart_parseBaseVisitor{
         }
         return false;
     }
+
+    public boolean CheckExistanceInParentScope(String id , int index ){
+
+        for(Scope s : scopes){
+            if(s.getId() < index){
+                for (Map.Entry<String, SymbolTableObject> mapElement : s.getSymbolMap().entrySet()) {
+                    if(mapElement.getKey().equals(id)){
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
 }
