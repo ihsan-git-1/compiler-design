@@ -650,7 +650,6 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
         String type = NodeType.OBJECT.toString();
         int childCount = ctx.getChildCount();
         if (ctx.variable() != null) {
-
             return new DartDeclaration(variablesVisitor.visitVariable(ctx.variable()), line, parent, type, childCount);
         } else if (ctx.function() != null) {
             return new DartDeclaration(visitFunction(ctx.function()), line, parent, type, childCount);

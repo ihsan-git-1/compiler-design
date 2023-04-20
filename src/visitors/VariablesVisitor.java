@@ -70,9 +70,6 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
     @Override
     public IntegerDeclaration visitIntegerDeclaration(dart_parse.IntegerDeclarationContext ctx) {
 
-        // INT() is a method generated from the grammar INT
-
-
         int line = ctx.start.getLine();
         int column = ctx.start.getCharPositionInLine() + 1;
         String id = ctx.NAME().getText();
@@ -81,9 +78,11 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
             semanticErrors.add("Undefined name " + id + " at (" + line + "," + column + ")");
         }
 
+        if(ctx.INT()==null && CheckExistanceInParentScope(id,index) && !CheckIfTypeMatchesParentType(id,index,NodeType.INT.toString())){
+            semanticErrors.add("A value of type "+ NodeType.INT.toString() +" can't be assigned to a variable of type "+getParentType(id,index,NodeType.INT.toString()));
+        }
         if (CheckExistanceInScope(id, index)) {
             semanticErrors.add("The name " + id + " already defined (" + line + "," + column + ")");
-
         } else {
 
             if (ctx.addExpression() != null) {
@@ -148,17 +147,26 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
     /////////////////////////////////////
     @Override
     public DoubleDeclaration visitDoubleDeclaration(dart_parse.DoubleDeclarationContext ctx) {
-        Token idToken = ctx.DOUBLE().getSymbol();
-        int line = idToken.getLine();
-        int column = idToken.getCharPositionInLine() + 1;
-        String id = ctx.getChild(0).getText();
+
+        int line = ctx.start.getLine();
+        int column = ctx.start.getCharPositionInLine() + 1;
         String name = String.valueOf(ctx.NAME());
+
+
+        if(ctx.DOUBLE()==null && !CheckExistanceInParentScope(name,index)){
+            semanticErrors.add("Undefined name " + name + " at (" + line + "," + column + ")");
+        }
+
+        if(ctx.DOUBLE()==null && CheckExistanceInParentScope(name,index) && !CheckIfTypeMatchesParentType(name,index,NodeType.DOUBLE.toString())){
+            semanticErrors.add("A value of type "+ NodeType.DOUBLE.toString() +" can't be assigned to a variable of type "+getParentType(name,index,NodeType.DOUBLE.toString()));
+        }
+
         if (CheckExistanceInScope(name, index)) {
             semanticErrors.add("The name " + name + " already defined (" + line + "," + column + ")");
         } else {
             if (ctx.addDoubleExpression() != null) {
                 AddDoubleExpression expr = visitAddDoubleExpression(ctx.addDoubleExpression());
-                scopes.get(index - 1).getSymbolMap().put(id, new SymbolTableObject(NodeType.DOUBLE.toString(), String.valueOf(expr.value.getNum())));
+                scopes.get(index - 1).getSymbolMap().put(name, new SymbolTableObject(NodeType.DOUBLE.toString(), String.valueOf(expr.value.getNum())));
                 int linee = ctx.start.getLine();
                 String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
                 String type = NodeType.DOUBLEDECLARATION.toString();
@@ -185,7 +193,14 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
             stringLine = String.valueOf(ctx.STRING_LINE());
         }
         int line = ctx.start.getLine();
-        int column = ctx.STRING().getSymbol().getCharPositionInLine() + 1;
+        int column = ctx.start.getCharPositionInLine() + 1;
+
+        if(ctx.STRING()==null && !CheckExistanceInParentScope(name,index)){
+            semanticErrors.add("Undefined name " + name + " at (" + line + "," + column + ")");
+        }
+        if(ctx.STRING()==null && CheckExistanceInParentScope(name,index) && !CheckIfTypeMatchesParentType(name,index,NodeType.STRING.toString())){
+            semanticErrors.add("A value of type "+ NodeType.STRING.toString() +" can't be assigned to a variable of type "+getParentType(name,index,NodeType.STRING.toString()));
+        }
         String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
         String type = NodeType.TOPTREEDECLARATION.toString();
         int childCount = ctx.getChildCount();
@@ -193,7 +208,6 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
 
         if (CheckExistanceInScope(name, index)) {
             semanticErrors.add("The name " + name + " already defined (" + line + "," + column + ")");
-
         }else{
             scopes.get(index - 1).getSymbolMap().put(name, new SymbolTableObject(NodeType.STRING.toString(), stringLine));
         }
