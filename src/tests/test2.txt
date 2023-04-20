@@ -1,11 +1,11 @@
 class test {
     Function int a(){
-            int b =3;
-
+            int b = 3;
             while(a != b){
                 if(num > dNumber){
-                    b=3;
+                    b=2.3;
                     int count = 3;
+
                 }
             }
         }
