@@ -33,6 +33,7 @@ public class dart_parseBaseVisitorChild extends dart_parseBaseVisitor{
 
         for(Scope s : scopes){
             if(s.getId() < index){
+
                 for (Map.Entry<String, SymbolTableObject> mapElement : s.getSymbolMap().entrySet()) {
                     if(mapElement.getKey().equals(id)){
                         return true;
@@ -45,7 +46,7 @@ public class dart_parseBaseVisitorChild extends dart_parseBaseVisitor{
 
     public boolean CheckIfTypeMatchesParentType(String id,int index,String type){
         for(Scope s : scopes){
-            if(s.getId() < index){
+            if(s.getId() <= index){
                 for (Map.Entry<String, SymbolTableObject> mapElement : s.getSymbolMap().entrySet()) {
                     if(mapElement.getKey().equals(id)){
                         if(mapElement.getValue().type == type){
@@ -60,7 +61,7 @@ public class dart_parseBaseVisitorChild extends dart_parseBaseVisitor{
 
     public String getParentType (String id,int index,String type){
         for(Scope s : scopes){
-            if(s.getId() < index){
+            if(s.getId() <= index){
                 for (Map.Entry<String, SymbolTableObject> mapElement : s.getSymbolMap().entrySet()) {
 
                     if(mapElement.getKey().equals(id)){

@@ -74,14 +74,15 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
         int column = ctx.start.getCharPositionInLine() + 1;
         String id = ctx.NAME().getText();
 
-        if(ctx.INT()==null && !CheckExistanceInParentScope(id,index)){
+        if(ctx.INT()==null && !CheckExistanceInParentScope(id,index) && !CheckExistanceInScope(id,index)){
             semanticErrors.add("Undefined name " + id + " at (" + line + "," + column + ")");
         }
 
-        if(ctx.INT()==null && CheckExistanceInParentScope(id,index) && !CheckIfTypeMatchesParentType(id,index,NodeType.INT.toString())){
+        if(ctx.INT()==null && (CheckExistanceInParentScope(id,index) || CheckExistanceInScope(id, index))&& !CheckIfTypeMatchesParentType(id,index,NodeType.INT.toString())){
             semanticErrors.add("A value of type "+ NodeType.INT.toString() +" can't be assigned to a variable of type "+getParentType(id,index,NodeType.INT.toString()));
         }
-        if (CheckExistanceInScope(id, index)) {
+
+        if (ctx.INT()!=null && CheckExistanceInScope(id, index)) {
             semanticErrors.add("The name " + id + " already defined (" + line + "," + column + ")");
         } else {
 
@@ -96,6 +97,16 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
                 String type = NodeType.INTEGERDECLARATION.toString();
                 int childCount = ctx.getChildCount();
                 return new IntegerDeclaration(expr, id, linee, parent, type, childCount);
+            }else{
+
+                scopes.get(index - 1).getSymbolMap().put(id, new SymbolTableObject(NodeType.INT.toString(), "0"));
+
+
+                int linee = ctx.start.getLine();
+                String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
+                String type = NodeType.INTEGERDECLARATION.toString();
+                int childCount = ctx.getChildCount();
+                return new IntegerDeclaration(null, id, linee, parent, type, childCount);
             }
         }
         int linee = ctx.start.getLine();
@@ -153,25 +164,36 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
         String name = String.valueOf(ctx.NAME());
 
 
-        if(ctx.DOUBLE()==null && !CheckExistanceInParentScope(name,index)){
+        if(ctx.DOUBLE()==null && !CheckExistanceInParentScope(name,index) && !CheckExistanceInScope(name,index)){
             semanticErrors.add("Undefined name " + name + " at (" + line + "," + column + ")");
         }
 
-        if(ctx.DOUBLE()==null && CheckExistanceInParentScope(name,index) && !CheckIfTypeMatchesParentType(name,index,NodeType.DOUBLE.toString())){
+
+        if(ctx.DOUBLE()==null && (CheckExistanceInParentScope(name,index) || CheckExistanceInScope(name, index) )&& !CheckIfTypeMatchesParentType(name,index,NodeType.DOUBLE.toString())){
             semanticErrors.add("A value of type "+ NodeType.DOUBLE.toString() +" can't be assigned to a variable of type "+getParentType(name,index,NodeType.DOUBLE.toString()));
         }
 
-        if (CheckExistanceInScope(name, index)) {
+        if (ctx.DOUBLE()!=null && CheckExistanceInScope(name, index)) {
             semanticErrors.add("The name " + name + " already defined (" + line + "," + column + ")");
         } else {
             if (ctx.addDoubleExpression() != null) {
                 AddDoubleExpression expr = visitAddDoubleExpression(ctx.addDoubleExpression());
+
                 scopes.get(index - 1).getSymbolMap().put(name, new SymbolTableObject(NodeType.DOUBLE.toString(), String.valueOf(expr.value.getNum())));
+
                 int linee = ctx.start.getLine();
                 String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
                 String type = NodeType.DOUBLEDECLARATION.toString();
                 int childCount = ctx.getChildCount();
                 return new DoubleDeclaration(expr, name, linee, parent, type, childCount);
+            }else{
+                scopes.get(index - 1).getSymbolMap().put(name, new SymbolTableObject(NodeType.DOUBLE.toString(), "0.0"));
+
+                int linee = ctx.start.getLine();
+                String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
+                String type = NodeType.DOUBLEDECLARATION.toString();
+                int childCount = ctx.getChildCount();
+                return new DoubleDeclaration(null, name, linee, parent, type, childCount);
             }
         }
 
@@ -195,10 +217,10 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
         int line = ctx.start.getLine();
         int column = ctx.start.getCharPositionInLine() + 1;
 
-        if(ctx.STRING()==null && !CheckExistanceInParentScope(name,index)){
+        if(ctx.STRING()==null && !CheckExistanceInParentScope(name,index) && !CheckExistanceInScope(name,index)){
             semanticErrors.add("Undefined name " + name + " at (" + line + "," + column + ")");
         }
-        if(ctx.STRING()==null && CheckExistanceInParentScope(name,index) && !CheckIfTypeMatchesParentType(name,index,NodeType.STRING.toString())){
+        if(ctx.STRING()==null && (CheckExistanceInParentScope(name,index) || CheckExistanceInScope(name, index)) && !CheckIfTypeMatchesParentType(name,index,NodeType.STRING.toString())){
             semanticErrors.add("A value of type "+ NodeType.STRING.toString() +" can't be assigned to a variable of type "+getParentType(name,index,NodeType.STRING.toString()));
         }
         String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
@@ -206,7 +228,7 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
         int childCount = ctx.getChildCount();
 
 
-        if (CheckExistanceInScope(name, index)) {
+        if (ctx.STRING()!=null && CheckExistanceInScope(name, index)) {
             semanticErrors.add("The name " + name + " already defined (" + line + "," + column + ")");
         }else{
             scopes.get(index - 1).getSymbolMap().put(name, new SymbolTableObject(NodeType.STRING.toString(), stringLine));
