@@ -1,8 +1,9 @@
 package ast.variables;
 
 import ast.nodes.Node;
+import ast.nodes.TermAbstractChild;
 
-public class BooleanValueClass extends Node {
+public class BooleanValueClass extends TermAbstractChild {
 	public boolean value;
 	
 	public BooleanValueClass(boolean value, int line, String parent, String type, int childCount) {

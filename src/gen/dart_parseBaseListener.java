@@ -1,4 +1,4 @@
-// Generated from dart_parse.g4 by ANTLR 4.10.1
+// Generated from java-escape by ANTLR 4.11.1
 package gen;
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -10,6 +10,7 @@ import org.antlr.v4.runtime.tree.TerminalNode;
  * which can be extended to create a listener which only needs to handle a subset
  * of the available methods.
  */
+@SuppressWarnings("CheckReturnValue")
 public class dart_parseBaseListener implements dart_parseListener {
 	/**
 	 * {@inheritDoc}
@@ -820,13 +821,25 @@ public class dart_parseBaseListener implements dart_parseListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterLogicalExpression(dart_parse.LogicalExpressionContext ctx) { }
+	@Override public void enterOrExpr(dart_parse.OrExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitLogicalExpression(dart_parse.LogicalExpressionContext ctx) { }
+	@Override public void exitOrExpr(dart_parse.OrExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAndExpr(dart_parse.AndExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAndExpr(dart_parse.AndExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -851,6 +864,30 @@ public class dart_parseBaseListener implements dart_parseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitTerm(dart_parse.TermContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterNumericExpr(dart_parse.NumericExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitNumericExpr(dart_parse.NumericExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterNumericTerm(dart_parse.NumericTermContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitNumericTerm(dart_parse.NumericTermContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

@@ -3,11 +3,12 @@ package visitors;
 import ast.NodeType;
 import ast.Scope;
 import ast.SymbolTableObject;
+import ast.nodes.ForInit;
+import ast.nodes.TermAbstractChild;
 import ast.variables.*;
 import gen.dart_parse;
 import gen.dart_parseBaseVisitorChild;
 import org.antlr.v4.runtime.Token;
-
 
 import java.util.*;
 
@@ -137,39 +138,65 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
     /////////////////////////////////////
 
     @Override
-    public Object visitConditionExpr(dart_parse.ConditionExprContext ctx) {
-        return super.visitConditionExpr(ctx);
-    }
+    public Boolean visitBinaryExpr(dart_parse.BinaryExprContext ctx) {
+        List<dart_parse.TermContext> Terms = ctx.term();
+        boolean value;
+        if (Terms.size() == 1) {
+            // If there is only one addition, return the result of visiting it
+        } else {
+        for (int i = 0; i < Terms.size() - 1; i++) {
+            dart_parse.TermContext leftTerm = Terms.get(i);
+            dart_parse.TermContext rightTerm = Terms.get(i + 1);
+            String operator = ctx.getChild(2 * i + 1).getText();
+            TermAbstractChild leftResult = visitTerm(leftTerm);
+            TermAbstractChild rightResult = visitTerm(rightTerm);
+            switch (operator)
+            {
+                case "==":
+                    //code
+                case "!=":
+                    //code
+                default:
+                    //code
+            }
+        }
+        }
 
-    @Override
-    public Object visitLogicalExpression(dart_parse.LogicalExpressionContext ctx) {
-        return super.visitLogicalExpression(ctx);
-    }
-
-    @Override
-    public Object visitBinaryExpr(dart_parse.BinaryExprContext ctx) {
-        return super.visitBinaryExpr(ctx);
+        return null;
     }
 
     @Override
     public TermAbstractChild visitTerm(dart_parse.TermContext ctx) {
-        String type;
-        int line = ctx.start.getLine();
-        String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
-        int childCount = ctx.getChildCount();
-
-        if (ctx.addExpression() != null){
-           // AddExpression expr = visitAddExpression(ctx.addExpression());
+        if (ctx.numericExpr() != null) {
+            return visitNumericExpr(ctx.numericExpr());
         }
-        if(ctx.addDoubleExpression() != null){
-         //   return visitAddDoubleExpression(ctx.addDoubleExpression());
+        if (ctx.conditionExpr() != null) {
+            return visitConditionExpr(ctx.conditionExpr());
+        }
+        if (ctx.booleans() != null) {
+            return visitBooleans(ctx.booleans());
         }
         return null;
     }
 
     @Override
-    public Object visitForInit(dart_parse.ForInitContext ctx) {
-        return super.visitForInit(ctx);
+    public NumericExpr visitNumericExpr(dart_parse.NumericExprContext ctx) {
+        return null;
+    }
+
+    @Override
+    public NumericTerm visitNumericTerm(dart_parse.NumericTermContext ctx) {
+        return null;
+    }
+
+    @Override
+    public ConditionExpr visitConditionExpr(dart_parse.ConditionExprContext ctx) {
+        return null;
+    }
+
+    @Override
+    public ForInit visitForInit(dart_parse.ForInitContext ctx) {
+        return null;
     }
 
     /////////////////////////////////////
