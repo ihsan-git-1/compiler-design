@@ -1,4 +1,4 @@
-// Generated from dart_parse.g4 by ANTLR 4.10.1
+// Generated from java-escape by ANTLR 4.11.1
 package gen;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
@@ -413,11 +413,17 @@ public interface dart_parseVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitConditionExpr(dart_parse.ConditionExprContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link dart_parse#logicalExpression}.
+	 * Visit a parse tree produced by {@link dart_parse#orExpr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitLogicalExpression(dart_parse.LogicalExpressionContext ctx);
+	T visitOrExpr(dart_parse.OrExprContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link dart_parse#andExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAndExpr(dart_parse.AndExprContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link dart_parse#binaryExpr}.
 	 * @param ctx the parse tree
@@ -430,6 +436,18 @@ public interface dart_parseVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitTerm(dart_parse.TermContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link dart_parse#numericExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNumericExpr(dart_parse.NumericExprContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link dart_parse#numericTerm}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNumericTerm(dart_parse.NumericTermContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link dart_parse#prefixUnaryOperator}.
 	 * @param ctx the parse tree

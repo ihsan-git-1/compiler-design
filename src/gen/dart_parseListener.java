@@ -1,4 +1,4 @@
-// Generated from dart_parse.g4 by ANTLR 4.10.1
+// Generated from java-escape by ANTLR 4.11.1
 package gen;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -678,15 +678,25 @@ public interface dart_parseListener extends ParseTreeListener {
 	 */
 	void exitConditionExpr(dart_parse.ConditionExprContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link dart_parse#logicalExpression}.
+	 * Enter a parse tree produced by {@link dart_parse#orExpr}.
 	 * @param ctx the parse tree
 	 */
-	void enterLogicalExpression(dart_parse.LogicalExpressionContext ctx);
+	void enterOrExpr(dart_parse.OrExprContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link dart_parse#logicalExpression}.
+	 * Exit a parse tree produced by {@link dart_parse#orExpr}.
 	 * @param ctx the parse tree
 	 */
-	void exitLogicalExpression(dart_parse.LogicalExpressionContext ctx);
+	void exitOrExpr(dart_parse.OrExprContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#andExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterAndExpr(dart_parse.AndExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#andExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitAndExpr(dart_parse.AndExprContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link dart_parse#binaryExpr}.
 	 * @param ctx the parse tree
@@ -707,6 +717,26 @@ public interface dart_parseListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitTerm(dart_parse.TermContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#numericExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterNumericExpr(dart_parse.NumericExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#numericExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitNumericExpr(dart_parse.NumericExprContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#numericTerm}.
+	 * @param ctx the parse tree
+	 */
+	void enterNumericTerm(dart_parse.NumericTermContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#numericTerm}.
+	 * @param ctx the parse tree
+	 */
+	void exitNumericTerm(dart_parse.NumericTermContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link dart_parse#prefixUnaryOperator}.
 	 * @param ctx the parse tree

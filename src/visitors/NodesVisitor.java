@@ -5,6 +5,7 @@ import ast.Scope;
 import ast.SymbolTableObject;
 import ast.nodes.*;
 import ast.variables.AbstractNumberClass;
+import ast.variables.ConditionExpr;
 import gen.dart_parse;
 import gen.dart_parseBaseVisitorChild;
 
@@ -466,12 +467,33 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
         if (ctx.ifStatement() != null) {
             return new Statement(visitIfStatement(ctx.ifStatement()), line, parent, type, childCount);
         }
+
+        if (ctx.forStatement() != null) {
+            return new Statement(visitForStatement(ctx.forStatement()), line, parent, type, childCount);
+        }
         return null;
     }
 
     @Override
-    public Object visitForStatement(dart_parse.ForStatementContext ctx) {
-        return super.visitForStatement(ctx);
+    public ForStatement visitForStatement(dart_parse.ForStatementContext ctx) {
+
+        Scope s = new Scope();
+        s.setScopeName("for Scope (" + index + ")");
+        s.setParent(scopes.get(index - 1));
+        index = index + 1;
+        s.setId(index);
+        scopes.add(s);
+
+        int line = ctx.start.getLine();
+        //String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
+        String type = NodeType.CONDITION.toString();
+        int childCount = ctx.getChildCount();
+        ForInit forInit = (ForInit) visitForInit(ctx.forInit());
+        ConditionExpr conditionExpr = (ConditionExpr) visitConditionExpr(ctx.conditionExpr());
+        ExpressionList expressionList = (ExpressionList) visitExpressionList(ctx.expressionList());
+        Block block = visitBlock(ctx.block());
+        return new ForStatement(line, null, type, childCount,forInit, conditionExpr,  block, expressionList);
+
     }
 
 

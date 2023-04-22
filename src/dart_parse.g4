@@ -195,7 +195,6 @@ multiplyDoubleExpression
 booleans:
     TRUE
     |FALSE
-    |booleanOperation
     ;
 
 booleanOperation:
@@ -522,17 +521,20 @@ forInit: variable     //TODO i think we should change its name to "variable decl
 
 expressionList: addExpression (COMMA addExpression)* ;
 
-conditionExpr:
-    booleans
-        | logicalExpression
-        | BRKT_OP conditionExpr BRKT_CL ;
+// example on a condition : ((3.3>=3) || false) && (4>=a) ==> (no errors)
+conditionExpr: orExpr ;
 
+orExpr : andExpr (OR andExpr)*;
 
-logicalExpression: binaryExpr ((AND | OR) binaryExpr)* ;
+andExpr :binaryExpr (AND binaryExpr)* ;
 
-binaryExpr: term ((EQUAL | NOTEQUAL | LTE | GTE) term)* ;
+binaryExpr: term ((EQUAL | NOTEQUAL) term)* ;
 
-term: addExpression | addDoubleExpression ;
+term: numericExpr| BRKT_OP conditionExpr BRKT_CL | booleans;
+
+numericExpr: numericTerm ((LTE | GTE | EQUAL | NOTEQUAL) numericTerm)+;
+
+numericTerm:addExpression|addDoubleExpression|identifier;
 
 prefixUnaryOperator : INC | DEC | NOT;
 
