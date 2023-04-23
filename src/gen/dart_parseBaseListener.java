@@ -821,18 +821,6 @@ public class dart_parseBaseListener implements dart_parseListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterOrExpr(dart_parse.OrExprContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitOrExpr(dart_parse.OrExprContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterAndExpr(dart_parse.AndExprContext ctx) { }
 	/**
 	 * {@inheritDoc}

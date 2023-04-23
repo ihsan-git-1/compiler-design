@@ -678,16 +678,6 @@ public interface dart_parseListener extends ParseTreeListener {
 	 */
 	void exitConditionExpr(dart_parse.ConditionExprContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link dart_parse#orExpr}.
-	 * @param ctx the parse tree
-	 */
-	void enterOrExpr(dart_parse.OrExprContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link dart_parse#orExpr}.
-	 * @param ctx the parse tree
-	 */
-	void exitOrExpr(dart_parse.OrExprContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link dart_parse#andExpr}.
 	 * @param ctx the parse tree
 	 */

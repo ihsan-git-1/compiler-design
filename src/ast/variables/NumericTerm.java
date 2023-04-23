@@ -3,10 +3,10 @@ package ast.variables;
 import ast.nodes.Node;
 
 public class NumericTerm extends Node {
-    AbstractNumberClass value;
+    NumericTermAbstractChild child;
 
-    public NumericTerm(int line, String parent, String type, int childCount, AbstractNumberClass value) {
+    public NumericTerm(int line, String parent, String type, int childCount, NumericTermAbstractChild child) {
         super(line, parent, type, childCount);
-        this.value = value;
+        this.child = child;
     }
 }

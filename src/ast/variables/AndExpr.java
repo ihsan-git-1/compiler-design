@@ -2,8 +2,13 @@ package ast.variables;
 
 import ast.nodes.Node;
 
-public class BinaryExpr extends Node {
+public class AndExpr extends Node {
 boolean value;
+
+    public AndExpr(int line, String parent, String type, int childCount, boolean value) {
+        super(line, parent, type, childCount);
+        this.value = value;
+    }
 
     public boolean isValue() {
         return value;
@@ -13,14 +18,9 @@ boolean value;
         this.value = value;
     }
 
-    public BinaryExpr(int line, String parent, String type, int childCount, boolean value) {
-        super(line, parent, type, childCount);
-        this.value = value;
-    }
-
     @Override
     public String toString() {
-        return "BinaryExpr{" +
+        return "AndExpr{" +
                 "value=" + value +
                 ", line=" + line +
                 ", col=" + col +

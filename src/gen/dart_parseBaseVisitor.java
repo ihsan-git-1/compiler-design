@@ -487,13 +487,6 @@ public class dart_parseBaseVisitor<T> extends AbstractParseTreeVisitor<T> implem
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitOrExpr(dart_parse.OrExprContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
 	@Override public T visitAndExpr(dart_parse.AndExprContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}

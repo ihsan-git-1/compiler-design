@@ -1,15 +1,21 @@
 package ast.variables;
 
-import ast.nodes.Node;
-
-public class AddExpression extends Node {
+public class AddExpression extends NumericTermAbstractChild<Double> {
 	public NumberClass value;
+	@Override
+	public Double getValue() {
+		return super.getValue();
+	}
 
+	@Override
+	public void setValue(Double value) {
+		super.setValue(value);
+	}
 
-	public AddExpression(NumberClass value, int line, String parent,String type,int childCount) {
+	public AddExpression(NumberClass value, int line, String parent, String type, int childCount) {
 		super(line, parent, type, childCount);
 		this.value = value;
-
+		setValue((double) value.num);
 	}
 
 	@Override

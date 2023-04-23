@@ -413,12 +413,6 @@ public interface dart_parseVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitConditionExpr(dart_parse.ConditionExprContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link dart_parse#orExpr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitOrExpr(dart_parse.OrExprContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link dart_parse#andExpr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
