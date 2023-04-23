@@ -522,9 +522,8 @@ forInit: variable     //TODO i think we should change its name to "variable decl
 expressionList: addExpression (COMMA addExpression)* ;
 
 // example on a condition : ((3.3>=3) || false) && (4>=a) ==> (no errors)
-conditionExpr: orExpr ;
 
-orExpr : andExpr (OR andExpr)*;
+conditionExpr : andExpr (OR andExpr)*;
 
 andExpr :binaryExpr (AND binaryExpr)* ;
 
@@ -532,7 +531,7 @@ binaryExpr: term ((EQUAL | NOTEQUAL) term)* ;
 
 term: numericExpr| BRKT_OP conditionExpr BRKT_CL | booleans;
 
-numericExpr: numericTerm ((LTE | GTE | EQUAL | NOTEQUAL) numericTerm)+;
+numericExpr: numericTerm (LTE | GTE | EQUAL | NOTEQUAL) numericTerm;
 
 numericTerm:addExpression|addDoubleExpression|identifier;
 

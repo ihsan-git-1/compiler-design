@@ -1,13 +1,12 @@
 package ast.variables;
 
-import ast.nodes.Node;
 import ast.nodes.TermAbstractChild;
 
-public class BooleanValueClass extends TermAbstractChild {
+public class BooleanValueClass extends TermAbstractChild<Boolean> {
 	public boolean value;
 	
 	public BooleanValueClass(boolean value, int line, String parent, String type, int childCount) {
-		super(line, parent, type, childCount);
+		super(line, parent, type, childCount,value);
 		this.value = value;
 	}
 
