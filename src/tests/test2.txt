@@ -1,12 +1,22 @@
-class test {
-    Function int a(){
-            int b = 3;
-            while(a != b){
-                if(num > dNumber){
-                    b=2;
-                    int count = 3;
 
-                }
-            }
+class test {
+
+    void main(){
+
+        if(true){
+            String a = "String";
         }
     }
+    void a(){
+
+        while(true){
+            int y = 1;
+        }
+    }
+
+    void l(){
+
+    }
+
+
+ }

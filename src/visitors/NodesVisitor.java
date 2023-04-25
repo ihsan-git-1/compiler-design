@@ -8,14 +8,19 @@ import ast.variables.AbstractNumberClass;
 import ast.variables.ConditionExpr;
 import gen.dart_parse;
 import gen.dart_parseBaseVisitorChild;
-
+import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.TokenStream;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class NodesVisitor extends dart_parseBaseVisitorChild {
 
+    public TokenStream tokenStream;
 
+    public NodesVisitor(TokenStream tokenStream) {
+        this.tokenStream = tokenStream;
+    }
     //**************************** base declarations start code ********************************///
     @Override
     public TopTreeDeclaration visitTopTreeDeclaration(dart_parse.TopTreeDeclarationContext ctx) {
@@ -25,8 +30,8 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
         s.setId(index);
         s.setScopeName("Global Scope (0)");
         s.setParent(null);
-        scopes.add(s);
-
+        scopes.push(s);
+        scopeNames.add(s.getScopeName());
 
         int line = ctx.start.getLine();
         String parent = "";
@@ -67,6 +72,14 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
 
     @Override
     public ClassDeclaration visitClassDeclaration(dart_parse.ClassDeclarationContext ctx) {
+        Scope s = new Scope();
+        s.setScopeName("Class Scope (" + index + ")");
+        s.setParent(scopes.get(index - 1));
+        scopes.push(s);
+        index = index + 1;
+        s.setId(index);
+        scopeNames.add(s.getScopeName() + " Parnet Is "+s.getParent().getScopeName());
+
         int line = ctx.start.getLine();
         String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
         String type = NodeType.CLASS.toString();
@@ -75,6 +88,9 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
         for (int i = 0; i < ctx.dartDeclaration().size(); i++) {
             classDec.getDartDeclarationList().add(this.visitDartDeclaration(ctx.dartDeclaration(i)));
         }
+
+        scopes.pop();
+        index = index - 1;
         return classDec;
     }
 
@@ -124,9 +140,10 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
         Scope s = new Scope();
         s.setScopeName("If Scope (" + index + ")");
         s.setParent(scopes.get(index - 1));
+        scopes.push(s);
         index = index + 1;
         s.setId(index);
-        scopes.add(s);
+        scopeNames.add(s.getScopeName() + " Parnet Is "+s.getParent().getScopeName());
 
         int line = ctx.start.getLine();
         //String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
@@ -151,6 +168,8 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
 
             }
         }
+        scopes.pop();
+        index = index - 1;
         return new IfStatement(line, null, type, childCount, null, ifBlock, elseIfBlocks, elseBlock);
     }
 
@@ -160,9 +179,10 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
         Scope s = new Scope();
         s.setScopeName("While Scope (" + index + ")");
         s.setParent(scopes.get(index - 1));
+        scopes.push(s);
         index = index + 1;
         s.setId(index);
-        scopes.add(s);
+        scopeNames.add(s.getScopeName() + " Parnet Is "+s.getParent().getScopeName());
 
         int line = ctx.start.getLine();
         //String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
@@ -170,6 +190,9 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
         Block block = visitBlock(ctx.block());
         String type = NodeType.CONDITION.toString();
         int childCount = ctx.getChildCount();
+
+        scopes.pop();
+        index = index -1 ;
         return new WhileStatement(line, null, type, childCount, null, block);
     }
 
@@ -192,12 +215,14 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
     @Override
     public Function visitFunction(dart_parse.FunctionContext ctx) {
 
+        boolean isPushed = false;
         Scope s = new Scope();
-        s.setScopeName("Function Scope (" + index + ")");
+        s.setScopeName("Function Scope "+  ctx.NAME() +" ("+ index + ")");
         s.setParent(scopes.get(index - 1));
+        scopes.push(s);
         index = index + 1;
         s.setId(index);
-        scopes.add(s);
+        scopeNames.add(s.getScopeName() + " Parnet Is "+s.getParent().getScopeName());
 
         Parameter parameters = null;
         int line = ctx.start.getLine();
@@ -214,6 +239,9 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
             parameters = visitParameters(ctx.parameters());
         }
         Block block = visitBlock(ctx.block());
+
+        scopes.pop();
+        index = index - 1;
         return new Function(line, null, nodeType, childCount, type, name, parameters, block);
     }
 
@@ -481,7 +509,7 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
         s.setParent(scopes.get(index - 1));
         index = index + 1;
         s.setId(index);
-        scopes.add(s);
+        scopes.push(s);
 
         int line = ctx.start.getLine();
         //String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");

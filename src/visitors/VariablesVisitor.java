@@ -94,9 +94,11 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
         int column = ctx.start.getCharPositionInLine() + 1;
         String id = ctx.getChild(0).getText();
 
+
         if (!isDecl && !CheckExistanceInParentScope(id, index) && !CheckExistanceInScope(id, index)) {
             semanticErrors.add("Undefined name " + id + " at (" + line + "," + column + ")");
         }
+
 
         if (!isDecl && (CheckExistanceInParentScope(id, index) || CheckExistanceInScope(id, index)) && !CheckIfTypeMatchesParentType(id, index, NodeType.INT.toString())) {
             semanticErrors.add("A value of type " + NodeType.INT.toString() + " can't be assigned to a variable of type " + getParentType(id, index, NodeType.INT.toString()));
@@ -111,6 +113,7 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
 
                 scopes.get(index - 1).getSymbolMap().put(id, new SymbolTableObject(NodeType.INT.toString(), String.valueOf(expr.value.getNum())));
 
+                varialbeNames.add("Identifier " + id + ", Type " +NodeType.INT.toString() + ", Value : " + String.valueOf(expr.value.getNum()) + " , Scope "+scopes.peek().getScopeName());
                 int linee = ctx.start.getLine();
                 String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
                 String type = NodeType.INTEGERDECLARATION.toString();
@@ -118,6 +121,7 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
                 return new IntegerDeclaration(expr, id, linee, parent, type, childCount);
             } else {
                 scopes.get(index - 1).getSymbolMap().put(id, new SymbolTableObject(NodeType.INT.toString(), "0"));
+                varialbeNames.add("Identifier " + id + ", Type " +NodeType.INT.toString() + ", Value : 0 ,  Scope "+scopes.peek().getScopeName());
 
                 int linee = ctx.start.getLine();
                 String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
@@ -324,6 +328,8 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
             if (ctx.addDoubleExpression() != null) {
                 AddDoubleExpression expr = visitAddDoubleExpression(ctx.addDoubleExpression());
                 scopes.get(index - 1).getSymbolMap().put(name, new SymbolTableObject(NodeType.DOUBLE.toString(), String.valueOf(expr.value.getNum())));
+                varialbeNames.add("Identifier " + name + ", Type " +NodeType.DOUBLE.toString() + ", Value : " + String.valueOf(expr.value.getNum()) + " , Scope "+scopes.peek().getScopeName());
+
                 int linee = ctx.start.getLine();
                 String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
                 String type = NodeType.DOUBLEDECLARATION.toString();
@@ -331,6 +337,7 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
                 return new DoubleDeclaration(expr, name, linee, parent, type, childCount);
             } else {
                 scopes.get(index - 1).getSymbolMap().put(name, new SymbolTableObject(NodeType.DOUBLE.toString(), "0.0"));
+                varialbeNames.add("Identifier " + name + ", Type " +NodeType.DOUBLE.toString() + ", Value : 0.0 , Scope "+scopes.peek().getScopeName());
 
                 int linee = ctx.start.getLine();
                 String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
@@ -395,6 +402,8 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
             semanticErrors.add("The name " + name + " already defined (" + line + "," + column + ")");
         } else {
             scopes.get(index - 1).getSymbolMap().put(name, new SymbolTableObject(NodeType.STRING.toString(), stringLine));
+            varialbeNames.add("Identifier " + name + ", Type " +NodeType.STRING.toString() + ", Value : " + stringLine + " , Scope "+scopes.peek().getScopeName());
+
         }
 
 
@@ -441,6 +450,7 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
                 BooleanValueClass expr = visitBooleans(ctx.booleans());
 
                 scopes.get(index - 1).getSymbolMap().put(id, new SymbolTableObject(NodeType.BOOL.toString(), String.valueOf(expr.getBool())));
+                varialbeNames.add("Identifier " + id + ", Type " +NodeType.BOOL.toString() + ", Value : " + String.valueOf(expr.getBool()) + " , Scope "+scopes.peek().getScopeName());
 
                 int linee = ctx.start.getLine();
                 String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
@@ -448,7 +458,8 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
                 int childCount = ctx.getChildCount();
                 return new BooleanDeclaration(id, expr, linee, parent, type, childCount);
             } else {
-                scopes.get(index - 1).getSymbolMap().put(id, new SymbolTableObject(NodeType.BOOL.toString(), "0.0"));
+                scopes.get(index - 1).getSymbolMap().put(id, new SymbolTableObject(NodeType.BOOL.toString(), "false"));
+                varialbeNames.add("Identifier " + id + ", Type " +NodeType.BOOL.toString() + ", Value : false , Scope "+scopes.peek().getScopeName());
 
                 int linee = ctx.start.getLine();
                 String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
@@ -457,7 +468,7 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
                 return new BooleanDeclaration(id, linee, parent, type, childCount);
             }
         }
-//        scopes.get(index - 1).getSymbolMap().put(id, new SymbolTableObject(NodeType.BOOL.toString(), ctx.booleans().getText()));
+
         int linee = ctx.start.getLine();
         String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
         String type = NodeType.BOOLEANDECLARATION.toString();
