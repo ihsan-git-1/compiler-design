@@ -509,17 +509,20 @@ statement:
 forStatement:
     FOR
     BRKT_OP
-    forInit?
+    variable?
     conditionExpr?
     SEMICOLON
-    expressionList?
+    variableAssignment?
+    SEMICOLON
     BRKT_CL
-    block ;
+    block;
 
-forInit: variable     //TODO i think we should change its name to "variable declaration" and be saparated from assignment
-       | expressionList ;
 
-expressionList: addExpression (COMMA addExpression)* ;
+variableAssignment:
+    integerDeclaration
+    |stringDeclaration
+    |booleanDeclaration
+    |doubleDeclaration;
 
 // example on a condition : ((3.3>=3) || false) && (4>=a) ==> (no errors)
 

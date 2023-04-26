@@ -648,25 +648,15 @@ public interface dart_parseListener extends ParseTreeListener {
 	 */
 	void exitForStatement(dart_parse.ForStatementContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link dart_parse#forInit}.
+	 * Enter a parse tree produced by {@link dart_parse#variableAssignment}.
 	 * @param ctx the parse tree
 	 */
-	void enterForInit(dart_parse.ForInitContext ctx);
+	void enterVariableAssignment(dart_parse.VariableAssignmentContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link dart_parse#forInit}.
+	 * Exit a parse tree produced by {@link dart_parse#variableAssignment}.
 	 * @param ctx the parse tree
 	 */
-	void exitForInit(dart_parse.ForInitContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link dart_parse#expressionList}.
-	 * @param ctx the parse tree
-	 */
-	void enterExpressionList(dart_parse.ExpressionListContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link dart_parse#expressionList}.
-	 * @param ctx the parse tree
-	 */
-	void exitExpressionList(dart_parse.ExpressionListContext ctx);
+	void exitVariableAssignment(dart_parse.VariableAssignmentContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link dart_parse#conditionExpr}.
 	 * @param ctx the parse tree

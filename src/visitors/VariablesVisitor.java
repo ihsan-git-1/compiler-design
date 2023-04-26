@@ -281,7 +281,7 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
     }
 
     @Override
-    public ForInit visitForInit(dart_parse.ForInitContext ctx) {
+    public VariableAssignment visitVariableAssignment(dart_parse.VariableAssignmentContext ctx) {
         return null;
     }
 
