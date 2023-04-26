@@ -395,17 +395,11 @@ public interface dart_parseVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitForStatement(dart_parse.ForStatementContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link dart_parse#forInit}.
+	 * Visit a parse tree produced by {@link dart_parse#variableAssignment}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitForInit(dart_parse.ForInitContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link dart_parse#expressionList}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitExpressionList(dart_parse.ExpressionListContext ctx);
+	T visitVariableAssignment(dart_parse.VariableAssignmentContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link dart_parse#conditionExpr}.
 	 * @param ctx the parse tree

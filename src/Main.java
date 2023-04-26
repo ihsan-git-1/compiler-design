@@ -15,7 +15,6 @@ import static org.antlr.v4.runtime.CharStreams.fromFileName;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-
         String source = "src/tests/test2.txt";
         CharStream cs = fromFileName(source);
         dart_lexar lexer = new dart_lexar(cs);
@@ -31,6 +30,7 @@ public class Main {
             }
             return ;
         }
+
         System.out.println("\n*********** AST ************\n");
         System.out.println(doc);
         System.out.println("\n*********** SYMBOL TABLE ************\n");

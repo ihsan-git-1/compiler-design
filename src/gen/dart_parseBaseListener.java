@@ -785,25 +785,13 @@ public class dart_parseBaseListener implements dart_parseListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterForInit(dart_parse.ForInitContext ctx) { }
+	@Override public void enterVariableAssignment(dart_parse.VariableAssignmentContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitForInit(dart_parse.ForInitContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterExpressionList(dart_parse.ExpressionListContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitExpressionList(dart_parse.ExpressionListContext ctx) { }
+	@Override public void exitVariableAssignment(dart_parse.VariableAssignmentContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
