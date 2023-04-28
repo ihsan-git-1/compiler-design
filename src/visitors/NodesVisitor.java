@@ -81,7 +81,7 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
         scopes.push(s);
         index = index + 1;
         s.setId(index);
-        scopeNames.add(s.getScopeName() + " Parnet Is " + s.getParent().getScopeName());
+        scopeNames.add(s.getScopeName() + " Parent Is " + s.getParent().getScopeName());
 
         int line = ctx.start.getLine();
         String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
@@ -146,7 +146,7 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
         scopes.push(s);
         index = index + 1;
         s.setId(index);
-        scopeNames.add(s.getScopeName() + " Parnet Is " + s.getParent().getScopeName());
+        scopeNames.add(s.getScopeName() + " Parent Is " + s.getParent().getScopeName());
 
         int line = ctx.start.getLine();
         //String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
@@ -191,7 +191,7 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
         scopes.push(s);
         index = index + 1;
         s.setId(index);
-        scopeNames.add(s.getScopeName() + " Parnet Is " + s.getParent().getScopeName());
+        scopeNames.add(s.getScopeName() + " Parent Is " + s.getParent().getScopeName());
 
         int line = ctx.start.getLine();
         //String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
@@ -231,7 +231,7 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
         scopes.push(s);
         index = index + 1;
         s.setId(index);
-        scopeNames.add(s.getScopeName() + " Parnet Is " + s.getParent().getScopeName());
+        scopeNames.add(s.getScopeName() + " Parent Is " + s.getParent().getScopeName());
 
         Parameter parameters = null;
         int line = ctx.start.getLine();

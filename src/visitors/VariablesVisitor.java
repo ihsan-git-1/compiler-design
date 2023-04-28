@@ -2,56 +2,35 @@ package visitors;
 
 import ast.NodeType;
 import ast.SymbolTableObject;
-import ast.nodes.ForInit;
 import ast.nodes.TermAbstractChild;
 import ast.variables.*;
 import gen.dart_parse;
 import gen.dart_parseBaseVisitorChild;
 import org.antlr.v4.runtime.Token;
-
 import java.util.*;
 
 
 public class VariablesVisitor extends dart_parseBaseVisitorChild {
 
-
     @Override
     public Variable visitVariable(dart_parse.VariableContext ctx) {
-
+        int line = ctx.start.getLine();
+        String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
+        String type = NodeType.VARIABLE.toString();
+        int childCount = ctx.getChildCount();
 
         if (ctx.stringDeclarationLine() != null) {
-
-            int line = ctx.start.getLine();
-            String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
-            String type = NodeType.VARIABLE.toString();
-            int childCount = ctx.getChildCount();
             return new Variable(visitStringDeclarationLine(ctx.stringDeclarationLine()), line, parent, type, childCount);
         }
-
         if (ctx.integerDeclarationLine() != null) {
-
-            int line = ctx.start.getLine();
-            String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
-            String type = NodeType.VARIABLE.toString();
-            int childCount = ctx.getChildCount();
-
             return new Variable(visitIntegerDeclarationLine(ctx.integerDeclarationLine()), line, parent, type, childCount);
         }
         if (ctx.doubleDeclarationLine() != null) {
-            int line = ctx.start.getLine();
-            String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
-            String type = NodeType.VARIABLE.toString();
-            int childCount = ctx.getChildCount();
             return new Variable(visitDoubleDeclarationLine(ctx.doubleDeclarationLine()), line, parent, type, childCount);
         }
         if (ctx.booleanDeclarationLine() != null) {
-            int line = ctx.start.getLine();
-            String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
-            String type = NodeType.VARIABLE.toString();
-            int childCount = ctx.getChildCount();
             return new Variable(visitBooleanDeclarationLine(ctx.booleanDeclarationLine()), line, parent, type, childCount);
         }
-
         return null;
     }
 
@@ -64,14 +43,13 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
         String type = NodeType.NUMBER.toString();
         int childCount = ctx.getChildCount();
         return new NumberClass(num, line, parent, type, childCount);
-
     }
 
     @Override
     public IntegerDeclarationLine visitIntegerDeclarationLine(dart_parse.IntegerDeclarationLineContext ctx) {
         int line = ctx.start.getLine();
         String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
-        int column = ctx.start.getCharPositionInLine() + 1;
+        // int column = ctx.start.getCharPositionInLine() + 1;
         String type = NodeType.INTEGERDECLARATIONLINE.toString();
         int childCount = ctx.getChildCount();
         List<IntegerDeclaration> l = new ArrayList<>();
@@ -89,56 +67,34 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
     }
 
     public IntegerDeclaration visitIntegerDeclaration(dart_parse.IntegerDeclarationContext ctx, Boolean isDecl) {
-
-        int line = ctx.start.getLine();
         int column = ctx.start.getCharPositionInLine() + 1;
+        int line = ctx.start.getLine();
         String id = ctx.getChild(0).getText();
-
-
+        String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
+        String type = NodeType.INTEGERDECLARATION.toString();
+        int childCount = ctx.getChildCount();
         if (!isDecl && !CheckExistanceInParentScope(id, index) && !CheckExistanceInScope(id, index)) {
             semanticErrors.add("Undefined name " + id + " at (" + line + "," + column + ")");
         }
-
-
         if (!isDecl && (CheckExistanceInParentScope(id, index) || CheckExistanceInScope(id, index)) && !CheckIfTypeMatchesParentType(id, index, NodeType.INT.toString())) {
-            semanticErrors.add("A value of type " + NodeType.INT.toString() + " can't be assigned to a variable of type " + getParentType(id, index, NodeType.INT.toString()));
+            semanticErrors.add("A value of type " + NodeType.INT + " can't be assigned to a variable of type " + getParentType(id, index, NodeType.INT.toString()));
         }
         if (isDecl && CheckExistanceInScope(id, index)) {
             semanticErrors.add("The name " + id + " already defined (" + line + "," + column + ")");
         } else {
-
             if (ctx.addExpression() != null) {
-
                 AddExpression expr = visitAddExpression(ctx.addExpression());
-
                 scopes.get(index - 1).getSymbolMap().put(id, new SymbolTableObject(NodeType.INT.toString(), String.valueOf(expr.value.getNum())));
-
-                varialbeNames.add("Identifier " + id + ", Type " +NodeType.INT.toString() + ", Value : " + String.valueOf(expr.value.getNum()) + " , Scope "+scopes.peek().getScopeName());
-                int linee = ctx.start.getLine();
-                String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
-                String type = NodeType.INTEGERDECLARATION.toString();
-                int childCount = ctx.getChildCount();
-                return new IntegerDeclaration(expr, id, linee, parent, type, childCount);
+                varialbeNames.add("Identifier " + id + ", Type " + NodeType.INT + ", Value : " + expr.value.getNum() + " , Scope " + scopes.peek().getScopeName());
+                return new IntegerDeclaration(expr, id, line, parent, type, childCount);
             } else {
                 scopes.get(index - 1).getSymbolMap().put(id, new SymbolTableObject(NodeType.INT.toString(), "0"));
-                varialbeNames.add("Identifier " + id + ", Type " +NodeType.INT.toString() + ", Value : 0 ,  Scope "+scopes.peek().getScopeName());
-
-                int linee = ctx.start.getLine();
-                String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
-                String type = NodeType.INTEGERDECLARATION.toString();
-                int childCount = ctx.getChildCount();
-                return new IntegerDeclaration(null, id, linee, parent, type, childCount);
+                varialbeNames.add("Identifier " + id + ", Type " + NodeType.INT + ", Value : 0 ,  Scope " + scopes.peek().getScopeName());
+                return new IntegerDeclaration(null, id, line, parent, type, childCount);
             }
         }
-        int linee = ctx.start.getLine();
-        String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
-        String type = NodeType.INTEGERDECLARATION.toString();
-        int childCount = ctx.getChildCount();
-        return new IntegerDeclaration(id, linee, parent, type, childCount);
+        return new IntegerDeclaration(id, line, parent, type, childCount);
     }
-//TODO complete this methods
-
-    /////////////////////////////////////
 
     @Override
     public BinaryExpr visitBinaryExpr(dart_parse.BinaryExprContext ctx) {
@@ -158,10 +114,8 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
             boolean num1 = leftResult.getValue();
             boolean result = num1;
             for (int i = 0; i < Terms.size() - 1; i++) {
-                leftTerm = Terms.get(i);
                 dart_parse.TermContext rightTerm = Terms.get(i + 1);
                 String operator = ctx.getChild(2 * i + 1).getText();
-                leftResult = visitTerm(leftTerm);
                 TermAbstractChild<Boolean> rightResult = visitTerm(rightTerm);
                 num1 = result;
                 boolean num2 = rightResult.getValue();
@@ -235,23 +189,18 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
         String type = NodeType.BOOLEAN.toString();
         int childCount = ctx.getChildCount();
         List<dart_parse.BinaryExprContext> expressions = ctx.binaryExpr();
-        if (expressions.size() == 1) {
-            dart_parse.BinaryExprContext expr = expressions.get(0);
-            BinaryExpr exprResult = visitBinaryExpr(expr);
-            boolean result = exprResult.isValue();
-            return new AndExpr(line, null, type, childCount, result);
-        } else {
-            dart_parse.BinaryExprContext leftExpr = expressions.get(0);
-            BinaryExpr leftResult = visitBinaryExpr(leftExpr);
-            boolean result = leftResult.isValue();;
+        dart_parse.BinaryExprContext expr = expressions.get(0);
+        BinaryExpr exprResult = visitBinaryExpr(expr);
+        boolean result = exprResult.isValue();
+        if (expressions.size() != 1) {
             for (int i = 0; i < expressions.size() - 1; i++) {
                 dart_parse.BinaryExprContext rightExpr = expressions.get(i + 1);
                 BinaryExpr rightResult = visitBinaryExpr(rightExpr);
                 boolean num2 = rightResult.isValue();
                 result = (result && num2);
             }
-            return new AndExpr(line, null, type, childCount, result);
         }
+        return new AndExpr(line, null, type, childCount, result);
     }
 
     @Override
@@ -261,36 +210,41 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
         String type = NodeType.BOOLEAN.toString();
         int childCount = ctx.getChildCount();
         List<dart_parse.AndExprContext> expressions = ctx.andExpr();
-        if (expressions.size() == 1) {
-            dart_parse.AndExprContext expr = expressions.get(0);
-            AndExpr exprResult = visitAndExpr(expr);
-            boolean result = exprResult.isValue();
-            return new ConditionExpr(line, null, type, childCount, result);
-        } else {
-            dart_parse.AndExprContext leftExpr = expressions.get(0);
-            AndExpr leftResult = visitAndExpr(leftExpr);
-            boolean result = leftResult.isValue();;
+        dart_parse.AndExprContext expr = expressions.get(0);
+        AndExpr exprResult = visitAndExpr(expr);
+        boolean result = exprResult.isValue();
+        if (expressions.size() != 1) {
             for (int i = 0; i < expressions.size() - 1; i++) {
                 dart_parse.AndExprContext rightExpr = expressions.get(i + 1);
                 AndExpr rightResult = visitAndExpr(rightExpr);
                 boolean num2 = rightResult.isValue();
                 result = (result || num2);
             }
-            return new ConditionExpr(line, null, type, childCount, result);
         }
+        return new ConditionExpr(line, null, type, childCount, result);
     }
 
     @Override
     public VariableAssignment visitVariableAssignment(dart_parse.VariableAssignmentContext ctx) {
-        return null;
+        //TODO add is Decl param
+        if(ctx.integerDeclaration()!=null){
+            return visitIntegerDeclaration(ctx.integerDeclaration(),true);
+        }
+        else if(ctx.doubleDeclaration()!=null){
+            return visitDoubleDeclaration(ctx.doubleDeclaration(),true);
+        }
+        else if(ctx.booleanDeclaration()!=null){
+            return visitBooleanDeclaration(ctx.booleanDeclaration(),true);
+        }
+        else
+            return visitStringDeclaration(ctx.stringDeclaration(),true);
     }
 
-    /////////////////////////////////////
 
     public DoubleDeclarationLine visitDoubleDeclarationLine(dart_parse.DoubleDeclarationLineContext ctx) {
         int line = ctx.start.getLine();
         String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
-        int column = ctx.start.getCharPositionInLine() + 1;
+        //int column = ctx.start.getCharPositionInLine() + 1;
         String type = NodeType.DOUBLEDECLARATIONLINE.toString();
         int childCount = ctx.getChildCount();
         List<DoubleDeclaration> l = new ArrayList<>();
@@ -308,18 +262,19 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
     }
 
     public DoubleDeclaration visitDoubleDeclaration(dart_parse.DoubleDeclarationContext ctx, Boolean isDecl) {
-
         int line = ctx.start.getLine();
         int column = ctx.start.getCharPositionInLine() + 1;
+        int childCount = ctx.getChildCount();
         String name = String.valueOf(ctx.NAME());
-
+        String type = NodeType.DOUBLEDECLARATION.toString();
+        String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
 
         if (!isDecl && !CheckExistanceInParentScope(name, index) && !CheckExistanceInScope(name, index)) {
             semanticErrors.add("Undefined name " + name + " at (" + line + "," + column + ")");
         }
 
         if (!isDecl && (CheckExistanceInParentScope(name, index) || CheckExistanceInScope(name, index)) && !CheckIfTypeMatchesParentType(name, index, NodeType.DOUBLE.toString())) {
-            semanticErrors.add("A value of type " + NodeType.DOUBLE.toString() + " can't be assigned to a variable of type " + getParentType(name, index, NodeType.DOUBLE.toString()));
+            semanticErrors.add("A value of type " + NodeType.DOUBLE + " can't be assigned to a variable of type " + getParentType(name, index, NodeType.DOUBLE.toString()));
         }
 
         if (isDecl && CheckExistanceInScope(name, index)) {
@@ -328,37 +283,22 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
             if (ctx.addDoubleExpression() != null) {
                 AddDoubleExpression expr = visitAddDoubleExpression(ctx.addDoubleExpression());
                 scopes.get(index - 1).getSymbolMap().put(name, new SymbolTableObject(NodeType.DOUBLE.toString(), String.valueOf(expr.value.getNum())));
-                varialbeNames.add("Identifier " + name + ", Type " +NodeType.DOUBLE.toString() + ", Value : " + String.valueOf(expr.value.getNum()) + " , Scope "+scopes.peek().getScopeName());
-
-                int linee = ctx.start.getLine();
-                String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
-                String type = NodeType.DOUBLEDECLARATION.toString();
-                int childCount = ctx.getChildCount();
-                return new DoubleDeclaration(expr, name, linee, parent, type, childCount);
+                varialbeNames.add("Identifier " + name + ", Type " + NodeType.DOUBLE + ", Value : " + expr.value.getNum() + " , Scope " + scopes.peek().getScopeName());
+                return new DoubleDeclaration(expr, name, line, parent, type, childCount);
             } else {
                 scopes.get(index - 1).getSymbolMap().put(name, new SymbolTableObject(NodeType.DOUBLE.toString(), "0.0"));
-                varialbeNames.add("Identifier " + name + ", Type " +NodeType.DOUBLE.toString() + ", Value : 0.0 , Scope "+scopes.peek().getScopeName());
-
-                int linee = ctx.start.getLine();
-                String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
-                String type = NodeType.DOUBLEDECLARATION.toString();
-                int childCount = ctx.getChildCount();
-                return new DoubleDeclaration(null, name, linee, parent, type, childCount);
+                varialbeNames.add("Identifier " + name + ", Type " + NodeType.DOUBLE + ", Value : 0.0 , Scope " + scopes.peek().getScopeName());
+                return new DoubleDeclaration(null, name, line, parent, type, childCount);
             }
         }
-
-        int linee = ctx.start.getLine();
-        String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
-        String type = NodeType.DOUBLEDECLARATION.toString();
-        int childCount = ctx.getChildCount();
-        return new DoubleDeclaration(name, linee, parent, type, childCount);
+        return new DoubleDeclaration(name, line, parent, type, childCount);
     }
 
 
     public StringDeclarationLine visitStringDeclarationLine(dart_parse.StringDeclarationLineContext ctx) {
         int line = ctx.start.getLine();
         String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
-        int column = ctx.start.getCharPositionInLine() + 1;
+        //int column = ctx.start.getCharPositionInLine() + 1;
         String type = NodeType.STRINGDECLARATIONLINE.toString();
         int childCount = ctx.getChildCount();
         List<StringDeclaration> l = new ArrayList<>();
@@ -391,7 +331,7 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
             semanticErrors.add("Undefined name " + name + " at (" + line + "," + column + ")");
         }
         if (!isDecl && (CheckExistanceInParentScope(name, index) || CheckExistanceInScope(name, index)) && !CheckIfTypeMatchesParentType(name, index, NodeType.STRING.toString())) {
-            semanticErrors.add("A value of type " + NodeType.STRING.toString() + " can't be assigned to a variable of type " + getParentType(name, index, NodeType.STRING.toString()));
+            semanticErrors.add("A value of type " + NodeType.STRING + " can't be assigned to a variable of type " + getParentType(name, index, NodeType.STRING.toString()));
         }
         String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
         String type = NodeType.TOPTREEDECLARATION.toString();
@@ -402,7 +342,7 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
             semanticErrors.add("The name " + name + " already defined (" + line + "," + column + ")");
         } else {
             scopes.get(index - 1).getSymbolMap().put(name, new SymbolTableObject(NodeType.STRING.toString(), stringLine));
-            varialbeNames.add("Identifier " + name + ", Type " +NodeType.STRING.toString() + ", Value : " + stringLine + " , Scope "+scopes.peek().getScopeName());
+            varialbeNames.add("Identifier " + name + ", Type " + NodeType.STRING + ", Value : " + stringLine + " , Scope " + scopes.peek().getScopeName());
 
         }
 
@@ -413,7 +353,7 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
     public BooleanDeclarationLine visitBooleanDeclarationLine(dart_parse.BooleanDeclarationLineContext ctx) {
         int line = ctx.start.getLine();
         String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
-        int column = ctx.start.getCharPositionInLine() + 1;
+        //int column = ctx.start.getCharPositionInLine() + 1;
         String type = NodeType.BOOLEANDECLARATIONLINE.toString();
         int childCount = ctx.getChildCount();
         List<BooleanDeclaration> l = new ArrayList<>();
@@ -433,52 +373,39 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
 
     public BooleanDeclaration visitBooleanDeclaration(dart_parse.BooleanDeclarationContext ctx, Boolean isDecl) {
         int line = ctx.start.getLine();
+        int childCount = ctx.getChildCount();
         int column = ctx.start.getCharPositionInLine() + 1;
         String id = ctx.getChild(0).getText();
+        String type = NodeType.BOOLEANDECLARATION.toString();
+        String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
 
         if (!isDecl && !CheckExistanceInParentScope(id, index) && !CheckExistanceInScope(id, index)) {
             semanticErrors.add("Undefined name " + id + " at (" + line + "," + column + ")");
         }
 
         if (!isDecl && (CheckExistanceInParentScope(id, index) || CheckExistanceInScope(id, index)) && !CheckIfTypeMatchesParentType(id, index, NodeType.BOOL.toString())) {
-            semanticErrors.add("A value of type " + NodeType.BOOL.toString() + " can't be assigned to a variable of type " + getParentType(id, index, NodeType.BOOL.toString()));
+            semanticErrors.add("A value of type " + NodeType.BOOL + " can't be assigned to a variable of type " + getParentType(id, index, NodeType.BOOL.toString()));
         }
         if (isDecl && CheckExistanceInScope(id, index)) {
             semanticErrors.add("The name " + id + " already defined (" + line + "," + column + ")");
         } else {
             if (ctx.booleans() != null) {
                 BooleanValueClass expr = visitBooleans(ctx.booleans());
-
                 scopes.get(index - 1).getSymbolMap().put(id, new SymbolTableObject(NodeType.BOOL.toString(), String.valueOf(expr.getBool())));
-                varialbeNames.add("Identifier " + id + ", Type " +NodeType.BOOL.toString() + ", Value : " + String.valueOf(expr.getBool()) + " , Scope "+scopes.peek().getScopeName());
-
-                int linee = ctx.start.getLine();
-                String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
-                String type = NodeType.BOOLEANDECLARATION.toString();
-                int childCount = ctx.getChildCount();
-                return new BooleanDeclaration(id, expr, linee, parent, type, childCount);
+                varialbeNames.add("Identifier " + id + ", Type " + NodeType.BOOL + ", Value : " + expr.getBool() + " , Scope " + scopes.peek().getScopeName());
+                return new BooleanDeclaration(id, expr, line, parent, type, childCount);
             } else {
                 scopes.get(index - 1).getSymbolMap().put(id, new SymbolTableObject(NodeType.BOOL.toString(), "false"));
-                varialbeNames.add("Identifier " + id + ", Type " +NodeType.BOOL.toString() + ", Value : false , Scope "+scopes.peek().getScopeName());
-
-                int linee = ctx.start.getLine();
-                String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
-                String type = NodeType.BOOLEANDECLARATION.toString();
-                int childCount = ctx.getChildCount();
-                return new BooleanDeclaration(id, linee, parent, type, childCount);
+                varialbeNames.add("Identifier " + id + ", Type " + NodeType.BOOL + ", Value : false , Scope " + scopes.peek().getScopeName());
+                return new BooleanDeclaration(id, line, parent, type, childCount);
             }
         }
 
-        int linee = ctx.start.getLine();
-        String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
-        String type = NodeType.BOOLEANDECLARATION.toString();
-        int childCount = ctx.getChildCount();
-        return new BooleanDeclaration(id, linee, parent, type, childCount);
+        return new BooleanDeclaration(id, line, parent, type, childCount);
     }
 
     @Override
     public AddExpression visitAddExpression(dart_parse.AddExpressionContext ctx) {
-        double num;
         double value;
         Queue<Object> queue = new LinkedList<>();
         if (ctx.getChild(0) instanceof dart_parse.MultiplyExpressionContext) {
@@ -496,19 +423,7 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
                 queue.add(ctx.getChild(i).getText());
             }
         }
-        while (!queue.isEmpty()) {
-            String operator = (String) queue.remove();
-            if (queue.peek() instanceof Double) {
-                num = (double) queue.remove();
-            } else {
-                num = Double.parseDouble((String) queue.remove());
-            }
-            if (operator.equals("+")) {
-                value += num;
-            } else if (operator.equals("-")) {
-                value -= num;
-            }
-        }
+        value = getAdditionValue(value, queue);
         int intValue = (int) value;
         int line = ctx.start.getLine();
         String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
@@ -520,53 +435,8 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
         return new AddExpression(numClass, line, parent, type, childCount);
     }
 
-    @Override
-    public MultiplyExpression visitMultiplyExpression(dart_parse.MultiplyExpressionContext ctx) {
-        Queue<Object> queue = new LinkedList<>();
-        double value = Double.parseDouble(ctx.getChild(0).getText());
-        for (int i = 1; i < ctx.getChildCount(); i++) {
-            queue.add(ctx.getChild(i).getText());
-        }
-        while (!queue.isEmpty()) {
-            String operator = (String) queue.remove();
-            double num = Double.parseDouble((String) queue.remove());
-            if (operator.equals("*")) {
-                value *= num;
-            } else if (operator.equals("/")) {
-                value /= num;
-            }
-        }
-        int intValue = (int) value;
-        int line = ctx.start.getLine();
-        String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
-        String type = NodeType.NUMBER.toString();
-        int childCount = ctx.getChildCount();
-        NumberClass num = new NumberClass(intValue, line, "Multiply Expression", type, childCount);
-        type = NodeType.MULTIPLYEXPRESSION.toString();
-        childCount = ctx.getChildCount();
-        return new MultiplyExpression(num, line, parent, type, childCount);
-    }
-
-    @Override
-    public AddDoubleExpression visitAddDoubleExpression(dart_parse.AddDoubleExpressionContext ctx) {
+    private double getAdditionValue(double value, Queue<Object> queue) {
         double num;
-        double value;
-        Queue<Object> queue = new LinkedList<>();
-        if (ctx.getChild(0) instanceof dart_parse.MultiplyDoubleExpressionContext) {
-            MultiplyDoubleExpression expr = visitMultiplyDoubleExpression((dart_parse.MultiplyDoubleExpressionContext) ctx.getChild(0));
-            value = expr.getValue().getNum();
-        } else {
-            value = Double.parseDouble(ctx.getChild(0).getText());
-        }
-        for (int i = 1; i < ctx.getChildCount(); i++) {
-            if (ctx.getChild(i) instanceof dart_parse.MultiplyDoubleExpressionContext) {
-                MultiplyDoubleExpression expr = visitMultiplyDoubleExpression((dart_parse.MultiplyDoubleExpressionContext) ctx.getChild(i));
-                double n = expr.getValue().getNum();
-                queue.add(n);
-            } else {
-                queue.add(ctx.getChild(i).getText());
-            }
-        }
         while (!queue.isEmpty()) {
             String operator = (String) queue.remove();
             if (queue.peek() instanceof Double) {
@@ -580,6 +450,63 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
                 value -= num;
             }
         }
+        return value;
+    }
+
+    private double getMultiValue(double value, Queue<Object> queue) {
+        double num;
+        while (!queue.isEmpty()) {
+            String operator = (String) queue.remove();
+            if (queue.peek() instanceof Double) {
+                num = (double) queue.remove();
+            } else {
+                num = Double.parseDouble((String) queue.remove());
+            }
+            if (operator.equals("*")) {
+                value *= num;
+            } else if (operator.equals("/")) {
+                value /= num;
+            }
+        }
+        return value;
+    }
+
+    @Override
+    public MultiplyExpression visitMultiplyExpression(dart_parse.MultiplyExpressionContext ctx) {
+        Queue<Object> queue = new LinkedList<>();
+        double value = Double.parseDouble(ctx.getChild(0).getText());
+        for (int i = 1; i < ctx.getChildCount(); i++) {
+            queue.add(ctx.getChild(i).getText());
+        }
+        value = getMultiValue(value, queue);
+        int intValue = (int) value;
+        int line = ctx.start.getLine();
+        String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
+        String type = NodeType.NUMBER.toString();
+        int childCount = ctx.getChildCount();
+        NumberClass num = new NumberClass(intValue, line, "Multiply Expression", type, childCount);
+        type = NodeType.MULTIPLYEXPRESSION.toString();
+        return new MultiplyExpression(num, line, parent, type, childCount);
+    }
+
+    @Override
+    public AddDoubleExpression visitAddDoubleExpression(dart_parse.AddDoubleExpressionContext ctx) {
+        double value;
+        Queue<Object> queue = new LinkedList<>();
+        if (ctx.getChild(0) instanceof dart_parse.MultiplyDoubleExpressionContext) {
+            MultiplyDoubleExpression expr = visitMultiplyDoubleExpression((dart_parse.MultiplyDoubleExpressionContext) ctx.getChild(0));
+            value = expr.getValue().getNum();
+        } else value = Double.parseDouble(ctx.getChild(0).getText());
+        for (int i = 1; i < ctx.getChildCount(); i++) {
+            if (ctx.getChild(i) instanceof dart_parse.MultiplyDoubleExpressionContext) {
+                MultiplyDoubleExpression expr = visitMultiplyDoubleExpression((dart_parse.MultiplyDoubleExpressionContext) ctx.getChild(i));
+                double n = expr.getValue().getNum();
+                queue.add(n);
+            } else {
+                queue.add(ctx.getChild(i).getText());
+            }
+        }
+        value = getAdditionValue(value, queue);
         int line = ctx.start.getLine();
         String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
         String type = NodeType.NUMBERDOUBLE.toString();
@@ -596,15 +523,7 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
         for (int i = 1; i < ctx.getChildCount(); i++) {
             queue.add(ctx.getChild(i).getText());
         }
-        while (!queue.isEmpty()) {
-            String operator = (String) queue.remove();
-            double num = Double.parseDouble((String) queue.remove());
-            if (operator.equals("*")) {
-                value *= num;
-            } else if (operator.equals("/")) {
-                value /= num;
-            }
-        }
+        value = getMultiValue(value, queue);
         int line = ctx.start.getLine();
         String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
         String type = NodeType.NUMBERDOUBLE.toString();
@@ -617,34 +536,26 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
 
     @Override
     public BooleanValueClass visitBooleans(dart_parse.BooleansContext ctx) {
-
+        int line = ctx.start.getLine();
+        String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
+        String type = NodeType.BOOLEAN.toString();
+        int childCount = ctx.getChildCount();
         if (ctx.TRUE() != null) {
             if (ctx.TRUE().getText().equals("true")) {
-                int line = ctx.start.getLine();
-                String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
-                String type = NodeType.BOOLEAN.toString();
-                int childCount = ctx.getChildCount();
                 return new BooleanValueClass(Boolean.parseBoolean(ctx.TRUE().getText()), line, parent, type, childCount);
             } else {
                 Token boolToken = ctx.TRUE().getSymbol();
-                int line = boolToken.getLine();
                 int column = boolToken.getCharPositionInLine() + 1;
                 semanticErrors.add("Error: Undefined name " + ctx.TRUE().getText() + "(" + line + "," + column + ")");
             }
         } else if (ctx.FALSE() != null) {
             if (ctx.FALSE().getText().equals("false")) {
-                int line = ctx.start.getLine();
-                String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
-                String type = NodeType.BOOLEAN.toString();
-                int childCount = ctx.getChildCount();
                 return new BooleanValueClass(Boolean.parseBoolean(ctx.FALSE().getText()), line, parent, type, childCount);
             } else {
                 Token boolToken = ctx.FALSE().getSymbol();
-                int line = boolToken.getLine();
                 int column = boolToken.getCharPositionInLine() + 1;
                 semanticErrors.add("Error: Undefined name " + ctx.TRUE().getText() + "(" + line + "," + column + ")");
             }
-
         } else {
             //TODO add error Arraylist
             return null;
