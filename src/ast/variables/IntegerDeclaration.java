@@ -1,6 +1,6 @@
 package ast.variables;
 
-public class IntegerDeclaration extends VariableDeclaration {
+public class IntegerDeclaration extends VariableAssignment {
     String name;
     AddExpression expr;
 

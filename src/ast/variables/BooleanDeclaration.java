@@ -1,6 +1,6 @@
 package ast.variables;
 
-public class BooleanDeclaration extends VariableDeclaration{
+public class BooleanDeclaration extends VariableAssignment{
 	String name;
 	public BooleanValueClass booleanValueClass;
 	
