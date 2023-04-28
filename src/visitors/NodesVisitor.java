@@ -5,7 +5,9 @@ import ast.Scope;
 import ast.SymbolTableObject;
 import ast.nodes.*;
 import ast.variables.AbstractNumberClass;
+import ast.variables.AddExpression;
 import ast.variables.ConditionExpr;
+import ast.variables.IntegerAssignment;
 import ast.variables.Variable;
 import ast.variables.VariableAssignment;
 import gen.dart_parse;
@@ -27,8 +29,6 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
     //**************************** base declarations start code ********************************///
     @Override
     public TopTreeDeclaration visitTopTreeDeclaration(dart_parse.TopTreeDeclarationContext ctx) {
-
-
         Scope s = new Scope();
         s.setId(index);
         s.setScopeName("Global Scope (0)");
@@ -504,7 +504,6 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
         String type = NodeType.STATEMENT.toString();
         int childCount = ctx.getChildCount();
         if (ctx.dartDeclaration() != null) {
-
             return new Statement(visitDartDeclaration(ctx.dartDeclaration()), line, parent, type, childCount);
         }
         if (ctx.function() != null) {
@@ -520,6 +519,16 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
 
         if (ctx.forStatement() != null) {
             return new Statement(visitForStatement(ctx.forStatement()), line, parent, type, childCount);
+        }
+        if (ctx.assignment() != null) {
+            if (ctx.assignment().integerAssignment()!=null)
+                return new Statement((new VariablesVisitor()).visitIntegerAssignment(ctx.assignment().integerAssignment()), line, parent, type, childCount);
+            if (ctx.assignment().doubleAssignment()!=null)
+                return new Statement((new VariablesVisitor()).visitDoubleAssignment(ctx.assignment().doubleAssignment()), line, parent, type, childCount);
+            if (ctx.assignment().stringAssignment()!=null)
+                return new Statement((new VariablesVisitor()).visitStringAssignment(ctx.assignment().stringAssignment()), line, parent, type, childCount);
+            if (ctx.assignment().booleanAssignment()!=null)
+                return new Statement((new VariablesVisitor()).visitBooleanAssignment(ctx.assignment().booleanAssignment()), line, parent, type, childCount);
         }
         return null;
     }

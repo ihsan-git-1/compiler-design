@@ -1,0 +1,5 @@
+void main(){
+
+double x=4.1, t=2.2, g, h,z=1.3;
+z=3.4;
+}

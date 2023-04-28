@@ -1,8 +1,0 @@
-void main(){
-t=true;
-bool x,y,t,r,e, u;
-x=true;
-t=false;
-u=true;
-
-}

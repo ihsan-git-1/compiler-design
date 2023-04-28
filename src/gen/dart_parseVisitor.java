@@ -1,4 +1,4 @@
-// Generated from java-escape by ANTLR 4.11.1
+// Generated from dart_parse.g4 by ANTLR 4.10.1
 package gen;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
@@ -107,6 +107,18 @@ public interface dart_parseVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitIntegerDeclaration(dart_parse.IntegerDeclarationContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link dart_parse#integerDeclarationAssignment}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIntegerDeclarationAssignment(dart_parse.IntegerDeclarationAssignmentContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link dart_parse#integerAssignment}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIntegerAssignment(dart_parse.IntegerAssignmentContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link dart_parse#doubleDeclarationLine}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -118,6 +130,18 @@ public interface dart_parseVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitDoubleDeclaration(dart_parse.DoubleDeclarationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link dart_parse#doubleDeclarationAssignment}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDoubleDeclarationAssignment(dart_parse.DoubleDeclarationAssignmentContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link dart_parse#doubleAssignment}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDoubleAssignment(dart_parse.DoubleAssignmentContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link dart_parse#stringDeclarationLine}.
 	 * @param ctx the parse tree
@@ -131,6 +155,18 @@ public interface dart_parseVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitStringDeclaration(dart_parse.StringDeclarationContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link dart_parse#stringDeclarationAssignment}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStringDeclarationAssignment(dart_parse.StringDeclarationAssignmentContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link dart_parse#stringAssignment}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStringAssignment(dart_parse.StringAssignmentContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link dart_parse#booleanDeclarationLine}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -142,6 +178,18 @@ public interface dart_parseVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitBooleanDeclaration(dart_parse.BooleanDeclarationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link dart_parse#booleanDeclarationAssignment}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBooleanDeclarationAssignment(dart_parse.BooleanDeclarationAssignmentContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link dart_parse#booleanAssignment}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBooleanAssignment(dart_parse.BooleanAssignmentContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link dart_parse#addExpression}.
 	 * @param ctx the parse tree
@@ -382,6 +430,12 @@ public interface dart_parseVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitParameters(dart_parse.ParametersContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link dart_parse#assignment}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAssignment(dart_parse.AssignmentContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link dart_parse#statement}.
 	 * @param ctx the parse tree

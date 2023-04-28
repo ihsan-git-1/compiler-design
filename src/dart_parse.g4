@@ -130,50 +130,95 @@ variable:
     ;
 
 integerDeclarationLine:
-    INT?
-    integerDeclaration
-    (COMMA integerDeclaration)*
+    INT
+    (integerDeclaration | integerDeclarationAssignment)
+    (COMMA (integerDeclaration | integerDeclarationAssignment))*
     ;
 
 integerDeclaration:
     NAME
-    (ASSIGN
-    addExpression)?
+    ;
+
+integerDeclarationAssignment:
+    NAME
+    ASSIGN
+    addExpression
+    ;
+
+integerAssignment:
+    NAME
+    ASSIGN
+    addExpression
+    SEMICOLON
     ;
 
 doubleDeclarationLine:
-    DOUBLE?
-    doubleDeclaration
-    (COMMA doubleDeclaration)*
+    DOUBLE
+    (doubleDeclaration | doubleDeclarationAssignment)
+    (COMMA (doubleDeclaration | doubleDeclarationAssignment))*
     ;
 
 doubleDeclaration:
     NAME
-    (ASSIGN
-    addDoubleExpression)?
+    ;
+
+doubleDeclarationAssignment:
+    NAME
+    ASSIGN
+    addDoubleExpression
+    ;
+
+doubleAssignment:
+    NAME
+    ASSIGN
+    addDoubleExpression
+    SEMICOLON
     ;
 
 stringDeclarationLine:
-    STRING?
-    stringDeclaration
-    (COMMA stringDeclaration)*
+    STRING
+    (stringDeclaration | stringDeclarationAssignment)
+    (COMMA (stringDeclaration | stringDeclarationAssignment))*
     ;
 
 stringDeclaration:
     NAME
-    (ASSIGN
-    STRING_LINE)?
+    ;
+
+stringDeclarationAssignment:
+    NAME
+    ASSIGN
+    STRING_LINE
+    ;
+
+stringAssignment:
+    NAME
+    ASSIGN
+    STRING_LINE
+    SEMICOLON
     ;
 
 booleanDeclarationLine:
-    BOOL?
-    booleanDeclaration
-    (COMMA booleanDeclaration)*
+    BOOL
+    (booleanDeclaration | booleanDeclarationAssignment)
+    (COMMA (booleanDeclaration | booleanDeclarationAssignment))*
     ;
 
 booleanDeclaration:
     NAME
-    (ASSIGN booleans)?
+    ;
+
+booleanDeclarationAssignment:
+    NAME
+    ASSIGN
+    booleans
+    ;
+
+booleanAssignment:
+    NAME
+    ASSIGN
+    booleans
+    SEMICOLON
     ;
 
 addExpression
@@ -498,12 +543,20 @@ parameters:
     COMMA?
     ;
 
+assignment:
+    integerAssignment
+    |doubleAssignment
+    |booleanAssignment
+    |stringAssignment
+    ;
+
 statement:
     dartDeclaration
     |ifStatement
     |forStatement
     |whileStatement
     |function
+    |assignment
     ;
 
 forStatement:
