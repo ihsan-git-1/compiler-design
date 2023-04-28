@@ -1,6 +1,0 @@
-void main(){
-x=3.3;
-double x,y,t,r;
-x=2.3;
-
-}

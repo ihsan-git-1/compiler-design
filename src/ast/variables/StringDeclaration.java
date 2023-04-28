@@ -2,17 +2,14 @@ package ast.variables;
 
 public class StringDeclaration extends VariableAssignment{
 	String name;
-	String stringLine;
-	
-	public StringDeclaration(String name ,String stringLine, int line, String parent,String type,int childCount) {
+	public StringDeclaration(String name , int line, String parent,String type,int childCount) {
 		super(line, parent, type, childCount);
 		this.name=name;
-		this.stringLine=stringLine;
 	}
 	
 	@Override
 	public String toString() {
-		return "String Declaration: " +name+ "=" +stringLine+" line: "+ getLine() + " parent: "+ getParent()
+		return "String Declaration: " +name+" line: "+ getLine() + " parent: "+ getParent()
 				+" Child Count =  "+getChildCount()+" Type = "+getType()+"\n"
 				;
 	}

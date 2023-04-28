@@ -1,0 +1,5 @@
+void main(){
+
+bool x=true, t=true, g, h,z=false;
+z=true;
+}
