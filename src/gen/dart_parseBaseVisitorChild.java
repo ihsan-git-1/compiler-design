@@ -1,5 +1,6 @@
 package gen;
 
+import CodeGeneration.CodeGeneration;
 import ast.NodeType;
 import ast.Scope;
 import ast.SymbolTableObject;
@@ -17,6 +18,7 @@ public class dart_parseBaseVisitorChild extends dart_parseBaseVisitor{
     public static ArrayList<String>varialbeNames = new ArrayList<>();
     public static Stack<Scope> scopes=new Stack<>();
 
+    public static CodeGeneration CG = new CodeGeneration();
     public static int index=1;
 
 
