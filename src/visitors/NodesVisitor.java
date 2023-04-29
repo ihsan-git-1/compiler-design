@@ -56,6 +56,7 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
 
         }
 
+
         return topTreeDeclaration;
     }
 
@@ -277,11 +278,24 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
 
     @Override
     public StatefullClassDeclaration visitStatefullClassDeclaration(dart_parse.StatefullClassDeclarationContext ctx) {
+
+        Scope s = new Scope();
+        s.setScopeName("StatefullClass Scope (" + index + ")");
+        s.setParent(scopes.get(index - 1));
+        scopes.push(s);
+        index = index + 1;
+        s.setId(index);
+        scopeNames.add(s.getScopeName() + " Parnet Is "+s.getParent().getScopeName());
+
         int line = ctx.start.getLine();
         String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
         String type = NodeType.BLOCK.toString();
         int childCount = ctx.getChildCount();
-        return new StatefullClassDeclaration(visitStfulFirstBody(ctx.stfulFirstBody()), visitStfulSecondBody(ctx.stfulSecondBody()), line, parent, type, childCount);
+
+        StatefullFirstBody firstBody = visitStfulFirstBody(ctx.stfulFirstBody());
+        StatefullSecondBody secondBody =  visitStfulSecondBody(ctx.stfulSecondBody());
+
+        return new StatefullClassDeclaration(firstBody, secondBody, line, parent, type, childCount);
     }
 
     @Override

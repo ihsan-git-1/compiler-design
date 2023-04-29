@@ -1,7 +1,10 @@
+import CodeGeneration.CodeGeneration;
 import ast.Scope;
 import ast.SymbolTableObject;
 import ast.nodes.*;
 import gen.*;
+
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Map;
 
@@ -24,6 +27,9 @@ public class Main {
         TokenStream tokenStream = token;
         TopTreeDeclaration doc = (TopTreeDeclaration) new NodesVisitor(tokenStream).visit(tree);
 
+        CodeGeneration CG = new CodeGeneration();
+        String htmlDocument = CG.generateTopTreeDeclaration(parser.topTreeDeclaration());
+
         if(dart_parseBaseVisitorChild.semanticErrors.size()>0) {
             for (String error : dart_parseBaseVisitorChild.semanticErrors) {
                 System.err.println(error);
@@ -42,6 +48,15 @@ public class Main {
         for (String s: dart_parseBaseVisitorChild.varialbeNames ){
             System.out.println(s);
 
+        }
+
+        try {
+            FileWriter fw = new FileWriter("src//CodeGeneration//generated.html");
+            fw.write(htmlDocument);
+            fw.close();
+        }
+        catch (Exception e) {
+            System.out.println("File Not Found");
         }
     }
 
