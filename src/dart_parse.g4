@@ -526,21 +526,27 @@ block:
     statement*
     CRLY_BRKT_CL
     ;
+
+functionBody:
+    CRLY_BRKT_OP
+    statement*
+    returnStatement
+    CRLY_BRKT_CL
+   ;
+returnStatement:
+    RETURN
+    expression
+    SEMICOLON;
+
 function:
-    (
-    (FUNCTION? functionType)
-    |FUNCTION
-    )
-    NAME '(' parameters? ')' block
+    functionType? NAME '(' parameters? ')' functionBody
     ;
 functionType:
     (STRING | INT | DOUBLE| BOOL| VAR| VOID)
     ;
 
 parameters:
-    dartDeclaration
-    (',' dartDeclaration)*
-    COMMA?
+    dartDeclaration (',' dartDeclaration)* COMMA?
     ;
 
 assignment:
@@ -595,17 +601,22 @@ prefixUnaryOperator : INC | DEC | NOT;
 
 postfixUnaryOperator: INC | DEC;
 
-expression : identifier
-           | prefixUnaryOperator expression
+expression :  prefixUnaryOperator expression
            | expression postfixUnaryOperator
            | addExpression postfixUnaryOperator
            | functionCall
+           | conditionExpr
+           | numericTerm
            | '(' expression ')'
            ;
 
 literal : INT | DOUBLE | STRING | TRUE | FALSE | NULL ;
 
-identifier : NAME ;
+identifier :
+    integerDeclaration
+    | doubleDeclaration
+    | stringDeclaration
+    | booleanDeclaration;
 
 functionCall : identifier '(' arguments? ')' ;
 

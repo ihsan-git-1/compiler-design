@@ -548,7 +548,7 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
         String type = NodeType.NUMBER.toString();
         int childCount = ctx.getChildCount();
         NumberClass numClass = new NumberClass(intValue, line, "Add Expression", type, childCount);
-        type = NodeType.ADDEXPRESSION.toString();
+        type = NodeType.INT.toString();
         childCount = ctx.getChildCount();
         return new AddExpression(numClass, line, parent, type, childCount);
     }
@@ -630,7 +630,7 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
         String type = NodeType.NUMBERDOUBLE.toString();
         int childCount = ctx.getChildCount();
         NumberDoubleClass numClass = new NumberDoubleClass(value, line, "Add Double Expression", type, childCount);
-        String nodeType = NodeType.ADDDOUBLEEXPRESSION.toString();
+        String nodeType = NodeType.DOUBLE.toString();
         return new AddDoubleExpression(numClass, line, parent, nodeType, childCount);
     }
 

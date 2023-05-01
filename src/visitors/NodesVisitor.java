@@ -14,6 +14,7 @@ import gen.dart_parse;
 import gen.dart_parseBaseVisitorChild;
 import org.antlr.v4.runtime.TokenStream;
 
+import java.beans.Expression;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -224,7 +225,6 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
 
     @Override
     public Function visitFunction(dart_parse.FunctionContext ctx) {
-
         boolean isPushed = false;
         Scope s = new Scope();
         s.setScopeName("Function Scope " + ctx.NAME() + " (" + index + ")");
@@ -233,26 +233,50 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
         index = index + 1;
         s.setId(index);
         scopeNames.add(s.getScopeName() + " Parent Is " + s.getParent().getScopeName());
-
+        String functionType = ctx.functionType() != null ? ctx.functionType().getText() : "void";
         Parameter parameters = null;
+        FunctionBody functionBody = visitFunctionBody(ctx.functionBody());
+       // ctx.functionBody().returnStatement()
         int line = ctx.start.getLine();
         //String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
-        String nodeType = NodeType.BLOCK.toString();
+        String nodeType = NodeType.FUNCTION.toString();
         int childCount = ctx.getChildCount();
         FunctionType type = null;
         String name = ctx.NAME().getText();
         if (ctx.functionType() != null) {
-
             type = visitFunctionType(ctx.functionType());
         }
         if (ctx.parameters() != null) {
             parameters = visitParameters(ctx.parameters());
         }
-        Block block = visitBlock(ctx.block());
-
         scopes.pop();
         index = index - 1;
-        return new Function(line, null, nodeType, childCount, type, name, parameters, block);
+        return new Function(line, null, nodeType, childCount, type, name, parameters, functionBody);
+    }
+
+    @Override
+    public FunctionBody visitFunctionBody(dart_parse.FunctionBodyContext ctx) {
+        int line = ctx.start.getLine();
+        String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
+        String type=NodeType.FUNCTIONBODY.toString();
+        int childCount = ctx.getChildCount();
+        List<dart_parse.StatementContext> statementContexts = ctx.statement();
+        List<Statement> statements = null;
+        ReturnStatement returnStatement= visitReturnStatement(ctx.returnStatement());
+        for (dart_parse.StatementContext statementContext : statementContexts) {
+            statements.add(visitStatement(statementContext));
+        }
+        return new FunctionBody(line, parent, type, childCount, statements,returnStatement);
+    }
+
+    @Override
+    public ReturnStatement visitReturnStatement(dart_parse.ReturnStatementContext ctx) {
+        int line = ctx.start.getLine();
+        String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
+        String type=NodeType.RETURNSTATEMENT.toString();
+        int childCount = ctx.getChildCount();
+        Expression expression = (Expression) visitExpression(ctx.expression());
+        return new ReturnStatement(line, parent, type, childCount,expression);
     }
 
     @Override
@@ -285,7 +309,7 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
         scopes.push(s);
         index = index + 1;
         s.setId(index);
-        scopeNames.add(s.getScopeName() + " Parnet Is "+s.getParent().getScopeName());
+        scopeNames.add(s.getScopeName() + " Parnet Is " + s.getParent().getScopeName());
 
         int line = ctx.start.getLine();
         String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
@@ -293,7 +317,7 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
         int childCount = ctx.getChildCount();
 
         StatefullFirstBody firstBody = visitStfulFirstBody(ctx.stfulFirstBody());
-        StatefullSecondBody secondBody =  visitStfulSecondBody(ctx.stfulSecondBody());
+        StatefullSecondBody secondBody = visitStfulSecondBody(ctx.stfulSecondBody());
 
         return new StatefullClassDeclaration(firstBody, secondBody, line, parent, type, childCount);
     }
@@ -521,13 +545,13 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
             return new Statement(visitForStatement(ctx.forStatement()), line, parent, type, childCount);
         }
         if (ctx.assignment() != null) {
-            if (ctx.assignment().integerAssignment()!=null)
+            if (ctx.assignment().integerAssignment() != null)
                 return new Statement((new VariablesVisitor()).visitIntegerAssignment(ctx.assignment().integerAssignment()), line, parent, type, childCount);
-            if (ctx.assignment().doubleAssignment()!=null)
+            if (ctx.assignment().doubleAssignment() != null)
                 return new Statement((new VariablesVisitor()).visitDoubleAssignment(ctx.assignment().doubleAssignment()), line, parent, type, childCount);
-            if (ctx.assignment().stringAssignment()!=null)
+            if (ctx.assignment().stringAssignment() != null)
                 return new Statement((new VariablesVisitor()).visitStringAssignment(ctx.assignment().stringAssignment()), line, parent, type, childCount);
-            if (ctx.assignment().booleanAssignment()!=null)
+            if (ctx.assignment().booleanAssignment() != null)
                 return new Statement((new VariablesVisitor()).visitBooleanAssignment(ctx.assignment().booleanAssignment()), line, parent, type, childCount);
         }
         return null;

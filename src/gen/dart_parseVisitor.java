@@ -1,4 +1,4 @@
-// Generated from dart_parse.g4 by ANTLR 4.10.1
+// Generated from C:/Users/Jony/IdeaProjects/compiler-2/src\dart_parse.g4 by ANTLR 4.10.1
 package gen;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
@@ -412,6 +412,18 @@ public interface dart_parseVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitBlock(dart_parse.BlockContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link dart_parse#functionBody}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunctionBody(dart_parse.FunctionBodyContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link dart_parse#returnStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitReturnStatement(dart_parse.ReturnStatementContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link dart_parse#function}.
 	 * @param ctx the parse tree

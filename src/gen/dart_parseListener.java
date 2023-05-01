@@ -1,4 +1,4 @@
-// Generated from dart_parse.g4 by ANTLR 4.10.1
+// Generated from C:/Users/Jony/IdeaProjects/compiler-2/src\dart_parse.g4 by ANTLR 4.10.1
 package gen;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -677,6 +677,26 @@ public interface dart_parseListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitBlock(dart_parse.BlockContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#functionBody}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunctionBody(dart_parse.FunctionBodyContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#functionBody}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunctionBody(dart_parse.FunctionBodyContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#returnStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterReturnStatement(dart_parse.ReturnStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#returnStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitReturnStatement(dart_parse.ReturnStatementContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link dart_parse#function}.
 	 * @param ctx the parse tree

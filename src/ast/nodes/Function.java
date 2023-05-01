@@ -4,14 +4,14 @@ public class Function extends DartDeclarationAbstractChild implements StatementA
     FunctionType functionType;
     String name;
     Parameter parameters;
-    Block block;
+    FunctionBody functionBody;
 
-    public Function(int line, String parent, String type, int childCount, FunctionType functionType, String name, Parameter parameters, Block block) {
+    public Function(int line, String parent, String type, int childCount, FunctionType functionType, String name, Parameter parameters,  FunctionBody functionBody) {
         super(line, parent, type, childCount);
         this.functionType = functionType;
         this.name = name;
         this.parameters = parameters;
-        this.block = block;
+        this.functionBody = functionBody;
     }
 
     public FunctionType getFunctionType() {
@@ -30,16 +30,9 @@ public class Function extends DartDeclarationAbstractChild implements StatementA
         this.parameters = parameters;
     }
 
-    public Block getBlock() {
-        return block;
-    }
-
-    public void setBlock(Block block) {
-        this.block = block;
-    }
 
     @Override
     public String toString() {
-        return "Function " + "name: " + name + ", functionType: " + functionType + ", parameters: " + parameters + ", block: " + block + ", line: " + line + ", parent: '" + parent +" Child Count =  "+getChildCount()+" Type = "+getType() +"\n";
+        return "Function " + "name: " + name + ", functionType: " + functionType + ", parameters: " + parameters + ", functionBody: " + functionBody + ", line: " + line + ", parent: '" + parent +" Child Count =  "+getChildCount()+" Type = "+getType() +"\n";
     }
 }
