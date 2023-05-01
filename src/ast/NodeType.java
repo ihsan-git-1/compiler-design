@@ -29,6 +29,8 @@ public enum NodeType {
     NUMBERDOUBLE("value (type double)"),
     STRINGDECLARATION("string declaration"),
     FUNCTION("function"),
+    FUNCTIONBODY("function body"),
+    RETURNSTATEMENT("return statement"),
     CLASS("class"),
     WIDGET("widget"),
     PROPERTY("property"),
