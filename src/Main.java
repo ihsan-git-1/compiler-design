@@ -1,12 +1,6 @@
-import ast.Scope;
-import ast.SymbolTableObject;
 import ast.nodes.*;
 import gen.*;
-
-import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Map;
-
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.TokenStream;

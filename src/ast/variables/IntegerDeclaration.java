@@ -1,6 +1,8 @@
 package ast.variables;
 
-public class IntegerDeclaration extends VariableAssignment {
+import ast.nodes.Node;
+
+public class IntegerDeclaration extends Identifier implements assignment {
     String name;
 
     public IntegerDeclaration(String name, int line, String parent,String type,int childCount) {

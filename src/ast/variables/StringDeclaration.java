@@ -1,6 +1,8 @@
 package ast.variables;
 
-public class StringDeclaration extends VariableAssignment{
+import ast.nodes.Node;
+
+public class StringDeclaration extends Identifier implements assignment{
 	String name;
 	public StringDeclaration(String name , int line, String parent,String type,int childCount) {
 		super(line, parent, type, childCount);

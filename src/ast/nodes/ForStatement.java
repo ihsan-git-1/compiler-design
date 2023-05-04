@@ -18,4 +18,14 @@ public class ForStatement  extends Node implements StatementAbstractChild {
         this.block = block;
         this.variableAssignment = variableAssignment;
     }
+
+    @Override
+    public String toString() {
+        return "ForStatement{\n" +
+                "variable= " + variable +
+                "\n, conditionExpr= " + conditionExpr +
+                "\n, variableAssignment= " + variableAssignment +
+                "\n, block= " + block +
+                '}';
+    }
 }

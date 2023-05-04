@@ -1,6 +1,6 @@
 package ast.variables;
 
-public class StringDeclarationAssignment extends VariableDeclaration{
+public class StringDeclarationAssignment extends VariableAssignment{
     String name;
     String stringLine;
 

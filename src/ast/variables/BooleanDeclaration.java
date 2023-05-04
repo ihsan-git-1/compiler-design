@@ -1,6 +1,7 @@
 package ast.variables;
 
-public class BooleanDeclaration extends VariableAssignment{
+
+public class BooleanDeclaration extends Identifier implements assignment {
 	String name;
 	public BooleanDeclaration(String name, int line, String parent,String type,int childCount) {
 		super(line , parent,type,childCount);
