@@ -1,0 +1,5 @@
+for(int m=2 ; m<=10 ;m=1){
+   int i= 10;
+   String l="this is some bullshit";
+}
+

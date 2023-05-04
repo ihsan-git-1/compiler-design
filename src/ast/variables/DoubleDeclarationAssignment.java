@@ -1,6 +1,6 @@
 package ast.variables;
 
-public class DoubleDeclarationAssignment extends VariableDeclaration {
+public class DoubleDeclarationAssignment extends VariableAssignment {
     String name;
     AddDoubleExpression expr;
 

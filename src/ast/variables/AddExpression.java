@@ -2,12 +2,10 @@ package ast.variables;
 
 public class AddExpression extends NumericTermAbstractChild<Double> {
 	public NumberClass value;
-	@Override
 	public Double getValue() {
 		return super.getValue();
 	}
 
-	@Override
 	public void setValue(Double value) {
 		super.setValue(value);
 	}

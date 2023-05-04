@@ -21,7 +21,7 @@ public class ConditionExpr extends TermAbstractChild<Boolean> {
 
     @Override
     public String toString() {
-        return "ConditionExpr{" +
+        return "ConditionExpr{ " +
                 "value=" + value +
                 ", line=" + line +
                 ", col=" + col +

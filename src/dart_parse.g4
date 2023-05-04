@@ -561,7 +561,6 @@ statement:
     |ifStatement
     |forStatement
     |whileStatement
-    |function
     |assignment
     ;
 
@@ -572,16 +571,15 @@ forStatement:
     conditionExpr?
     SEMICOLON
     variableAssignment?
-    SEMICOLON
     BRKT_CL
     block;
 
 
 variableAssignment:
-    integerDeclaration
-    |stringDeclaration
-    |booleanDeclaration
-    |doubleDeclaration;
+    integerDeclarationAssignment
+    |stringDeclarationAssignment
+    |booleanDeclarationAssignment
+    |doubleDeclarationAssignment;
 
 // example on a condition : ((3.3>=3) || false) && (4>=a) ==> (no errors)
 
@@ -593,7 +591,7 @@ binaryExpr: term ((EQUAL | NOTEQUAL) term)* ;
 
 term: numericExpr| BRKT_OP conditionExpr BRKT_CL | booleans;
 
-numericExpr: numericTerm (LTE | GTE | EQUAL | NOTEQUAL) numericTerm;
+numericExpr: numericTerm (LTE | GTE | EQUAL | NOTEQUAL|ANGLE_BRKT_CL|ANGLE_BRKT_OP) numericTerm;
 
 numericTerm:addExpression|addDoubleExpression|identifier;
 
