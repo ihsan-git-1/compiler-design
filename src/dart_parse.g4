@@ -116,8 +116,16 @@ dartDeclaration:
     variable
     |function
     |dartAllListsDeclaration
+    |navigation
     ;
-
+// getx navigation
+navigation:
+GET
+BRKT_OP
+STRING_LINE
+BRKT_CL
+SEMICOLON
+;
 // dart int, string, bool
 
 variable:
