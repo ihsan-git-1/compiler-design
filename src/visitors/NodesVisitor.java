@@ -8,7 +8,6 @@ import ast.variables.AbstractNumberClass;
 import gen.dart_parse;
 import org.antlr.v4.runtime.TokenStream;
 import visitors.DartVisitors.StatementsVisitors;
-import java.beans.Expression;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -118,17 +117,16 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
 
 
 
-
     @Override
     public StatefullClassDeclaration visitStatefullClassDeclaration(dart_parse.StatefullClassDeclarationContext ctx) {
 
-        Scope s = new Scope();
-        s.setScopeName("StatefullClass Scope (" + index + ")");
-        s.setParent(scopes.get(index - 1));
-        scopes.push(s);
+        Scope scope = new Scope();
+        scope.setScopeName("StatefullClass Scope (" + index + ")");
+        scope.setParent(scopes.get(index - 1));
+        scopes.push(scope);
         index = index + 1;
-        s.setId(index);
-        scopeNames.add(s.getScopeName() + " Parnet Is " + s.getParent().getScopeName());
+        scope.setId(index);
+        scopeNames.add(scope.getScopeName() + " Parnet Is " + scope.getParent().getScopeName());
 
 
         StatefullFirstBody firstBody = visitStfulFirstBody(ctx.stfulFirstBody());
@@ -139,11 +137,14 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
 
     @Override
     public StatefullFirstBody visitStfulFirstBody(dart_parse.StfulFirstBodyContext ctx) {
-        int line = ctx.start.getLine();
-        String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
         String type = NodeType.CLASS.toString();
-        int childCount = ctx.getChildCount();
-        StatefullFirstBody statefullFirstBody = new StatefullFirstBody(ctx.NAME().getText(), visitStatefullAssignStateClassDeclaration(ctx.statefullAssignStateClassDeclaration()), line, parent, type, childCount);
+
+        StatefullFirstBody statefullFirstBody
+                = new StatefullFirstBody(
+                        ctx,
+                ctx.NAME().getText(),
+                visitStatefullAssignStateClassDeclaration(ctx.statefullAssignStateClassDeclaration())
+                );
 
         for (int i = 0; i < ctx.dartDeclaration().size(); i++) {
             statefullFirstBody.getDartDeclarationList().add(visitDartDeclaration(ctx.dartDeclaration(i)));
@@ -154,11 +155,16 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
 
     @Override
     public StatefullSecondBody visitStfulSecondBody(dart_parse.StfulSecondBodyContext ctx) {
-        int line = ctx.start.getLine();
-        String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
+
         String type = NodeType.CLASS.toString();
-        int childCount = ctx.getChildCount();
-        StatefullSecondBody statefullSecondBody = new StatefullSecondBody(ctx.NAME(0).getText(), ctx.NAME(1).getText(), visitBuildMethodDeclaration(ctx.buildMethodDeclaration()), line, parent, type, childCount);
+
+        StatefullSecondBody statefullSecondBody
+                = new StatefullSecondBody(
+                ctx,
+                ctx.NAME(0).getText(),
+                ctx.NAME(1).getText(),
+                visitBuildMethodDeclaration(ctx.buildMethodDeclaration())
+        );
 
         for (int i = 0; i < ctx.dartDeclaration().size(); i++) {
             statefullSecondBody.getDartDeclarationList().add(visitDartDeclaration(ctx.dartDeclaration(i)));
@@ -169,27 +175,26 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
 
     @Override
     public StatefullAssignStateClassDeclaration visitStatefullAssignStateClassDeclaration(dart_parse.StatefullAssignStateClassDeclarationContext ctx) {
-        int line = ctx.start.getLine();
-        String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
         String type = NodeType.CLASS.toString();
-        int childCount = ctx.getChildCount();
-        return new StatefullAssignStateClassDeclaration(ctx.NAME().getText(), visitReturnStateTypes(ctx.returnStateTypes()), line, parent, type, childCount);
+
+        return new StatefullAssignStateClassDeclaration(
+                ctx,
+                ctx.NAME().getText(),
+                visitReturnStateTypes(ctx.returnStateTypes()));
     }
 
     @Override
     public ReturnStateTypes visitReturnStateTypes(dart_parse.ReturnStateTypesContext ctx) {
         String name = "";
-        int line = ctx.start.getLine();
-        String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
         String type = NodeType.BLOCK.toString();
-        int childCount = ctx.getChildCount();
+
         if (ctx.functionReturnState() != null) {
             name = ctx.functionReturnState().NAME().getText();
         }
         if (ctx.returnArrowState() != null) {
             name = ctx.returnArrowState().NAME().getText();
         }
-        return new ReturnStateTypes(name, line, parent, type, childCount);
+        return new ReturnStateTypes(name, ctx);
     }
 
     @Override
