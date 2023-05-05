@@ -538,7 +538,6 @@ block:
 functionBody:
     CRLY_BRKT_OP
     statement*
-    returnStatement
     CRLY_BRKT_CL
    ;
 returnStatement:
