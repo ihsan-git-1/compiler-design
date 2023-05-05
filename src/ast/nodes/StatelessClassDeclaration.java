@@ -1,5 +1,8 @@
 package ast.nodes;
 
+import ast.NodeType;
+import gen.dart_parse;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,30 +12,24 @@ List<DartDeclaration> dartDeclarationList;
 BuildMethodDeclaration methodDecleration;
 String name;
 
-	public StatelessClassDeclaration(String name,BuildMethodDeclaration methodDecleration,int line,String parent,String type,int childCount) {
-		super(line,parent, type, childCount);
+
+	public StatelessClassDeclaration(String name, BuildMethodDeclaration methodDeclaration,dart_parse.StatelessClassDeclarationContext ctx) {
+		super(ctx);
 		this.name = name;
 		this.dartDeclarationList = new ArrayList<>();
-		this.methodDecleration = methodDecleration;
+		this.methodDecleration = methodDeclaration;
 	}
 	
-	public void addChildren(DartDeclaration variable) {
-		dartDeclarationList.add(variable);
-	}
-	
+
 	public List<DartDeclaration> getDartDeclarationList() {
 		return dartDeclarationList;
-	}
-
-	public void setDartDeclarationList(List<DartDeclaration> list) {
-		this.dartDeclarationList = list;
 	}
 
 
 	@Override
 	public String toString() {
 		return  "Stateless Class Declaration Name "+name + " line: "+ getLine() + " parent "+ getParent()
-				+" Child Count =  "+getChildCount()+" Type = "+getType()+"\n"
+				+" Child Count =  "+getChildCount()+" Type = "+ NodeType.CLASS +"\n"
 				+ dartDeclarationList
 				+"\n"
 				+methodDecleration
