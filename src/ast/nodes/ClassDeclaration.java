@@ -1,5 +1,8 @@
 package ast.nodes;
 
+import ast.NodeType;
+import gen.dart_parse;
+
 import java.util.List;
 import java.util.ArrayList;
 
@@ -11,28 +14,17 @@ public class ClassDeclaration extends AllClassesDeclarationAbstractChild {
 		return dartDeclarationList;
 	}
 
-	public void setDartDeclarationList(List<DartDeclaration> dartDeclarationList) {
-		this.dartDeclarationList = dartDeclarationList;
-	}
-
-	public ClassDeclaration(int line,String parent,String type,int childCount) {
-		super(line,parent, type, childCount);
-		this.dartDeclarationList =new ArrayList<>();
-	}
-	public  ClassDeclaration(String name,int line,String parent,String type,int childCount){
-		super(line,parent, type, childCount);
+	public ClassDeclaration(String name, dart_parse.ClassDeclarationContext ctx){
+		super(ctx);
 		this.name = name;
 		this.dartDeclarationList =new ArrayList<>();
-	}
-	
-	public void addChildren(DartDeclaration variable) {
-		dartDeclarationList.add(variable);
+
 	}
 	
 	@Override
 	public String toString() {
 		return  "Class Declaration Name is "+name+", line: "+getLine()+", parent "+getParent()
-				+", Child Count =  "+getChildCount()+", Type = "+getType()+"\n"+
+				+", Child Count =  "+getChildCount()+", Type = "+ NodeType.CLASS +"\n"+
 				dartDeclarationList
 				;
 	}

@@ -1,9 +1,20 @@
 package ast.nodes;
 
 
-public abstract class AllClassesDeclarationAbstractChild  extends Node{
+import gen.dart_parse;
 
-    public AllClassesDeclarationAbstractChild(int line,String parent,String type,int childCount){
-        super(line,parent,type,childCount);
+public abstract class AllClassesDeclarationAbstractChild  extends Node{
+    public AllClassesDeclarationAbstractChild(dart_parse.ClassDeclarationContext ctx){
+        super(ctx);
     }
+
+
+    public AllClassesDeclarationAbstractChild(dart_parse.StatefullClassDeclarationContext ctx){
+        super(ctx);
+    }
+
+    public AllClassesDeclarationAbstractChild(dart_parse.StatelessClassDeclarationContext ctx){
+        super(ctx);
+    }
+
 }
