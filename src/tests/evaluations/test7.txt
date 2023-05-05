@@ -1,0 +1,9 @@
+class test {
+    int x=2;
+    double y=3.8;
+
+    double z = y*x+2-x*1;
+    double w = x+2/1*y;
+
+
+  }

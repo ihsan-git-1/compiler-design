@@ -12,7 +12,7 @@ import static org.antlr.v4.runtime.CharStreams.fromFileName;
 public class Main {
     public static void main(String[] args) throws IOException {
 
-        String source = "src/tests/declarations/Integer/assign.txt";
+        String source = "src/tests/evaluations/test1.txt";
         CharStream cs = fromFileName(source);
         dart_lexar lexer = new dart_lexar(cs);
         CommonTokenStream token = new CommonTokenStream(lexer);
@@ -20,8 +20,6 @@ public class Main {
         ParseTree tree = parser.topTreeDeclaration();
         TokenStream tokenStream = token;
         TopTreeDeclaration doc = (TopTreeDeclaration) new NodesVisitor(tokenStream).visit(tree);
-
-
 
         if(dart_parseBaseVisitorChild.semanticErrors.size()>0) {
             for (String error : dart_parseBaseVisitorChild.semanticErrors) {

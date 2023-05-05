@@ -1,4 +1,4 @@
-// Generated from java-escape by ANTLR 4.11.1
+// Generated from C:/Users/Vision/Downloads/Desktop/compiler-new/src\dart_parse.g4 by ANTLR 4.10.1
 package gen;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -137,6 +137,16 @@ public interface dart_parseListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitDartDeclaration(dart_parse.DartDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#navigation}.
+	 * @param ctx the parse tree
+	 */
+	void enterNavigation(dart_parse.NavigationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#navigation}.
+	 * @param ctx the parse tree
+	 */
+	void exitNavigation(dart_parse.NavigationContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link dart_parse#variable}.
 	 * @param ctx the parse tree
@@ -767,6 +777,16 @@ public interface dart_parseListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitVariableAssignment(dart_parse.VariableAssignmentContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#name}.
+	 * @param ctx the parse tree
+	 */
+	void enterName(dart_parse.NameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#name}.
+	 * @param ctx the parse tree
+	 */
+	void exitName(dart_parse.NameContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link dart_parse#conditionExpr}.
 	 * @param ctx the parse tree

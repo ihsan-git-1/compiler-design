@@ -234,7 +234,7 @@ addExpression
     ;
 
 multiplyExpression
-    :   number (('*' | '/') number)*
+    :   (name|number)  (('*' | '/')  (name|number))*
     ;
 
 addDoubleExpression
@@ -242,7 +242,7 @@ addDoubleExpression
     ;
 
 multiplyDoubleExpression
-    :   (number|numberDouble) (('*' | '/') (number|numberDouble))*
+    :   (name|number|numberDouble) (('*' | '/') (name|number|numberDouble))*
     ;
 
 booleans:
@@ -588,6 +588,7 @@ variableAssignment:
     |booleanDeclarationAssignment
     |doubleDeclarationAssignment;
 
+name : NAME;
 // example on a condition : ((3.3>=3) || false) && (4>=a) ==> (no errors)
 
 conditionExpr : andExpr (OR andExpr)*;

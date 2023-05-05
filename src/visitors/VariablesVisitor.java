@@ -118,8 +118,11 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
         } else if ((CheckExistanceInParentScope(id, index) || CheckExistanceInScope(id, index)) && !CheckIfTypeMatchesParentType(id, index, NodeType.INT.toString())) {
             semanticErrors.add("A value of type " + NodeType.INT.toString() + " can't be assigned to a variable of type " + getParentType(id, index, NodeType.INT.toString()));
         } else {
+
             AddExpression expr = visitAddExpression(ctx.addExpression());
+
             scopes.get(index - 1).getSymbolMap().put(id, new SymbolTableObject(NodeType.INT.toString(), String.valueOf(expr.value.getNum())));
+
             varialbeNames.add("Identifier " + id + ", Type " + NodeType.INT + ", Value : " + expr.value.getNum() + " , Scope " + scopes.peek().getScopeName());
             return new IntegerDeclarationAssignment(expr, id, line, parent, type, childCount);
         }
@@ -343,6 +346,7 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
         String type = NodeType.DOUBLEDECLARATION.toString();
         int childCount = ctx.getChildCount();
 
+
         if (CheckExistanceInScope(name, index)) {
             semanticErrors.add("The name " + name + " already defined (" + line + "," + column + ")");
         } else {
@@ -540,18 +544,64 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
 
     @Override
     public AddExpression visitAddExpression(dart_parse.AddExpressionContext ctx) {
+
         double value;
         Queue<Object> queue = new LinkedList<>();
+        String leftmost_operand_type = "";
+
         if (ctx.getChild(0) instanceof dart_parse.MultiplyExpressionContext) {
             MultiplyExpression expr = visitMultiplyExpression((dart_parse.MultiplyExpressionContext) ctx.getChild(0));
             value = expr.getValue().getNum();
-        } else {
+
+            if(((dart_parse.MultiplyExpressionContext) ctx.getChild(0)).name().size() != 0){
+                String variable =  ctx.getChild(0).getText();
+                leftmost_operand_type = getVariableTypeFromScopes(variable,index);
+            }
+
+            if(ctx.getChild(0).getChildCount()>1){
+
+                for(int j=0;j<ctx.getChild(0).getChildCount();j++) {
+                    if(ctx.getChild(0).getChild(j) instanceof dart_parse.NameContext){
+                        String variable_inner = ctx.getChild(0).getChild(j).getText();
+                        leftmost_operand_type = getVariableTypeFromScopes(variable_inner, index);
+
+                        for (int k = j+1; k < ctx.getChild(0).getChildCount(); k++) {
+                            if (leftmost_operand_type != "" &&  ctx.getChild(0).getChild(k) instanceof dart_parse.NameContext) {
+                                variable_inner = ctx.getChild(0).getChild(k).getText();
+                                String right_operand_type = getVariableTypeFromScopes(variable_inner, index);
+
+                                if (!right_operand_type.equals(leftmost_operand_type) && !right_operand_type.equals("") && semanticErrors.size() == 0) {
+                                    semanticErrors.add("A value of type '" + (leftmost_operand_type != "int" ? leftmost_operand_type : right_operand_type) + "' can't be assigned to a variable of type 'int'.");
+                                    break;
+                                }
+                            }
+                        }
+
+                        }
+                    }
+            }
+        }
+        else {
             value = Double.parseDouble(ctx.getChild(0).getText());
         }
+
         for (int i = 1; i < ctx.getChildCount(); i++) {
             if (ctx.getChild(i) instanceof dart_parse.MultiplyExpressionContext) {
+
                 MultiplyExpression expr = visitMultiplyExpression((dart_parse.MultiplyExpressionContext) ctx.getChild(i));
                 double n = expr.getValue().getNum();
+
+                if(((dart_parse.MultiplyExpressionContext) ctx.getChild(i)).name().size() != 0 && leftmost_operand_type!=""){
+                    String variable =  ctx.getChild(i).getText();
+                    String right_operand_type = getVariableTypeFromScopes(variable,index);
+
+
+                    if(!right_operand_type.equals(leftmost_operand_type) && !right_operand_type.equals("") && semanticErrors.size()==0){
+
+                        semanticErrors.add("A value of type '"+ (leftmost_operand_type != "int"?leftmost_operand_type:right_operand_type) +"' can't be assigned to a variable of type 'int'.");
+                    }
+                }
+
                 queue.add(n);
             } else {
                 queue.add(ctx.getChild(i).getText());
@@ -591,6 +641,7 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
         double num;
         while (!queue.isEmpty()) {
             String operator = (String) queue.remove();
+
             if (queue.peek() instanceof Double) {
                 num = (double) queue.remove();
             } else {
@@ -607,14 +658,89 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
 
     @Override
     public MultiplyExpression visitMultiplyExpression(dart_parse.MultiplyExpressionContext ctx) {
-        Queue<Object> queue = new LinkedList<>();
-        double value = Double.parseDouble(ctx.getChild(0).getText());
-        for (int i = 1; i < ctx.getChildCount(); i++) {
-            queue.add(ctx.getChild(i).getText());
-        }
-        value = getMultiValue(value, queue);
-        int intValue = (int) value;
+
         int line = ctx.start.getLine();
+        int column = ctx.start.getCharPositionInLine() + 1;
+        Queue<Object> queue = new LinkedList<>();
+        Object value ;
+        int intValue = 0;
+
+        if(ctx.getParent().getChildCount()>1){
+
+            if(ctx.name().isEmpty()){
+                try{
+                    value = Double.parseDouble(ctx.getChild(0).getText());
+                    for (int i = 1; i < ctx.getChildCount(); i++) {
+                        queue.add(ctx.getChild(i).getText());
+                    }
+                    value = getMultiValue((Double)value, queue);
+
+                    intValue = ((Double) value).intValue();
+                }catch(Exception e){}
+            }
+            else if(!ctx.name().isEmpty()){
+
+                for (int i = 0; i < ctx.getChildCount(); i++) {
+
+                    if(ctx.getChild(i) instanceof dart_parse.NameContext){
+                        String variable = ctx.getChild(i).getText();
+
+                        if (!CheckExistanceInParentScope(variable, index) && !CheckExistanceInScope(variable, index)) {
+                            semanticErrors.add("Undefined name " + variable + " at (" + line + "," + column + ")");
+                        }else {
+                            value = getVariableValueFromScopes(variable, index);
+                            queue.add(value);
+                        }
+                    }else{
+
+                        queue.add(ctx.getChild(i).getText());
+                    }
+                }
+
+                if(semanticErrors.size()==0){
+                    value = Double.parseDouble(queue.remove().toString());
+                    value = getMultiValue((double) value, queue);
+                    intValue = ((Double) value).intValue();
+                }
+
+            }
+        }
+        else if(ctx.getParent().getChildCount()==1){
+
+            for (int i = 0; i < ctx.getChildCount(); i++) {
+                if(ctx.getChild(i) instanceof dart_parse.NumberContext ){
+
+                    try{
+                        value = Double.parseDouble(ctx.getChild(i).getText());
+                        queue.add(value);
+                    }catch(Exception e){}
+                }
+                else if(ctx.getChild(i) instanceof dart_parse.NameContext){
+
+                    String variable = ctx.getChild(i).getText();
+                    if (!CheckExistanceInParentScope(variable, index) && !CheckExistanceInScope(variable, index)) {
+                        semanticErrors.add("Undefined name " + variable + " at (" + line + "," + column + ")");
+                        queue.add("0");
+                    }else{
+
+                        value = getVariableValueFromScopes(variable,index);
+
+                        queue.add(value);
+                    }
+                }
+                else{
+                    queue.add(ctx.getChild(i).getText());
+                }
+            }
+
+            if(semanticErrors.size()==0){
+                value = Double.parseDouble(queue.remove().toString());
+                value = getMultiValue((double) value, queue);
+                intValue = ((Double) value).intValue();
+            }
+
+        }
+
         String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
         String type = NodeType.NUMBER.toString();
         int childCount = ctx.getChildCount();
@@ -627,14 +753,33 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
     public AddDoubleExpression visitAddDoubleExpression(dart_parse.AddDoubleExpressionContext ctx) {
         double value;
         Queue<Object> queue = new LinkedList<>();
+        String leftmost_operand_type = "";
+
         if (ctx.getChild(0) instanceof dart_parse.MultiplyDoubleExpressionContext) {
             MultiplyDoubleExpression expr = visitMultiplyDoubleExpression((dart_parse.MultiplyDoubleExpressionContext) ctx.getChild(0));
             value = expr.getValue().getNum();
+
+            if(((dart_parse.MultiplyDoubleExpressionContext) ctx.getChild(0)).name().size() != 0){
+                String variable =  ctx.getChild(0).getText();
+                leftmost_operand_type = getVariableTypeFromScopes(variable,index );
+            }
+
+
         } else value = Double.parseDouble(ctx.getChild(0).getText());
         for (int i = 1; i < ctx.getChildCount(); i++) {
             if (ctx.getChild(i) instanceof dart_parse.MultiplyDoubleExpressionContext) {
                 MultiplyDoubleExpression expr = visitMultiplyDoubleExpression((dart_parse.MultiplyDoubleExpressionContext) ctx.getChild(i));
                 double n = expr.getValue().getNum();
+
+                if(((dart_parse.MultiplyDoubleExpressionContext) ctx.getChild(i)).name().size() != 0  && !leftmost_operand_type.equals("") && !leftmost_operand_type.equals("int")){
+                    String variable =  ctx.getChild(i).getText();
+                    String right_operand_type = getVariableTypeFromScopes(variable,index);
+
+                    if(!right_operand_type.equals(leftmost_operand_type) && !right_operand_type.equals("") && !right_operand_type.equals("int") && semanticErrors.size()==0){
+                        semanticErrors.add("A value of type '"+ (leftmost_operand_type != "double"?leftmost_operand_type:right_operand_type) +"' can't be assigned to a variable of type 'double'.");
+                    }
+                }
+
                 queue.add(n);
             } else {
                 queue.add(ctx.getChild(i).getText());
@@ -652,17 +797,89 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
 
     @Override
     public MultiplyDoubleExpression visitMultiplyDoubleExpression(dart_parse.MultiplyDoubleExpressionContext ctx) {
-        Queue<Object> queue = new LinkedList<>();
-        double value = Double.parseDouble(ctx.getChild(0).getText());
-        for (int i = 1; i < ctx.getChildCount(); i++) {
-            queue.add(ctx.getChild(i).getText());
-        }
-        value = getMultiValue(value, queue);
         int line = ctx.start.getLine();
+        int column = ctx.start.getCharPositionInLine() + 1;
+        Object value = 0.0;
+        Queue<Object> queue = new LinkedList<>();
+
+        if(ctx.getParent().getChildCount()>1) {
+
+            if (ctx.name().isEmpty()) {
+                try {
+                    value = Double.parseDouble(ctx.getChild(0).getText());
+
+                    for (int i = 1; i < ctx.getChildCount(); i++) {
+                        queue.add(ctx.getChild(i).getText());
+                    }
+                    value = getMultiValue((Double) value, queue);
+                } catch (Exception e) {
+                }
+            }
+            else if (!ctx.name().isEmpty()) {
+
+                for (int i = 0; i < ctx.getChildCount(); i++) {
+
+                    if(ctx.getChild(i) instanceof dart_parse.NameContext){
+
+                        String variable = ctx.getChild(i).getText();
+
+                        if (!CheckExistanceInParentScope(variable, index) && !CheckExistanceInScope(variable, index)) {
+                            semanticErrors.add("Undefined name " + variable + " at (" + line + "," + column + ")");
+
+                        }else {
+                            value = getVariableValueFromScopes(variable, index);
+                            queue.add(value);
+                        }
+                    }else{
+
+                        queue.add(ctx.getChild(i).getText());
+                    }
+                }
+               if(semanticErrors.size()==0){
+                   value = Double.parseDouble(queue.remove().toString());
+                   value = getMultiValue((double) value, queue);
+               }
+
+            }
+        }
+        else if(ctx.getParent().getChildCount()==1){
+
+            for (int i = 0; i < ctx.getChildCount(); i++) {
+                if(ctx.getChild(i) instanceof dart_parse.NumberContext || ctx.getChild(i) instanceof dart_parse.NumberDoubleContext){
+                    try{
+                        value = Double.parseDouble(ctx.getChild(i).getText());
+                        queue.add(value);
+                    }catch(Exception e){}
+                }
+                else if(ctx.getChild(i) instanceof dart_parse.NameContext){
+
+                    String variable = ctx.getChild(i).getText();
+                    if (!CheckExistanceInParentScope(variable, index) && !CheckExistanceInScope(variable, index)) {
+                        semanticErrors.add("Undefined name " + variable + " at (" + line + "," + column + ")");
+                    }else{
+
+                        value = getVariableValueFromScopes(variable,index);
+
+                        queue.add(value);
+                    }
+                }
+                else{
+                    queue.add(ctx.getChild(i).getText());
+                }
+            }
+
+            if(semanticErrors.size()==0){
+                value = Double.parseDouble(queue.remove().toString());
+                value = getMultiValue((double) value, queue);
+            }
+
+
+        }
+
         String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
         String type = NodeType.NUMBERDOUBLE.toString();
         int childCount = ctx.getChildCount();
-        NumberDoubleClass num = new NumberDoubleClass(value, line, "Multiply Double Expression", type, childCount);
+        NumberDoubleClass num = new NumberDoubleClass((double) value, line, "Multiply Double Expression", type, childCount);
         type = NodeType.MULTIPLYDOUBLEEXPRESSION.toString();
         childCount = ctx.getChildCount();
         return new MultiplyDoubleExpression(num, line, parent, type, childCount);
