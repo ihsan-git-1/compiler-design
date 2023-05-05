@@ -1,5 +1,8 @@
 package ast.nodes;
 
+import ast.NodeType;
+import gen.dart_parse;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,8 +11,8 @@ public class StatefullFirstBody extends Node{
 	StatefullAssignStateClassDeclaration dec;
 	String name;
 	
-	public StatefullFirstBody(String name,StatefullAssignStateClassDeclaration dec,int line,String parent,String type,int childCount) {
-		super(line,parent, type, childCount);
+	public StatefullFirstBody(dart_parse.StfulFirstBodyContext ctx, String name, StatefullAssignStateClassDeclaration dec) {
+		super(ctx);
 		this.name = name;
 		this.dec = dec;
 		this.dartDeclarationList =new ArrayList<>();
@@ -22,8 +25,8 @@ public class StatefullFirstBody extends Node{
 	@Override
 	public String toString() {
 
-		return  "Statefull First Body Name  " +name + " line: "+getLine() + " parent "+getParent()
-				+" Child Count =  "+getChildCount()+" Type = "+getType()
+		return  getLineString()+"StateFull First Body Name  " +name + " parent "+getParent()
+				+" Child Count =  "+getChildCount()+" Type = "+ NodeType.CLASS
 				+ dartDeclarationList +"\n"
 				+dec+"\n"
 				;
