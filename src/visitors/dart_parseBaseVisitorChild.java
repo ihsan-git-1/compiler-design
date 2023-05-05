@@ -1,15 +1,16 @@
-package gen;
+package visitors;
 
 import ast.NodeType;
 import ast.Scope;
 import ast.SymbolTableObject;
+import gen.dart_parseBaseVisitor;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.TokenStream;
 import java.util.Stack;
 import java.util.*;
 
-public class dart_parseBaseVisitorChild extends dart_parseBaseVisitor{
+public class dart_parseBaseVisitorChild extends dart_parseBaseVisitor {
 
     public static List<String> semanticErrors = new ArrayList<>();
 

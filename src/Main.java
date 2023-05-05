@@ -6,6 +6,7 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.TokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 import visitors.NodesVisitor;
+import visitors.dart_parseBaseVisitorChild;
 
 import static org.antlr.v4.runtime.CharStreams.fromFileName;
 
