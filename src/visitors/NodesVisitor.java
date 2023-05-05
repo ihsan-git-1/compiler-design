@@ -260,11 +260,11 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
         int childCount = ctx.getChildCount();
         List<dart_parse.StatementContext> statementContexts = ctx.statement();
         List<Statement> statements = null;
-        ReturnStatement returnStatement = visitReturnStatement(ctx.returnStatement());
+        //ReturnStatement returnStatement = visitReturnStatement(ctx.returnStatement());
         for (dart_parse.StatementContext statementContext : statementContexts) {
             statements.add(visitStatement(statementContext));
         }
-        return new FunctionBody(line, parent, type, childCount, statements, returnStatement);
+        return new FunctionBody(line, parent, type, childCount, statements);
     }
 
     @Override
