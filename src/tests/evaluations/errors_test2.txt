@@ -1,0 +1,7 @@
+class test {
+    int x=2;
+    double y=2;
+
+    int z = x+y+2;
+
+  }

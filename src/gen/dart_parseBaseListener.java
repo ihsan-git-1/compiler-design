@@ -1,4 +1,4 @@
-// Generated from java-escape by ANTLR 4.11.1
+// Generated from C:/Users/Vision/Downloads/Desktop/compiler-new/src\dart_parse.g4 by ANTLR 4.10.1
 package gen;
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -10,7 +10,6 @@ import org.antlr.v4.runtime.tree.TerminalNode;
  * which can be extended to create a listener which only needs to handle a subset
  * of the available methods.
  */
-@SuppressWarnings("CheckReturnValue")
 public class dart_parseBaseListener implements dart_parseListener {
 	/**
 	 * {@inheritDoc}
@@ -168,6 +167,18 @@ public class dart_parseBaseListener implements dart_parseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitDartDeclaration(dart_parse.DartDeclarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterNavigation(dart_parse.NavigationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitNavigation(dart_parse.NavigationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -924,6 +935,18 @@ public class dart_parseBaseListener implements dart_parseListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitVariableAssignment(dart_parse.VariableAssignmentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterName(dart_parse.NameContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitName(dart_parse.NameContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

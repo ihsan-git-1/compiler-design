@@ -234,9 +234,15 @@ FALSE:
 'false'
 ;
 
+
 NAME :
-[a-zA-Z-+]+
+[a-zA-Z]+
     ;
+
+
+
+
+
 NUMBERDOUBLE : [0-9]+ '.' [0-9]+ ;
 NUMBER:
 [0-9][0-9]*

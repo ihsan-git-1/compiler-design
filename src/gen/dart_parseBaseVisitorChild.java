@@ -84,25 +84,58 @@ public class dart_parseBaseVisitorChild extends dart_parseBaseVisitor{
         return "";
     }
 
-    public boolean searchForBracketToken(String tokenStr, ParserRuleContext ctx,TokenStream tokenStream){
-        int i=1;
-        String opositeBracket ;
-        if(tokenStr.equals("{")){
-            opositeBracket = "}";
-        }else{
-            opositeBracket = "{";
-        }
+    public Object getVariableValueFromScopes(String id , int index ){
 
-        while((ctx.getStart().getTokenIndex() - i != 0 )){
-            int previousTokenIndex = ctx.getStart().getTokenIndex() - i;
-            Token previousToken = tokenStream.get(previousTokenIndex);
-            if(tokenStr.equals(previousToken.getText())){
-                return true;
-            }else if(opositeBracket.equals(previousToken.getText())){
-                return false;
+        for(Scope s : scopes){
+            if(s.getId() <= index){
+                for (Map.Entry<String, SymbolTableObject> mapElement : s.getSymbolMap().entrySet()) {
+                    if(mapElement.getKey().equals(id)){
+                        return mapElement.getValue().value;
+                    }
+                }
             }
-            i = i-1;
         }
-        return false;
+        return null;
     }
+
+    public String getVariableTypeFromScopes(String id , int index ){
+
+        for(Scope s : scopes){
+            if(s.getId() <= index){
+
+                for (Map.Entry<String, SymbolTableObject> mapElement : s.getSymbolMap().entrySet()) {
+
+                    if(mapElement.getKey().equals(id)){
+
+                        return mapElement.getValue().type;
+                    }
+                }
+            }
+        }
+        return "";
+    }
+
+
+
+//    public boolean searchForBracketToken(String tokenStr, ParserRuleContext ctx,TokenStream tokenStream){
+//        int i=1;
+//        String opositeBracket ;
+//        if(tokenStr.equals("{")){
+//            opositeBracket = "}";
+//        }else{
+//            opositeBracket = "{";
+//        }
+//
+//        while((ctx.getStart().getTokenIndex() - i != 0 )){
+//            int previousTokenIndex = ctx.getStart().getTokenIndex() - i;
+//            Token previousToken = tokenStream.get(previousTokenIndex);
+//            if(tokenStr.equals(previousToken.getText())){
+//                return true;
+//            }else if(opositeBracket.equals(previousToken.getText())){
+//                return false;
+//            }
+//            i = i-1;
+//        }
+//        return false;
+//    }
 }

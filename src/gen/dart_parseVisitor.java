@@ -1,4 +1,4 @@
-// Generated from java-escape by ANTLR 4.11.1
+// Generated from C:/Users/Vision/Downloads/Desktop/compiler-new/src\dart_parse.g4 by ANTLR 4.10.1
 package gen;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
@@ -88,6 +88,12 @@ public interface dart_parseVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitDartDeclaration(dart_parse.DartDeclarationContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link dart_parse#navigation}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNavigation(dart_parse.NavigationContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link dart_parse#variable}.
 	 * @param ctx the parse tree
@@ -466,6 +472,12 @@ public interface dart_parseVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitVariableAssignment(dart_parse.VariableAssignmentContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link dart_parse#name}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitName(dart_parse.NameContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link dart_parse#conditionExpr}.
 	 * @param ctx the parse tree
