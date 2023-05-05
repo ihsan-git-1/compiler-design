@@ -1,6 +1,5 @@
 package ast.nodes;
 
-import ast.NodeType;
 import gen.dart_parse;
 
 import java.util.ArrayList;
@@ -33,7 +32,7 @@ public class TopTreeDeclaration extends Node{
 	@Override
 	public String toString() {
 
-		return "Top Tree Declaration line: "+ getLine() +" Child Count =  "+getChildCount()+" Type = "+ NodeType.TOPTREEDECLARATION+ "\n"+
+		return getLineString() +"Top Tree Declaration "+" Child Count =  "+getChildCount()+" Type = "+getType()+ "\n"+
 				topTreeClassesChildrenList.toString()
 						.replace(",", "")
 						.replace("[", "")

@@ -13,12 +13,12 @@ public class Node {
     public String parent;
     ParserRuleContext parserRuleContext;
 
-    public Node(int line,String parent,String type,int childCount){
-        this.line=line;
-        this.parent=parent;
-        this.type=type;
-        this.childCount=childCount;
-    }
+//    public Node(int line,String parent,String type,int childCount){
+//        this.line=line;
+//        this.parent=parent;
+//        this.type=type;
+//        this.childCount=childCount;
+//    }
     public Node(ParserRuleContext parserRuleContext){
      this.parserRuleContext = parserRuleContext;
     }
@@ -33,6 +33,9 @@ public class Node {
         }catch (Exception e){
             return -1;
         }
+    }
+    public String getLineString() {
+        return "Line : (" + getLine() + ") ";
     }
 
 
@@ -55,4 +58,5 @@ public class Node {
     public String getType(){
         return type;
     }
+
 }

@@ -28,7 +28,7 @@ String name;
 
 	@Override
 	public String toString() {
-		return  "Stateless Class Declaration Name "+name + " line: "+ getLine() + " parent "+ getParent()
+		return  getLineString()+"Stateless Class Declaration Name "+name+ " parent "+ getParent()
 				+" Child Count =  "+getChildCount()+" Type = "+ NodeType.CLASS +"\n"
 				+ dartDeclarationList
 				+"\n"

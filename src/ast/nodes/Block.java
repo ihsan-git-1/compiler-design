@@ -1,20 +1,16 @@
 package ast.nodes;
 
+import gen.dart_parse;
+
 import java.util.List;
 
 public class Block extends Node {
     List<Statement> statements;
 
-    public List<Statement> getStatements() {
-        return statements;
-    }
 
-    public void setStatements(List<Statement> statements) {
-        this.statements = statements;
-    }
 
-    public Block(int line, String parent, List<Statement> statements, String type, int childCount) {
-        super(line, parent,type,childCount);
+    public Block(dart_parse.BlockContext ctx, List<Statement> statements) {
+        super(ctx);
         this.statements = statements;
     }
 

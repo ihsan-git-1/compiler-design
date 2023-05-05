@@ -12,7 +12,7 @@ public class BuildContextDeclaration extends Node{
 	}
 	
 	public String toString() {
-		return "BuildContext Name "+name + " line: "+getLine() + " parent "+getParent()
+		return getLineString()+" BuildContext Name "+name + " parent "+getParent()
 				+" Child Count =  "+getChildCount()+" Type = "+ NodeType.OBJECT;
 	}
 }
