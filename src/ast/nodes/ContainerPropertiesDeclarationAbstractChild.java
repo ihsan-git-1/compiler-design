@@ -1,9 +1,12 @@
 package ast.nodes;
 
+import gen.dart_parse;
+import org.antlr.v4.runtime.ParserRuleContext;
+
 public abstract class ContainerPropertiesDeclarationAbstractChild extends Node{
 
-    public ContainerPropertiesDeclarationAbstractChild(int line ,String parent,String type,int childCount){
-        super(line,parent,type,childCount);
-    }
 
+    public ContainerPropertiesDeclarationAbstractChild(dart_parse.ChildPropertyDeclarationContext ctx) {
+        super(ctx);
+    }
 }
