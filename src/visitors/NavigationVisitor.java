@@ -3,7 +3,6 @@ package visitors;
 import ast.NodeType;
 import ast.navigation.Navigation;
 import gen.dart_parse;
-import gen.dart_parseBaseVisitorChild;
 
 public class NavigationVisitor extends dart_parseBaseVisitorChild {
 
