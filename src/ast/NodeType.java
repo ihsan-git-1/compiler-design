@@ -26,6 +26,8 @@ public enum NodeType {
     BOOLEANDECLARATIONLINE("variable declaration line (type boolean)"),
     STRINGDECLARATIONLINE("variable declaration line (type string)"),
     VARIABLE("variable (generic type)"),
+    Navigation("navigation (generic type)"),
+
     NUMBERDOUBLE("value (type double)"),
     STRINGDECLARATION("string declaration"),
     FUNCTION("function"),

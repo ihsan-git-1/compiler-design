@@ -753,11 +753,19 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
         int line = ctx.start.getLine();
         String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
         VariablesVisitor variablesVisitor = new VariablesVisitor();
+
+        NavigationVisitor navigationVisitor = new NavigationVisitor();
+
         String type = NodeType.OBJECT.toString();
         int childCount = ctx.getChildCount();
         if (ctx.variable() != null) {
             return new DartDeclaration(variablesVisitor.visitVariable(ctx.variable()), line, parent, type, childCount);
         }
+
+        else if(ctx.navigation() != null){
+            return new DartDeclaration(navigationVisitor.visitNavigation(ctx.navigation()), line, parent, type, childCount);
+        }
+
         //else if (ctx.function() != null) {
         //      return new DartDeclaration(visitFunction(ctx.function()), line, parent, type, childCount);
         // }
