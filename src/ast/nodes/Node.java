@@ -55,8 +55,8 @@ public class Node {
         }
     }
 
-    public String getType(){
-        return type;
-    }
+   // public String getType(){
+//        return type;
+//    }
 
 }

@@ -1,38 +1,25 @@
 package ast.nodes;
 
+import ast.NodeType;
+import gen.dart_parse;
+
 public class Function extends DartDeclarationAbstractChild implements StatementAbstractChild {
     FunctionType functionType;
     String name;
     Parameter parameters;
     FunctionBody functionBody;
 
-    public Function(int line, String parent, String type, int childCount, FunctionType functionType, String name, Parameter parameters,  FunctionBody functionBody) {
-        super(line, parent, type, childCount);
+    public Function(dart_parse.FunctionContext ctx, FunctionType functionType, String name, Parameter parameters, FunctionBody functionBody) {
+        super(ctx);
         this.functionType = functionType;
         this.name = name;
         this.parameters = parameters;
         this.functionBody = functionBody;
     }
 
-    public FunctionType getFunctionType() {
-        return functionType;
-    }
-
-    public void setFunctionType(FunctionType functionType) {
-        this.functionType = functionType;
-    }
-
-    public Parameter getParameters() {
-        return parameters;
-    }
-
-    public void setParameters(Parameter parameters) {
-        this.parameters = parameters;
-    }
-
 
     @Override
     public String toString() {
-        return "Function " + "name: " + name + ", functionType: " + functionType + ", parameters: " + parameters + ", functionBody: " + functionBody + ", line: " + line + ", parent: '" + parent +" Child Count =  "+getChildCount()+" Type = "+getType() +"\n";
+        return getLineString()+"Function " + "name: " + name + ", functionType: " + functionType + ", parameters: " + parameters + ", functionBody: " + functionBody  + ", parent: '" + parent +" Child Count =  "+getChildCount()+" Type = "+ NodeType.FUNCTION +"\n";
     }
 }
