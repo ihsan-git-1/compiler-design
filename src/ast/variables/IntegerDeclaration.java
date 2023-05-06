@@ -1,18 +1,20 @@
 package ast.variables;
 
+import ast.NodeType;
 import ast.nodes.Node;
+import gen.dart_parse;
 
 public class IntegerDeclaration extends Identifier implements assignment {
     String name;
 
-    public IntegerDeclaration(String name, int line, String parent,String type,int childCount) {
-        super(line, parent, type, childCount);
+    public IntegerDeclaration(dart_parse.IntegerDeclarationContext ctx, String name) {
+        super(ctx);
         this.name = name;
     }
 
     @Override
     public String toString() {
-        return "Integer Declaration: " +name+" line: "+ getLine() + " parent: "+ getParent()
-                +" Child Count =  "+getChildCount()+" Type = "+getType()+"\n";
+        return getLineString()+"Integer Declaration: " +name + " parent: "+ getParent()
+                +" Child Count =  "+getChildCount()+" Type = "+ NodeType.INTEGERDECLARATION+"\n";
     }
 }	

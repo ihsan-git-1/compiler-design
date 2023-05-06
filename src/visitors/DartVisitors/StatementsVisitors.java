@@ -7,7 +7,6 @@ import ast.variables.Variable;
 import ast.variables.VariableAssignment;
 import gen.dart_parse;
 import visitors.NodesVisitor;
-import visitors.VariablesVisitor;
 import visitors.dart_parseBaseVisitorChild;
 import java.util.ArrayList;
 import java.util.List;

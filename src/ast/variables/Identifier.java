@@ -1,5 +1,7 @@
 package ast.variables;
 
+import org.antlr.v4.runtime.ParserRuleContext;
+
 public abstract class Identifier extends NumericTermAbstractChild<Double>{
     public double value;
 
@@ -13,8 +15,8 @@ public abstract class Identifier extends NumericTermAbstractChild<Double>{
         super.setValue(value);
     }
 
-    public Identifier(int line, String parent, String type, int childCount) {
-        super(line, parent, type, childCount);
+    public Identifier(ParserRuleContext parserRuleContext) {
+        super(parserRuleContext);
         setValue(value);
     }
 

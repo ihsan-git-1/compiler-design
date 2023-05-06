@@ -1,8 +1,10 @@
 package ast.variables;
 
+import org.antlr.v4.runtime.ParserRuleContext;
+
 public abstract class VariableAssignment extends VariableDeclaration {
 
-    public VariableAssignment(int line, String parent, String type, int childCount) {
-        super(line, parent, type, childCount);
+    public VariableAssignment(ParserRuleContext parserRuleContext) {
+        super(parserRuleContext);
     }
 }

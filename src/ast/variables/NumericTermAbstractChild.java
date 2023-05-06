@@ -1,6 +1,7 @@
 package ast.variables;
 
 import ast.nodes.Node;
+import org.antlr.v4.runtime.ParserRuleContext;
 
 public abstract class NumericTermAbstractChild<T> extends Node {
     protected T value;
@@ -13,7 +14,7 @@ public abstract class NumericTermAbstractChild<T> extends Node {
         this.value = value;
     }
 
-    public NumericTermAbstractChild(int line, String parent, String type, int childCount) {
-        super(line, parent, type, childCount);
+    public NumericTermAbstractChild(ParserRuleContext parserRuleContext) {
+        super(parserRuleContext);
     }
 }

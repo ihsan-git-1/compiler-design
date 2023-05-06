@@ -1,5 +1,8 @@
 package ast.variables;
 
+import ast.NodeType;
+import gen.dart_parse;
+
 public class NumberClass extends AbstractNumberClass{
 	int num;
 
@@ -11,13 +14,13 @@ public class NumberClass extends AbstractNumberClass{
 		this.num = num;
 	}
 
-	public NumberClass(int num, int line, String parent,String type,int childCount) {
-		super(line, parent, type, childCount);
+	public NumberClass(dart_parse.NumberContext ctx, int num) {
+		super(ctx);
 		this.num = num;
 	}
 	
 	public String toString() {
-		return  "number class: value: "+ num + " line: "+getLine() + " parent: "+ getParent()
-				+" Child Count =  "+getChildCount()+" Type = "+getType()+"\n";
+		return  getLineString()+"number class: value: "+ num  + " parent: "+ getParent()
+				+" Child Count =  "+getChildCount()+" Type = "+ NodeType.NUMBER+"\n";
 	}
 }

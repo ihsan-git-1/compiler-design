@@ -1,13 +1,16 @@
 package ast.variables;
 
+import ast.NodeType;
+import gen.dart_parse;
+
 import java.util.List;
 
 public class IntegerDeclarationLine extends VariableDeclaration {
     List<IntegerDeclaration> declarations;
     List<IntegerDeclarationAssignment> assignments;
 
-    public IntegerDeclarationLine(int line, String parent,String type,int childCount, List<IntegerDeclaration> declarations, List<IntegerDeclarationAssignment> assignments) {
-        super(line, parent, type, childCount);
+    public IntegerDeclarationLine(dart_parse.IntegerDeclarationLineContext ctx, List<IntegerDeclaration> declarations, List<IntegerDeclarationAssignment> assignments) {
+        super(ctx);
         this.declarations = declarations;
         this.assignments = assignments;
     }
@@ -20,11 +23,10 @@ public class IntegerDeclarationLine extends VariableDeclaration {
     }
 
     public String toString() {
-        return "Integer Declaration Line: "
+        return getLineString()+"Integer Declaration Line: "
                 +"Number of declarations on this line: " + this.declarations.size()
                 +" Number of assignments on this line: " + this.assignments.size()
-                +" line: "+ getLine()
                 + " parent: "+ getParent()
-                +" Child Count =  "+getChildCount()+" Type = "+getType()+"\n";
+                +" Child Count =  "+getChildCount()+" Type = "+ NodeType.INTEGERDECLARATIONLINE+"\n";
     }
 }
