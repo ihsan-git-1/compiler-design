@@ -7,10 +7,8 @@ import ast.nodes.*;
 import ast.variables.AbstractNumberClass;
 import gen.dart_parse;
 import org.antlr.v4.runtime.TokenStream;
+import visitors.DartVisitors.VariablesVisitor;
 import visitors.FlutterVisitor.WidgetsVisitor;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class NodesVisitor extends dart_parseBaseVisitorChild {
@@ -187,7 +185,6 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
     @Override
     public ReturnStateTypes visitReturnStateTypes(dart_parse.ReturnStateTypesContext ctx) {
         String name = "";
-        String type = NodeType.BLOCK.toString();
 
         if (ctx.functionReturnState() != null) {
             name = ctx.functionReturnState().NAME().getText();

@@ -4,7 +4,7 @@ import ast.NodeType;
 import ast.nodes.*;
 import gen.dart_parse;
 import visitors.DartVisitors.StatementsVisitors;
-import visitors.VariablesVisitor;
+import visitors.DartVisitors.VariablesVisitor;
 import visitors.dart_parseBaseVisitorChild;
 
 import java.util.ArrayList;
