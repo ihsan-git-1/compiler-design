@@ -1,5 +1,8 @@
 package ast.nodes;
 
+import ast.NodeType;
+import gen.dart_parse;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,15 +14,15 @@ public class OnPressedPropertyDeclaration extends Node{
     public List<Statement> getStatement() {
         return statement;
     }
-    public OnPressedPropertyDeclaration(int line,String parent,String type,int childCount){
-        super(line,parent,type,childCount);
+    public OnPressedPropertyDeclaration(dart_parse.OnPressedPropertyDeclarationContext ctx){
+        super(ctx);
         statement = new ArrayList<>();
     }
 
     @Override
     public String toString() {
-        return "\nonPressed "+" line: "+getLine() + " parent "+getParent()+
-                " Child Count =  "+getChildCount()+" Type = "+getType()+"\n"
+        return getLineString()+"  onPressed "+ " parent "+getParent()+
+                " Child Count =  "+getChildCount()+" Type = "+ NodeType.PROPERTY+"\n"
                 + statement
                 ;
     }
