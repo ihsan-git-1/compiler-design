@@ -1,5 +1,8 @@
 package ast.nodes;
 
+import ast.NodeType;
+import gen.dart_parse;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,8 +12,8 @@ public class StatefullSecondBody extends Node{
 	String name;
 	String stateName;
 	
-	public StatefullSecondBody(String name,String stateName,BuildMethodDeclaration methodDecleration,int line,String parent,String type,int childCount) {
-		super(line,parent, type, childCount);
+	public StatefullSecondBody(dart_parse.StfulSecondBodyContext ctx, String name, String stateName, BuildMethodDeclaration methodDecleration) {
+		super(ctx);
 		this.name=name;
 		this.stateName=stateName;
 		this.methodDecleration=methodDecleration;
@@ -24,8 +27,8 @@ public class StatefullSecondBody extends Node{
 	
 	@Override
 	public String toString() {
-		return  "Statefull Second Body Name "+name +" State <"+stateName+">"+ " line: "+getLine() + " parent "+ getParent()
-				+" Child Count =  "+getChildCount()+" Type = "+getType()+"\n"
+		return  getLineString()+"Statefull Second Body Name "+name +" State <"+stateName+">" + " parent "+ getParent()
+				+" Child Count =  "+getChildCount()+" Type = "+ NodeType.CLASS +"\n"
 				+methodDecleration +"\n"
 				;
 	}

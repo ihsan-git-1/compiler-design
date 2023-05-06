@@ -1,22 +1,25 @@
 package ast.nodes;
 
+import ast.NodeType;
+import gen.dart_parse;
+
 import java.beans.Expression;
 
 public class ReturnStatement extends Node{
     Expression expression;
 
-    public ReturnStatement(int line, String parent, String type, int childCount, Expression expression) {
-        super(line, parent, type, childCount);
+    public ReturnStatement(dart_parse.ReturnStatementContext ctx, Expression expression) {
+        super(ctx);
         this.expression = expression;
     }
 
     @Override
     public String toString() {
-        return "ReturnStatement{" +
+        return getLineString()
+                +"ReturnStatement{" +
                 "expression=" + expression +
-                ", line=" + line +
                 ", col=" + col +
-                ", type='" + type + '\'' +
+                ", type='" + NodeType.RETURNSTATEMENT + '\'' +
                 ", childCount=" + childCount +
                 ", parent='" + parent + '\'' +
                 '}';

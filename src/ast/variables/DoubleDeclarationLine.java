@@ -1,13 +1,16 @@
 package ast.variables;
 
+import ast.NodeType;
+import gen.dart_parse;
+
 import java.util.List;
 
 public class DoubleDeclarationLine extends VariableDeclaration {
     List<DoubleDeclaration> declarations;
     List<DoubleDeclarationAssignment> assignments;
 
-    public DoubleDeclarationLine(int line, String parent,String type,int childCount, List<DoubleDeclaration> declarations, List<DoubleDeclarationAssignment> assignments) {
-        super(line, parent, type, childCount);
+    public DoubleDeclarationLine(dart_parse.DoubleDeclarationLineContext ctx, List<DoubleDeclaration> declarations, List<DoubleDeclarationAssignment> assignments) {
+        super(ctx);
         this.declarations = declarations;
         this.assignments = assignments;
     }
@@ -20,11 +23,10 @@ public class DoubleDeclarationLine extends VariableDeclaration {
     }
 
     public String toString() {
-        return "Double Declaration Line: "
+        return getLineString()+"Double Declaration Line: "
                 +"Number of declarations on this line: " + this.declarations.size()
                 +"Number of assignments on this line: " + this.assignments.size()
-                +" line: "+ getLine()
                 + " parent: "+ getParent()
-                +" Child Count =  "+getChildCount()+" Type = "+getType()+"\n";
+                +" Child Count =  "+getChildCount()+" Type = "+ NodeType.DOUBLEDECLARATIONLINE+"\n";
     }
 }

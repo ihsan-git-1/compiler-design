@@ -1,6 +1,7 @@
 package ast.nodes;
 
 import ast.variables.ConditionExpr;
+import gen.dart_parse;
 
 import java.util.List;
 
@@ -12,8 +13,8 @@ public class IfStatement extends Node  implements StatementAbstractChild {
     Block elseBlock;
 
 
-    public IfStatement(int line, String parent, String type, int childCount, ConditionExpr conditionExpr,List<ConditionExpr> conditionExprList, Block block, List<Block> elseIfBlock, Block elseBlock) {
-        super(line, parent, type,childCount);
+    public IfStatement(dart_parse.IfStatementContext ctx, ConditionExpr conditionExpr, List<ConditionExpr> conditionExprList, Block block, List<Block> elseIfBlock, Block elseBlock) {
+        super(ctx);
         this.conditionExpr = conditionExpr;
         this.conditionExprList= conditionExprList;
         this.block = block;
@@ -23,6 +24,6 @@ public class IfStatement extends Node  implements StatementAbstractChild {
 
     @Override
     public String toString() {
-        return "If Statement: " + " Condition: " + conditionExpr + ", block: " + block + ", elseIfBlock: " + elseIfBlock + ", elseBlock: " + elseBlock + ", line: " + line + ", parent: '" + parent + '\'' + '}';
+        return getLineString()+"If Statement: " + " Condition: " + conditionExpr + ", block: " + block + ", elseIfBlock: " + elseIfBlock + ", elseBlock: " + elseBlock + ", " +  ", parent: '" + parent + '\'' + '}';
     }
 }

@@ -1,11 +1,14 @@
 package ast.nodes;
 
+import ast.NodeType;
+import gen.dart_parse;
+
 public class RowColumnDeclaration extends WidgetAbstractChild {
 	String name;
 	ChildrenPropertyDeclaration childrenPropertyDeclaration;
 	
-	public RowColumnDeclaration(String name,ChildrenPropertyDeclaration childrenPropertyDeclaration,int line ,String parent,String type,int childCount) {
-		super(line,parent, type, childCount);
+	public RowColumnDeclaration(dart_parse.RowColumnDeclarationContext ctx, String name, ChildrenPropertyDeclaration childrenPropertyDeclaration) {
+		super(ctx);
 		this.name = name;
 		this.childrenPropertyDeclaration=childrenPropertyDeclaration;
 	}
@@ -13,8 +16,8 @@ public class RowColumnDeclaration extends WidgetAbstractChild {
 	@Override
 	public String toString() {
 
-		return "Row Column Declaration Name " +name+" line: "+getLine() + " parent "+getParent()
-				+" Child Count =  "+getChildCount()+" Type = "+getType()+"\n"
+		return getLineString()+"Row Column Declaration Name " +name+ " parent "+getParent()
+				+" Child Count =  "+getChildCount()+" Type = "+ NodeType.WIDGET +"\n"
 				+childrenPropertyDeclaration;
 	}
 }

@@ -1,21 +1,23 @@
 package ast.variables;
 
+import ast.NodeType;
 import ast.nodes.StatementAbstractChild;
+import gen.dart_parse;
 
 public class StringAssignment extends VariableDeclaration implements StatementAbstractChild, assignment {
     String name;
     String stringLine;
 
-    public StringAssignment(String stringLine, String name, int line, String parent,String type,int childCount) {
-        super(line, parent, type, childCount);
+    public StringAssignment(dart_parse.StringAssignmentContext ctx,String stringLine, String name) {
+        super(ctx);
         this.stringLine = stringLine;
         this.name = name;
     }
 
     @Override
     public String toString() {
-        return "Double Assignment: " +name+" line: "+ getLine() + " parent: "+ getParent()
-                +" Child Count =  "+getChildCount()+" Type = "+getType()+"\n"
+        return getLineString()+"Double Assignment: " +name+ " parent: "+ getParent()
+                +" Child Count =  "+getChildCount()+" Type = "+ NodeType.STRINGASSIGNMENT+"\n"
                 + "value: " + stringLine;
     }
 }

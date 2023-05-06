@@ -1,18 +1,21 @@
 package ast.nodes;
 
+import ast.NodeType;
+import gen.dart_parse;
+
 public class ExpandedDeclaration extends WidgetAbstractChild {
 	ChildPropertyDeclaration childPropertyDeclaration;
 	
-	public ExpandedDeclaration(ChildPropertyDeclaration childPropertyDeclaration,int line ,String parent,String type,int childCount) {
-		super(line,parent, type, childCount);
+	public ExpandedDeclaration(dart_parse.ExpandedDeclarationContext ctx, ChildPropertyDeclaration childPropertyDeclaration) {
+		super(ctx);
 		this.childPropertyDeclaration=childPropertyDeclaration;
 	}
 
 	@Override
 	public String toString() {
 
-		return "Expanded line: "+getLine()+" parent "+getParent()
-				+" Child Count =  "+getChildCount()+" Type = "+getType()+"\n"
+		return getLineString()+"Expanded "+" parent "+getParent()
+				+" Child Count =  "+getChildCount()+" Type = "+ NodeType.OBJECT +"\n"
 				+childPropertyDeclaration;
 	}
 }

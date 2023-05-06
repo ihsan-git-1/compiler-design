@@ -1,21 +1,23 @@
 package ast.variables;
 
+import ast.NodeType;
 import ast.nodes.StatementAbstractChild;
+import gen.dart_parse;
 
 public class IntegerAssignment extends VariableDeclaration implements StatementAbstractChild, assignment {
     String name;
     AddExpression expr;
 
-    public IntegerAssignment(AddExpression expr, String name, int line, String parent,String type,int childCount) {
-        super(line, parent, type, childCount);
+    public IntegerAssignment(dart_parse.IntegerAssignmentContext ctx, AddExpression expr, String name) {
+        super(ctx);
         this.expr = expr;
         this.name = name;
     }
 
     @Override
     public String toString() {
-        return "Integer Assignment: " +name+" line: "+ getLine() + " parent: "+ getParent()
-                +" Child Count =  "+getChildCount()+" Type = "+getType()+"\n"
+        return getLineString()+"Integer Assignment: " +name + " parent: "+ getParent()
+                +" Child Count =  "+getChildCount()+" Type = "+ NodeType.INTEGERASSIGNMENT+"\n"
                 + expr;
     }
 }

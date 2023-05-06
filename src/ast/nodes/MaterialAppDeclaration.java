@@ -1,17 +1,20 @@
 package ast.nodes;
 
+import ast.NodeType;
+import gen.dart_parse;
+
 public class MaterialAppDeclaration extends WidgetAbstractChild {
 	HomePropertyDeclaration homePropertyDeclaration;
 	
-	public MaterialAppDeclaration(HomePropertyDeclaration homePropertyDeclaration,int line ,String parent,String type,int childCount) {
-		super(line,parent, type, childCount);
+	public MaterialAppDeclaration(dart_parse.MaterialAppDeclarationContext ctx, HomePropertyDeclaration homePropertyDeclaration) {
+		super(ctx);
 		this.homePropertyDeclaration=homePropertyDeclaration;
 	}
 
 	@Override
 	public String toString() {
-		return "Material App Declaration line: "+getLine()+" parent "+getParent()
-				+" Child Count =  "+getChildCount()+" Type = "+getType()+"\n"
+		return getLineString()+"Material App Declaration "+" parent "+getParent()
+				+" Child Count =  "+getChildCount()+" Type = "+ NodeType.OBJECT+"\n"
 				+homePropertyDeclaration
 				;
 	}

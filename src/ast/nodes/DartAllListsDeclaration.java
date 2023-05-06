@@ -1,20 +1,22 @@
 package ast.nodes;
 
+import ast.NodeType;
+import gen.dart_parse;
+
 public class DartAllListsDeclaration extends DartDeclarationAbstractChild {
 
 	DartAllListsDeclarationAbstractChild dartAllListsDeclarationAbstractChild;
 	
-	public DartAllListsDeclaration(DartAllListsDeclarationAbstractChild child,int line ,String parent,String type,int childCount) {
-		super(line,parent, type, childCount);
+	public DartAllListsDeclaration(dart_parse.DartAllListsDeclarationContext ctx,DartAllListsDeclarationAbstractChild child) {
+		super(ctx);
 		this.dartAllListsDeclarationAbstractChild=child;
 	}
 
 	@Override
 	public String toString() {
-		return "DartAllListsDeclaration: " + dartAllListsDeclarationAbstractChild +
-				", line:" + line +
+		return getLineString()+"DartAllListsDeclaration: " + dartAllListsDeclarationAbstractChild +
 				", col: " + col +
-				", type: " + type + '\'' +
+				", type: " + NodeType.LIST + '\'' +
 				", childCount:" + childCount +
 				", parent: " + parent + '\n';
 	}

@@ -1,16 +1,19 @@
 package ast.nodes;
 
+import ast.NodeType;
+import gen.dart_parse;
+
 public class ReturnStateTypes extends Node{
 	String name;
 	
-	public ReturnStateTypes(String name,int line ,String parent,String type,int childCount) {
-		super(line,parent, type, childCount);
+	public ReturnStateTypes(String name, dart_parse.ReturnStateTypesContext ctx) {
+		super(ctx);
 		this.name = name;
 	}
 
 	@Override
 	public String toString() {
-		return "Return State Type Name "+ name + " line: "+ getLine() + " parent "+getParent()
-				+" Child Count =  "+getChildCount()+" Type = "+getType();
+		return getLineString()+"Return State Type Name "+ name + " parent "+getParent()
+				+" Child Count =  "+getChildCount()+" Type = "+ NodeType.BLOCK;
 	}
 }

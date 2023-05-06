@@ -1,11 +1,13 @@
 package ast.nodes;
 
+import gen.dart_parse;
+
 public class Statement extends Node{
 
     StatementAbstractChild statementAbstractChild;
 
-    public Statement(StatementAbstractChild statementAbstractChild, int line , String parent, String type, int childCount){
-        super(line, parent, type, childCount);
+    public Statement(StatementAbstractChild statementAbstractChild, dart_parse.StatementContext ctx){
+        super(ctx);
         this.statementAbstractChild = statementAbstractChild;
     }
 

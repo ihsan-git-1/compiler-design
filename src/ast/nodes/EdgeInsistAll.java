@@ -1,20 +1,22 @@
 package ast.nodes;
 
+import ast.NodeType;
 import ast.variables.NumberClass;
+import gen.dart_parse;
 
 public class EdgeInsistAll extends Node{
 	NumberClass number;
 	
-	public EdgeInsistAll(NumberClass number,int line ,String parent,String type,int childCount) {
-		super(line,parent, type, childCount);
+	public EdgeInsistAll(dart_parse.EdgeInsistAllContext ctx, NumberClass number) {
+		super(ctx);
 		this.number = number;
 	}
 	
 	@Override
 	public String toString() {
 
-		return "Edge Insist All "+ " line:"+getLine() + " parent "+getParent()
-				+" Child Count =  "+getChildCount()+" Type = "+getType()+"\n"
+		return getLineString() + "Edge Insist All " + " parent "+getParent()
+				+" Child Count =  "+getChildCount()+" Type = "+ NodeType.OBJECT +"\n"
 				+number.toString()
 				;
 	}
