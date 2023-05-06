@@ -1,5 +1,8 @@
 package ast.variables;
 
+import ast.NodeType;
+import gen.dart_parse;
+
 import java.util.List;
 
 public class BooleanDeclarationLine extends VariableDeclaration {
@@ -7,8 +10,8 @@ public class BooleanDeclarationLine extends VariableDeclaration {
     List<BooleanDeclarationAssignment> assignments;
 
 
-    public BooleanDeclarationLine(int line, String parent,String type,int childCount, List<BooleanDeclaration> declarations, List<BooleanDeclarationAssignment> assignments) {
-        super(line, parent, type, childCount);
+    public BooleanDeclarationLine(dart_parse.BooleanDeclarationLineContext ctx, List<BooleanDeclaration> declarations, List<BooleanDeclarationAssignment> assignments) {
+        super(ctx);
         this.declarations = declarations;
         this.assignments = assignments;
     }
@@ -21,12 +24,11 @@ public class BooleanDeclarationLine extends VariableDeclaration {
     }
 
     public String toString() {
-        return "Boolean Declaration Line: "
+        return getLineString()+"Boolean Declaration Line: "
                 +"Number of declarations on this line: " + this.declarations.size()
                 +"Number of assignments on this line: " + this.assignments.size()
-                +" line: "+ getLine()
                 + " parent: "+ getParent()
-                +" Child Count =  "+getChildCount()+" Type = "+getType()+"\n"
+                +" Child Count =  "+getChildCount()+" Type = "+ NodeType.BOOLEANDECLARATIONLINE+"\n"
                 +this.declarations.toString();
     }
 }

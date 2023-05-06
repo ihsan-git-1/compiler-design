@@ -1,6 +1,7 @@
 package ast.nodes;
 
 
+import gen.dart_parse;
 
 public abstract class TermAbstractChild<T> extends Node {
 protected T value;
@@ -13,8 +14,20 @@ protected T value;
         this.value = value;
     }
 
-    public TermAbstractChild(int line, String parent, String type, int childCount, T value) {
-        super(line, parent, type, childCount);
+    public TermAbstractChild(dart_parse.NumericExprContext ctx, T value) {
+        super(ctx);
+        this.value = value;
+    }
+    public TermAbstractChild(dart_parse.BooleansContext ctx, T value) {
+        super(ctx);
+        this.value = value;
+    }
+    public TermAbstractChild(dart_parse.DartListBoolDeclarationContext ctx, T value) {
+        super(ctx);
+        this.value = value;
+    }
+    public TermAbstractChild(dart_parse.ConditionExprContext ctx, T value) {
+        super(ctx);
         this.value = value;
     }
 }

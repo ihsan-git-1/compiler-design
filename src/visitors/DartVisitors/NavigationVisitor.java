@@ -1,8 +1,9 @@
-package visitors;
+package visitors.DartVisitors;
 
 import ast.NodeType;
 import ast.navigation.Navigation;
 import gen.dart_parse;
+import visitors.dart_parseBaseVisitorChild;
 
 public class NavigationVisitor extends dart_parseBaseVisitorChild {
 
@@ -15,7 +16,7 @@ public class NavigationVisitor extends dart_parseBaseVisitorChild {
 
         int childCount = ctx.getChildCount();
 
-        return new Navigation(ctx.STRING_LINE().getText(), line, parent, type, childCount);
+        return new Navigation(ctx,ctx.STRING_LINE().getText());
 
     }
 }

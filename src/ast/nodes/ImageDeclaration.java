@@ -1,17 +1,20 @@
 package ast.nodes;
 
+import ast.NodeType;
+import gen.dart_parse;
+
 public class ImageDeclaration extends WidgetAbstractChild {
 	String str;
 	
-	public ImageDeclaration(String str,int line ,String parent,String type,int childCount) {
-		super(line,parent, type, childCount);
+	public ImageDeclaration(dart_parse.ImageDeclarationContext ctx, String str) {
+		super(ctx);
 		this.str=str;
 	}
 	
 	@Override
 	public String toString() {
 		return
-				"Image Declaration src = "+str+ " line: "+getLine() + " parent "+getParent()
-						+" Child Count =  "+getChildCount()+" Type = "+getType();
+				getLineString()+"Image Declaration src = "+str+ " parent "+getParent()
+						+" Child Count =  "+getChildCount()+" Type = "+ NodeType.OBJECT;
 	}
 }

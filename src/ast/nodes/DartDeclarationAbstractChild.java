@@ -1,10 +1,12 @@
 package ast.nodes;
 
+import gen.dart_parse;
+import org.antlr.v4.runtime.ParserRuleContext;
+
 public class DartDeclarationAbstractChild extends Node{
 
-    public DartDeclarationAbstractChild(int line, String parent, String type, int childCount){
-        super(line,parent, type, childCount);
-
+    public DartDeclarationAbstractChild(ParserRuleContext ctx){
+        super(ctx);
     }
 
 //    public String toString(){
