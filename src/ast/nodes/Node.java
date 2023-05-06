@@ -7,7 +7,7 @@ public class Node {
     public int line;
     public int col;
 
-    public String type;
+   // public String type;
 
     public int childCount;
     public String parent;

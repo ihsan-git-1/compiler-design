@@ -7,6 +7,7 @@ import ast.nodes.*;
 import ast.variables.AbstractNumberClass;
 import gen.dart_parse;
 import org.antlr.v4.runtime.TokenStream;
+import visitors.DartVisitors.DartVariables.IntegerVisitor;
 import visitors.DartVisitors.VariablesVisitor;
 import visitors.FlutterVisitor.WidgetsVisitor;
 
@@ -241,16 +242,20 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
             AbstractNumberClass num1;
             AbstractNumberClass num2;
             VariablesVisitor variablesVisitor = new VariablesVisitor();
+            IntegerVisitor integerVisitor = new IntegerVisitor();
             if (ctx.numberDouble().size() == 2) {
                 num1 = variablesVisitor.visitNumberDouble(ctx.numberDouble(0));
                 num2 = variablesVisitor.visitNumberDouble(ctx.numberDouble(1));
-            } else if (ctx.number().size() == 2) {
-                num1 = variablesVisitor.visitNumber(ctx.number(0));
-                num2 = variablesVisitor.visitNumber(ctx.number(1));
-            } else {
-                num1 = variablesVisitor.visitNumber(ctx.number(0));
+            }
+            else if (ctx.number().size() == 2) {
+                num1 = integerVisitor.visitNumber(ctx.number(0));
+                num2 = integerVisitor.visitNumber(ctx.number(1));
+            }
+            else {
+                num1 = integerVisitor.visitNumber(ctx.number(0));
                 num2 = variablesVisitor.visitNumberDouble(ctx.numberDouble(0));
             }
+
             String operator = ctx.getChild(1).toString();
             return new BooleanOperation(num1, num2, null, null, operator);
         } else if (ctx.NAME(0) != null && ctx.NAME(1) != null) {

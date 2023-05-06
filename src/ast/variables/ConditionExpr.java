@@ -1,13 +1,15 @@
 package ast.variables;
 
+import ast.NodeType;
 import ast.nodes.Node;
 import ast.nodes.TermAbstractChild;
+import gen.dart_parse;
 
 public class ConditionExpr extends TermAbstractChild<Boolean> {
     boolean value;
 
-    public ConditionExpr(int line, String parent, String type, int childCount, boolean value) {
-        super(line, parent, type, childCount,value);
+    public ConditionExpr(dart_parse.ConditionExprContext ctx, boolean value) {
+        super(ctx,value);
         this.value = value;
     }
 
@@ -21,11 +23,10 @@ public class ConditionExpr extends TermAbstractChild<Boolean> {
 
     @Override
     public String toString() {
-        return "ConditionExpr{ " +
+        return getLineString()+"ConditionExpr{ " +
                 "value=" + value +
-                ", line=" + line +
                 ", col=" + col +
-                ", type='" + type + '\'' +
+                ", type='" +  NodeType.BOOLEAN + '\'' +
                 ", childCount=" + childCount +
                 ", parent='" + parent + '\'' +
                 '}';

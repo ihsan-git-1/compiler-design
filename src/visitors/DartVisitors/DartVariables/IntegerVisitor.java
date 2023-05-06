@@ -4,6 +4,7 @@ import ast.NodeType;
 import ast.SymbolTableObject;
 import ast.variables.*;
 import gen.dart_parse;
+import visitors.DartVisitors.VariablesVisitor;
 import visitors.dart_parseBaseVisitorChild;
 
 import java.util.ArrayList;
@@ -76,7 +77,8 @@ public class IntegerVisitor extends dart_parseBaseVisitorChild {
         }
 
         else {
-            AddExpression expr = visitAddExpression(ctx.addExpression());
+            VariablesVisitor variablesVisitor = new VariablesVisitor();
+            AddExpression expr = variablesVisitor.visitAddExpression(ctx.addExpression());
             scopes.get(index - 1).getSymbolMap().put(id, new SymbolTableObject(NodeType.INT.toString(), String.valueOf(expr.value.getNum())));
             varialbeNames.add("Identifier " + id + ", Type " + NodeType.INT + ", Value :" + expr + " Scope " + scopes.peek().getScopeName());
             return new IntegerAssignment(ctx,expr, id);
@@ -100,8 +102,9 @@ public class IntegerVisitor extends dart_parseBaseVisitorChild {
         } else if ((CheckExistanceInParentScope(id, index) || CheckExistanceInScope(id, index)) && !CheckIfTypeMatchesParentType(id, index, NodeType.INT.toString())) {
             semanticErrors.add("A value of type " + NodeType.INT.toString() + " can't be assigned to a variable of type " + getParentType(id, index, NodeType.INT.toString()));
         } else {
+            VariablesVisitor variablesVisitor = new VariablesVisitor();
 
-            AddExpression expr = visitAddExpression(ctx.addExpression());
+            AddExpression expr = variablesVisitor.visitAddExpression(ctx.addExpression());
 
             scopes.get(index - 1).getSymbolMap().put(id, new SymbolTableObject(NodeType.INT.toString(), String.valueOf(expr.value.getNum())));
 

@@ -1,6 +1,8 @@
 package ast.variables;
 
+import ast.NodeType;
 import ast.nodes.Node;
+import gen.dart_parse;
 
 public class BinaryExpr extends Node {
 boolean value;
@@ -13,18 +15,17 @@ boolean value;
         this.value = value;
     }
 
-    public BinaryExpr(int line, String parent, String type, int childCount, boolean value) {
-        super(line, parent, type, childCount);
+    public BinaryExpr(dart_parse.BinaryExprContext ctx, boolean value) {
+        super(ctx);
         this.value = value;
     }
 
     @Override
     public String toString() {
-        return "BinaryExpr{" +
+        return getLineString()+"BinaryExpr{" +
                 "value=" + value +
-                ", line=" + line +
                 ", col=" + col +
-                ", type='" + type + '\'' +
+                ", type='" + NodeType.BOOLEAN + '\'' +
                 ", childCount=" + childCount +
                 ", parent='" + parent + '\'' +
                 '}';

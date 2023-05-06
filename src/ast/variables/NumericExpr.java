@@ -1,6 +1,8 @@
 package ast.variables;
 
+import ast.NodeType;
 import ast.nodes.TermAbstractChild;
+import gen.dart_parse;
 
 public class NumericExpr extends TermAbstractChild<Boolean>
 {
@@ -14,17 +16,16 @@ public class NumericExpr extends TermAbstractChild<Boolean>
         this.value = value;
     }
 
-    public NumericExpr(int line, String parent, String type, int childCount, boolean value) {
-        super(line, parent, type, childCount,value);
+    public NumericExpr(dart_parse.NumericExprContext ctx, boolean value) {
+        super(ctx,value);
     }
 
     @Override
     public String toString() {
-        return "NumericExpr{" +
+        return getLineString()+"NumericExpr{" +
                 "value=" + value +
-                ", line=" + line +
                 ", col=" + col +
-                ", type='" + type + '\'' +
+                ", type='" + NodeType.BOOLEAN + '\'' +
                 ", childCount=" + childCount +
                 ", parent='" + parent + '\'' +
                 '}';
