@@ -1,6 +1,9 @@
 package ast.variables;
 
 
+import ast.NodeType;
+import gen.dart_parse;
+
 public class AddDoubleExpression extends NumericTermAbstractChild<Double> {
     public NumberDoubleClass value;
     @Override
@@ -13,14 +16,14 @@ public class AddDoubleExpression extends NumericTermAbstractChild<Double> {
         super.setValue(value);
     }
 
-    public AddDoubleExpression(NumberDoubleClass value, int line, String parent, String type, int childCount) {
-        super(line, parent, type, childCount);
+    public AddDoubleExpression(dart_parse.AddDoubleExpressionContext ctx, NumberDoubleClass value) {
+        super(ctx);
         this.value = value;
         setValue(value.num);
     }
 
     @Override
     public String toString() {
-        return "Add Double Expression: " + value.num + " line: " + getLine() + " parent " + getParent() + " Child Count =  " + getChildCount() + " Type = " + getType() + "\n" + value;
+        return getLineString()+"Add Double Expression: " + value.num + " parent " + getParent() + " Child Count =  " + getChildCount() + " Type = " + NodeType.DOUBLE + "\n" + value;
     }
 }

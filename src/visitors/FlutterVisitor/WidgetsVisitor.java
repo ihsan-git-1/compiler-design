@@ -3,6 +3,7 @@ package visitors.FlutterVisitor;
 import ast.NodeType;
 import ast.nodes.*;
 import gen.dart_parse;
+import visitors.DartVisitors.DartVariables.IntegerVisitor;
 import visitors.DartVisitors.StatementsVisitors;
 import visitors.DartVisitors.VariablesVisitor;
 import visitors.dart_parseBaseVisitorChild;
@@ -145,7 +146,7 @@ public class WidgetsVisitor extends dart_parseBaseVisitorChild {
     @Override
     public EdgeInsistAll visitEdgeInsistAll(dart_parse.EdgeInsistAllContext ctx) {
 
-        VariablesVisitor variablesVisitor = new VariablesVisitor();
+        IntegerVisitor variablesVisitor = new IntegerVisitor();
 
         return new EdgeInsistAll(ctx,variablesVisitor.visitNumber(ctx.number()));
     }
@@ -231,16 +232,16 @@ public class WidgetsVisitor extends dart_parseBaseVisitorChild {
 
     @Override
     public HeightPropertyDeclaration visitHeightPropertyDeclaration(dart_parse.HeightPropertyDeclarationContext ctx) {
-        VariablesVisitor variablesVisitor = new VariablesVisitor();
+        IntegerVisitor variablesVisitor = new IntegerVisitor();
 
         return new HeightPropertyDeclaration(ctx , variablesVisitor.visitNumber(ctx.number()) );
     }
 
     @Override
     public WidthPropertyDeclaration visitWidthPropertyDeclaration(dart_parse.WidthPropertyDeclarationContext ctx) {
-        
-       
-        VariablesVisitor variablesVisitor = new VariablesVisitor();
+
+
+        IntegerVisitor variablesVisitor = new IntegerVisitor();
 
         return new WidthPropertyDeclaration(ctx,variablesVisitor.visitNumber(ctx.number()));
     }

@@ -6,6 +6,7 @@ import ast.variables.ConditionExpr;
 import ast.variables.Variable;
 import ast.variables.VariableAssignment;
 import gen.dart_parse;
+import visitors.DartVisitors.DartVariables.IntegerVisitor;
 import visitors.NodesVisitor;
 import visitors.dart_parseBaseVisitorChild;
 import java.util.ArrayList;
@@ -35,8 +36,10 @@ public class StatementsVisitors extends dart_parseBaseVisitorChild {
         }
 
         if (ctx.assignment() != null) {
-            if (ctx.assignment().integerAssignment() != null)
-                return new Statement((new VariablesVisitor()).visitIntegerAssignment(ctx.assignment().integerAssignment()), ctx);
+            if (ctx.assignment().integerAssignment() != null){
+                return new Statement((new IntegerVisitor()).visitIntegerAssignment(ctx.assignment().integerAssignment()), ctx);
+
+            }
             if (ctx.assignment().doubleAssignment() != null)
                 return new Statement((new VariablesVisitor()).visitDoubleAssignment(ctx.assignment().doubleAssignment()), ctx);
             if (ctx.assignment().stringAssignment() != null)

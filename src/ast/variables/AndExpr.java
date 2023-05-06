@@ -1,12 +1,14 @@
 package ast.variables;
 
+import ast.NodeType;
 import ast.nodes.Node;
+import gen.dart_parse;
 
 public class AndExpr extends Node {
 boolean value;
 
-    public AndExpr(int line, String parent, String type, int childCount, boolean value) {
-        super(line, parent, type, childCount);
+    public AndExpr(dart_parse.AndExprContext ctx, boolean value) {
+        super(ctx);
         this.value = value;
     }
 
@@ -20,11 +22,11 @@ boolean value;
 
     @Override
     public String toString() {
-        return "AndExpr{" +
+        return getLineString()+"AndExpr{" +
                 "value=" + value +
                 ", line=" + line +
                 ", col=" + col +
-                ", type='" + type + '\'' +
+                ", type='" + NodeType.BOOLEAN + '\'' +
                 ", childCount=" + childCount +
                 ", parent='" + parent + '\'' +
                 '}';
