@@ -11,6 +11,10 @@ public class BooleanValueClass extends TermAbstractChild<Boolean> {
 		super(ctx,value);
 		this.value = value;
 	}
+	public BooleanValueClass(dart_parse.DartListBoolDeclarationContext ctx, boolean value) {
+		super(ctx,value);
+		this.value = value;
+	}
 
 	public boolean getBool(){
 		return value;

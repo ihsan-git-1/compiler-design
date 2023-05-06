@@ -22,4 +22,12 @@ protected T value;
         super(ctx);
         this.value = value;
     }
+    public TermAbstractChild(dart_parse.DartListBoolDeclarationContext ctx, T value) {
+        super(ctx);
+        this.value = value;
+    }
+    public TermAbstractChild(dart_parse.ConditionExprContext ctx, T value) {
+        super(ctx);
+        this.value = value;
+    }
 }

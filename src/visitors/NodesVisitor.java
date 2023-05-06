@@ -9,6 +9,7 @@ import gen.dart_parse;
 import org.antlr.v4.runtime.TokenStream;
 import visitors.DartVisitors.DartVariables.DoubleVisitor;
 import visitors.DartVisitors.DartVariables.IntegerVisitor;
+import visitors.DartVisitors.NavigationVisitor;
 import visitors.DartVisitors.VariablesVisitor;
 import visitors.FlutterVisitor.WidgetsVisitor;
 
@@ -212,8 +213,7 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
 
     public DartDeclaration visitDartDeclaration(dart_parse.DartDeclarationContext ctx) {
 
-        int line = ctx.start.getLine();
-        String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
+//
         VariablesVisitor variablesVisitor = new VariablesVisitor();
 
         NavigationVisitor navigationVisitor = new NavigationVisitor();
@@ -221,11 +221,11 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
         String type = NodeType.OBJECT.toString();
         int childCount = ctx.getChildCount();
         if (ctx.variable() != null) {
-            return new DartDeclaration(variablesVisitor.visitVariable(ctx.variable()), line, parent, type, childCount);
+            return new DartDeclaration(ctx,variablesVisitor.visitVariable(ctx.variable()));
         }
 
         else if(ctx.navigation() != null){
-            return new DartDeclaration(navigationVisitor.visitNavigation(ctx.navigation()), line, parent, type, childCount);
+            return new DartDeclaration(ctx,navigationVisitor.visitNavigation(ctx.navigation()));
         }
 
         //else if (ctx.function() != null) {
@@ -233,7 +233,7 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
         // }
         else if (ctx.dartAllListsDeclaration() != null) {
             ListsVisitor listsVisitor = new ListsVisitor();
-            return new DartDeclaration(listsVisitor.visitDartAllListsDeclaration(ctx.dartAllListsDeclaration()), line, parent, type, childCount);
+            return new DartDeclaration(ctx,listsVisitor.visitDartAllListsDeclaration(ctx.dartAllListsDeclaration()));
         } else return null;
     }
 

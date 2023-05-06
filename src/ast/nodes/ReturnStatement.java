@@ -1,5 +1,6 @@
 package ast.nodes;
 
+import ast.NodeType;
 import gen.dart_parse;
 
 import java.beans.Expression;
@@ -18,7 +19,7 @@ public class ReturnStatement extends Node{
                 +"ReturnStatement{" +
                 "expression=" + expression +
                 ", col=" + col +
-                ", type='" + type + '\'' +
+                ", type='" + NodeType.RETURNSTATEMENT + '\'' +
                 ", childCount=" + childCount +
                 ", parent='" + parent + '\'' +
                 '}';

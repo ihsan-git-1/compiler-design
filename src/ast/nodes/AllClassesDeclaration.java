@@ -1,11 +1,13 @@
 package ast.nodes;
 
 
+import org.antlr.v4.runtime.ParserRuleContext;
+
 public class AllClassesDeclaration extends Node{
 	AllClassesDeclarationAbstractChild child;
 	
-	public AllClassesDeclaration(AllClassesDeclarationAbstractChild child,int line ,String parent,String type,int childCount) {
-		super(line,parent,type,childCount);
+	public AllClassesDeclaration(AllClassesDeclarationAbstractChild child, ParserRuleContext parserRuleContext) {
+		super(parserRuleContext);
 		this.child=child;
 	}
 	
@@ -13,7 +15,7 @@ public class AllClassesDeclaration extends Node{
 	public String toString() {
 
 		return "All Classes Declaration line: "+ getLine() + "parent "+ getParent()
-				+" Child Count =  "+getChildCount()+" Type = "+getType()+"\n"+
+				+" Child Count =  "+getChildCount()+" Type = "+"All class dec"+"\n"+
 				child
 				;
 	}

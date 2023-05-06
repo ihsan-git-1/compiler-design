@@ -32,7 +32,7 @@ public class TopTreeDeclaration extends Node{
 	@Override
 	public String toString() {
 
-		return getLineString() +"Top Tree Declaration "+" Child Count =  "+getChildCount()+" Type = "+getType()+ "\n"+
+		return getLineString() +"Top Tree Declaration "+" Child Count =  "+getChildCount()+" Type = "+"Top Tree"+ "\n"+
 				topTreeClassesChildrenList.toString()
 						.replace(",", "")
 						.replace("[", "")

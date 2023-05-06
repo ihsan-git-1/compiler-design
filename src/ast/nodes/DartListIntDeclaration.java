@@ -3,14 +3,16 @@ package ast.nodes;
 import java.util.ArrayList;
 import java.util.List;
 
+import ast.NodeType;
 import ast.variables.NumberClass;
+import gen.dart_parse;
 
 public class DartListIntDeclaration extends DartAllListsDeclarationAbstractChild{
 	String name;
 	List<NumberClass> itemsList;
 	
-	public DartListIntDeclaration(String name,int line ,String parent,String type,int childCount) {
-		super(line,parent, type, childCount);
+	public DartListIntDeclaration(dart_parse.DartListIntDeclarationContext ctx, String name) {
+		super(ctx);
 		this.name = name;
 	}
 	
@@ -34,6 +36,6 @@ public class DartListIntDeclaration extends DartAllListsDeclarationAbstractChild
 	@Override
 	public String toString() {
 		String s= printList(itemsList);
-		return "Dart Int List "+ name + ", line:" +getLine()+", parent: "+getParent()+", Child Count:  "+getChildCount()+" Type: "+getType()+", list Content: "+s;
+		return getLineString()+"Dart Int List "+ name +", parent: "+getParent()+", Child Count:  "+getChildCount()+" Type: "+ NodeType.LIST +", list Content: "+s;
 	}
 }
