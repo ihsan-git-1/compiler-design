@@ -5,6 +5,7 @@ import ast.nodes.TermAbstractChild;
 import ast.variables.*;
 import gen.dart_parse;
 import org.antlr.v4.runtime.Token;
+import visitors.DartVisitors.DartVariables.BooleanVisitor;
 import visitors.DartVisitors.DartVariables.DoubleVisitor;
 import visitors.DartVisitors.DartVariables.IntegerVisitor;
 import visitors.DartVisitors.DartVariables.StringVisitor;
@@ -31,7 +32,9 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
             return new Variable(ctx,doubleVisitor.visitDoubleDeclarationLine(ctx.doubleDeclarationLine()));
         }
         if (ctx.booleanDeclarationLine() != null) {
-            return new Variable(ctx,visitBooleanDeclarationLine(ctx.booleanDeclarationLine()));
+            BooleanVisitor booleanVisitor = new BooleanVisitor();
+
+            return new Variable(ctx,booleanVisitor.visitBooleanDeclarationLine(ctx.booleanDeclarationLine()));
         }
         return null;
     }
@@ -79,7 +82,9 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
             return visitConditionExpr(ctx.conditionExpr());
         }
         if (ctx.booleans() != null) {
-            return visitBooleans(ctx.booleans());
+            BooleanVisitor booleanVisitor = new BooleanVisitor();
+
+            return booleanVisitor.visitBooleans(ctx.booleans());
         }
         return null;
     }
@@ -137,8 +142,11 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
             IntegerVisitor integerVisitor = new IntegerVisitor();
             return integerVisitor.visitIntegerDeclaration(ctx.integerDeclaration());
         }
-        if (ctx.booleanDeclaration() != null)
-            return visitBooleanDeclaration(ctx.booleanDeclaration());
+        if (ctx.booleanDeclaration() != null){
+            BooleanVisitor booleanVisitor = new BooleanVisitor();
+            return booleanVisitor.visitBooleanDeclaration(ctx.booleanDeclaration());
+
+        }
         if (ctx.doubleDeclaration() != null){
             DoubleVisitor doubleVisitor = new DoubleVisitor();
             return doubleVisitor.visitDoubleDeclaration(ctx.doubleDeclaration());
@@ -206,7 +214,9 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
             return doubleVisitor.visitDoubleDeclarationAssignment(ctx.doubleDeclarationAssignment());
         }
         if (ctx.booleanDeclarationAssignment() != null) {
-            return visitBooleanDeclarationAssignment(ctx.booleanDeclarationAssignment());
+            BooleanVisitor booleanVisitor = new BooleanVisitor();
+
+            return booleanVisitor.visitBooleanDeclarationAssignment(ctx.booleanDeclarationAssignment());
         }
         if (ctx.stringDeclarationAssignment() != null) {
             StringVisitor stringVisitor = new StringVisitor();
@@ -284,13 +294,11 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
         value = getAdditionValue(value, queue);
         int intValue = (int) value;
         
-        
-        String type = NodeType.NUMBER.toString();
-        
-        NumberClass numClass = new NumberClass(intValue, line, "Add Expression", type, childCount);
-        type = NodeType.INT.toString();
-        childCount = ctx.getChildCount();
-        return new AddExpression(numClass, line, parent, type, childCount);
+
+//        NumberClass numClass = new NumberClass(intValue, line, "Add Expression", type, childCount);
+        NumberClass numClass = new NumberClass(ctx,intValue);
+
+        return new AddExpression(ctx,numClass);
     }
 
     public double getAdditionValue(double value, Queue<Object> queue) {
@@ -360,7 +368,9 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
                         String variable = ctx.getChild(i).getText();
 
                         if (!CheckExistanceInParentScope(variable, index) && !CheckExistanceInScope(variable, index)) {
-                            semanticErrors.add("Undefined name " + variable + " at (" + line + "," + column + ")");
+                            int errorLine = ctx.start.getLine();
+
+                            semanticErrors.add("Undefined name " + variable + " at (" + errorLine + "," + column + ")");
                         }else {
                             value = getVariableValueFromScopes(variable, index);
                             queue.add(value);
@@ -393,7 +403,9 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
 
                     String variable = ctx.getChild(i).getText();
                     if (!CheckExistanceInParentScope(variable, index) && !CheckExistanceInScope(variable, index)) {
-                        semanticErrors.add("Undefined name " + variable + " at (" + line + "," + column + ")");
+                        int errorLine = ctx.start.getLine();
+
+                        semanticErrors.add("Undefined name " + variable + " at (" + errorLine + "," + column + ")");
                         queue.add("0");
                     }else{
 
@@ -418,9 +430,9 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
         
         String type = NodeType.NUMBER.toString();
         
-        NumberClass num = new NumberClass(intValue, line, "Multiply Expression", type, childCount);
+        NumberClass num = new NumberClass(ctx,intValue);
         type = NodeType.MULTIPLYEXPRESSION.toString();
-        return new MultiplyExpression(num, line, parent, type, childCount);
+        return new MultiplyExpression(ctx,num);
     }
 
 
