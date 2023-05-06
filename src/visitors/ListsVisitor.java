@@ -20,16 +20,13 @@ public class ListsVisitor extends dart_parseBaseVisitorChild{
 	@Override
 	public DartAllListsDeclaration visitDartAllListsDeclaration(DartAllListsDeclarationContext ctx) {
 
-		int line = ctx.start.getLine();
-		String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$","").replace("Context","");
-		String type = NodeType.LIST.toString();
-		int childCount = ctx.getChildCount();
+
 		if (ctx.dartListStringDeclaration() != null) {
-			return new DartAllListsDeclaration(visitDartListStringDeclaration(ctx.dartListStringDeclaration()),line,parent,type,childCount);
+			return new DartAllListsDeclaration(ctx,visitDartListStringDeclaration(ctx.dartListStringDeclaration()));
 		}else if(ctx.dartListIntDeclaration() != null) {
-			return new DartAllListsDeclaration(visitDartListIntDeclaration(ctx.dartListIntDeclaration()),line,parent,type,childCount);
+			return new DartAllListsDeclaration(ctx,visitDartListIntDeclaration(ctx.dartListIntDeclaration()));
 		}else if(ctx.dartListBoolDeclaration() != null) {
-			return new DartAllListsDeclaration(visitDartListBoolDeclaration(ctx.dartListBoolDeclaration()),line,parent,type,childCount);
+			return new DartAllListsDeclaration(ctx,visitDartListBoolDeclaration(ctx.dartListBoolDeclaration()));
 		}else {
 			return null;
 		}
@@ -39,14 +36,14 @@ public class ListsVisitor extends dart_parseBaseVisitorChild{
 	@Override
 	public DartListStringDeclaration visitDartListStringDeclaration(DartListStringDeclarationContext ctx) {
 
-		int line = ctx.start.getLine();
+
 		int column = ctx.STRING().getSymbol().getCharPositionInLine() + 1;
-		String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$","").replace("Context","");
-		String type = NodeType.LIST.toString();
-		int childCount = ctx.getChildCount();
+
 		String name = ctx.NAME().getText();
+		int errorLine = ctx.start.getLine();
+
 		if(CheckExistanceInScope(name,index)){
-			semanticErrors.add("The name " + name + " already defined (" + line + "," + column + ")");
+			semanticErrors.add("The name " + name + " already defined (" + errorLine + "," + column + ")");
 		}else{
 			scopes.get(index - 1).getSymbolMap().put(name, new SymbolTableObject(NodeType.LIST.toString(), name));
 
@@ -58,7 +55,7 @@ public class ListsVisitor extends dart_parseBaseVisitorChild{
 				dartListStringItems.add(strLine);
 			}
 		}
-		DartListStringDeclaration dec = new DartListStringDeclaration(name,line,parent,type,childCount);
+		DartListStringDeclaration dec = new DartListStringDeclaration(ctx,name);
 		dec.setItemsList(dartListStringItems);
 		return dec;
 
@@ -66,14 +63,16 @@ public class ListsVisitor extends dart_parseBaseVisitorChild{
 
 	@Override
 	public DartListIntDeclaration visitDartListIntDeclaration(DartListIntDeclarationContext ctx) {
-		int line = ctx.start.getLine();
+
 		int column = ctx.NAME().getSymbol().getCharPositionInLine() + 1;
-		String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$","").replace("Context","");
+
 		String name = ctx.NAME().getText();
 		List<NumberClass> dartListIntItems = new ArrayList<>();
 
+		int errorLine = ctx.start.getLine();
+
 		if(CheckExistanceInScope(name,index)){
-			semanticErrors.add("The name " + name + " already defined (" + line + "," + column + ")");
+			semanticErrors.add("The name " + name + " already defined (" + errorLine + "," + column + ")");
 		}else{
 			scopes.get(index - 1).getSymbolMap().put(name, new SymbolTableObject(NodeType.LIST.toString(), name));
 		}
@@ -81,29 +80,25 @@ public class ListsVisitor extends dart_parseBaseVisitorChild{
 			String str = ctx.getChild(i).getText();
 			if(!str.equals(",") && !str.equals("]") && !str.equals(";")) {
 				try {
-					int numLine = ctx.start.getLine();
-					String numParent = ctx.getParent().getClass().getName().replace("gen.dart_parse$","").replace("Context","");
-					String type = NodeType.NUMBER.toString();
-					int childCount = ctx.getChildCount();
-					NumberClass number = new NumberClass(Integer.parseInt(ctx.getChild(i).getText()), line, parent, type, childCount);
+
+					NumberClass number = new NumberClass(ctx,Integer.parseInt(ctx.getChild(i).getText()));
 					dartListIntItems.add(number);
 				} catch (Exception e) {
 
 				}
 			}
 		}
-		String type = NodeType.LIST.toString();
-		int childCount = ctx.getChildCount();
-		DartListIntDeclaration dec = new DartListIntDeclaration(name,line,parent, type, childCount);
+
+		DartListIntDeclaration dec = new DartListIntDeclaration(ctx,name);
 		dec.setItemsList(dartListIntItems);
 		return dec;
 	}
 
 	@Override
 	public DartListBoolDeclaration visitDartListBoolDeclaration(DartListBoolDeclarationContext ctx) {
-		int line = ctx.start.getLine();
+
 		int column = ctx.NAME().getSymbol().getCharPositionInLine() + 1;
-		String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$","").replace("Context","");
+
 		String name = ctx.NAME().getText();
 		List<BooleanValueClass> dartListBoolItems = new ArrayList<>();
 
@@ -113,25 +108,23 @@ public class ListsVisitor extends dart_parseBaseVisitorChild{
 			if(!str.equals(",") && !str.equals("]") && !str.equals(";")) {
 
 				try {
-					int boolLine = ctx.start.getLine();
-					String boolParent = ctx.getParent().getClass().getName().replace("gen.dart_parse$","").replace("Context","");
-					String type = NodeType.BOOLEAN.toString();
-					int childCount = ctx.getChildCount();
-					BooleanValueClass b = new BooleanValueClass(Boolean.parseBoolean(ctx.getChild(i).getText()), line, parent, type, childCount);
+					BooleanValueClass b = new BooleanValueClass(ctx,Boolean.parseBoolean(ctx.getChild(i).getText()));
 					dartListBoolItems.add(b);
 				} catch (Exception e) {
 
 				}
 			}
 		}
+		int errorLine = ctx.start.getLine();
+
 		if(CheckExistanceInScope(name,index)){
-			semanticErrors.add("The name " + name + " already defined (" + line + "," + column + ")");
+			semanticErrors.add("The name " + name + " already defined (" + errorLine + "," + column + ")");
 		}else{
 			scopes.get(index - 1).getSymbolMap().put(name, new SymbolTableObject(NodeType.LIST.toString(), name));
 		}
-		String type = NodeType.LIST.toString();
-		int childCount = ctx.getChildCount();
-		DartListBoolDeclaration dec = new DartListBoolDeclaration(name,line,parent,type,childCount);
+
+
+		DartListBoolDeclaration dec = new DartListBoolDeclaration(ctx,name);
 		dec.setItemsList(dartListBoolItems);
 		return dec;
 	}

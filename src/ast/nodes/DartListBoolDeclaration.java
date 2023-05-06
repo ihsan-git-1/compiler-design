@@ -3,14 +3,16 @@ package ast.nodes;
 import java.util.ArrayList;
 import java.util.List;
 
+import ast.NodeType;
 import ast.variables.BooleanValueClass;
+import gen.dart_parse;
 
 public class DartListBoolDeclaration extends DartAllListsDeclarationAbstractChild{
 	String name;
 	List<BooleanValueClass> itemsList;
 	
-	public DartListBoolDeclaration(String name,int line,String parent,String type,int childCount) {
-		super(line,parent, type, childCount);
+	public DartListBoolDeclaration(dart_parse.DartListBoolDeclarationContext ctx, String name) {
+		super(ctx);
 		this.name = name;
 		this.itemsList=new ArrayList<>();
 	}
@@ -32,7 +34,7 @@ public class DartListBoolDeclaration extends DartAllListsDeclarationAbstractChil
 
 	@Override
 	public String toString() {
-		String var = "Dart Bool List "+ name + " line: "+getLine()+" parent "+getParent()+" Child Count =  "+getChildCount()+" Type = "+getType();
+		String var = getLineString()+"Dart Bool List "+ name +" parent "+getParent()+" Child Count =  "+getChildCount()+" Type = "+ NodeType.LIST;
 		System.out.print(var);
 		System.out.print(" List Items are ");
 		printList(this.itemsList);

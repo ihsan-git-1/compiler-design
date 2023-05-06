@@ -1,20 +1,22 @@
 package ast.navigation;
 
+import ast.NodeType;
 import ast.nodes.DartDeclarationAbstractChild;
+import gen.dart_parse;
 
 public class Navigation extends DartDeclarationAbstractChild {
 
 
     String name;
 
-    public Navigation(String name, int line, String parent, String type, int childCount) {
-        super(line, parent, type, childCount);
+    public Navigation(dart_parse.NavigationContext ctx, String name) {
+        super(ctx);
         this.name = name;
     }
 
     public String toString() {
-        return  "Navigation Declaration: value: "+ name + " line: "+getLine() + " parent: "+ getParent()
-                +" Child Count =  "+getChildCount()+" Type = "+getType()+"\n";
+        return  getLineString()+"Navigation Declaration: value: "+ name + " parent: "+ getParent()
+                +" Child Count =  "+getChildCount()+" Type = "+ NodeType.Navigation+"\n";
     }
 
 }

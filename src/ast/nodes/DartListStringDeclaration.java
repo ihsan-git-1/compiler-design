@@ -1,5 +1,8 @@
 package ast.nodes;
 
+import ast.NodeType;
+import gen.dart_parse;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -8,8 +11,8 @@ public class DartListStringDeclaration extends DartAllListsDeclarationAbstractCh
 	public String name;
 	public List<String> itemsList = new ArrayList<>();
 	
-	public DartListStringDeclaration(String name,int line ,String parent,String type,int childCount) {
-		super(line,parent, type, childCount);
+	public DartListStringDeclaration(dart_parse.DartListStringDeclarationContext ctx, String name) {
+		super(ctx);
 		this.name = name;
 	}
 	
@@ -30,7 +33,7 @@ public class DartListStringDeclaration extends DartAllListsDeclarationAbstractCh
 
 	@Override
 	public String toString() {
-		String var = "Dart String List "+ name + " line: "+getLine() + " parent "+getParent()+" Child Count:  "+getChildCount()+" Type: "+getType();
+		String var = getLineString()+"Dart String List "+ name + " parent "+getParent()+" Child Count:  "+getChildCount()+" Type: "+ NodeType.LIST;
 		System.out.print(var);
 		printList(this.itemsList);
 		return  "" ;

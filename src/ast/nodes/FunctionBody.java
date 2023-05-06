@@ -20,7 +20,7 @@ public class FunctionBody extends Node{
                 +"FunctionBody{" +
                 "statementList=" + statementList +
                 ", col=" + col +
-                ", type='" + type + '\'' +
+                ", type='" + "Function" + '\'' +
                 ", childCount=" + childCount +
                 ", parent='" + parent + '\'' +
                 '}';

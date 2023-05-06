@@ -27,6 +27,10 @@ public class NumberClass extends AbstractNumberClass{
 		super(ctx);
 		this.num = num;
 	}
+	public NumberClass(dart_parse.DartListIntDeclarationContext ctx, int num) {
+		super(ctx);
+		this.num = num;
+	}
 
 	public String toString() {
 		return  getLineString()+"number class: value: "+ num  + " parent: "+ getParent()
