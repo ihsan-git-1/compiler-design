@@ -13,7 +13,7 @@ public class BodyPropertyDeclaration extends Node{
 
 	@Override
 	public String toString() {
-		return "Body Property Declaration line: "+getLine()+" parent "+getParent()
+		return getLineString()+"Body Property Declaration"+" parent "+getParent()
 				+" Child Count =  "+getChildCount()+" Type = "+ NodeType.PROPERTY+"\n"
 				+ widgetsDeclaration;
 	}

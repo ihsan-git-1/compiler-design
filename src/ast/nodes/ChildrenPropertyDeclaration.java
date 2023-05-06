@@ -28,7 +28,7 @@ public class ChildrenPropertyDeclaration extends Node{
 
 	@Override
 	public String toString() {
-		return "Children Property Declaration line: "+getLine() + " parent "+getParent()
+		return getLineString()+"Children Property Declaration  " + " parent "+getParent()
 				+" Child Count =  "+getChildCount()+" Type = "+ NodeType.PROPERTY+"\n"
 				+widgetsDeclarationList
 				;

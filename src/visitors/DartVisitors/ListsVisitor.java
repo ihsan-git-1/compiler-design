@@ -1,4 +1,4 @@
-package visitors;
+package visitors.DartVisitors;
 
 import ast.NodeType;
 import ast.SymbolTableObject;
@@ -12,10 +12,12 @@ import gen.dart_parse.DartAllListsDeclarationContext;
 import gen.dart_parse.DartListBoolDeclarationContext;
 import gen.dart_parse.DartListIntDeclarationContext;
 import gen.dart_parse.DartListStringDeclarationContext;
+import visitors.dart_parseBaseVisitorChild;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListsVisitor extends dart_parseBaseVisitorChild{
+public class ListsVisitor extends dart_parseBaseVisitorChild {
 
 	@Override
 	public DartAllListsDeclaration visitDartAllListsDeclaration(DartAllListsDeclarationContext ctx) {

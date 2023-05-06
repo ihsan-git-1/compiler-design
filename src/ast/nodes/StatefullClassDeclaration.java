@@ -19,7 +19,7 @@ public class StatefullClassDeclaration extends AllClassesDeclarationAbstractChil
 
 	@Override
 	public String toString() {
-		return "Statefull Class Declaration line: "+getLine() + " parent "+getParent()
+		return getLineString()+"Statefull Class Declaration " + " parent "+getParent()
 				+" Child Count =  "+getChildCount()+" Type = "+ NodeType.BLOCK+"\n"+
 				firstBody+
 				secondBody
