@@ -18,7 +18,7 @@ protected T value;
         super(ctx);
         this.value = value;
     }
-    public TermAbstractChild(dart_parse.ConditionExprContext ctx, T value) {
+    public TermAbstractChild(dart_parse.BooleansContext ctx, T value) {
         super(ctx);
         this.value = value;
     }

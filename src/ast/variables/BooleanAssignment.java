@@ -1,21 +1,23 @@
 package ast.variables;
 
+import ast.NodeType;
 import ast.nodes.StatementAbstractChild;
+import gen.dart_parse;
 
 public class BooleanAssignment extends VariableDeclaration implements StatementAbstractChild, assignment {
     String name;
     BooleanValueClass expr;
 
-    public BooleanAssignment(BooleanValueClass expr, String name, int line, String parent,String type,int childCount) {
-        super(line, parent, type, childCount);
+    public BooleanAssignment(dart_parse.BooleanAssignmentContext ctx, BooleanValueClass expr, String name) {
+        super(ctx);
         this.expr = expr;
         this.name = name;
     }
 
     @Override
     public String toString() {
-        return "Double Assignment: " +name+" line: "+ getLine() + " parent: "+ getParent()
-                +" Child Count =  "+getChildCount()+" Type = "+getType()+"\n"
+        return getLineString()+"Double Assignment: " +name + " parent: "+ getParent()
+                +" Child Count =  "+getChildCount()+" Type = "+ NodeType.BOOLEANASSIGNMENT +"\n"
                 + "value: " + expr;
     }
 }
