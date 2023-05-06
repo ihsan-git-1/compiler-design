@@ -18,7 +18,16 @@ public class NumberClass extends AbstractNumberClass{
 		super(ctx);
 		this.num = num;
 	}
-	
+	public NumberClass(dart_parse.AddExpressionContext ctx, int num) {
+		super(ctx);
+		this.num = num;
+	}
+
+	public NumberClass(dart_parse.MultiplyExpressionContext ctx, int num) {
+		super(ctx);
+		this.num = num;
+	}
+
 	public String toString() {
 		return  getLineString()+"number class: value: "+ num  + " parent: "+ getParent()
 				+" Child Count =  "+getChildCount()+" Type = "+ NodeType.NUMBER+"\n";
