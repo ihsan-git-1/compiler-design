@@ -7,6 +7,7 @@ import ast.nodes.*;
 import ast.variables.AbstractNumberClass;
 import gen.dart_parse;
 import org.antlr.v4.runtime.TokenStream;
+import visitors.DartVisitors.DartVariables.DoubleVisitor;
 import visitors.DartVisitors.DartVariables.IntegerVisitor;
 import visitors.DartVisitors.VariablesVisitor;
 import visitors.FlutterVisitor.WidgetsVisitor;
@@ -241,11 +242,11 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
         if (!ctx.numberDouble().isEmpty() || !ctx.number().isEmpty()) {
             AbstractNumberClass num1;
             AbstractNumberClass num2;
-            VariablesVisitor variablesVisitor = new VariablesVisitor();
+            DoubleVisitor doubleVisitor = new DoubleVisitor();
             IntegerVisitor integerVisitor = new IntegerVisitor();
             if (ctx.numberDouble().size() == 2) {
-                num1 = variablesVisitor.visitNumberDouble(ctx.numberDouble(0));
-                num2 = variablesVisitor.visitNumberDouble(ctx.numberDouble(1));
+                num1 = doubleVisitor.visitNumberDouble(ctx.numberDouble(0));
+                num2 = doubleVisitor.visitNumberDouble(ctx.numberDouble(1));
             }
             else if (ctx.number().size() == 2) {
                 num1 = integerVisitor.visitNumber(ctx.number(0));
@@ -253,7 +254,7 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
             }
             else {
                 num1 = integerVisitor.visitNumber(ctx.number(0));
-                num2 = variablesVisitor.visitNumberDouble(ctx.numberDouble(0));
+                num2 = doubleVisitor.visitNumberDouble(ctx.numberDouble(0));
             }
 
             String operator = ctx.getChild(1).toString();

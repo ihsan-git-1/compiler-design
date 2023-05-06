@@ -5,7 +5,9 @@ import ast.nodes.TermAbstractChild;
 import ast.variables.*;
 import gen.dart_parse;
 import org.antlr.v4.runtime.Token;
+import visitors.DartVisitors.DartVariables.DoubleVisitor;
 import visitors.DartVisitors.DartVariables.IntegerVisitor;
+import visitors.DartVisitors.DartVariables.StringVisitor;
 import visitors.dart_parseBaseVisitorChild;
 import java.util.*;
 
@@ -16,14 +18,17 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
     public Variable visitVariable(dart_parse.VariableContext ctx) {
         
         if (ctx.stringDeclarationLine() != null) {
-            return new Variable(ctx,visitStringDeclarationLine(ctx.stringDeclarationLine()));
+            StringVisitor stringVisitor = new StringVisitor();
+
+            return new Variable(ctx,stringVisitor.visitStringDeclarationLine(ctx.stringDeclarationLine()));
         }
         if (ctx.integerDeclarationLine() != null) {
             IntegerVisitor integerVisitor = new IntegerVisitor();
             return new Variable(ctx,integerVisitor.visitIntegerDeclarationLine(ctx.integerDeclarationLine()));
         }
         if (ctx.doubleDeclarationLine() != null) {
-            return new Variable(ctx,visitDoubleDeclarationLine(ctx.doubleDeclarationLine()));
+            DoubleVisitor doubleVisitor = new DoubleVisitor();
+            return new Variable(ctx,doubleVisitor.visitDoubleDeclarationLine(ctx.doubleDeclarationLine()));
         }
         if (ctx.booleanDeclarationLine() != null) {
             return new Variable(ctx,visitBooleanDeclarationLine(ctx.booleanDeclarationLine()));
@@ -117,7 +122,8 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
             return visitAddExpression(ctx.addExpression());
         }
         if (ctx.addDoubleExpression() != null) {
-            return visitAddDoubleExpression(ctx.addDoubleExpression());
+            DoubleVisitor doubleVisitor = new DoubleVisitor();
+            return doubleVisitor.visitAddDoubleExpression(ctx.addDoubleExpression());
         }
         if (ctx.identifier() != null) {
             return visitIdentifier(ctx.identifier());
@@ -133,10 +139,16 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
         }
         if (ctx.booleanDeclaration() != null)
             return visitBooleanDeclaration(ctx.booleanDeclaration());
-        if (ctx.doubleDeclaration() != null)
-            return visitDoubleDeclaration(ctx.doubleDeclaration());
-        if (ctx.stringDeclaration() != null)
-            return visitStringDeclaration(ctx.stringDeclaration());
+        if (ctx.doubleDeclaration() != null){
+            DoubleVisitor doubleVisitor = new DoubleVisitor();
+            return doubleVisitor.visitDoubleDeclaration(ctx.doubleDeclaration());
+
+        }
+        if (ctx.stringDeclaration() != null){
+            StringVisitor stringVisitor = new StringVisitor();
+            return stringVisitor.visitStringDeclaration(ctx.stringDeclaration());
+        }
+
         return null;
     }
 
@@ -189,101 +201,21 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
             return integerVisitor.visitIntegerDeclarationAssignment(ctx.integerDeclarationAssignment());
         }
         if (ctx.doubleDeclarationAssignment() != null) {
-            return visitDoubleDeclarationAssignment(ctx.doubleDeclarationAssignment());
+            DoubleVisitor doubleVisitor = new DoubleVisitor();
+
+            return doubleVisitor.visitDoubleDeclarationAssignment(ctx.doubleDeclarationAssignment());
         }
         if (ctx.booleanDeclarationAssignment() != null) {
             return visitBooleanDeclarationAssignment(ctx.booleanDeclarationAssignment());
         }
         if (ctx.stringDeclarationAssignment() != null) {
-            return visitStringDeclarationAssignment(ctx.stringDeclarationAssignment());
+            StringVisitor stringVisitor = new StringVisitor();
+            return stringVisitor.visitStringDeclarationAssignment(ctx.stringDeclarationAssignment());
         }
         return null;
 
     }
 
-
-
-
-
-    public StringDeclarationLine visitStringDeclarationLine(dart_parse.StringDeclarationLineContext ctx) {
-        
-        
-        String type = NodeType.STRINGDECLARATIONLINE.toString();
-        
-        List<StringDeclaration> declarations = new ArrayList<>();
-        List<StringDeclarationAssignment> assignments = new ArrayList<>();
-
-        for (int i = 0; i < ctx.getChildCount(); i++) {
-            if (Objects.equals(ctx.getChild(i).getText(), ","))
-                continue;
-            if (ctx.getChild(i) instanceof dart_parse.StringDeclarationContext) {
-                declarations.add(visitStringDeclaration((dart_parse.StringDeclarationContext) ctx.getChild(i)));
-            } else if (ctx.getChild(i) instanceof dart_parse.StringDeclarationAssignmentContext) {
-                assignments.add(visitStringDeclarationAssignment((dart_parse.StringDeclarationAssignmentContext) ctx.getChild(i)));
-            }
-        }
-        return new StringDeclarationLine(line, parent, type, childCount, declarations, assignments);
-    }
-
-    public StringDeclarationAssignment visitStringDeclarationAssignment(dart_parse.StringDeclarationAssignmentContext ctx) {
-        
-        int column = ctx.start.getCharPositionInLine() + 1;
-        String id = ctx.getChild(0).getText();
-        
-        String type = NodeType.STRINGDECLARATIONASSIGNMENT.toString();
-        
-
-        if (CheckExistanceInScope(id, index)) {
-            semanticErrors.add("The name " + id + " already defined (" + line + "," + column + ")");
-        } else if ((CheckExistanceInParentScope(id, index) || CheckExistanceInScope(id, index)) && !CheckIfTypeMatchesParentType(id, index, NodeType.STRING.toString())) {
-            semanticErrors.add("A value of type " + NodeType.STRING.toString() + " can't be assigned to a variable of type " + getParentType(id, index, NodeType.STRING.toString()));
-        } else {
-            String expr = ctx.STRING_LINE().getText();
-            scopes.get(index - 1).getSymbolMap().put(id, new SymbolTableObject(NodeType.STRING.toString(), expr));
-            varialbeNames.add("Identifier " + id + ", Type " + NodeType.STRING + ", Value : " + expr + " , Scope " + scopes.peek().getScopeName());
-            return new StringDeclarationAssignment(id, expr, line, parent, type, childCount);
-        }
-        return new StringDeclarationAssignment(id, null, line, parent, type, childCount);
-    }
-
-
-    public StringDeclaration visitStringDeclaration(dart_parse.StringDeclarationContext ctx) {
-        String id = String.valueOf(ctx.NAME());
-        
-        String type = NodeType.TOPTREEDECLARATION.toString();
-        
-        int column = ctx.start.getCharPositionInLine() + 1;
-        
-
-        if (CheckExistanceInScope(id, index)) {
-            semanticErrors.add("The name " + id + " already defined (" + line + "," + column + ")");
-        } else {
-            scopes.get(index - 1).getSymbolMap().put(id, new SymbolTableObject(NodeType.STRING.toString(), ""));
-        }
-        varialbeNames.add("Identifier " + id + ", Type " + NodeType.STRING + ", Value : , Scope " + scopes.peek().getScopeName());
-        return new StringDeclaration(id, line, parent, type, childCount);
-    }
-
-    public StringAssignment visitStringAssignment(dart_parse.StringAssignmentContext ctx) {
-        
-        int column = ctx.start.getCharPositionInLine() + 1;
-        String id = ctx.getChild(0).getText();
-        
-        String type = NodeType.STRINGASSIGNMENT.toString();
-        
-
-        if (!CheckExistanceInParentScope(id, index) && !CheckExistanceInScope(id, index)) {
-            semanticErrors.add("Undefined name " + id + " at (" + line + "," + column + ")");
-        } else if ((CheckExistanceInParentScope(id, index) || CheckExistanceInScope(id, index)) && !CheckIfTypeMatchesParentType(id, index, NodeType.STRING.toString())) {
-            semanticErrors.add("A value of type " + NodeType.STRING.toString() + " can't be assigned to a variable of type " + getParentType(id, index, NodeType.STRING.toString()));
-        } else {
-            String expr = ctx.STRING_LINE().getText();
-            scopes.get(index - 1).getSymbolMap().put(id, new SymbolTableObject(NodeType.STRING.toString(), expr));
-            varialbeNames.add("Identifier " + id + ", Type " + NodeType.STRING + ", Value :" + expr + " Scope " + scopes.peek().getScopeName());
-            return new StringAssignment(expr, id, line, parent, type, childCount);
-        }
-        return new StringAssignment(null, id, line, parent, type, childCount);
-    }
 
 
     public BooleanDeclarationLine visitBooleanDeclarationLine(dart_parse.BooleanDeclarationLineContext ctx) {
