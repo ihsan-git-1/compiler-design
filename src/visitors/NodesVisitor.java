@@ -7,7 +7,6 @@ import ast.nodes.*;
 import ast.variables.AbstractNumberClass;
 import gen.dart_parse;
 import org.antlr.v4.runtime.TokenStream;
-import visitors.DartVisitors.StatementsVisitors;
 import visitors.FlutterVisitor.WidgetsVisitor;
 
 import java.util.ArrayList;
@@ -15,7 +14,6 @@ import java.util.List;
 
 
 public class NodesVisitor extends dart_parseBaseVisitorChild {
-    StatementsVisitors statementsVisitors = new StatementsVisitors();
     public TokenStream tokenStream;
 
     public NodesVisitor(TokenStream tokenStream) {

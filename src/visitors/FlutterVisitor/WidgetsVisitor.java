@@ -3,6 +3,7 @@ package visitors.FlutterVisitor;
 import ast.NodeType;
 import ast.nodes.*;
 import gen.dart_parse;
+import visitors.DartVisitors.StatementsVisitors;
 import visitors.VariablesVisitor;
 import visitors.dart_parseBaseVisitorChild;
 
@@ -14,10 +15,7 @@ public class WidgetsVisitor extends dart_parseBaseVisitorChild {
 
     @Override
     public WidgetsDeclaration visitWidgetsDeclaration(dart_parse.WidgetsDeclarationContext ctx) {
-        
-       
-        String type = NodeType.WIDGET.toString();
-        
+
         if (ctx.expandedDeclaration() != null) {
             return new WidgetsDeclaration(ctx,visitExpandedDeclaration(ctx.expandedDeclaration()));
         }
@@ -55,76 +53,57 @@ public class WidgetsVisitor extends dart_parseBaseVisitorChild {
 
     @Override
     public ChildPropertyDeclaration visitChildPropertyDeclaration(dart_parse.ChildPropertyDeclarationContext ctx) {
-        
-       
-        String type = NodeType.PROPERTY.toString();
-        
+
         return new ChildPropertyDeclaration(ctx,visitWidgetsDeclaration(ctx.widgetsDeclaration()));
     }
 
     @Override
     public TextDeclaration visitTextDeclaration(dart_parse.TextDeclarationContext ctx) {
 
-        String type = NodeType.OBJECT.toString();
-        
         return new TextDeclaration(ctx,ctx.STRING_LINE().getText());
     }
 
     @Override
     public ImageDeclaration visitImageDeclaration(dart_parse.ImageDeclarationContext ctx) {
-        
-       
-        String type = NodeType.OBJECT.toString();
-        
+
         return new ImageDeclaration(ctx,ctx.STRING_LINE().getText());
     }
 
     @Override
     public MaterialAppDeclaration visitMaterialAppDeclaration(dart_parse.MaterialAppDeclarationContext ctx) {
         
-       
-        String type = NodeType.OBJECT.toString();
-        
-        return new MaterialAppDeclaration(visitHomePropertyDeclaration(ctx.homePropertyDeclaration()));
+        return new MaterialAppDeclaration(ctx,visitHomePropertyDeclaration(ctx.homePropertyDeclaration()));
     }
 
     @Override
     public HomePropertyDeclaration visitHomePropertyDeclaration(dart_parse.HomePropertyDeclarationContext ctx) {
         
-       
-        String type = NodeType.PROPERTY.toString();
-        
-        return new HomePropertyDeclaration(ctx.NAME().getText());
+        return new HomePropertyDeclaration(ctx,ctx.NAME().getText());
     }
 
     @Override
     public ExpandedDeclaration visitExpandedDeclaration(dart_parse.ExpandedDeclarationContext ctx) {
         
-       
-        String type = NodeType.OBJECT.toString();
-        
-        return new ExpandedDeclaration(visitChildPropertyDeclaration(ctx.childPropertyDeclaration()));
+        return new ExpandedDeclaration(ctx,visitChildPropertyDeclaration(ctx.childPropertyDeclaration()));
     }
 
     @Override
     public MaterialButtonDeclaration visitMaterialButtonDeclaration(dart_parse.MaterialButtonDeclarationContext ctx) {
 
-        
-       
-        String type = NodeType.OBJECT.toString();
-        
-        return new MaterialButtonDeclaration(visitOnPressedPropertyDeclaration(ctx.onPressedPropertyDeclaration()), visitChildPropertyDeclaration(ctx.childPropertyDeclaration()));
+        return new MaterialButtonDeclaration(
+                ctx,
+                visitOnPressedPropertyDeclaration(ctx.onPressedPropertyDeclaration()),
+                visitChildPropertyDeclaration(ctx.childPropertyDeclaration())
+        );
 
     }
 
     @Override
     public OnPressedPropertyDeclaration visitOnPressedPropertyDeclaration(dart_parse.OnPressedPropertyDeclarationContext ctx) {
-        
-       
-        String type = NodeType.PROPERTY.toString();
-        
 
-        OnPressedPropertyDeclaration onPressedPropertyDeclaration = new OnPressedPropertyDeclaration(line, parent, type, childCount);
+        StatementsVisitors statementsVisitors = new StatementsVisitors();
+
+        OnPressedPropertyDeclaration onPressedPropertyDeclaration = new OnPressedPropertyDeclaration(ctx);
 
         for (int i = 0; i < ctx.statement().size(); i++) {
             onPressedPropertyDeclaration.getStatement().add(statementsVisitors.visitStatement(ctx.statement(i)));
@@ -135,6 +114,8 @@ public class WidgetsVisitor extends dart_parseBaseVisitorChild {
 
     @Override
     public SetStatePressedDeclaration visitSetStatePressedDeclaration(dart_parse.SetStatePressedDeclarationContext ctx) {
+        StatementsVisitors statementsVisitors = new StatementsVisitors();
+
         SetStatePressedDeclaration setStatePressedDeclaration = new SetStatePressedDeclaration();
 
         for (int i = 0; i < ctx.statement().size(); i++) {
@@ -148,20 +129,17 @@ public class WidgetsVisitor extends dart_parseBaseVisitorChild {
     @Override
     public PaddingDeclaration visitPaddingDeclaration(dart_parse.PaddingDeclarationContext ctx) {
 
-        
-       
-        String type = NodeType.OBJECT.toString();
-        
-        return new PaddingDeclaration(visitPaddingPropertyDeclaration(ctx.paddingPropertyDeclaration()), visitChildPropertyDeclaration(ctx.childPropertyDeclaration()));
+        return new PaddingDeclaration(
+                ctx,
+                visitPaddingPropertyDeclaration(ctx.paddingPropertyDeclaration()),
+                visitChildPropertyDeclaration(ctx.childPropertyDeclaration())
+        );
     }
 
     @Override
     public PaddingPropertyDeclaration visitPaddingPropertyDeclaration(dart_parse.PaddingPropertyDeclarationContext ctx) {
-        
-       
-        String type = NodeType.PROPERTY.toString();
-        
-        return new PaddingPropertyDeclaration(visitEdgeInsistAll(ctx.edgeInsistAll()));
+
+        return new PaddingPropertyDeclaration(ctx,visitEdgeInsistAll(ctx.edgeInsistAll()));
     }
 
     @Override
