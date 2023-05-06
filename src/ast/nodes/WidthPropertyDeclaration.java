@@ -1,19 +1,21 @@
 package ast.nodes;
 
+import ast.NodeType;
 import ast.variables.NumberClass;
+import gen.dart_parse;
 
 public class WidthPropertyDeclaration extends ContainerPropertiesDeclarationAbstractChild {
 	NumberClass number ;
 	
-	public WidthPropertyDeclaration(NumberClass number,int line ,String parent,String type , int childCount) {
-		super(line,parent,type,childCount);
+	public WidthPropertyDeclaration(dart_parse.WidthPropertyDeclarationContext ctx, NumberClass number) {
+		super(ctx);
 		this.number = number;
 	}
 
 	@Override
 	public String toString() {
-		return "Width Property  Declaration line: "+getLine() + " parent "+getParent()
-				+" Child Count =  "+getChildCount()+" Type = "+getType()+"\n"
+		return getLineString()+"Width Property ," + " parent "+getParent()
+				+" Child Count =  "+getChildCount()+" Type = "+ NodeType.PROPERTY+"\n"
 				+number;
 	}
 }
