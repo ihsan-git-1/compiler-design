@@ -14,7 +14,7 @@ public class WidthPropertyDeclaration extends ContainerPropertiesDeclarationAbst
 
 	@Override
 	public String toString() {
-		return getLineString()+"Width Property ," + " parent "+getParent()
+		return getLineString()+ "Width Property ," + " parent "+getParent()
 				+" Child Count =  "+getChildCount()+" Type = "+ NodeType.PROPERTY+"\n"
 				+number;
 	}

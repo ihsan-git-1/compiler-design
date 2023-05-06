@@ -22,7 +22,7 @@ public class MultiplyExpression extends Node {
 
     @Override
     public String toString() {
-        return "Multiply Expression: "+value +" line: " + getLine() + "parent "+ getParent()
+        return getLineString()+"Multiply Expression: "+value + "parent "+ getParent()
                 +" Child Count =  "+getChildCount()+" Type = "+ NodeType.MULTIPLYEXPRESSION+"\n"
                 ;
     }
