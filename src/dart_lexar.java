@@ -1,4 +1,4 @@
-// Generated from C:/Users/Vision/Downloads/Desktop/compiler-new/src\dart_lexar.g4 by ANTLR 4.10.1
+// Generated from dart_lexar.g4 by ANTLR 4.10.1
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;

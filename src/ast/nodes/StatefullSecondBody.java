@@ -32,4 +32,9 @@ public class StatefullSecondBody extends Node{
 				+methodDecleration +"\n"
 				;
 	}
+
+	@Override
+	public String generate_code() {
+		return methodDecleration.generate_code();
+	}
 }

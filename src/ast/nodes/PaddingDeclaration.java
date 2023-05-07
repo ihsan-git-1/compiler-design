@@ -21,4 +21,9 @@ public class PaddingDeclaration extends WidgetAbstractChild {
 				+childPropertyDeclaration
 				;
 	}
+
+	@Override
+	public String generate_code() {
+		return childPropertyDeclaration.generate_code();
+	}
 }

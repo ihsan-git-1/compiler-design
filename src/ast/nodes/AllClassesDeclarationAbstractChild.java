@@ -17,8 +17,4 @@ public abstract class AllClassesDeclarationAbstractChild  extends Node{
         super(ctx);
     }
 
-//    @Override
-//    public String generate_code() {
-//        if(ctx instanceof )
-//    }
 }
