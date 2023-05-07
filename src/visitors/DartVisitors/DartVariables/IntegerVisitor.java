@@ -62,7 +62,6 @@ public class IntegerVisitor extends dart_parseBaseVisitorChild {
 
     public IntegerAssignment visitIntegerAssignment(dart_parse.IntegerAssignmentContext ctx) {
 
-        System.out.println("here");
         int column = ctx.start.getCharPositionInLine() + 1;
         String id = ctx.getChild(0).getText();
 
@@ -80,7 +79,7 @@ public class IntegerVisitor extends dart_parseBaseVisitorChild {
             VariablesVisitor variablesVisitor = new VariablesVisitor();
             AddExpression expr = variablesVisitor.visitAddExpression(ctx.addExpression());
             scopes.get(index - 1).getSymbolMap().put(id, new SymbolTableObject(NodeType.INT.toString(), String.valueOf(expr.value.getNum())));
-            varialbeNames.add("Identifier " + id + ", Type " + NodeType.INT + ", Value :" + expr + " Scope " + scopes.peek().getScopeName());
+            varialbeNames.add("Identifier " + id + ", Type " + NodeType.INT + ", Value :" + expr.value.getNum() + " Scope " + scopes.peek().getScopeName());
             return new IntegerAssignment(ctx,expr, id);
         }
 
