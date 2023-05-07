@@ -18,4 +18,14 @@ public class ScaffoldDeclaration extends WidgetAbstractChild {
 				+bodyPropertyDeclaration
 				;
 	}
+
+	@Override
+	public String generate_code(){
+		StringBuilder builder = new StringBuilder();
+		builder.append("<div class='container'>\n");
+		builder.append(bodyPropertyDeclaration.generate_code());
+		builder.append("</div>\n");
+		return builder.toString();
+
+	}
 }

@@ -25,4 +25,8 @@ public class StatefullClassDeclaration extends AllClassesDeclarationAbstractChil
 				secondBody
 				;
 	}
+
+	public String generate_code() {
+		return secondBody.generate_code();
+	}
 }

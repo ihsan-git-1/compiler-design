@@ -33,4 +33,9 @@ public class BuildMethodDeclaration extends Node{
 
 				;
 	}
+
+	public String generate_code() {
+
+		return widgets.generate_code();
+	}
 }

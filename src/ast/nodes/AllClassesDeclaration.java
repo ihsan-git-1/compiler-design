@@ -19,4 +19,8 @@ public class AllClassesDeclaration extends Node{
 				child
 				;
 	}
+
+	public String generate_code(){
+		return child.generate_code();
+	}
 }
