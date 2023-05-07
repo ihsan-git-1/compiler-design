@@ -22,7 +22,7 @@ public class AddExpression extends NumericTermAbstractChild<Double> {
 	@Override
 	public String toString() {
 		return getLineString()+"Add expression: " +"value: "+value.num + " parent: " + getParent()+
-				" Child Count =  "+getChildCount()+" Type = "+ NodeType.INT +"\n"
+				" Child Count =  "+getChildCount()+" Type = "+ NodeType.ADDEXPRESSION +"\n"
 				+ value;
 	}
 }

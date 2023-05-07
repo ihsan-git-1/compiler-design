@@ -88,7 +88,7 @@ public class DoubleVisitor  extends dart_parseBaseVisitorChild {
         } else {
             AddDoubleExpression expr = visitAddDoubleExpression(ctx.addDoubleExpression());
             scopes.get(index - 1).getSymbolMap().put(id, new SymbolTableObject(NodeType.DOUBLE.toString(), String.valueOf(expr.value.getNum())));
-            varialbeNames.add("Identifier " + id + ", Type " + NodeType.DOUBLE + ", Value :" + expr + " Scope " + scopes.peek().getScopeName());
+            varialbeNames.add("Identifier " + id + ", Type " + NodeType.DOUBLE + ", Value : " + expr.value.getNum() + " Scope " + scopes.peek().getScopeName());
             return new DoubleAssignment(ctx,expr, id);
         }
         return new DoubleAssignment(ctx,null, id);

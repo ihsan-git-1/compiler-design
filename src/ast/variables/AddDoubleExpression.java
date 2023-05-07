@@ -24,6 +24,6 @@ public class AddDoubleExpression extends NumericTermAbstractChild<Double> {
 
     @Override
     public String toString() {
-        return getLineString()+"Add Double Expression: " + value.num + " parent " + getParent() + " Child Count =  " + getChildCount() + " Type = " + NodeType.DOUBLE + "\n" + value;
+        return getLineString()+"Add Double Expression: " + value.num + " parent " + getParent() + " Child Count =  " + getChildCount() + " Type = " + NodeType.ADDDOUBLEEXPRESSION + "\n" + value;
     }
 }

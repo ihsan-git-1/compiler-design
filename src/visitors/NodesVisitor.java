@@ -9,6 +9,7 @@ import gen.dart_parse;
 import org.antlr.v4.runtime.TokenStream;
 import visitors.DartVisitors.DartVariables.DoubleVisitor;
 import visitors.DartVisitors.DartVariables.IntegerVisitor;
+import visitors.DartVisitors.FunctionsVisitors;
 import visitors.DartVisitors.ListsVisitor;
 import visitors.DartVisitors.NavigationVisitor;
 import visitors.DartVisitors.VariablesVisitor;
@@ -214,9 +215,8 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
 
     public DartDeclaration visitDartDeclaration(dart_parse.DartDeclarationContext ctx) {
 
-//
         VariablesVisitor variablesVisitor = new VariablesVisitor();
-
+        FunctionsVisitors functionsVisitor = new FunctionsVisitors();
         NavigationVisitor navigationVisitor = new NavigationVisitor();
 
         String type = NodeType.OBJECT.toString();
@@ -229,9 +229,9 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
             return new DartDeclaration(ctx,navigationVisitor.visitNavigation(ctx.navigation()));
         }
 
-        //else if (ctx.function() != null) {
-        //      return new DartDeclaration(visitFunction(ctx.function()), line, parent, type, childCount);
-        // }
+        else if (ctx.function() != null) {
+              return new DartDeclaration(ctx, functionsVisitor.visitFunction(ctx.function()));
+         }
         else if (ctx.dartAllListsDeclaration() != null) {
             ListsVisitor listsVisitor = new ListsVisitor();
             return new DartDeclaration(ctx,listsVisitor.visitDartAllListsDeclaration(ctx.dartAllListsDeclaration()));

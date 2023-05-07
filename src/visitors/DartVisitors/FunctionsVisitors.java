@@ -27,13 +27,13 @@ public class FunctionsVisitors extends dart_parseBaseVisitorChild {
         String functionType = ctx.functionType() != null ? ctx.functionType().getText() : "void";
         Parameter parameters = null;
 
-        FunctionBody functionBody = visitFunctionBody(ctx.functionBody());
         // ctx.functionBody().returnStatement()
         //String parent = ctx.getParent().getClass().getName().replace("gen.dart_parse$", "").replace("Context", "");
         String nodeType = NodeType.FUNCTION.toString();
 
 
         FunctionType type = null;
+
         String name = ctx.NAME().getText();
         if (ctx.functionType() != null) {
             type = visitFunctionType(ctx.functionType());
@@ -41,6 +41,8 @@ public class FunctionsVisitors extends dart_parseBaseVisitorChild {
         if (ctx.parameters() != null) {
             parameters = visitParameters(ctx.parameters());
         }
+
+        FunctionBody functionBody = visitFunctionBody(ctx.functionBody());
         scopes.pop();
         index = index - 1;
         return new Function(ctx, type, name, parameters, functionBody);
@@ -51,7 +53,7 @@ public class FunctionsVisitors extends dart_parseBaseVisitorChild {
 
         String type = NodeType.FUNCTIONBODY.toString();
         List<dart_parse.StatementContext> statementContexts = ctx.statement();
-        List<Statement> statements = null;
+        List<Statement> statements = new ArrayList<Statement>();
         //ReturnStatement returnStatement = visitReturnStatement(ctx.returnStatement());
         StatementsVisitors statementsVisitors = new StatementsVisitors();
 
