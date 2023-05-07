@@ -7,7 +7,7 @@ import java.util.List;
 
 public class TopTreeDeclaration extends Node{
 	List<AllClassesDeclarationAbstractChild> topTreeClassesChildrenList;
-	List<DartDeclaration> topTreeDartVariablesChildrenList;
+	List<DartDeclaration> topTreeDartDeclarationChildrenList;
 
 
 	public List<AllClassesDeclarationAbstractChild> getTopTreeClassesChildrenList() {
@@ -15,16 +15,16 @@ public class TopTreeDeclaration extends Node{
 		return topTreeClassesChildrenList;
 	}
 
-	public List<DartDeclaration> getTopTreeDartVariablesChildrenList() {
+	public List<DartDeclaration> getTopTreeDartDeclarationChildrenList() {
 
-		return topTreeDartVariablesChildrenList;
+		return topTreeDartDeclarationChildrenList;
 	}
 
 
 	public TopTreeDeclaration(dart_parse.TopTreeDeclarationContext ctx) {
 		super(ctx);
 		this.topTreeClassesChildrenList = new ArrayList<>();
-		this.topTreeDartVariablesChildrenList = new ArrayList<>();
+		this.topTreeDartDeclarationChildrenList = new ArrayList<>();
 	}
 
 
@@ -38,12 +38,29 @@ public class TopTreeDeclaration extends Node{
 						.replace("[", "")
 						.replace("]", "")
 						.trim() + " ,  "+
-				topTreeDartVariablesChildrenList.toString()
+				topTreeDartDeclarationChildrenList.toString()
 					.replace(",", "")
 					.replace("[", "")
 					.replace("]", "")
 					.trim()
 
 				;
+	}
+
+	@Override
+	public String generate_code() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("<!DOCTYPE html>\n<html lang=\'en\'>\n <head>\n  <title>Basic HTML5 document</title>\n  <meta charset=\'utf-8\'>\n  <style>\n  </style>\n  <script>\n  </script>\n </head>\n <body>");
+		for(AllClassesDeclarationAbstractChild child : topTreeClassesChildrenList){
+			builder.append(child.generate_code());
+		}
+
+		for(DartDeclaration child : topTreeDartDeclarationChildrenList){
+			builder.append(child.generate_code());
+		}
+		builder.append("</body>\n</html>");
+
+		return builder.toString();
+
 	}
 }

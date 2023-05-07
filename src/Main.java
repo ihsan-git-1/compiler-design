@@ -16,7 +16,7 @@ public class Main {
     static String expected_output_postfix = ".expected";
 
     public static void main(String[] args) throws IOException {
-        String dir = "src/tests/declarations/Integer/declare and assign";
+        String dir = "src/tests/test1";
         String expected = dir+expected_output_postfix;
         String input = dir+input_postfix;
 //        writeFile(expected, func(input));     //create a .expected file to store the expected output of the tree
@@ -51,6 +51,22 @@ public class Main {
         for (String s: dart_parseBaseVisitorChild.varialbeNames ){
             output.append(s).append("\n");
         }
+
+
+
+        try {
+            FileWriter myWriter = new FileWriter("src/tests/CodeGeneration/test.html");
+            myWriter.write(doc.generate_code());
+            myWriter.close();
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+
+
+
+
+
         return output.toString();
     }
 
