@@ -45,7 +45,7 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
 
         for (int i = 0; i < ctx.dartDeclaration().size(); i++) {
             if (ctx.dartDeclaration().get(i) != null) {
-                topTreeDeclaration.getTopTreeDartVariablesChildrenList().add(visitDartDeclaration(ctx.dartDeclaration(i)));
+                topTreeDeclaration.getTopTreeDartDeclarationChildrenList().add(visitDartDeclaration(ctx.dartDeclaration(i)));
             }
 
         }

@@ -54,6 +54,10 @@ public class Node {
         }
     }
 
+    public  String generate_code(){
+        return "";
+    }
+
    // public String getType(){
 //        return type;
 //    }

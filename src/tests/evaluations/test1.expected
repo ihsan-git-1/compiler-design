@@ -1,0 +1,29 @@
+
+*********** AST ************
+
+Line : (1) Top Tree Declaration  Child Count =  1 Type = Top Tree
+Line : (1) Class Declaration Name is test parent AllClassesDeclaration Child Count =  10 Type = class
+Line : (2) Dart Variable Declaration:  parent: ClassDeclaration Child Count =  1 Type = object
+Line : (2) Integer Declaration Line: Number of declarations on this line: 0 Number of assignments on this line: 1 parent: Variable Child Count =  2 Type = variable declaration line (type integer)
+ Line : (3) Dart Variable Declaration:  parent: ClassDeclaration Child Count =  1 Type = object
+Line : (3) Integer Declaration Line: Number of declarations on this line: 0 Number of assignments on this line: 1 parent: Variable Child Count =  2 Type = variable declaration line (type integer)
+ Line : (5) Dart Variable Declaration:  parent: ClassDeclaration Child Count =  1 Type = object
+Line : (5) Integer Declaration Line: Number of declarations on this line: 0 Number of assignments on this line: 1 parent: Variable Child Count =  2 Type = variable declaration line (type integer)
+ Line : (6) Dart Variable Declaration:  parent: ClassDeclaration Child Count =  1 Type = object
+Line : (6) Integer Declaration Line: Number of declarations on this line: 0 Number of assignments on this line: 1 parent: Variable Child Count =  2 Type = variable declaration line (type integer)
+ Line : (7) Dart Variable Declaration:  parent: ClassDeclaration Child Count =  1 Type = object
+Line : (7) Integer Declaration Line: Number of declarations on this line: 0 Number of assignments on this line: 1 parent: Variable Child Count =  2 Type = variable declaration line (type integer)
+ Line : (8) Dart Variable Declaration:  parent: ClassDeclaration Child Count =  1 Type = object
+Line : (8) Integer Declaration Line: Number of declarations on this line: 0 Number of assignments on this line: 1 parent: Variable Child Count =  2 Type = variable declaration line (type integer) ,  
+
+*********** SYMBOL TABLE ************
+
+Global Scope (0)
+Class Scope (1) Parent Is Global Scope (0)
+
+Identifier x, Type int, Value : 2 , Scope Class Scope (1)
+Identifier y, Type int, Value : 3 , Scope Class Scope (1)
+Identifier z, Type int, Value : 5 , Scope Class Scope (1)
+Identifier w, Type int, Value : -1 , Scope Class Scope (1)
+Identifier r, Type int, Value : 6 , Scope Class Scope (1)
+Identifier t, Type int, Value : 0 , Scope Class Scope (1)
