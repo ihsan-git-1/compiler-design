@@ -20,10 +20,21 @@ public class WidgetsDeclaration extends Node{
 
 		StringBuilder builder= new StringBuilder();
 		if (widgetAbstractChild instanceof PaddingDeclaration){
-			builder.append("<div style='padding:"+((PaddingDeclaration) widgetAbstractChild).paddingPropertyDeclaration.edgeInsistAll.number.getNum()+"px;' class='row'>\n");
+			builder.append("<div style='padding:"+((PaddingDeclaration) widgetAbstractChild).paddingPropertyDeclaration.edgeInsistAll.number.getNum()+"px;' >\n");
+			builder.append(widgetAbstractChild.generate_code());
+			builder.append("</div>\n");
 		}
-		builder.append(widgetAbstractChild.generate_code());
-		builder.append("</div>\n");
+		if(widgetAbstractChild instanceof RowColumnDeclaration
+			|| widgetAbstractChild instanceof ExpandedDeclaration
+				|| widgetAbstractChild instanceof ScaffoldDeclaration
+					|| widgetAbstractChild instanceof ContainerDeclaration
+		){
+
+			builder.append(widgetAbstractChild.generate_code());
+		}
+
+
+
 		return builder.toString();
 	}
 }

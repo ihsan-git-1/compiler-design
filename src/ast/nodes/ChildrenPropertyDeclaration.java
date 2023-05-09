@@ -33,4 +33,13 @@ public class ChildrenPropertyDeclaration extends Node{
 				+widgetsDeclarationList
 				;
 	}
+
+	public String generate_code() {
+		StringBuilder builder = new StringBuilder();
+		for(WidgetsDeclaration child : widgetsDeclarationList){
+			builder.append(child.generate_code());
+		}
+		return builder.toString();
+
+	}
 }
