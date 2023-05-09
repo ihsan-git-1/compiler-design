@@ -17,4 +17,9 @@ public class ChildPropertyDeclaration extends ContainerPropertiesDeclarationAbst
 				+" Child Count =  "+getChildCount()+" Type = "+ NodeType.PROPERTY+"\n"
 				+widgetsDeclaration;
 	}
+
+	@Override
+	public String generate_code() {
+		return widgetsDeclaration.generate_code();
+	}
 }

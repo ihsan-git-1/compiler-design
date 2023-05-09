@@ -20,4 +20,21 @@ public class RowColumnDeclaration extends WidgetAbstractChild {
 				+" Child Count =  "+getChildCount()+" Type = "+ NodeType.WIDGET +"\n"
 				+childrenPropertyDeclaration;
 	}
+
+	@Override
+	public String generate_code() {
+
+		StringBuilder builder= new StringBuilder();
+		String type="";
+		if (this.name.equals("Column")) {
+			type="col";
+		}else if(this.name.equals("Row")){
+			type="row";
+		}
+
+		builder.append("<div class='"+type+"'>\n");
+		builder.append(childrenPropertyDeclaration.generate_code());
+		builder.append("</div>\n");
+		return builder.toString();
+	}
 }
