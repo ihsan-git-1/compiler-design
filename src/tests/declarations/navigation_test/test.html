@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My HTML file</title>
+</head>
+<body>
+<h1>Hello, <span id="name"></span>!</h1>
+
+<form method="get" action="second_page.html">
+    <input hidden value="https://images.unsplash.com/photo-1618588507085-c79565432917?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2390&q=80" name="image_url">
+    <input type="submit" value="go to second page">
+</form>
+
+<script>
+          // Get the query string parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const name = urlParams.get('name');
+
+        // Log the name for debugging purposes
+        console.log('Name:', name);
+
+        // Set the value of the 'name' span to the name passed in as an argument
+        document.getElementById('name').textContent = name;
+    </script>
+</body>
+</html>

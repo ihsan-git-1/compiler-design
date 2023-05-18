@@ -1,2 +1,1 @@
-class a{
-}
+Get.toNamed("test");
