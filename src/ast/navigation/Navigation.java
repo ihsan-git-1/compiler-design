@@ -9,6 +9,10 @@ public class Navigation extends DartDeclarationAbstractChild {
 
     String name;
 
+    public String getName() {
+        return name;
+    }
+
     public Navigation(dart_parse.NavigationContext ctx, String name) {
         super(ctx);
         this.name = name;

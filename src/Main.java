@@ -16,9 +16,9 @@ public class Main {
     static String expected_output_postfix = ".expected";
 
     public static void main(String[] args) throws IOException {
-        String dir = "src/tests/test1";
-        String expected = dir+expected_output_postfix;
-        String input = dir+input_postfix;
+        String dir = "src/tests/declarations/navigation_test/test";
+        String expected = dir + expected_output_postfix;
+        String input = dir + input_postfix;
 //        writeFile(expected, func(input));     //create a .expected file to store the expected output of the tree
         System.out.println(func(input));    //print to console
     }
