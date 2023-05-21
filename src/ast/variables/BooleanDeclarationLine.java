@@ -25,7 +25,7 @@ public class BooleanDeclarationLine extends VariableDeclaration {
 
     public String toString() {
         return getLineString()+"Boolean Declaration Line: "
-                +"Number of declarations on this line: " + this.declarations.size()
+                +"Number of declarations on this line: " + (this.declarations.size() + 1)
                 +"Number of assignments on this line: " + this.assignments.size()
                 + " parent: "+ getParent()
                 +" Child Count =  "+getChildCount()+" Type = "+ NodeType.BOOLEANDECLARATIONLINE+"\n"

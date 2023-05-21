@@ -24,7 +24,7 @@ public class DoubleDeclarationLine extends VariableDeclaration {
 
     public String toString() {
         return getLineString()+"Double Declaration Line: "
-                +"Number of declarations on this line: " + this.declarations.size()
+                +"Number of declarations on this line: " + (this.declarations.size() + 1)
                 +"Number of assignments on this line: " + this.assignments.size()
                 + " parent: "+ getParent()
                 +" Child Count =  "+getChildCount()+" Type = "+ NodeType.DOUBLEDECLARATIONLINE+"\n";
