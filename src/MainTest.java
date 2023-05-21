@@ -11,7 +11,7 @@ class MainTest {
 
     @Test
     public void navigation_test() throws IOException {
-        String dir = "src/tests/declarations/navigation_test/test";
+        String dir = "ehsan_test/test";
         Path filePath = Path.of(dir+expected_output_postfix);
         String content = Files.readString(filePath);
         assertEquals(content, Main.func(dir+input_postfix));

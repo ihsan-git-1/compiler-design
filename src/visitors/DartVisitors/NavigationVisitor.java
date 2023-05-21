@@ -1,6 +1,5 @@
 package visitors.DartVisitors;
 
-import ast.NodeType;
 import ast.navigation.Navigation;
 import gen.dart_parse;
 import visitors.dart_parseBaseVisitorChild;
@@ -21,7 +20,7 @@ public class NavigationVisitor extends dart_parseBaseVisitorChild {
 
         System.out.println(navigation.getName());
 
-        String htmlFilePath = "src/tests/declarations/navigation_test/"+ "test" +".html";
+        String htmlFilePath = "ehsan_test/" + "test" +".html";
 
         File htmlFile = new File(htmlFilePath);
 

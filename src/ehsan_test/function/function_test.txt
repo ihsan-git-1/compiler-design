@@ -1,0 +1,11 @@
+
+// error was given the declaration is incorrect
+int integer(int x){
+
+}
+
+// error was given the declaration is incorrect
+
+String integer(int x){
+
+}

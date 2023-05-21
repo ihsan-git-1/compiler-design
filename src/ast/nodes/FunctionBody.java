@@ -16,6 +16,9 @@ public class FunctionBody extends Node{
 
     @Override
     public String toString() {
+        if(statementList.isEmpty()){
+            return  "Empty Body";
+        }
         return getLineString()
                 +"FunctionBody{" +
                 "statementList=" + statementList +
