@@ -3,6 +3,7 @@ package visitors.FlutterVisitor;
 import ast.NodeType;
 import ast.nodes.*;
 import gen.dart_parse;
+import org.antlr.v4.runtime.tree.ParseTree;
 import visitors.DartVisitors.DartVariables.IntegerVisitor;
 import visitors.DartVisitors.StatementsVisitors;
 import visitors.DartVisitors.VariablesVisitor;
@@ -67,7 +68,22 @@ public class WidgetsVisitor extends dart_parseBaseVisitorChild {
     @Override
     public ImageDeclaration visitImageDeclaration(dart_parse.ImageDeclarationContext ctx) {
 
-        return new ImageDeclaration(ctx,ctx.STRING_LINE().getText());
+
+        int height=0,width=0;
+        try{
+            dart_parse.HeightPropertyDeclarationContext heightPropertyDecl = (dart_parse.HeightPropertyDeclarationContext) getChildFromParent(ctx,"ConatinerDeclaration","HeightPropertyDeclaration");
+            height = Integer.parseInt(heightPropertyDecl.number().getChild(0).getText());
+
+        }catch (Exception e){
+            System.out.println(e);
+        }
+
+        try{
+            dart_parse.WidthPropertyDeclarationContext widthPropertyDecl = (dart_parse.WidthPropertyDeclarationContext) getChildFromParent(ctx,"ConatinerDeclaration","WidthPropertyDeclaration");
+            width = Integer.parseInt(widthPropertyDecl.number().getChild(0).getText());
+        }catch(Exception e){}
+
+        return new ImageDeclaration(ctx,ctx.STRING_LINE().getText(),height,width);
     }
 
     @Override
@@ -249,14 +265,23 @@ public class WidgetsVisitor extends dart_parseBaseVisitorChild {
     @Override
     public RowColumnDeclaration visitRowColumnDeclaration(dart_parse.RowColumnDeclarationContext ctx) {
         
-       
-        String name = "Column";
+       int numOfChildren=0;
+        String name ="";
 
         if (ctx.ROW() != null) {
             name = "Row";
         }
+        if(ctx.COLUMN() != null){
+            name = "Column";
+            dart_parse.ChildrenPropertyDeclarationContext parentRowDecl = (dart_parse.ChildrenPropertyDeclarationContext) getChildFromParent(ctx,"RowColumnDeclaration","ChildrenPropertyDeclaration");
+            for(ParseTree child :parentRowDecl.children){
+                if(child.getChildCount()>=1){
+                    numOfChildren++;
+                }
+            }
+        }
 
-        return new RowColumnDeclaration(ctx,name, visitChildrenPropertyDeclaration(ctx.childrenPropertyDeclaration()));
+        return new RowColumnDeclaration(ctx,name,numOfChildren, visitChildrenPropertyDeclaration(ctx.childrenPropertyDeclaration()));
     }
 
     @Override

@@ -10,6 +10,10 @@ public class TextDeclaration extends WidgetAbstractChild {
 		super(ctx);
 		this.strline=strline;
 	}
+
+	public String getStrLine(){
+		return this.strline;
+	}
 	
 	@Override
 	public String toString() {

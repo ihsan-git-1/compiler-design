@@ -4,22 +4,20 @@ import ast.NodeType;
 import ast.Scope;
 import ast.SymbolTableObject;
 import gen.dart_parseBaseVisitor;
-import org.antlr.v4.runtime.ParserRuleContext;
-import org.antlr.v4.runtime.Token;
-import org.antlr.v4.runtime.TokenStream;
+import org.antlr.v4.runtime.tree.ParseTree;
+
 import java.util.Stack;
 import java.util.*;
+
 
 public class dart_parseBaseVisitorChild extends dart_parseBaseVisitor {
 
     public static List<String> semanticErrors = new ArrayList<>();
-
     public static ArrayList<String>scopeNames = new ArrayList<>();
     public static ArrayList<String>varialbeNames = new ArrayList<>();
     public static Stack<Scope> scopes=new Stack<>();
 
     public static int index=1;
-
 
     public boolean CheckExistanceInScope(String id , int index ){
 
@@ -116,27 +114,45 @@ public class dart_parseBaseVisitorChild extends dart_parseBaseVisitor {
         return "";
     }
 
+    public static ParseTree getChildFromParent(ParseTree parentNode, String parentName,String childName) {
+        ParseTree parent = parentNode;
+
+        if (parent == null) {
+            throw new IllegalArgumentException("Node does not have nth parent");
+        }
+
+        while(true){
+            parent = parent.getParent();
+
+            if (parent == null) {
+                throw new IllegalArgumentException("Node does not have nth parent");
+            }
+
+            if(parent.getClass().getName().replace("gen.dart_parse$", "").replace("Context", "").equals(parentName)){
+                if(!childName.equals("")){
+
+                    return getChild( parent,  childName,  0);
+                }else{
+                    return parent;
+                }
+            }
+        }
+    }
+
+    public static ParseTree getChild(ParseTree node, String name, int i) {
+        int childCount = node.getChildCount();
+        for (; i < childCount; i++) {
+            ParseTree child = node.getChild(i);
+            if (child.getClass().getSimpleName().replace("Context", "").equals(name)) {
+                return child;
+            }
+            ParseTree foundChild = getChild(child, name, 0);
+            if (foundChild != null) {
+                return foundChild;
+            }
+        }
+        return null;
+    }
 
 
-//    public boolean searchForBracketToken(String tokenStr, ParserRuleContext ctx,TokenStream tokenStream){
-//        int i=1;
-//        String opositeBracket ;
-//        if(tokenStr.equals("{")){
-//            opositeBracket = "}";
-//        }else{
-//            opositeBracket = "{";
-//        }
-//
-//        while((ctx.getStart().getTokenIndex() - i != 0 )){
-//            int previousTokenIndex = ctx.getStart().getTokenIndex() - i;
-//            Token previousToken = tokenStream.get(previousTokenIndex);
-//            if(tokenStr.equals(previousToken.getText())){
-//                return true;
-//            }else if(opositeBracket.equals(previousToken.getText())){
-//                return false;
-//            }
-//            i = i-1;
-//        }
-//        return false;
-//    }
 }

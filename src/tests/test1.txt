@@ -15,12 +15,12 @@ class MyHomePageState extends State<MyHomePage> {
                   children: [
                     Container(
                       height: 300,
-                  child: Column(
-                    children:  [
-                      Text("Hi"),
-                      Expanded(child: Image.network("image"))
-                    ],
-                  ),
+                      child: Column(
+                        children:  [
+                          Text("Hi"),
+                          Expanded(child: Image.network("../../images/test_image.jpg"))
+                        ],
+                      ),
                     )],
                 ),
               ),
@@ -36,8 +36,8 @@ class MyHomePageState extends State<MyHomePage> {
                                                 },
                           child: Column(
                             children:  [
-                              Text("ad"),
-                              Expanded(child: Image.network("asd"))
+                              Text("Test 1"),
+                              Expanded(child: Image.network("../../images/test_image2.jpg"))
                             ],
                           ),
                         ),
@@ -55,8 +55,8 @@ class MyHomePageState extends State<MyHomePage> {
 
                           child: Column(
                             children:  [
-                              Text("Ehsan"),
-                              Expanded(child: Image.network("asd"))
+                              Text("Test 2"),
+                              Expanded(child: Image.network("../../images/test_image3.jpg"))
                             ],
                           ),
                         ),
@@ -73,8 +73,8 @@ class MyHomePageState extends State<MyHomePage> {
                         },
                           child: Column(
                             children:  [
-                              Text("asd"),
-                              Expanded(child: Image.network("asd"))
+                              Text("Test 3"),
+                              Expanded(child: Image.network("../../images/test_image.jpg"))
                             ],
                           ),
                         ),
@@ -92,8 +92,8 @@ class MyHomePageState extends State<MyHomePage> {
 
                           child: Column(
                             children:  [
-                              Text("asd"),
-                              Expanded(child: Image.network("asd"))
+                              Text("Test 4"),
+                              Expanded(child: Image.network("../../images/test_image2.jpg"))
                             ],
                           ),
                         ),

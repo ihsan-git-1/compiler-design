@@ -34,10 +34,10 @@ public class ContainerDeclaration extends WidgetAbstractChild{
 	public String generate_code() {
 		StringBuilder builder = new StringBuilder();
 		for(ContainerPropertiesDeclaration child : containerDeclarationList){
-			if(child.containerPropertiesDeclarationAbstractChild instanceof HeightPropertyDeclaration){
-				builder.append("<div style='height:"+((HeightPropertyDeclaration)child.containerPropertiesDeclarationAbstractChild).number.getNum()+"px;'>\n");
+			if(child.containerPropertiesDeclarationAbstractChild instanceof ChildPropertyDeclaration
+					|| child.containerPropertiesDeclarationAbstractChild instanceof HeightPropertyDeclaration){
+				
 				builder.append(child.generate_code());
-				builder.append("</div>\n");
 			}
 		}
 		return builder.toString();
