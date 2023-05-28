@@ -1,4 +1,3 @@
-
 class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => MyHomePageState();
 }
@@ -32,8 +31,8 @@ class MyHomePageState extends State<MyHomePage> {
                         height: 200,
                         child: MaterialButton(
                         onPressed:(){
-
-                                                },
+                        Get.toNamed(test);
+                         },
                           child: Column(
                             children:  [
                               Text("Test 1"),
@@ -50,7 +49,7 @@ class MyHomePageState extends State<MyHomePage> {
                         height: 200,
                         child: MaterialButton(
                         onPressed:(){
-
+                        Get.toNamed(test);
                         },
 
                           child: Column(
@@ -109,3 +108,4 @@ class MyHomePageState extends State<MyHomePage> {
   }
 
 }
+

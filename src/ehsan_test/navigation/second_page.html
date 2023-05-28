@@ -17,6 +17,7 @@
         var url = getUrlParameter('image_url');
         $('img').attr('src',url);
         });
+
         var getUrlParameter = function getUrlParameter(sParam) {
     var sPageURL = window.location.search.substring(1),
         sURLVariables = sPageURL.split('&'),
@@ -30,8 +31,10 @@
             return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
         }
     }
+
     return false;
-};
+    };
+
     </script>
 
 </html>

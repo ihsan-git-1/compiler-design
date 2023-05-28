@@ -1,6 +1,10 @@
 
 
 int integer(){
-
+int integer(){}
+int integer(){
+int integer(){}
+}
 int x = 5;
+
 }
