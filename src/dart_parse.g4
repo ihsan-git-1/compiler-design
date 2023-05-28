@@ -122,7 +122,7 @@ dartDeclaration:
 navigation:
 GET
 BRKT_OP
-STRING_LINE
+NAME
 BRKT_CL
 SEMICOLON
 ;

@@ -16,11 +16,11 @@ public class NavigationVisitor extends dart_parseBaseVisitorChild {
     @Override
     public Navigation visitNavigation(dart_parse.NavigationContext ctx) {
 
-        Navigation navigation = new Navigation(ctx,ctx.STRING_LINE().getText());
+        Navigation navigation = new Navigation(ctx,ctx.NAME().getText());
 
         System.out.println(navigation.getName());
 
-        String htmlFilePath = "ehsan_test/" + "test" +".html";
+        String htmlFilePath = "src/tests/CodeGeneration/"+navigation.getName()+".html";
 
         File htmlFile = new File(htmlFilePath);
 
@@ -39,6 +39,9 @@ public class NavigationVisitor extends dart_parseBaseVisitorChild {
                 } catch (URISyntaxException e) {
                     e.printStackTrace();
                 }
+            }
+            else{
+                System.out.println("file not found");
             }
         }
 
