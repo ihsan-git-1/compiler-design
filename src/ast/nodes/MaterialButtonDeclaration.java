@@ -22,4 +22,9 @@ public class MaterialButtonDeclaration extends WidgetAbstractChild {
 				+onPressedPropertyDeclaration
 				;
 	}
+
+	@Override
+	public String generate_code() {
+		return childPropertyDeclaration.generate_code();
+	}
 }

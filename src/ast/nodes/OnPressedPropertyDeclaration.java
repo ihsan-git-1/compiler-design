@@ -26,4 +26,14 @@ public class OnPressedPropertyDeclaration extends Node{
                 + statement
                 ;
     }
+
+    @Override
+    public String generate_code() {
+        StringBuilder builder = new StringBuilder();
+        for(Statement child : statement){
+            builder.append(child.generate_code());
+        }
+        return builder.toString();
+
+    }
 }

@@ -17,4 +17,9 @@ public class ContainerPropertiesDeclaration extends Node {
 				+" Child Count =  "+getChildCount()+" Type = "+ NodeType.PROPERTY+"\n"
 				+containerPropertiesDeclarationAbstractChild.toString();
 	}
+
+	@Override
+	public String generate_code() {
+		return containerPropertiesDeclarationAbstractChild.generate_code();
+	}
 }
