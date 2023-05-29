@@ -70,6 +70,7 @@ public class WidgetsVisitor extends dart_parseBaseVisitorChild {
 
 
         int height=0,width=0;
+        String navigation="";
         try{
             dart_parse.HeightPropertyDeclarationContext heightPropertyDecl = (dart_parse.HeightPropertyDeclarationContext) getChildFromParent(ctx,"ConatinerDeclaration","HeightPropertyDeclaration");
             height = Integer.parseInt(heightPropertyDecl.number().getChild(0).getText());
@@ -83,7 +84,13 @@ public class WidgetsVisitor extends dart_parseBaseVisitorChild {
             width = Integer.parseInt(widthPropertyDecl.number().getChild(0).getText());
         }catch(Exception e){}
 
-        return new ImageDeclaration(ctx,ctx.STRING_LINE().getText(),height,width);
+        try{
+            dart_parse.NavigationContext nav = (dart_parse.NavigationContext) getChildFromParent(ctx,"MaterialButtonDeclaration","Navigation");
+            navigation = nav.STRING_LINE().getText();
+
+        }catch(Exception e){}
+
+        return new ImageDeclaration(ctx,ctx.STRING_LINE().getText(),height,width,navigation);
     }
 
     @Override
