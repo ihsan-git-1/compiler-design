@@ -31,7 +31,7 @@ class MyHomePageState extends State<MyHomePage> {
                         height: 200,
                         child: MaterialButton(
                         onPressed:(){
-                            Get.toNamed("../../images/test_image.jpg");
+                            Get.toNamed(https://imgmedia.larepublica.pe/640x377/larepublica/original/2022/04/09/6251e0c5359a274a701a6a0c.webp);
                          },
                           child: Column(
                             children:  [
@@ -49,7 +49,6 @@ class MyHomePageState extends State<MyHomePage> {
                         height: 200,
                         child: MaterialButton(
                         onPressed:(){
-                        Get.toNamed("../../images/test_image2.jpg");
                         },
 
                           child: Column(
