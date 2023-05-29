@@ -55,7 +55,12 @@ public class WidgetsDeclaration extends Node{
 			}else{
 				width=Integer.toString(((ImageDeclaration) widgetAbstractChild).getWidth());
 			}
-			builder.append("<img height ="+height +" width ="+width+" src="+((ImageDeclaration) widgetAbstractChild).getStr()+" >\n");
+
+			String NavOnClick="";
+			if(((ImageDeclaration) widgetAbstractChild).getNavigation()!=""){
+				NavOnClick = " onclick=navigateToScreen("+((ImageDeclaration) widgetAbstractChild).getNavigation()+")";
+			}
+			builder.append("<img height ="+height +" width ="+width+" src="+((ImageDeclaration) widgetAbstractChild).getStr()+ NavOnClick +">\n");
 		}
 
 		return builder.toString();
