@@ -2,7 +2,7 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => MyHomePageState();
 }
 class MyHomePageState extends State<MyHomePage> {
-
+String imageUrl = "../../images/test_image.jpg";
   Widget build(BuildContext context) {
   return Scaffold(
   body: Padding(
@@ -17,7 +17,7 @@ class MyHomePageState extends State<MyHomePage> {
                       child: Column(
                         children:  [
                           Text("Hi"),
-                          Expanded(child: Image.network("../../images/test_image.jpg"))
+                          Expanded(child: Image.network(imageUrl))
                         ],
                       ),
                     )],
@@ -31,7 +31,10 @@ class MyHomePageState extends State<MyHomePage> {
                         height: 200,
                         child: MaterialButton(
                         onPressed:(){
-                            Get.toNamed(https://imgmedia.larepublica.pe/640x377/larepublica/original/2022/04/09/6251e0c5359a274a701a6a0c.webp);
+                        setState((){
+                        imageUrl = "../../images/test_image2.jpg";
+
+                        });
                          },
                           child: Column(
                             children:  [
@@ -49,6 +52,10 @@ class MyHomePageState extends State<MyHomePage> {
                         height: 200,
                         child: MaterialButton(
                         onPressed:(){
+                         setState((){
+                          imageUrl = "../../images/test_image3.jpg";
+
+                         });
                         },
 
                           child: Column(
@@ -67,7 +74,10 @@ class MyHomePageState extends State<MyHomePage> {
                         height: 200,
                         child: MaterialButton(
                        onPressed:(){
+                        setState((){
+                          imageUrl = "../../images/test_image.jpg";
 
+                         });
                         },
                           child: Column(
                             children:  [
@@ -85,9 +95,11 @@ class MyHomePageState extends State<MyHomePage> {
                         height: 200,
                         child: MaterialButton(
                         onPressed:(){
+                        setState((){
+                          imageUrl = "../../images/test_image2.jpg";
 
-                                                },
-
+                         });
+                         },
                           child: Column(
                             children:  [
                               Text("Test 4"),
