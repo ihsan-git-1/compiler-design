@@ -8,7 +8,8 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import visitors.NodesVisitor;
 import java.io.FileWriter;
 import visitors.dart_parseBaseVisitorChild;
-
+import java.awt.*;
+import java.io.File;
 import static org.antlr.v4.runtime.CharStreams.fromFileName;
 
 public class Main {
@@ -17,9 +18,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         String dir = "src/tests/test1";
-        String expected = dir + expected_output_postfix;
         String input = dir + input_postfix;
-//      writeFile(expected, func(input));     //create a .expected file to store the expected output of the tree
         System.out.println(func(input));    //print to console
     }
     public static String func(String dir) throws IOException {
@@ -52,31 +51,47 @@ public class Main {
             output.append(s).append("\n");
         }
 
-        try {
-            FileWriter myWriter = new FileWriter("src/tests/CodeGeneration/test.html");
-            myWriter.write(doc.generate_code());
-            myWriter.close();
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-
-
-
-
+        // html generator
+        generateHtmlCode(doc);
 
         return output.toString();
     }
 
-    public static void writeFile(String dir, String content){
+    public  static void generateHtmlCode(TopTreeDeclaration topTreeDeclaration){
         try {
-            FileWriter myWriter = new FileWriter(dir);
-            myWriter.write(content);
+            String generatedCodePath = "src/tests/CodeGeneration/test.html";
+
+            FileWriter myWriter = new FileWriter(generatedCodePath);
+
+            myWriter.write(topTreeDeclaration.generate_code());
             myWriter.close();
+
+            // launch the html file
+            openHtmlFile(generatedCodePath);
         } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
     }
 
+    public static void openHtmlFile(String directory){
+
+        File htmlFile = new File(directory);
+
+        if (Desktop.isDesktopSupported()) {
+            Desktop desktop = Desktop.getDesktop();
+            if (htmlFile.exists()) {
+                try {
+                    // Open the URL in the default browser
+                    desktop.browse(htmlFile.toURI());
+
+                } catch (IOException e ) {
+                    System.out.println("Can't launch html files");
+                }
+            }
+            else{
+                System.out.println("file not found");
+            }
+    }
+    }
 }
