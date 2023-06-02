@@ -5,6 +5,7 @@ import ast.Scope;
 import ast.SymbolTableObject;
 import ast.nodes.*;
 import ast.variables.AbstractNumberClass;
+import ast.variables.Variable;
 import gen.dart_parse;
 import org.antlr.v4.runtime.TokenStream;
 import visitors.DartVisitors.DartVariables.DoubleVisitor;
@@ -14,6 +15,8 @@ import visitors.DartVisitors.ListsVisitor;
 import visitors.DartVisitors.NavigationVisitor;
 import visitors.DartVisitors.VariablesVisitor;
 import visitors.FlutterVisitor.WidgetsVisitor;
+
+import java.util.ArrayList;
 
 
 public class NodesVisitor extends dart_parseBaseVisitorChild {
@@ -40,6 +43,7 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
         for (int i = 0; i < ctx.allClassesDeclaration().size(); i++) {
             if (ctx.allClassesDeclaration().get(i) != null) {
                 topTreeDeclaration.getTopTreeClassesChildrenList().add(visitAllClassesDeclaration(ctx.allClassesDeclaration(i)));
+
             }
         }
 
@@ -64,6 +68,7 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
         if (ctx.statefullClassDeclaration() != null) {
             return visitStatefullClassDeclaration(ctx.statefullClassDeclaration());
         }
+
         return null;
     }
     @Override
@@ -133,8 +138,14 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
         scopeNames.add(scope.getScopeName() + " Parnet Is " + scope.getParent().getScopeName());
 
 
+
         StatefullFirstBody firstBody = visitStfulFirstBody(ctx.stfulFirstBody());
         StatefullSecondBody secondBody = visitStfulSecondBody(ctx.stfulSecondBody());
+
+
+        scopes.pop();
+        index = index-1;
+
 
         return new StatefullClassDeclaration(firstBody, secondBody,ctx);
     }
@@ -162,17 +173,24 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
 
         String type = NodeType.CLASS.toString();
 
+        ArrayList <DartDeclaration> list = new ArrayList<>();
+        for (int i = 0; i < ctx.dartDeclaration().size(); i++) {
+            list.add(visitDartDeclaration(ctx.dartDeclaration(i)));
+        }
+
+        BuildMethodDeclaration buildMethod = visitBuildMethodDeclaration(ctx.buildMethodDeclaration());
+
+
         StatefullSecondBody statefullSecondBody
                 = new StatefullSecondBody(
                 ctx,
                 ctx.NAME(0).getText(),
                 ctx.NAME(1).getText(),
-                visitBuildMethodDeclaration(ctx.buildMethodDeclaration())
+                buildMethod
         );
 
-        for (int i = 0; i < ctx.dartDeclaration().size(); i++) {
-            statefullSecondBody.getDartDeclarationList().add(visitDartDeclaration(ctx.dartDeclaration(i)));
-        }
+        statefullSecondBody.setDartDeclarationList(list);
+
 
         return statefullSecondBody;
     }
@@ -222,7 +240,9 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
         String type = NodeType.OBJECT.toString();
         int childCount = ctx.getChildCount();
         if (ctx.variable() != null) {
-            return new DartDeclaration(ctx,variablesVisitor.visitVariable(ctx.variable()));
+            Variable var= variablesVisitor.visitVariable(ctx.variable());
+
+            return new DartDeclaration(ctx,var);
         }
 
         else if(ctx.navigation() != null){

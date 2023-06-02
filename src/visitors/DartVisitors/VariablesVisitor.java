@@ -21,8 +21,11 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
         if (ctx.stringDeclarationLine() != null) {
             StringVisitor stringVisitor = new StringVisitor();
 
-            return new Variable(ctx,stringVisitor.visitStringDeclarationLine(ctx.stringDeclarationLine()));
+            StringDeclarationLine line = stringVisitor.visitStringDeclarationLine(ctx.stringDeclarationLine());
+
+            return new Variable(ctx,line);
         }
+
         if (ctx.integerDeclarationLine() != null) {
             IntegerVisitor integerVisitor = new IntegerVisitor();
             return new Variable(ctx,integerVisitor.visitIntegerDeclarationLine(ctx.integerDeclarationLine()));

@@ -6,14 +6,18 @@ import gen.dart_parse;
 public class ImageDeclaration extends WidgetAbstractChild {
 	String str;
 	int height,width;
-	String navigation;
+	String navigation, pressedURL,pressedVariable,dataVariable;
 
-	public ImageDeclaration(dart_parse.ImageDeclarationContext ctx, String str,int height,int width,String navigation) {
+	public ImageDeclaration(dart_parse.ImageDeclarationContext ctx, String str,int height,int width,String navigation,String pressedURL,String pressedVariable,String dataVariable) {
 		super(ctx);
 		this.str=str;
 		this.height=height;
 		this.width=width;
 		this.navigation=navigation;
+		this.pressedURL =pressedURL;
+		this.pressedVariable=pressedVariable;
+		this.dataVariable=dataVariable;
+
 	}
 
 	public String getStr(){
@@ -31,6 +35,16 @@ public class ImageDeclaration extends WidgetAbstractChild {
 	public String getNavigation(){
 		return this.navigation;
 	}
+
+	public String getSetStateURL(){
+		return this.pressedURL;
+	}
+
+	public String getSetStateVariable(){
+		return this.pressedVariable;
+	}
+
+	public String getDataVariable(){return this.dataVariable;}
 	@Override
 	public String toString() {
 		return

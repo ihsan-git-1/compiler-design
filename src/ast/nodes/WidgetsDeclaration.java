@@ -2,11 +2,6 @@ package ast.nodes;
 
 import ast.NodeType;
 import gen.dart_parse;
-import org.antlr.v4.runtime.ParserRuleContext;
-import org.antlr.v4.runtime.tree.ParseTree;
-import visitors.dart_parseBaseVisitorChild;
-
-import static visitors.dart_parseBaseVisitorChild.getChildFromParent;
 
 public class WidgetsDeclaration extends Node{
 	WidgetAbstractChild widgetAbstractChild;
@@ -56,11 +51,17 @@ public class WidgetsDeclaration extends Node{
 				width=Integer.toString(((ImageDeclaration) widgetAbstractChild).getWidth());
 			}
 
-			String NavOnClick="";
+			String navOnClick="",setState = "",dataVariable="";
 			if(((ImageDeclaration) widgetAbstractChild).getNavigation()!=""){
-				NavOnClick = " onclick=navigateToScreen("+((ImageDeclaration) widgetAbstractChild).getNavigation()+")";
+				navOnClick = " onclick=navigateToScreen("+((ImageDeclaration) widgetAbstractChild).getNavigation()+")";
 			}
-			builder.append("<img height ="+height +" width ="+width+" src="+((ImageDeclaration) widgetAbstractChild).getStr()+ NavOnClick +">\n");
+			if(((ImageDeclaration) widgetAbstractChild).getSetStateURL()!=""){
+				setState = " onclick=setState("+((ImageDeclaration) widgetAbstractChild).getSetStateURL()+",'"+((ImageDeclaration) widgetAbstractChild).getSetStateVariable()+"')";
+			}
+			if(((ImageDeclaration) widgetAbstractChild).getDataVariable()!=""){
+				dataVariable = " data-variable='"+((ImageDeclaration) widgetAbstractChild).getDataVariable()+"'";
+			}
+			builder.append("<img height ="+height +" width ="+width+" src="+((ImageDeclaration) widgetAbstractChild).getStr()+ navOnClick + setState+ dataVariable+">\n");
 		}
 
 		return builder.toString();

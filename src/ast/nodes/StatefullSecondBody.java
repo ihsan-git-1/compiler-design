@@ -24,7 +24,9 @@ public class StatefullSecondBody extends Node{
 		return dartDeclarationList;
 	}
 
-	
+	public void setDartDeclarationList(List<DartDeclaration> dartDeclarationList){
+		this.dartDeclarationList = dartDeclarationList;
+	}
 	@Override
 	public String toString() {
 		return  getLineString()+"Statefull Second Body Name "+name +" State <"+stateName+">" + " parent "+ getParent()
