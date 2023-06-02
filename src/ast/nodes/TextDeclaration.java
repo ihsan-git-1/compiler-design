@@ -11,14 +11,15 @@ public class TextDeclaration extends WidgetAbstractChild {
 		this.strline=strline;
 	}
 
-	public String getStrLine(){
-		return this.strline;
-	}
-	
+
 	@Override
 	public String toString() {
 		return getLineString()+"Text Declaration text = "+strline.toString()+" parent "+getParent()
 				+" Child Count =  "+getChildCount()+" Type = "+ NodeType.OBJECT+"\n";
+	}
 
+	@Override
+	public String generate_code() {
+		return "<p >"+ strline +"</p>\n";
 	}
 }

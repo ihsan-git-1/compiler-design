@@ -58,8 +58,4 @@ public class Node {
         return "";
     }
 
-   // public String getType(){
-//        return type;
-//    }
-
 }

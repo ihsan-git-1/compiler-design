@@ -1,7 +1,6 @@
 package ast.nodes;
-
+import ast.AppConstant;
 import gen.dart_parse;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,7 +49,9 @@ public class TopTreeDeclaration extends Node{
 	@Override
 	public String generate_code() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("<!DOCTYPE html>\n<html lang=\'en\'>\n <head>\n <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65\" crossorigin=\"anonymous\">\n <title>Compiler</title>\n  <meta charset=\'utf-8\'>\n  <style>\n  </style>\n </head>\n <body>\n");
+
+		builder.append(AppConstant.getHtmlHeader());
+
 		for(AllClassesDeclarationAbstractChild child : topTreeClassesChildrenList){
 			builder.append(child.generate_code());
 		}
@@ -59,10 +60,13 @@ public class TopTreeDeclaration extends Node{
 			builder.append(child.generate_code());
 		}
 
-		builder.append("</body>\n<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4\" crossorigin=\"anonymous\"></script>\n<script src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js\" integrity=\"sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==\" crossorigin=\"anonymous\" referrerpolicy=\"no-referrer\"></script>\n");
-		builder.append("<script src='scripts.js'></script>\n</html>\n");
+		builder.append(AppConstant.getHtmlFooter());
+
+		builder.append(AppConstant.javaScriptImport());
 
 		return builder.toString();
 
 	}
+
+
 }
