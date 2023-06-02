@@ -17,38 +17,54 @@ public class ImageDeclaration extends WidgetAbstractChild {
 		this.pressedURL =pressedURL;
 		this.pressedVariable=pressedVariable;
 		this.dataVariable=dataVariable;
-
 	}
 
-	public String getStr(){
-		return this.str;
-	}
-
-	public int getHeight(){
-		return this.height;
-	}
-
-	public int getWidth(){
-		return this.width;
-	}
-
-	public String getNavigation(){
-		return this.navigation;
-	}
-
-	public String getSetStateURL(){
-		return this.pressedURL;
-	}
-
-	public String getSetStateVariable(){
-		return this.pressedVariable;
-	}
-
-	public String getDataVariable(){return this.dataVariable;}
 	@Override
 	public String toString() {
 		return
 				getLineString()+"Image Declaration src = "+str+ " parent "+getParent()
 						+" Child Count =  "+getChildCount()+" Type = "+ NodeType.OBJECT;
+	}
+
+	@Override
+	public String generate_code() {
+		String htmlHeight,htmlWidth;
+
+
+		if(height == 0){
+			htmlHeight="auto";
+		}else{
+			htmlHeight = Integer.toString(height);
+		}
+
+		if(width==0){
+			htmlWidth="auto";
+		}
+		else{
+			htmlWidth = Integer.toString(width);
+		}
+
+
+		String navOnClick="",setState = "",htmlDataVariable="";
+
+
+		if(!navigation.isEmpty()){
+			navOnClick = " onclick=navigateToScreen("+ navigation +")";
+		}
+		if(!pressedURL.isEmpty()){
+			setState = " onclick=setState("+pressedURL+",'"+pressedVariable+"')";
+		}
+		if(!dataVariable.isEmpty()){
+			htmlDataVariable = " data-variable='"+dataVariable+"'";
+		}
+
+
+		return "<img height ="+htmlHeight
+				+" width ="+htmlWidth
+				+" src="+str
+				+ navOnClick
+				+ setState
+				+ htmlDataVariable
+				+">\n" ;
 	}
 }

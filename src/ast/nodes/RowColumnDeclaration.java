@@ -41,7 +41,6 @@ public class RowColumnDeclaration extends WidgetAbstractChild {
 			builder.append(childrenPropertyDeclaration.generate_code());
 			builder.append("</div>\n");
 		}else{
-
 			type="col-"+12/getNumOfChildren();
 			builder.append("<div class='"+type+"'>\n");
 			builder.append(childrenPropertyDeclaration.generate_code());

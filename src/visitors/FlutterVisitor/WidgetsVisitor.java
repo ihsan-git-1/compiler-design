@@ -84,7 +84,7 @@ public class WidgetsVisitor extends dart_parseBaseVisitorChild {
 
         try{
             dart_parse.NavigationContext nav = (dart_parse.NavigationContext) getChildFromParent(ctx,"MaterialButtonDeclaration","Navigation");
-            navigation = nav.STRING_LINE().getText();
+            navigation = nav.NAME().getText();
         }catch(Exception e){}
 
         try{
