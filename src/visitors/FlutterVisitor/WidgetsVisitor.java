@@ -70,14 +70,12 @@ public class WidgetsVisitor extends dart_parseBaseVisitorChild {
 
 
         int height=0,width=0;
-        String navigation="";
+        String navigation="",pressedURL="",pressedVariable="",dataVariable="";
+
         try{
             dart_parse.HeightPropertyDeclarationContext heightPropertyDecl = (dart_parse.HeightPropertyDeclarationContext) getChildFromParent(ctx,"ConatinerDeclaration","HeightPropertyDeclaration");
             height = Integer.parseInt(heightPropertyDecl.number().getChild(0).getText());
-
-        }catch (Exception e){
-            System.out.println(e);
-        }
+        }catch (Exception e){}
 
         try{
             dart_parse.WidthPropertyDeclarationContext widthPropertyDecl = (dart_parse.WidthPropertyDeclarationContext) getChildFromParent(ctx,"ConatinerDeclaration","WidthPropertyDeclaration");
@@ -86,11 +84,30 @@ public class WidgetsVisitor extends dart_parseBaseVisitorChild {
 
         try{
             dart_parse.NavigationContext nav = (dart_parse.NavigationContext) getChildFromParent(ctx,"MaterialButtonDeclaration","Navigation");
-            navigation = nav.NAME().getText();
-
+            navigation = nav.STRING_LINE().getText();
         }catch(Exception e){}
 
-        return new ImageDeclaration(ctx,ctx.STRING_LINE().getText(),height,width,navigation);
+        try{
+            dart_parse.SetStatePressedDeclarationContext setPressed = (dart_parse.SetStatePressedDeclarationContext) getChildFromParent(ctx,"MaterialButtonDeclaration","SetStatePressedDeclaration");
+            dart_parse.StringAssignmentContext setPressedString = (dart_parse.StringAssignmentContext) getChildFromParent(setPressed,"OnPressedPropertyDeclaration","StringAssignment");
+            pressedURL = setPressedString.STRING_LINE().getText();
+            pressedVariable = setPressedString.NAME().getText();
+        }catch(Exception e){}
+
+        String str="";
+        if(ctx.NAME() != null){
+            str = ctx.NAME().getText();
+        }else if(ctx.STRING_LINE() != null){
+            str = ctx.STRING_LINE().getText();
+        }
+
+        if(CheckExistanceInScope(str,scopes.size()) || CheckExistanceInParentScope(str,scopes.size())){
+            dataVariable = str;
+            str  = (String)getVariableValueFromScopes(str,scopes.size());
+
+        }
+
+        return new ImageDeclaration(ctx,str,height,width,navigation,pressedURL,pressedVariable,dataVariable);
     }
 
     @Override
@@ -138,6 +155,7 @@ public class WidgetsVisitor extends dart_parseBaseVisitorChild {
 
     @Override
     public SetStatePressedDeclaration visitSetStatePressedDeclaration(dart_parse.SetStatePressedDeclarationContext ctx) {
+
         StatementsVisitors statementsVisitors = new StatementsVisitors();
 
         SetStatePressedDeclaration setStatePressedDeclaration = new SetStatePressedDeclaration();
@@ -176,7 +194,6 @@ public class WidgetsVisitor extends dart_parseBaseVisitorChild {
 
     @Override
     public ScaffoldDeclaration visitScaffoldDeclaration(dart_parse.ScaffoldDeclarationContext ctx) {
-
         return new ScaffoldDeclaration(ctx,visitBodyPropertyDeclaration(ctx.bodyPropertyDeclaration()));
     }
 

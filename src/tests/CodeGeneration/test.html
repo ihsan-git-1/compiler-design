@@ -14,25 +14,25 @@
 <div class='col-6'>
 <div class='col-12'>
 <p >"Hi"</p>
-<img height =300 width =auto src="../../images/test_image.jpg">
+<img height =300 width =auto src="../../images/test_image.jpg" data-variable='imageUrl'>
 </div>
 </div>
 <div class='col-6'>
 <div class='col-3'>
 <p >"Test 1"</p>
-<img height =200 width =auto src="../../images/test_image2.jpg" onclick=navigateToScreen("https://imgmedia.larepublica.pe/640x377/larepublica/original/2022/04/09/6251e0c5359a274a701a6a0c.webp")>
+<img height =200 width =auto src="../../images/test_image2.jpg" onclick=setState("../../images/test_image2.jpg",'imageUrl')>
 </div>
 <div class='col-3'>
 <p >"Test 2"</p>
-<img height =200 width =200 src="../../images/test_image3.jpg" onclick=navigateToScreen("https://imgmedia.larepublica.pe/640x377/larepublica/original/2022/04/09/6251e0c5359a274a701a6a0c.webp")>
+<img height =200 width =200 src="../../images/test_image3.jpg" onclick=setState("../../images/test_image3.jpg",'imageUrl')>
 </div>
 <div class='col-3'>
 <p >"Test 3"</p>
-<img height =200 width =200 src="../../images/test_image.jpg">
+<img height =200 width =200 src="../../images/test_image.jpg" onclick=setState("../../images/test_image.jpg",'imageUrl')>
 </div>
 <div class='col-3'>
 <p >"Test 4"</p>
-<img height =200 width =200 src="../../images/test_image2.jpg">
+<img height =200 width =200 src="../../images/test_image2.jpg" onclick=setState("../../images/test_image2.jpg",'imageUrl')>
 </div>
 </div>
 </div>
@@ -40,5 +40,6 @@
 </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src='scripts.js'></script>
 </html>

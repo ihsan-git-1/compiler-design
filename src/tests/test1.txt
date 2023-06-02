@@ -2,7 +2,7 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => MyHomePageState();
 }
 class MyHomePageState extends State<MyHomePage> {
-String imageUrl = "../../images/test_image.jpg";
+  String imageUrl = "../../images/test_image.jpg";
   Widget build(BuildContext context) {
   return Scaffold(
   body: Padding(
