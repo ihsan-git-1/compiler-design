@@ -114,9 +114,9 @@ public class dart_parseBaseVisitorChild extends dart_parseBaseVisitor {
         return "";
     }
 
-    public static ParseTree getChildFromParent(ParseTree parentNode, String parentName,String childName) {
+    public static ParseTree getChildFromParent(ParseTree parentNode, String parentName,String childName,int childOrder) {
         ParseTree parent = parentNode;
-
+        int counter=1;
         if (parent == null) {
             throw new IllegalArgumentException("Node does not have nth parent");
         }
@@ -131,7 +131,7 @@ public class dart_parseBaseVisitorChild extends dart_parseBaseVisitor {
             if(parent.getClass().getName().replace("gen.dart_parse$", "").replace("Context", "").equals(parentName)){
                 if(!childName.equals("")){
 
-                    return getChild( parent,  childName,  0);
+                    return getChild( parent,  childName,  0,childOrder);
                 }else{
                     return parent;
                 }
@@ -139,15 +139,17 @@ public class dart_parseBaseVisitorChild extends dart_parseBaseVisitor {
         }
     }
 
-    public static ParseTree getChild(ParseTree node, String name, int i) {
+    public static ParseTree getChild(ParseTree node, String name, int i,int childOrder) {
         int childCount = node.getChildCount();
-        for (; i < childCount; i++) {
+        for (i=childOrder; i < childCount; i++) {
             ParseTree child = node.getChild(i);
-            if (child.getClass().getSimpleName().replace("Context", "").equals(name)) {
+            
+            if (child.getClass().getSimpleName().replace("Context", "").equals(name) ) {
                 return child;
             }
-            ParseTree foundChild = getChild(child, name, 0);
-            if (foundChild != null) {
+
+            ParseTree foundChild = getChild(child, name, 0,0);
+            if (foundChild != null ) {
                 return foundChild;
             }
         }

@@ -3,12 +3,15 @@ package ast.nodes;
 import ast.NodeType;
 import gen.dart_parse;
 
+import javax.json.Json;
+import javax.json.JsonObject;
+
 public class ImageDeclaration extends WidgetAbstractChild {
 	String str;
 	int height,width;
-	String navigation, pressedURL,pressedVariable,dataVariable;
+	String navigation, pressedURL,pressedVariable,dataVariable,dataJson;
 
-	public ImageDeclaration(dart_parse.ImageDeclarationContext ctx, String str,int height,int width,String navigation,String pressedURL,String pressedVariable,String dataVariable) {
+	public ImageDeclaration(dart_parse.ImageDeclarationContext ctx, String str,int height,int width,String navigation,String pressedURL,String pressedVariable,String dataVariable,String dataJson) {
 		super(ctx);
 		this.str=str;
 		this.height=height;
@@ -17,6 +20,8 @@ public class ImageDeclaration extends WidgetAbstractChild {
 		this.pressedURL =pressedURL;
 		this.pressedVariable=pressedVariable;
 		this.dataVariable=dataVariable;
+		this.dataJson=dataJson;
+
 	}
 
 	@Override
@@ -45,7 +50,7 @@ public class ImageDeclaration extends WidgetAbstractChild {
 		}
 
 
-		String navOnClick="",setState = "",htmlDataVariable="";
+		String navOnClick="",setState = "",htmlDataVariable="",htmlTextDataVariable="";
 
 
 		if(!navigation.isEmpty()){
@@ -54,9 +59,16 @@ public class ImageDeclaration extends WidgetAbstractChild {
 		if(!pressedURL.isEmpty()){
 			setState = " onclick=setState("+pressedURL+",'"+pressedVariable+"')";
 		}
+
+
 		if(!dataVariable.isEmpty()){
 			htmlDataVariable = " data-variable='"+dataVariable+"'";
 		}
+
+		if(!dataJson.isEmpty()){
+			dataJson = " data-json='"+dataJson+"'";
+		}
+
 
 
 		return "<img height ="+htmlHeight
@@ -65,6 +77,7 @@ public class ImageDeclaration extends WidgetAbstractChild {
 				+ navOnClick
 				+ setState
 				+ htmlDataVariable
+				+ dataJson
 				+">\n" ;
 	}
 }

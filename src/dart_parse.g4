@@ -359,7 +359,7 @@ scaffoldDeclaration:
 textDeclaration:
     TEXT
     BRKT_OP
-    STRING_LINE
+    (NAME|STRING_LINE)
     COMMA?
     BRKT_CL
     ;
