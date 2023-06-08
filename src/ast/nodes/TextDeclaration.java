@@ -4,11 +4,12 @@ import ast.NodeType;
 import gen.dart_parse;
 
 public class TextDeclaration extends WidgetAbstractChild {
-	String strline;
+	String strline,htmltextData;
 	
-	public TextDeclaration(dart_parse.TextDeclarationContext ctx, String strline) {
+	public TextDeclaration(dart_parse.TextDeclarationContext ctx, String strline,String textData) {
 		super(ctx);
 		this.strline=strline;
+		this.htmltextData=textData;
 	}
 
 
@@ -20,6 +21,9 @@ public class TextDeclaration extends WidgetAbstractChild {
 
 	@Override
 	public String generate_code() {
-		return "<p >"+ strline +"</p>\n";
+		if(!htmltextData.isEmpty()){
+			htmltextData = " data-"+htmltextData+"='"+htmltextData+"'";
+		}
+		return "<p "+htmltextData+">"+ strline +"</p>\n";
 	}
 }

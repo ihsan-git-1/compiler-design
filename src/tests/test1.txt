@@ -3,6 +3,8 @@ class MyHomePage extends StatefulWidget {
 }
 class MyHomePageState extends State<MyHomePage> {
   String imageUrl = "../../images/test_image.jpg";
+  String title = "Hi";
+  String description = "Description";
   Widget build(BuildContext context) {
   return Scaffold(
   body: Padding(
@@ -16,8 +18,9 @@ class MyHomePageState extends State<MyHomePage> {
                       height: 300,
                       child: Column(
                         children:  [
-                          Text("Hi"),
-                          Expanded(child: Image.network(imageUrl))
+                          Text(title),
+                          Expanded(child: Image.network(imageUrl)),
+                          Text(description),
                         ],
                       ),
                     )],
@@ -32,8 +35,9 @@ class MyHomePageState extends State<MyHomePage> {
                         child: MaterialButton(
                         onPressed:(){
                         setState((){
-                        imageUrl = "../../images/test_image2.jpg";
-
+                            imageUrl = "../../images/test_image2.jpg";
+                            title="Test 1";
+                            description="This is description for the first photo";
                         });
                          },
                           child: Column(
@@ -54,7 +58,8 @@ class MyHomePageState extends State<MyHomePage> {
                         onPressed:(){
                          setState((){
                           imageUrl = "../../images/test_image3.jpg";
-
+                          title="Test 2";
+                          description="This is description for the second photo";
                          });
                         },
 
@@ -76,7 +81,8 @@ class MyHomePageState extends State<MyHomePage> {
                        onPressed:(){
                         setState((){
                           imageUrl = "../../images/test_image.jpg";
-
+                          title = "Test 3";
+                          description="This is description for the third photo";
                          });
                         },
                           child: Column(
@@ -97,7 +103,8 @@ class MyHomePageState extends State<MyHomePage> {
                         onPressed:(){
                         setState((){
                           imageUrl = "../../images/test_image2.jpg";
-
+                          title = "Test 4";
+                          description="This is description for the fourth photo";
                          });
                          },
                           child: Column(
