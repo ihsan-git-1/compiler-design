@@ -122,6 +122,8 @@ dartDeclaration:
 navigation:
 GET
 BRKT_OP
+NAME
+COMMA
 STRING_LINE
 BRKT_CL
 SEMICOLON
