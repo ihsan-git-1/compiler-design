@@ -78,6 +78,8 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
 
     @Override
     public TermAbstractChild<Boolean> visitTerm(dart_parse.TermContext ctx) {
+
+
         if (ctx.numericExpr() != null) {
             return visitNumericExpr(ctx.numericExpr());
         }
@@ -126,8 +128,11 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
 
     @Override
     public NumericTermAbstractChild<Double> visitNumericTerm(dart_parse.NumericTermContext ctx) {
+
         if (ctx.addExpression() != null) {
-            return visitAddExpression(ctx.addExpression());
+            AddExpression expr = visitAddExpression(ctx.addExpression());
+
+            return expr;
         }
         if (ctx.addDoubleExpression() != null) {
             DoubleVisitor doubleVisitor = new DoubleVisitor();
@@ -353,6 +358,7 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
         if(ctx.getParent().getChildCount()>1){
 
             if(ctx.name().isEmpty()){
+
                 try{
                     value = Double.parseDouble(ctx.getChild(0).getText());
                     for (int i = 1; i < ctx.getChildCount(); i++) {
@@ -369,6 +375,7 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
 
                     if(ctx.getChild(i) instanceof dart_parse.NameContext){
                         String variable = ctx.getChild(i).getText();
+
 
                         if (!CheckExistanceInParentScope(variable, index) && !CheckExistanceInScope(variable, index)) {
                             int errorLine = ctx.start.getLine();
@@ -405,6 +412,20 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
                 else if(ctx.getChild(i) instanceof dart_parse.NameContext){
 
                     String variable = ctx.getChild(i).getText();
+                    if(CheckExistanceInParentScope(variable,dart_parseBaseVisitorChild.index)
+                            ){
+                        try{
+                            dart_parse.MultiplyExpressionContext n_ctx = (dart_parse.MultiplyExpressionContext) getChildFromParent(ctx,"NumericTerm","MultiplyExpression",0);
+
+                            if(n_ctx != null){
+                                semanticErrors.add("String Can't Be Compared To Expression");
+
+                            }
+                        }catch(Exception e){
+
+                        }
+
+                    }
                     if (!CheckExistanceInParentScope(variable, index) && !CheckExistanceInScope(variable, index)) {
                         int errorLine = ctx.start.getLine();
 
