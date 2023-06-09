@@ -1,0 +1,28 @@
+
+*********** AST ************
+
+Line : (1) Top Tree Declaration  Child Count =  1 Type = Top Tree
+Line : (1) Class Declaration Name is test parent AllClassesDeclaration Child Count =  7 Type = class
+Line : (3) Dart Variable Declaration:  parent: ClassDeclaration Child Count =  1 Type = object
+Line : (3) Function name: main functionType: void parameters: null functionBody: Line : (3) FunctionBody{statementList=Line : (5) If Statement:  Condition: Line : (5) ConditionExpr{ value=true col=0 type='boolean' childCount=0 parent='null'} block: Line : (6) Dart Variable Declaration:  parent: Statement Child Count =  1 Type = object
+Line : (6) String Declaration Line: Number of declarations on this line: 1Number of assignments on this line: 1 parent: Variable Child Count =  2 Type = variable declaration line (type string)
+ elseIfBlock:  elseBlock: null  parent: 'null'} col=0 type='Function' childCount=0 parent='null'} parent: 'null Child Count =  5 Type = function
+ Line : (9) Dart Variable Declaration:  parent: ClassDeclaration Child Count =  1 Type = object
+Line : (9) Function name: a functionType: void parameters: null functionBody: Line : (9) FunctionBody{statementList=Line : (11) WhileStatement: condition: Line : (11) ConditionExpr{ value=true col=0 type='boolean' childCount=0 parent='null'} block: Line : (12) Dart Variable Declaration:  parent: Statement Child Count =  1 Type = object
+Line : (12) Integer Declaration Line: Number of declarations on this line: 1 Number of assignments on this line: 1 parent: Variable Child Count =  2 Type = variable declaration line (type integer)
+ parent: 'null Child Count:  5 Type:  condition col=0 type='Function' childCount=0 parent='null'} parent: 'null Child Count =  5 Type = function
+ Line : (16) Dart Variable Declaration:  parent: ClassDeclaration Child Count =  1 Type = object
+Line : (16) Function name: l functionType: void parameters: null functionBody: Empty Body parent: 'null Child Count =  5 Type = function ,  
+
+*********** SYMBOL TABLE ************
+
+Global Scope (0)
+Class Scope (1) Parent Is Global Scope (0)
+Function Scope main (2) Parent Is Class Scope (1)
+If Scope (3) Parent Is Function Scope main (2)
+Function Scope a (2) Parent Is Class Scope (1)
+While Scope (3) Parent Is Function Scope a (2)
+Function Scope l (2) Parent Is Class Scope (1)
+
+Identifier a, Type string, Value : "String" , Scope If Scope (3)
+Identifier y, Type int, Value : 1 , Scope While Scope (3)

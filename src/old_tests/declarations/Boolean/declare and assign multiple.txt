@@ -1,4 +1,0 @@
-void main(){
-
-bool x=false, t=true, g, h,z=false;
-}

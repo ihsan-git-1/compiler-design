@@ -1,0 +1,24 @@
+
+*********** AST ************
+
+Line : (1) Top Tree Declaration  Child Count =  1 Type = Top Tree
+Line : (1) Class Declaration Name is test parent AllClassesDeclaration Child Count =  5 Type = class
+Line : (2) Dart Variable Declaration:  parent: ClassDeclaration Child Count =  1 Type = object
+Line : (2) Function name: main functionType: void parameters: null functionBody: Line : (2) FunctionBody{statementList=Line : (3) If Statement:  Condition: Line : (3) ConditionExpr{ value=true col=0 type='boolean' childCount=0 parent='null'} block: Line : (4) Dart Variable Declaration:  parent: Statement Child Count =  1 Type = object
+Line : (4) Integer Declaration Line: Number of declarations on this line: 1 Number of assignments on this line: 2 parent: Variable Child Count =  4 Type = variable declaration line (type integer)
+ Line : (5) WhileStatement: condition: Line : (5) ConditionExpr{ value=true col=0 type='boolean' childCount=0 parent='null'} block: Line : (6) Integer Assignment: a parent: Assignment Child Count =  4 Type = variable assignment (type integer)
+Line : (6) Add expression: value: 2 parent: IntegerAssignment Child Count =  3 Type = addition expression (type integer)
+Line : (6) number class: value: 2 parent: IntegerAssignment Child Count =  3 Type = value (type integer)
+ parent: 'null Child Count:  5 Type:  condition elseIfBlock:  elseBlock: null  parent: 'null'} col=0 type='Function' childCount=0 parent='null'} parent: 'null Child Count =  5 Type = function ,  
+
+*********** SYMBOL TABLE ************
+
+Global Scope (0)
+Class Scope (1) Parent Is Global Scope (0)
+Function Scope main (2) Parent Is Class Scope (1)
+If Scope (3) Parent Is Function Scope main (2)
+While Scope (4) Parent Is If Scope (3)
+
+Identifier a, Type int, Value : 1 , Scope If Scope (3)
+Identifier b, Type int, Value : 2 , Scope If Scope (3)
+Identifier a, Type int, Value :2 Scope While Scope (4)

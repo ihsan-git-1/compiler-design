@@ -1,4 +1,0 @@
-void main(){
-
-int x=4, t=2, g, h,z=1;
-}

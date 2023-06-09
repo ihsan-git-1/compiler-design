@@ -414,10 +414,12 @@ public class VariablesVisitor extends dart_parseBaseVisitorChild {
                     String variable = ctx.getChild(i).getText();
                     if(CheckExistanceInParentScope(variable,dart_parseBaseVisitorChild.index)
                             ){
+                        String type = getVariableTypeFromScopes(variable,dart_parseBaseVisitorChild.index);
+
                         try{
                             dart_parse.MultiplyExpressionContext n_ctx = (dart_parse.MultiplyExpressionContext) getChildFromParent(ctx,"NumericTerm","MultiplyExpression",0);
 
-                            if(n_ctx != null){
+                            if(n_ctx != null && type.equals("string")){
                                 semanticErrors.add("String Can't Be Compared To Expression");
 
                             }

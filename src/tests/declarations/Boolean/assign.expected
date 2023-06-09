@@ -1,0 +1,23 @@
+
+*********** AST ************
+
+Line : (1) Top Tree Declaration  Child Count =  1 Type = Top Tree
+ ,  Line : (1) Dart Variable Declaration:  parent: TopTreeDeclaration Child Count =  1 Type = object
+Line : (1) Function name: main functionType: void parameters: null functionBody: Line : (1) FunctionBody{statementList=Line : (3) Dart Variable Declaration:  parent: Statement Child Count =  1 Type = object
+Line : (3) Boolean Declaration Line: Number of declarations on this line: 3Number of assignments on this line: 3 parent: Variable Child Count =  10 Type = variable declaration line (type boolean)
+Line : (3) Boolean Declaration: g parent: BooleanDeclarationLine Child Count =  1 Type = boolean declaration Line : (3) Boolean Declaration: h parent: BooleanDeclarationLine Child Count =  1 Type = boolean declaration Line : (4) Double Assignment: z parent: Assignment Child Count =  4 Type = variable assignment (type boolean)
+value: Line : (4) Bool true Parent: BooleanAssignment Child Count =  1 Type = boolean
+ col=0 type='Function' childCount=0 parent='null'} parent: 'null Child Count =  5 Type = function
+
+*********** SYMBOL TABLE ************
+
+Global Scope (0)
+Function Scope main (1) Parent Is Global Scope (0)
+
+Identifier x, Type bool, Value : true , Scope Function Scope main (1)
+Identifier t, Type bool, Value : true , Scope Function Scope main (1)
+Identifier g, Type bool, Value : false , Scope Function Scope main (1)
+Identifier h, Type bool, Value : false , Scope Function Scope main (1)
+Identifier z, Type bool, Value : false , Scope Function Scope main (1)
+Identifier z, Type bool, Value :Line : (4) Bool true Parent: BooleanAssignment Child Count =  1 Type = boolean
+ Scope Function Scope main (1)
