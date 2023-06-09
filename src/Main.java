@@ -23,7 +23,7 @@ public class Main {
     static String expected_output_postfix = ".expected";
 
     public static void main(String[] args) throws IOException {
-        String dir = "src/tests/code_generation/test2";
+        String dir = "src/old_tests/test1";
         String input = dir + input_postfix;
         String expected = dir + expected_output_postfix;
 //        writeFile(expected, func(input));     //create a .expected file to store the expected output of the tree

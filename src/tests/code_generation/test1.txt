@@ -34,11 +34,7 @@ class MyHomePageState extends State<MyHomePage> {
                         height: 200,
                         child: MaterialButton(
                         onPressed:(){
-                        setState((){
-                            imageUrl = "../../images/test_image2.jpg";
-                            title="Test 1";
-                            description="This is description for the first photo";
-                        });
+                               Get.to(Second,"../../images/test_image2.jpg");
                          },
                           child: Column(
                             children:  [

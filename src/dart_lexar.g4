@@ -225,7 +225,7 @@ STATELESS:
 EXTENDS WS* 'StatelessWidget'
     ;
 GET:
-'Get.toNamed'
+'Get.to'
     ;
 TRUE:
 'true'

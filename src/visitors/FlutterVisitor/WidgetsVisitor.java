@@ -87,7 +87,7 @@ public class WidgetsVisitor extends dart_parseBaseVisitorChild {
 
 
         int height=0,width=0;
-        String navigation="",pressedURL="",pressedVariable="",dataVariable="",pressedText="",pressedTextVariable="";
+        String navigationClass="",navigationURL="",pressedURL="",pressedVariable="",dataVariable="",pressedText="",pressedTextVariable="";
 
         try{
             dart_parse.HeightPropertyDeclarationContext heightPropertyDecl = (dart_parse.HeightPropertyDeclarationContext) getChildFromParent(ctx,"ConatinerDeclaration","HeightPropertyDeclaration",0);
@@ -101,7 +101,8 @@ public class WidgetsVisitor extends dart_parseBaseVisitorChild {
 
         try{
             dart_parse.NavigationContext nav = (dart_parse.NavigationContext) getChildFromParent(ctx,"MaterialButtonDeclaration","Navigation",0);
-            navigation = nav.STRING_LINE().getText();
+            navigationClass = nav.NAME().getText();
+            navigationURL = nav.STRING_LINE().getText();
         }catch(Exception e){}
 
         try{
@@ -160,7 +161,8 @@ public class WidgetsVisitor extends dart_parseBaseVisitorChild {
                 str,
                 height,
                 width,
-                navigation,
+                navigationClass,
+                navigationURL,
                 pressedURL,
                 pressedVariable,
                 dataVariable,

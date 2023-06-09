@@ -10,14 +10,15 @@ import javax.json.JsonObject;
 public class ImageDeclaration extends WidgetAbstractChild {
 	String str;
 	int height,width;
-	String navigation, pressedURL,pressedVariable,dataVariable,dataJson;
+	String navigationClass,navigationURL, pressedURL,pressedVariable,dataVariable,dataJson;
 
-	public ImageDeclaration(dart_parse.ImageDeclarationContext ctx, String str,int height,int width,String navigation,String pressedURL,String pressedVariable,String dataVariable,String dataJson) {
+	public ImageDeclaration(dart_parse.ImageDeclarationContext ctx, String str,int height,int width,String navigationClass,String navigationURL,String pressedURL,String pressedVariable,String dataVariable,String dataJson) {
 		super(ctx);
 		this.str=str;
 		this.height=height;
 		this.width=width;
-		this.navigation=navigation;
+		this.navigationURL=navigationURL;
+		this.navigationClass=navigationClass;
 		this.pressedURL =pressedURL;
 		this.pressedVariable=pressedVariable;
 		this.dataVariable=dataVariable;
@@ -54,12 +55,12 @@ public class ImageDeclaration extends WidgetAbstractChild {
 		String navOnClick="",setState = "",htmlDataVariable="",htmlTextDataVariable="";
 
 
-		if(!navigation.isEmpty()){
+		if(!navigationClass.isEmpty() && !navigationURL.isEmpty()){
 			if(!AppConstant.getExtraFiles().contains("<script src='Navigation.js'></script>\n")){
 				AppConstant.addExtraFile("<script src='Navigation.js'></script>\n");
 			}
 
-			navOnClick = " onclick=navigateToScreen("+ navigation +")";
+			navOnClick = " onclick=navigateToScreen("+ navigationClass +","+ navigationURL+")";
 		}
 		if(!pressedURL.isEmpty()){
 			if(!AppConstant.getExtraFiles().contains("<script src='State.js'></script>\n")) {

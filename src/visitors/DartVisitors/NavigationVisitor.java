@@ -9,7 +9,7 @@ public class NavigationVisitor extends dart_parseBaseVisitorChild {
     @Override
     public Navigation visitNavigation(dart_parse.NavigationContext ctx) {
 
-        Navigation navigation = new Navigation(ctx,ctx.STRING_LINE().getText());
+        Navigation navigation = new Navigation(ctx,ctx.NAME().getText(),ctx.STRING_LINE().getText());
 
         return navigation;
 
