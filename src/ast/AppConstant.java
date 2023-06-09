@@ -1,10 +1,20 @@
 package ast;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class AppConstant {
 
-    public static String javaScriptImport(){
-        return "<script src='scripts.js'></script>\n</html>\n";
+    static ArrayList<String> extra_files = new ArrayList<>();
+
+    public static String getExtraFiles() {
+        return Arrays.toString(extra_files.toArray()).replace("[", "").replace("]", "").replace(",","");
     }
+
+    public static void addExtraFile(String file){
+        extra_files.add(file);
+    }
+
     public static String getHtmlHeader(){
         return "<!DOCTYPE html>\n" +
                 "<html lang=\'en\'>\n " +

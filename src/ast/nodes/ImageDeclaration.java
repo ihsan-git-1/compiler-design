@@ -1,5 +1,6 @@
 package ast.nodes;
 
+import ast.AppConstant;
 import ast.NodeType;
 import gen.dart_parse;
 
@@ -54,9 +55,16 @@ public class ImageDeclaration extends WidgetAbstractChild {
 
 
 		if(!navigation.isEmpty()){
+			if(!AppConstant.getExtraFiles().contains("<script src='Navigation.js'></script>\n")){
+				AppConstant.addExtraFile("<script src='Navigation.js'></script>\n");
+			}
+
 			navOnClick = " onclick=navigateToScreen("+ navigation +")";
 		}
 		if(!pressedURL.isEmpty()){
+			if(!AppConstant.getExtraFiles().contains("<script src='State.js'></script>\n")) {
+				AppConstant.addExtraFile("<script src='State.js'></script>\n");
+			}
 			setState = " onclick=setState("+pressedURL+",'"+pressedVariable+"')";
 		}
 

@@ -132,13 +132,14 @@ public class WidgetsVisitor extends dart_parseBaseVisitorChild {
         }catch(Exception e){}
 
 
-            JsonObject jsonObject = jsonObjectBuilder.build();
+        JsonObject jsonObject = jsonObjectBuilder.build();
+        if(!jsonObject.isEmpty()) {
             StringWriter stringWriter = new StringWriter();
             JsonWriter jsonWriter = Json.createWriter(stringWriter);
             jsonWriter.writeObject(jsonObject);
             jsonWriter.close();
-            jsonString = stringWriter.toString().replace("\\\"","");
-
+            jsonString = stringWriter.toString().replace("\\\"", "");
+        }
 
 
 
