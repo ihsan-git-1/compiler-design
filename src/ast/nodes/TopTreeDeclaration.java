@@ -62,7 +62,9 @@ public class TopTreeDeclaration extends Node{
 
 		builder.append(AppConstant.getHtmlFooter());
 
-		builder.append(AppConstant.javaScriptImport());
+		builder.append(AppConstant.getExtraFiles());
+
+		builder.append("</html>\n");
 
 		return builder.toString();
 

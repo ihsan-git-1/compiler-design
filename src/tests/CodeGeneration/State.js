@@ -1,12 +1,7 @@
-function navigateToScreen(url) {
-    window.location.href = "second_page.html?image_url=" + encodeURIComponent(url);
-}
 
 function setState(url,variable,textVar,textVal){
     $("img[data-variable='" + variable +"']").attr('src',url);
 }
-
-
 
 $("img").on("click", function() {
     var clickedImg = $(this);

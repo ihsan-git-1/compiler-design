@@ -67,7 +67,7 @@ public class Main {
             myWriter.close();
 
             // launch the html file
-            openHtmlFile(generatedCodePath);
+            //openHtmlFile(generatedCodePath);
         } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
