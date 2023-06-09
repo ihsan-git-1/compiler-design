@@ -9,6 +9,39 @@ class MainTest {
     String input_postfix = ".txt";
     String expected_output_postfix = ".expected";
 
+    //Declarations
+
+    @Test
+    public void declarations_Boolean_assign() throws IOException {
+        String dir = "src/tests/declarations/Boolean/assign";
+        Path filePath = Path.of(dir+expected_output_postfix);
+        String content = Files.readString(filePath);
+        assertEquals(content, Main.func(dir+input_postfix));
+    }
+
+    @Test
+    public void declarations_Double_assign() throws IOException {
+        String dir = "src/tests/declarations/Double/assign";
+        Path filePath = Path.of(dir+expected_output_postfix);
+        String content = Files.readString(filePath);
+        assertEquals(content, Main.func(dir+input_postfix));
+    }
+
+    @Test
+    public void declarations_Integer_assign() throws IOException {
+        String dir = "src/tests/declarations/Integer/assign";
+        Path filePath = Path.of(dir+expected_output_postfix);
+        String content = Files.readString(filePath);
+        assertEquals(content, Main.func(dir+input_postfix));
+    }
+    @Test
+    public void declarations_String_assign() throws IOException {
+        String dir = "src/tests/declarations/String/assign";
+        Path filePath = Path.of(dir+expected_output_postfix);
+        String content = Files.readString(filePath);
+        assertEquals(content, Main.func(dir+input_postfix));
+    }
+
     //Semantic Errors
     @Test
     public void semantic_errors_undefined_variable() throws IOException {
@@ -42,6 +75,22 @@ class MainTest {
         assertEquals(content, Main.func(dir+input_postfix));
     }
 
+    @Test
+    public void semantic_errors_string_condition() throws IOException {
+        String dir = "src/tests/semantic_errors/string_condition";
+        Path filePath = Path.of(dir+expected_output_postfix);
+        String content = Files.readString(filePath);
+        assertEquals(content, Main.func(dir+input_postfix));
+    }
+
+    @Test
+    public void semantic_errors_double_property() throws IOException {
+        String dir = "src/tests/semantic_errors/double_property";
+        Path filePath = Path.of(dir+expected_output_postfix);
+        String content = Files.readString(filePath);
+        assertEquals(content, Main.func(dir+input_postfix));
+    }
+
 
 
 
@@ -50,7 +99,69 @@ class MainTest {
 
     @Test
     public void evaluations_test1() throws IOException {
-        String dir = "src/tests/evaluations/test1";
+        String dir = "src/tests/evaluations/test1.txt";
+        Path filePath = Path.of(dir+expected_output_postfix);
+        String content = Files.readString(filePath);
+        assertEquals(content, Main.func(dir+input_postfix));
+    }
+    @Test
+    public void evaluations_test2() throws IOException {
+        String dir = "src/tests/evaluations/test2";
+        Path filePath = Path.of(dir+expected_output_postfix);
+        String content = Files.readString(filePath);
+        assertEquals(content, Main.func(dir+input_postfix));
+    }
+
+    @Test
+    public void evaluations_test3() throws IOException {
+        String dir = "src/tests/evaluations/test3";
+        Path filePath = Path.of(dir+expected_output_postfix);
+        String content = Files.readString(filePath);
+        assertEquals(content, Main.func(dir+input_postfix));
+    }
+
+    @Test
+    public void evaluations_test4() throws IOException {
+        String dir = "src/tests/evaluations/test4";
+        Path filePath = Path.of(dir+expected_output_postfix);
+        String content = Files.readString(filePath);
+        assertEquals(content, Main.func(dir+input_postfix));
+    }
+    @Test
+    public void evaluations_test5() throws IOException {
+        String dir = "src/tests/evaluations/test5";
+        Path filePath = Path.of(dir+expected_output_postfix);
+        String content = Files.readString(filePath);
+        assertEquals(content, Main.func(dir+input_postfix));
+    }
+
+    @Test
+    public void evaluations_test6() throws IOException {
+        String dir = "src/tests/evaluations/test6";
+        Path filePath = Path.of(dir+expected_output_postfix);
+        String content = Files.readString(filePath);
+        assertEquals(content, Main.func(dir+input_postfix));
+    }
+    @Test
+    public void evaluations_test7() throws IOException {
+        String dir = "src/tests/evaluations/test7";
+        Path filePath = Path.of(dir+expected_output_postfix);
+        String content = Files.readString(filePath);
+        assertEquals(content, Main.func(dir+input_postfix));
+    }
+
+    //Scopes
+    @Test
+    public void scopes_test1() throws IOException {
+        String dir = "src/tests/scopes_test/test1";
+        Path filePath = Path.of(dir+expected_output_postfix);
+        String content = Files.readString(filePath);
+        assertEquals(content, Main.func(dir+input_postfix));
+    }
+
+    @Test
+    public void scopes_test2() throws IOException {
+        String dir = "src/tests/scopes_test/test2";
         Path filePath = Path.of(dir+expected_output_postfix);
         String content = Files.readString(filePath);
         assertEquals(content, Main.func(dir+input_postfix));

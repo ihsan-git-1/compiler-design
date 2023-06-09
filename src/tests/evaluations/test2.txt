@@ -1,6 +1,6 @@
 class test {
-   double x=2.7;
-   double y=3.4;
+   double x=3.5;
+   double y=3.25;
 
    double z = y+x;
    double w = y-x;

@@ -1,0 +1,23 @@
+
+*********** AST ************
+
+Line : (1) Top Tree Declaration  Child Count =  1 Type = Top Tree
+ ,  Line : (1) Dart Variable Declaration:  parent: TopTreeDeclaration Child Count =  1 Type = object
+Line : (1) Function name: main functionType: void parameters: null functionBody: Line : (1) FunctionBody{statementList=Line : (3) Dart Variable Declaration:  parent: Statement Child Count =  1 Type = object
+Line : (3) Integer Declaration Line: Number of declarations on this line: 3 Number of assignments on this line: 3 parent: Variable Child Count =  10 Type = variable declaration line (type integer)
+ Line : (4) Integer Assignment: z parent: Assignment Child Count =  4 Type = variable assignment (type integer)
+Line : (4) Add expression: value: 3 parent: IntegerAssignment Child Count =  1 Type = addition expression (type integer)
+Line : (4) number class: value: 3 parent: IntegerAssignment Child Count =  1 Type = value (type integer)
+ col=0 type='Function' childCount=0 parent='null'} parent: 'null Child Count =  5 Type = function
+
+*********** SYMBOL TABLE ************
+
+Global Scope (0)
+Function Scope main (1) Parent Is Global Scope (0)
+
+Identifier x, Type int, Value : 4 , Scope Function Scope main (1)
+Identifier t, Type int, Value : 2 , Scope Function Scope main (1)
+Identifier g, Type int, Value : 0 ,  Scope Function Scope main (1)
+Identifier h, Type int, Value : 0 ,  Scope Function Scope main (1)
+Identifier z, Type int, Value : 1 , Scope Function Scope main (1)
+Identifier z, Type int, Value :3 Scope Function Scope main (1)

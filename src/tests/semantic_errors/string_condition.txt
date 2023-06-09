@@ -1,0 +1,11 @@
+class test {
+
+    int a(){
+            int b =3;
+            String a="test";
+                if(1 > a){
+                    int count = 3;
+
+        }
+    }
+}

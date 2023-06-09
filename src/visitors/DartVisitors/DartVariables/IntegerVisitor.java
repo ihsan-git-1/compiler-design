@@ -96,8 +96,15 @@ public class IntegerVisitor extends dart_parseBaseVisitorChild {
 
         if (CheckExistanceInScope(id, index)) {
             int errorLine = ctx.start.getLine();
+            dart_parse.VariableContext d_ctx = null;
+            try{
+                d_ctx = (dart_parse.VariableContext) getChildFromParent(ctx,"ForStatment","Variable",0);
 
-            semanticErrors.add("The name " + id + " already defined (" + errorLine + "," + column + ")");
+            }catch(Exception e){}
+
+            if(d_ctx != null){
+                semanticErrors.add("The name " + id + " already defined (" + errorLine + "," + column + ")");
+            }
         } else if ((CheckExistanceInParentScope(id, index) || CheckExistanceInScope(id, index)) && !CheckIfTypeMatchesParentType(id, index, NodeType.INT.toString())) {
             semanticErrors.add("A value of type " + NodeType.INT.toString() + " can't be assigned to a variable of type " + getParentType(id, index, NodeType.INT.toString()));
         } else {
