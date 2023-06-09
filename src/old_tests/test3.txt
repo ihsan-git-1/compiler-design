@@ -2,16 +2,16 @@ class a {
 int a =9;
 //this variable declaration is missing a semicolon
 
-String s ="bad example"
+String s ="bad example";
 
 }
 class b{
 int num= 2;
 int limit = 5;
-Function int func(){
+int func(){
 // this if statement is missing a condition
 
-    if(){
+    if(1<4){
         double d= 81.33;
     }
 }

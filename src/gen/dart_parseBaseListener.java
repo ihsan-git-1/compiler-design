@@ -1,4 +1,4 @@
-// Generated from /Users/ihssanabou/IdeaProjects/compiler-1 dev/src/dart_parse.g4 by ANTLR 4.12.0
+// Generated from dart_parse.g4 by ANTLR 4.10.1
 package gen;
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -10,7 +10,6 @@ import org.antlr.v4.runtime.tree.TerminalNode;
  * which can be extended to create a listener which only needs to handle a subset
  * of the available methods.
  */
-@SuppressWarnings("CheckReturnValue")
 public class dart_parseBaseListener implements dart_parseListener {
 	/**
 	 * {@inheritDoc}
