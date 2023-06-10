@@ -227,6 +227,9 @@ EXTENDS WS* 'StatelessWidget'
 GET:
 'Get.to'
     ;
+ARGUMENTS:
+'arguments'
+    ;
 TRUE:
 'true'
     ;
