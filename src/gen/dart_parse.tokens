@@ -163,6 +163,6 @@ WS=89
 'network'=75
 'children'=76
 'dynamic'=77
-'Get.toNamed'=80
+'Get.to'=80
 'true'=81
 'false'=82

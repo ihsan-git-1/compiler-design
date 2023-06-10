@@ -28,7 +28,7 @@ public class Main {
         return new String(bytes, StandardCharsets.UTF_8);
     }
     public static void main(String[] args) throws IOException {
-        String dir = "src/tests/code_generation/two_pages";
+        String dir = "src/tests/code_generation/NavigationTest";
         String input = dir + input_postfix;
         String expected = dir + expected_output_postfix;
         String fileContent="";
