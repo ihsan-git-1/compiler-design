@@ -2,23 +2,21 @@ package ast.nodes;
 
 import ast.AppConstant;
 import ast.NodeType;
+import ast.navigation.OnPressedArguments;
 import gen.dart_parse;
-
-import javax.json.Json;
-import javax.json.JsonObject;
 
 public class ImageDeclaration extends WidgetAbstractChild {
 	String str;
 	int height,width;
-	String navigationClass,navigationURL, pressedURL,pressedVariable,dataVariable,dataJson;
+	OnPressedArguments argumentsStruct;
+	String pressedURL,pressedVariable,dataVariable,dataJson;
 
-	public ImageDeclaration(dart_parse.ImageDeclarationContext ctx, String str,int height,int width,String navigationClass,String navigationURL,String pressedURL,String pressedVariable,String dataVariable,String dataJson) {
+	public ImageDeclaration(dart_parse.ImageDeclarationContext ctx, String str,int height,int width,OnPressedArguments argumentsStruct,String pressedURL,String pressedVariable,String dataVariable,String dataJson) {
 		super(ctx);
 		this.str=str;
 		this.height=height;
 		this.width=width;
-		this.navigationURL=navigationURL;
-		this.navigationClass=navigationClass;
+		this.argumentsStruct=argumentsStruct;
 		this.pressedURL =pressedURL;
 		this.pressedVariable=pressedVariable;
 		this.dataVariable=dataVariable;
@@ -54,17 +52,17 @@ public class ImageDeclaration extends WidgetAbstractChild {
 
 		String navOnClick="",setState = "",htmlDataVariable="",htmlTextDataVariable="";
 
+		try {
+			if (argumentsStruct.arguments.size() >= 3) {
 
-		if(!navigationClass.isEmpty() && !navigationURL.isEmpty()){
-
-			if(!AppConstant.getExtraFiles().contains("<script src='Navigation.js'></script>\n")){
-				AppConstant.addExtraFile("<script src='Navigation.js'></script>\n");
+				if (!AppConstant.getExtraFiles().contains("<script src='Navigation.js'></script>\n")) {
+					AppConstant.addExtraFile("<script src='Navigation.js'></script>\n");
+				}
+				navOnClick = " onclick='navigateToScreen(\"" + argumentsStruct.arguments.get(0) +"\"," + argumentsStruct.arguments.get(1) + ',' + argumentsStruct.arguments.get(2) + ")'";
+				AppConstant.addNavigationScriptAfterBuild = argumentsStruct.arguments.get(0);
 			}
+		}catch(Exception e){}
 
-			navOnClick = " onclick=navigateToScreen(\""+ navigationClass +"\","+ navigationURL+")";
-
-			AppConstant.addNavigationScriptAfterBuild=navigationClass;
-		}
 		if(!pressedURL.isEmpty()){
 			if(!AppConstant.getExtraFiles().contains("<script src='State.js'></script>\n")) {
 				AppConstant.addExtraFile("<script src='State.js'></script>\n");

@@ -22,14 +22,14 @@ public class AppConstant {
     }
     public static String getHtmlHeader(){
         return "<!DOCTYPE html>\n" +
-                "<html lang=\'en\'>\n " +
+                "<html lang='en'>\n " +
                 "<head>\n " +
                 "<link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css\" " +
                 "rel=\"stylesheet\" " +
                 "integrity=\"sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65\"" +
                 " crossorigin=\"anonymous\">\n " +
                 "<title>Compiler</title>\n  " +
-                "<meta charset=\'utf-8\'>\n  " +
+                "<meta charset='utf-8'>\n  " +
                 "<style>\n  " +
                 "</style>\n" +
                 " </head>\n " +
@@ -54,7 +54,9 @@ public class AppConstant {
 
         String scriptCode = "$(document).ready(function(){\n"
                 + "    var url = getUrlParameter('image_url');\n"
+                + "    var desc = getUrlParameter('image_description');\n"
                 + "    $('img').attr('src',url);\n"
+                + "    $('p').text(desc);\n"
                 + "});\n\n"
                 + "var getUrlParameter = function getUrlParameter(sParam) {\n"
                 + "    var sPageURL = window.location.search.substring(1),\n"

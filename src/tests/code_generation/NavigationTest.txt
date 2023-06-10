@@ -31,7 +31,7 @@ class MyHomePageState extends State<MyHomePage> {
                         height: 200,
                         child: MaterialButton(
                         onPressed:(){
-                            Get.to(Second,"../../images/test_image2.jpg");
+                            Get.to(Second,arguments: ["../../images/test_image2.jpg", "image2 desc"]);
                          },
                           child: Column(
                             children:  [
@@ -49,7 +49,7 @@ class MyHomePageState extends State<MyHomePage> {
                         height: 200,
                         child: MaterialButton(
                         onPressed:(){
-                             Get.to(Second,"../../images/test_image3.jpg");
+                             Get.to(Second,arguments: ["../../images/test_image3.jpg", "image3 desc"]);
 
                         },
 
@@ -69,7 +69,7 @@ class MyHomePageState extends State<MyHomePage> {
                         height: 200,
                         child: MaterialButton(
                        onPressed:(){
-                            Get.to(Second,"../../images/test_image.jpg");
+                            Get.to(Second,arguments: ["../../images/test_image.jpg", "image desc"]);
 
                         },
                           child: Column(
@@ -88,7 +88,7 @@ class MyHomePageState extends State<MyHomePage> {
                         height: 200,
                         child: MaterialButton(
                         onPressed:(){
-                            Get.to(Second,"../../images/test_image2.jpg");
+                            Get.to(Second,arguments: ["../../images/test_image2.jpg", "image2 desc"]);
 
                                                 },
 

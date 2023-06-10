@@ -6,25 +6,15 @@ import gen.dart_parse;
 
 public class Navigation extends DartDeclarationAbstractChild {
 
+OnPressedArguments arguments;
 
-    String class_name;
-    String url;
-
-    public String getClassName() {
-        return class_name;
-    }
-
-    public String getURL() {
-        return url;
-    }
-    public Navigation(dart_parse.NavigationContext ctx, String name,String url) {
+    public Navigation(dart_parse.NavigationContext ctx, OnPressedArguments arguments) {
         super(ctx);
-        this.class_name = class_name;
-        this.url = url;
+        this.arguments=arguments;
     }
 
     public String toString() {
-        return  getLineString()+"Navigation Declaration: value: "+ class_name + " parent: "+ getParent()
+        return  getLineString()+"Navigation Declaration: value: "+ arguments.arguments.get(0) + " parent: "+ getParent()
                 +" Child Count =  "+getChildCount()+" Type = "+ NodeType.Navigation+"\n";
     }
 
