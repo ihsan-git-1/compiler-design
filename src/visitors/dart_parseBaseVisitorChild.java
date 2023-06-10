@@ -156,5 +156,11 @@ public class dart_parseBaseVisitorChild extends dart_parseBaseVisitor {
         return null;
     }
 
+    public static void emptyScopeNames(){
+        scopeNames.clear();
+    }
 
+    public static void emptyVariableName(){
+        varialbeNames.clear();
+    }
 }

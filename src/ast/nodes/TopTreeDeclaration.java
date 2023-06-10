@@ -64,6 +64,7 @@ public class TopTreeDeclaration extends Node{
 
 		builder.append(AppConstant.getExtraFiles());
 
+		AppConstant.emptyExtraFiles();
 		builder.append("</html>\n");
 
 		return builder.toString();

@@ -1,3 +1,4 @@
-function navigateToScreen(url) {
-    window.location.href = "second_page.html?image_url=" + encodeURIComponent(url);
+function navigateToScreen(page,src) {
+    window.location.href = page+".html?image_url=" + encodeURIComponent(src);
 }
+
