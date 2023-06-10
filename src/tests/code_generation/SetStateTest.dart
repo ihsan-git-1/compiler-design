@@ -1,8 +1,10 @@
-class MyHomePage extends StatefulWidget {
-  State<MyHomePage> createState() => MyHomePageState();
+class SetStateTest extends StatefulWidget {
+  State<SetStateTest> createState() => SetStateTest();
 }
-class MyHomePageState extends State<MyHomePage> {
-
+class SetStateTest extends State<SetStateTest> {
+  String imageUrl = "../../images/test_image.jpg";
+  String title = "Hi";
+  String description = "Description";
   Widget build(BuildContext context) {
   return Scaffold(
   body: Padding(
@@ -16,8 +18,9 @@ class MyHomePageState extends State<MyHomePage> {
                       height: 300,
                       child: Column(
                         children:  [
-                          Text("Hi"),
-                          Expanded(child: Image.network("../../images/test_image.jpg"))
+                          Text(title),
+                          Expanded(child: Image.network(imageUrl)),
+                          Text(description),
                         ],
                       ),
                     )],
@@ -31,7 +34,11 @@ class MyHomePageState extends State<MyHomePage> {
                         height: 200,
                         child: MaterialButton(
                         onPressed:(){
-                            Get.to(Second,"../../images/test_image2.jpg");
+                        setState((){
+                            imageUrl = "../../images/test_image2.jpg";
+                            title="Test 1";
+                            description="This is description for the first photo";
+                        });
                          },
                           child: Column(
                             children:  [
@@ -49,8 +56,11 @@ class MyHomePageState extends State<MyHomePage> {
                         height: 200,
                         child: MaterialButton(
                         onPressed:(){
-                             Get.to(Second,"../../images/test_image3.jpg");
-
+                         setState((){
+                          imageUrl = "../../images/test_image3.jpg";
+                          title="Test 2";
+                          description="This is description for the second photo";
+                         });
                         },
 
                           child: Column(
@@ -69,8 +79,11 @@ class MyHomePageState extends State<MyHomePage> {
                         height: 200,
                         child: MaterialButton(
                        onPressed:(){
-                            Get.to(Second,"../../images/test_image.jpg");
-
+                        setState((){
+                          imageUrl = "../../images/test_image.jpg";
+                          title = "Test 3";
+                          description="This is description for the third photo";
+                         });
                         },
                           child: Column(
                             children:  [
@@ -88,10 +101,12 @@ class MyHomePageState extends State<MyHomePage> {
                         height: 200,
                         child: MaterialButton(
                         onPressed:(){
-                            Get.to(Second,"../../images/test_image2.jpg");
-
-                                                },
-
+                        setState((){
+                          imageUrl = "../../images/test_image2.jpg";
+                          title = "Test 4";
+                          description="This is description for the fourth photo";
+                         });
+                         },
                           child: Column(
                             children:  [
                               Text("Test 4"),
@@ -112,37 +127,3 @@ class MyHomePageState extends State<MyHomePage> {
 
 }
 
-
-
-class Second extends StatefulWidget {
-  State<Second> createState() => SecondState();
-}
-class SecondState extends State<Second> {
-
-  Widget build(BuildContext context) {
-  return Scaffold(
-  body: Padding(
-        padding: EdgeInsets.all(8),
-        child: Row(
-            children: [
-              Expanded(
-                child: Column(
-                  children: [
-                    Container(
-                      height: 300,
-                      child: Column(
-                        children:  [
-                          Text("Hi"),
-                          Expanded(child: Image.network("../../images/test_image.jpg"))
-                        ],
-                      ),
-                    )],
-                ),
-              ),
-            ],
-          ),
-      ),
-  );
-  }
-
-}

@@ -56,11 +56,14 @@ public class ImageDeclaration extends WidgetAbstractChild {
 
 
 		if(!navigationClass.isEmpty() && !navigationURL.isEmpty()){
+
 			if(!AppConstant.getExtraFiles().contains("<script src='Navigation.js'></script>\n")){
 				AppConstant.addExtraFile("<script src='Navigation.js'></script>\n");
 			}
 
-			navOnClick = " onclick=navigateToScreen("+ navigationClass +","+ navigationURL+")";
+			navOnClick = " onclick=navigateToScreen(\""+ navigationClass +"\","+ navigationURL+")";
+
+			AppConstant.addNavigationScriptAfterBuild=navigationClass;
 		}
 		if(!pressedURL.isEmpty()){
 			if(!AppConstant.getExtraFiles().contains("<script src='State.js'></script>\n")) {
@@ -89,4 +92,5 @@ public class ImageDeclaration extends WidgetAbstractChild {
 				+ dataJson
 				+">\n" ;
 	}
+
 }

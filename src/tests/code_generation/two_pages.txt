@@ -49,7 +49,7 @@ class MyHomePageState extends State<MyHomePage> {
                         height: 200,
                         child: MaterialButton(
                         onPressed:(){
-                             Get.to(Second,"../../images/test_image3.jpg");
+                           Get.to(Second,"../../images/test_image3.jpg");
 
                         },
 
@@ -115,7 +115,7 @@ class MyHomePageState extends State<MyHomePage> {
 
 
 class Second extends StatefulWidget {
-  State<Second> createState() => SecondState();
+  State<SecondPage> createState() => SecondState();
 }
 class SecondState extends State<Second> {
 
