@@ -1,13 +1,27 @@
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import visitors.dart_parseBaseVisitorChild;
+
 import java.nio.file.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Stack;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class MainTest {
-    String input_postfix = ".txt";
-    String expected_output_postfix = ".expected";
+    private static final String input_postfix = ".txt";
+    private static final String expected_output_postfix = ".expected";
+
+    @BeforeEach
+    public void setup(){
+        dart_parseBaseVisitorChild.semanticErrors = new ArrayList<>();
+        dart_parseBaseVisitorChild.scopeNames = new ArrayList<>();
+        dart_parseBaseVisitorChild.varialbeNames = new ArrayList<>();
+        dart_parseBaseVisitorChild.scopes=new Stack<>();
+        dart_parseBaseVisitorChild.index=1;
+    }
 
     //Declarations
 
@@ -99,7 +113,7 @@ class MainTest {
 
     @Test
     public void evaluations_test1() throws IOException {
-        String dir = "src/tests/evaluations/test1.txt";
+        String dir = "src/tests/evaluations/test1";
         Path filePath = Path.of(dir+expected_output_postfix);
         String content = Files.readString(filePath);
         assertEquals(content, Main.func(dir+input_postfix));
