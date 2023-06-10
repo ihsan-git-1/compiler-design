@@ -135,7 +135,7 @@ public class NodesVisitor extends dart_parseBaseVisitorChild {
         scopes.push(scope);
         index = index + 1;
         scope.setId(index);
-        scopeNames.add(scope.getScopeName() + " Parnet Is " + scope.getParent().getScopeName());
+        scopeNames.add(scope.getScopeName() + " Parent Is " + scope.getParent().getScopeName());
 
 
 
