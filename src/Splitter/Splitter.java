@@ -58,7 +58,7 @@ public class Splitter {
         } else {
             names.add(getClassName(lines[0]));
             String FileName = "src/tests/code_generation/"+getClassName(lines[0]) + ".dart";
-            names.add(getClassName(lines[0]));
+
             Path FilePath = Paths.get(FileName);
 
             try {

@@ -163,4 +163,8 @@ public class dart_parseBaseVisitorChild extends dart_parseBaseVisitor {
     public static void emptyVariableName(){
         varialbeNames.clear();
     }
+
+    public static void emptySemanticErrors(){
+        semanticErrors.clear();
+    }
 }

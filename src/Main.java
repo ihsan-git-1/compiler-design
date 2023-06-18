@@ -28,7 +28,7 @@ public class Main {
         return new String(bytes, StandardCharsets.UTF_8);
     }
     public static void main(String[] args) throws IOException {
-        String dir = "src/tests/code_generation/NavigationTest";
+        String dir = "src/tests/code_generation/setStateTest";
         String input = dir + input_postfix;
         String expected = dir + expected_output_postfix;
         String fileContent="";
@@ -39,6 +39,7 @@ public class Main {
 
 
 //      writeFile(expected, func(input));
+
 
         for(String name : names){
             String _dir = "src/tests/code_generation/"+name+".dart";
@@ -60,10 +61,13 @@ public class Main {
         TokenStream tokenStream = token;
         TopTreeDeclaration doc = (TopTreeDeclaration) new NodesVisitor(tokenStream).visit(tree);
 
+
         if (dart_parseBaseVisitorChild.semanticErrors.size() > 0) {
             for (String error : dart_parseBaseVisitorChild.semanticErrors) {
                 output.append(error).append("\n");
             }
+            dart_parseBaseVisitorChild.emptySemanticErrors();
+
             return output.toString();
         }
 

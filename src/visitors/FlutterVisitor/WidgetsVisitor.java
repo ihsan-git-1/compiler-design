@@ -1,6 +1,8 @@
 package visitors.FlutterVisitor;
 
 import ast.NodeType;
+import ast.Scope;
+import ast.SymbolTableObject;
 import ast.navigation.OnPressedArguments;
 import ast.nodes.*;
 import ast.variables.Variable;
@@ -69,6 +71,13 @@ public class WidgetsVisitor extends dart_parseBaseVisitorChild {
     @Override
     public TextDeclaration visitTextDeclaration(dart_parse.TextDeclarationContext ctx) {
 
+        Scope s = new Scope();
+        s.setScopeName("Text Scope  (" + index + ")");
+        s.setParent(scopes.get(index - 1));
+        scopes.push(s);
+        index = index + 1;
+        s.setId(index);
+        scopeNames.add(s.getScopeName() + " Parent Is " + s.getParent().getScopeName());
 
         String str = "", dataText = "";
         if (ctx.NAME() != null) {
@@ -80,12 +89,25 @@ public class WidgetsVisitor extends dart_parseBaseVisitorChild {
             dataText = str;
             str = (String) getVariableValueFromScopes(str, scopes.size());
         }
+
+
+        scopes.pop();
+        index = index - 1;
+
         return new TextDeclaration(ctx, str, dataText);
     }
 
     @Override
     public ImageDeclaration visitImageDeclaration(dart_parse.ImageDeclarationContext ctx) {
 
+
+        Scope s = new Scope();
+        s.setScopeName("Image Declartion Scope (" + index + ")");
+        s.setParent(scopes.get(index - 1));
+        scopes.push(s);
+        index = index + 1;
+        s.setId(index);
+        scopeNames.add(s.getScopeName() + " Parent Is " + s.getParent().getScopeName());
 
         int height = 0, width = 0;
         OnPressedArguments argumentsStruct=null;
@@ -94,12 +116,17 @@ public class WidgetsVisitor extends dart_parseBaseVisitorChild {
         try {
             dart_parse.HeightPropertyDeclarationContext heightPropertyDecl = (dart_parse.HeightPropertyDeclarationContext) getChildFromParent(ctx, "ConatinerDeclaration", "HeightPropertyDeclaration", 0);
             height = Integer.parseInt(heightPropertyDecl.number().getChild(0).getText());
+
+            scopes.get(index - 1).getSymbolMap().put("height", new SymbolTableObject(NodeType.HEIGHT.toString(), String.valueOf(height)));
+            varialbeNames.add("Identifier height , Type " + NodeType.HEIGHT + ", Value : "+ height +" ,  Scope " + scopes.peek().getScopeName());
         } catch (Exception e) {
         }
 
         try {
             dart_parse.WidthPropertyDeclarationContext widthPropertyDecl = (dart_parse.WidthPropertyDeclarationContext) getChildFromParent(ctx, "ConatinerDeclaration", "WidthPropertyDeclaration", 0);
             width = Integer.parseInt(widthPropertyDecl.number().getChild(0).getText());
+            scopes.get(index - 1).getSymbolMap().put("width", new SymbolTableObject(NodeType.WIDTH.toString(), String.valueOf(width)));
+            varialbeNames.add("Identifier width , Type " + NodeType.WIDTH + ", Value : "+ width +",  Scope " + scopes.peek().getScopeName());
         } catch (Exception e) {
         }
 
@@ -162,6 +189,10 @@ public class WidgetsVisitor extends dart_parseBaseVisitorChild {
             str = (String) getVariableValueFromScopes(str, scopes.size());
 
         }
+
+        scopes.pop();
+        index = index - 1;
+
         return new ImageDeclaration(ctx,
                 str,
                 height,
@@ -176,8 +207,19 @@ public class WidgetsVisitor extends dart_parseBaseVisitorChild {
 
     @Override
     public MaterialAppDeclaration visitMaterialAppDeclaration(dart_parse.MaterialAppDeclarationContext ctx) {
+        Scope s = new Scope();
+        s.setScopeName("Material App Scope (" + index + ")");
+        s.setParent(scopes.get(index - 1));
+        scopes.push(s);
+        index = index + 1;
+        s.setId(index);
+        scopeNames.add(s.getScopeName() + " Parent Is " + s.getParent().getScopeName());
 
-        return new MaterialAppDeclaration(ctx, visitHomePropertyDeclaration(ctx.homePropertyDeclaration()));
+        HomePropertyDeclaration homeProp  = visitHomePropertyDeclaration(ctx.homePropertyDeclaration());
+
+        scopes.pop();
+        index = index - 1;
+        return new MaterialAppDeclaration(ctx, homeProp);
     }
 
     @Override
@@ -188,17 +230,42 @@ public class WidgetsVisitor extends dart_parseBaseVisitorChild {
 
     @Override
     public ExpandedDeclaration visitExpandedDeclaration(dart_parse.ExpandedDeclarationContext ctx) {
+        Scope s = new Scope();
+        s.setScopeName("Expanded Scope  (" + index + ")");
+        s.setParent(scopes.get(index - 1));
+        scopes.push(s);
+        index = index + 1;
+        s.setId(index);
+        scopeNames.add(s.getScopeName() + " Parent Is " + s.getParent().getScopeName());
 
-        return new ExpandedDeclaration(ctx, visitChildPropertyDeclaration(ctx.childPropertyDeclaration()));
+        ChildPropertyDeclaration propertyDeclartion = visitChildPropertyDeclaration(ctx.childPropertyDeclaration());
+
+        scopes.pop();
+        index = index - 1;
+        return new ExpandedDeclaration(ctx, propertyDeclartion);
     }
 
     @Override
     public MaterialButtonDeclaration visitMaterialButtonDeclaration(dart_parse.MaterialButtonDeclarationContext ctx) {
 
+        Scope s = new Scope();
+        s.setScopeName("Material Button Scope (" + index + ")");
+        s.setParent(scopes.get(index - 1));
+        scopes.push(s);
+        index = index + 1;
+        s.setId(index);
+        scopeNames.add(s.getScopeName() + " Parent Is " + s.getParent().getScopeName());
+
+        OnPressedPropertyDeclaration onPressed = visitOnPressedPropertyDeclaration(ctx.onPressedPropertyDeclaration());
+        ChildPropertyDeclaration childProp = visitChildPropertyDeclaration(ctx.childPropertyDeclaration());
+
+        scopes.pop();
+        index = index - 1;
+
         return new MaterialButtonDeclaration(
                 ctx,
-                visitOnPressedPropertyDeclaration(ctx.onPressedPropertyDeclaration()),
-                visitChildPropertyDeclaration(ctx.childPropertyDeclaration())
+                onPressed,
+                childProp
         );
 
     }
@@ -235,10 +302,26 @@ public class WidgetsVisitor extends dart_parseBaseVisitorChild {
     @Override
     public PaddingDeclaration visitPaddingDeclaration(dart_parse.PaddingDeclarationContext ctx) {
 
+        Scope s = new Scope();
+        s.setScopeName("Padding Scope  (" + index + ")");
+        s.setParent(scopes.get(index - 1));
+        scopes.push(s);
+        index = index + 1;
+        s.setId(index);
+        scopeNames.add(s.getScopeName() + " Parent Is " + s.getParent().getScopeName());
+
+        PaddingPropertyDeclaration paddingProp = visitPaddingPropertyDeclaration(ctx.paddingPropertyDeclaration());
+        ChildPropertyDeclaration childProp = visitChildPropertyDeclaration(ctx.childPropertyDeclaration());
+
+
+        scopes.pop();
+        index = index - 1;
+
+
         return new PaddingDeclaration(
                 ctx,
-                visitPaddingPropertyDeclaration(ctx.paddingPropertyDeclaration()),
-                visitChildPropertyDeclaration(ctx.childPropertyDeclaration())
+                paddingProp,
+                childProp
         );
     }
 
@@ -258,7 +341,19 @@ public class WidgetsVisitor extends dart_parseBaseVisitorChild {
 
     @Override
     public ScaffoldDeclaration visitScaffoldDeclaration(dart_parse.ScaffoldDeclarationContext ctx) {
-        return new ScaffoldDeclaration(ctx, visitBodyPropertyDeclaration(ctx.bodyPropertyDeclaration()));
+        Scope s = new Scope();
+        s.setScopeName("Scaffold Scope  (" + index + ")");
+        s.setParent(scopes.get(index - 1));
+        scopes.push(s);
+        index = index + 1;
+        s.setId(index);
+        scopeNames.add(s.getScopeName() + " Parent Is " + s.getParent().getScopeName());
+
+        BodyPropertyDeclaration body = visitBodyPropertyDeclaration(ctx.bodyPropertyDeclaration());
+        scopes.pop();
+        index = index - 1;
+
+        return new ScaffoldDeclaration(ctx, body);
     }
 
     @Override
@@ -270,6 +365,14 @@ public class WidgetsVisitor extends dart_parseBaseVisitorChild {
     @Override
     public ContainerDeclaration visitConatinerDeclaration(dart_parse.ConatinerDeclarationContext ctx) {
 
+
+        Scope s = new Scope();
+        s.setScopeName("Container Scope (" + index + ")");
+        s.setParent(scopes.get(index - 1));
+        scopes.push(s);
+        index = index + 1;
+        s.setId(index);
+        scopeNames.add(s.getScopeName() + " Parent Is " + s.getParent().getScopeName());
 
         String type = NodeType.CONTAINER.toString();
 
@@ -312,6 +415,12 @@ public class WidgetsVisitor extends dart_parseBaseVisitorChild {
 
 
         }
+
+
+        scopes.pop();
+        index = index - 1;
+
+
         return containerDeclaration;
     }
 
@@ -350,6 +459,14 @@ public class WidgetsVisitor extends dart_parseBaseVisitorChild {
     @Override
     public RowColumnDeclaration visitRowColumnDeclaration(dart_parse.RowColumnDeclarationContext ctx) {
 
+        Scope s = new Scope();
+        s.setScopeName("RowColumn Scope (" + index + ")");
+        s.setParent(scopes.get(index - 1));
+        scopes.push(s);
+        index = index + 1;
+        s.setId(index);
+        scopeNames.add(s.getScopeName() + " Parent Is " + s.getParent().getScopeName());
+
         int numOfChildren = 0;
         String name = "";
 
@@ -365,8 +482,11 @@ public class WidgetsVisitor extends dart_parseBaseVisitorChild {
                 }
             }
         }
+        ChildrenPropertyDeclaration propertyDeclaration = visitChildrenPropertyDeclaration(ctx.childrenPropertyDeclaration());
 
-        return new RowColumnDeclaration(ctx, name, numOfChildren, visitChildrenPropertyDeclaration(ctx.childrenPropertyDeclaration()));
+        scopes.pop();
+        index = index - 1;
+        return new RowColumnDeclaration(ctx, name, numOfChildren,propertyDeclaration );
     }
 
     @Override

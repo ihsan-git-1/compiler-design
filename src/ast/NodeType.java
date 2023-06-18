@@ -47,7 +47,9 @@ public enum NodeType {
     CONTAINER("container"),
     ROW("row"),
     COLUMN("column"),
-    LIST("list");
+    LIST("list"),
+    HEIGHT("height"),
+    WIDTH("width");
     private final String text;
 
     NodeType(final String text) {
