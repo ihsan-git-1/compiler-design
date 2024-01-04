@@ -1,0 +1,23 @@
+
+*********** AST ************
+
+Line : (1) Top Tree Declaration  Child Count =  1 Type = Top Tree
+Line : (1) Class Declaration Name is test parent AllClassesDeclaration Child Count =  8 Type = class
+Line : (2) Dart Variable Declaration:  parent: ClassDeclaration Child Count =  1 Type = object
+Line : (2) Integer Declaration Line: Number of declarations on this line: 1 Number of assignments on this line: 1 parent: Variable Child Count =  2 Type = variable declaration line (type integer)
+ Line : (3) Dart Variable Declaration:  parent: ClassDeclaration Child Count =  1 Type = object
+Line : (3) Double Declaration Line: Number of declarations on this line: 1Number of assignments on this line: 1 parent: Variable Child Count =  2 Type = variable declaration line (type double)
+ Line : (5) Dart Variable Declaration:  parent: ClassDeclaration Child Count =  1 Type = object
+Line : (5) Double Declaration Line: Number of declarations on this line: 1Number of assignments on this line: 1 parent: Variable Child Count =  2 Type = variable declaration line (type double)
+ Line : (6) Dart Variable Declaration:  parent: ClassDeclaration Child Count =  1 Type = object
+Line : (6) Double Declaration Line: Number of declarations on this line: 1Number of assignments on this line: 1 parent: Variable Child Count =  2 Type = variable declaration line (type double) ,  
+
+*********** SYMBOL TABLE ************
+
+Global Scope (0)
+Class Scope (1) Parent Is Global Scope (0)
+
+Identifier x, Type int, Value : 2 , Scope Class Scope (1)
+Identifier y, Type double, Value : 3.8 , Scope Class Scope (1)
+Identifier z, Type double, Value : 7.6 , Scope Class Scope (1)
+Identifier w, Type double, Value : 9.6 , Scope Class Scope (1)

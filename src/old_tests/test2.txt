@@ -1,0 +1,22 @@
+
+class test {
+
+    void main(){
+
+        if(true){
+            String a = "String";
+        }
+    }
+    void a(){
+
+        while(true){
+            int y = 1;
+        }
+    }
+
+    void l(){
+
+    }
+
+
+ }

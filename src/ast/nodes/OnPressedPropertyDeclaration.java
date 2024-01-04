@@ -1,26 +1,39 @@
 package ast.nodes;
 
+import ast.NodeType;
+import gen.dart_parse;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class OnPressedPropertyDeclaration extends Node{
 
 
-    List<StatementDeclaration> statementDeclaration;
+    List<Statement> statement;
 
-    public List<StatementDeclaration> getStatementDeclaration() {
-        return statementDeclaration;
+    public List<Statement> getStatement() {
+        return statement;
     }
-    public OnPressedPropertyDeclaration(int line,String parent,String type,int childCount){
-        super(line,parent,type,childCount);
-        statementDeclaration = new ArrayList<>();
-    };
+    public OnPressedPropertyDeclaration(dart_parse.OnPressedPropertyDeclarationContext ctx){
+        super(ctx);
+        statement = new ArrayList<>();
+    }
 
     @Override
     public String toString() {
-        return "\nonPressed "+" line: "+getLine() + " parent "+getParent()+
-                " Child Count =  "+getChildCount()+" Type = "+getType()+"\n"
-                +statementDeclaration
+        return getLineString()+"  onPressed "+ " parent "+getParent()+
+                " Child Count =  "+getChildCount()+" Type = "+ NodeType.PROPERTY+"\n"
+                + statement
                 ;
+    }
+
+    @Override
+    public String generate_code() {
+        StringBuilder builder = new StringBuilder();
+        for(Statement child : statement){
+            builder.append(child.generate_code());
+        }
+        return builder.toString();
+
     }
 }

@@ -1,33 +1,41 @@
 package ast.nodes;
 
+import ast.NodeType;
+import gen.dart_parse;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class BuildMethodDeclaration extends Node{
 	BuildContextDeclaration context;
-	List<DartVariablesDeclaration> dartVaraibles;
+	List<DartDeclaration> dartDeclaration;
 	WidgetsDeclaration widgets;
 	
-	public BuildMethodDeclaration(WidgetsDeclaration widgets,BuildContextDeclaration context,int line ,String parent,String type,int childCount) {
-		super(line,parent, type, childCount);
-		dartVaraibles = new ArrayList<>();
+	public BuildMethodDeclaration(WidgetsDeclaration widgets, BuildContextDeclaration context, dart_parse.BuildMethodDeclarationContext ctx) {
+		super(ctx);
+		dartDeclaration = new ArrayList<>();
 		this.widgets = widgets;
 		this.context = context;
 	}
 
-	public List<DartVariablesDeclaration> getDartVariables() {
-		return dartVaraibles;
+	public List<DartDeclaration> getDartDeclarations() {
+		return dartDeclaration;
 	}
 
 
 	@Override
 	public String toString() {
-		return "Build Method Declaration line: "+ getLine() + " parent "+ getParent()
-				+" Child Count =  "+getChildCount()+" Type = "+getType()+"\n"
+		return getLineString()+"Build Method Declaration " + " parent "+ getParent()
+				+" Child Count =  "+getChildCount()+" Type = "+ NodeType.FUNCTION+"\n"
 				+context
-				+dartVaraibles+"\n"
+				+ dartDeclaration +"\n"
 				+widgets+"\n"
 
 				;
+	}
+
+	public String generate_code() {
+
+		return widgets.generate_code();
 	}
 }

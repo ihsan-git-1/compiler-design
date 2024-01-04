@@ -1,4 +1,5 @@
 /out/
-/.idea
 /src/.antlr/
 /.idea/
+compiler-1.iml
+example.dart

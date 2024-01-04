@@ -20,6 +20,7 @@ ELSE:
 
 WHILE:
 'while';
+
 // brackets
 CRLY_BRKT_OP:
 '{'
@@ -45,22 +46,36 @@ SQR_BRKT_OP:
 SQR_BRKT_CL:
 ']'
     ;
+
 // operators
+
 SEMICOLON:';';
 COMMA:',';
 COLON:':';
+DOT: '.';
+
+// binary operators
 PLUS: '+';
 MINUS: '-';
 MULTY:'*';
 DIVIDE:'/';
+MOD: '%';
 EQUAL: '==';
 ASSIGN: '=';
 NOTEQUAL: '!=';
-GRATEREQUAL: '<=';
-LESSEQUAL: '>=';
-DOT: '.';
+GTE: '>=';
+LTE: '<=';
 
+// logical operators
+AND:'&&' ;
+OR:'||';
 
+// unary operators
+INC: '++';
+DEC: '--';
+NOT: '!';
+
+NULL: 'null';
 
 // dart variabels data types
 INT :
@@ -209,17 +224,28 @@ EXTENDS WS* 'StatefulWidget'
 STATELESS:
 EXTENDS WS* 'StatelessWidget'
     ;
-
+GET:
+'Get.to'
+    ;
+ARGUMENTS:
+'arguments'
+    ;
 TRUE:
 'true'
-;
+    ;
 FALSE:
 'false'
 ;
 
+
 NAME :
-[a-zA-Z-+]+
+[a-zA-Z]+
     ;
+
+
+
+
+
 NUMBERDOUBLE : [0-9]+ '.' [0-9]+ ;
 NUMBER:
 [0-9][0-9]*
@@ -234,3 +260,4 @@ PRIVATE
  : '_' ~[\r\n]* -> skip
  ;
 WS : [ \t\n\r]+ -> skip ;
+

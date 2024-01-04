@@ -1,6 +1,8 @@
 package ast.variables;
 
+import ast.NodeType;
 import ast.nodes.Node;
+import gen.dart_parse;
 
 public class MultiplyDoubleExpression extends Node {
 	NumberDoubleClass value;
@@ -13,14 +15,14 @@ public class MultiplyDoubleExpression extends Node {
 		this.value = value;
 	}
 
-	public MultiplyDoubleExpression(NumberDoubleClass value, int line, String parent,String type,int childCount) {
-		super(line, parent, type, childCount);
+	public MultiplyDoubleExpression(dart_parse.MultiplyDoubleExpressionContext ctx, NumberDoubleClass value) {
+		super(ctx);
 		this.value = value;
 	}
 
 	@Override
 	public String toString() {
-		return "Multiply Double Expression: "+value +" line: " + getLine() + "parent "+ getParent()
-				+" Child Count =  "+getChildCount()+" Type = "+getType()+"\n";
+		return getLineString()+"Multiply Double Expression: "+value + "parent "+ getParent()
+				+" Child Count =  "+getChildCount()+" Type = "+ NodeType.MULTIPLYDOUBLEEXPRESSION+"\n";
 	}
 }

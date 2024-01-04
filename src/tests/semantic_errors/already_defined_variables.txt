@@ -1,0 +1,6 @@
+class test {
+    int a(){
+        int b= 5;
+        double b=5.6;
+    }
+}

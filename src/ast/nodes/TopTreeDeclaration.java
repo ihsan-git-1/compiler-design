@@ -1,28 +1,29 @@
 package ast.nodes;
-
+import ast.AppConstant;
+import gen.dart_parse;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TopTreeDeclaration extends Node{
-	List<AllClassesDeclarationAbstractChild> topTreeChildrenList;
+	List<AllClassesDeclarationAbstractChild> topTreeClassesChildrenList;
+	List<DartDeclaration> topTreeDartDeclarationChildrenList;
 
 
-	public List<AllClassesDeclarationAbstractChild> getTopTreeChildrenList() {
+	public List<AllClassesDeclarationAbstractChild> getTopTreeClassesChildrenList() {
 
-		return topTreeChildrenList;
+		return topTreeClassesChildrenList;
 	}
 
-	public void setTopTreeChildrenList(List<AllClassesDeclarationAbstractChild> topTreeChildrenList) {
-		this.topTreeChildrenList = topTreeChildrenList;
+	public List<DartDeclaration> getTopTreeDartDeclarationChildrenList() {
+
+		return topTreeDartDeclarationChildrenList;
 	}
 
-	public TopTreeDeclaration(int line,String parent,String type,int childCount) {
-		super(line,parent,type,childCount);
-		this.topTreeChildrenList = new ArrayList<>();
-	}
-	
-	public void addChildren(AllClassesDeclarationAbstractChild c) {
-		topTreeChildrenList.add(c);
+
+	public TopTreeDeclaration(dart_parse.TopTreeDeclarationContext ctx) {
+		super(ctx);
+		this.topTreeClassesChildrenList = new ArrayList<>();
+		this.topTreeDartDeclarationChildrenList = new ArrayList<>();
 	}
 
 
@@ -30,13 +31,45 @@ public class TopTreeDeclaration extends Node{
 	@Override
 	public String toString() {
 
-		return "Top Tree Declaration line: "+ getLine() +" Child Count =  "+getChildCount()+" Type = "+getType()+ "\n"+
-				topTreeChildrenList.toString()
+		return getLineString() +"Top Tree Declaration "+" Child Count =  "+getChildCount()+" Type = "+"Top Tree"+ "\n"+
+				topTreeClassesChildrenList.toString()
 						.replace(",", "")
 						.replace("[", "")
 						.replace("]", "")
-						.trim()
+						.trim() + " ,  "+
+				topTreeDartDeclarationChildrenList.toString()
+					.replace(",", "")
+					.replace("[", "")
+					.replace("]", "")
+					.trim()
 
 				;
 	}
+
+	@Override
+	public String generate_code() {
+		StringBuilder builder = new StringBuilder();
+
+		builder.append(AppConstant.getHtmlHeader());
+
+		for(AllClassesDeclarationAbstractChild child : topTreeClassesChildrenList){
+			builder.append(child.generate_code());
+		}
+
+		for(DartDeclaration child : topTreeDartDeclarationChildrenList){
+			builder.append(child.generate_code());
+		}
+
+		builder.append(AppConstant.getHtmlFooter());
+
+		builder.append(AppConstant.getExtraFiles());
+
+		AppConstant.emptyExtraFiles();
+		builder.append("</html>\n");
+
+		return builder.toString();
+
+	}
+
+
 }

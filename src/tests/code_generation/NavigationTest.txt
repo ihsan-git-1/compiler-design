@@ -1,0 +1,149 @@
+class MyHomePage extends StatefulWidget {
+  State<MyHomePage> createState() => MyHomePageState();
+}
+class MyHomePageState extends State<MyHomePage> {
+
+  Widget build(BuildContext context) {
+  return Scaffold(
+  body: Padding(
+        padding: EdgeInsets.all(8),
+        child: Row(
+            children: [
+              Expanded(
+                child: Column(
+                  children: [
+                    Container(
+                      height: 300,
+                      child: Column(
+                        children:  [
+                          Text("Nature Image"),
+                          Expanded(child: Image.network("../../images/test_image.jpg"))
+                        ],
+                      ),
+                    )],
+                ),
+              ),
+              Expanded(
+                child: Column(
+                  children: [
+                    Expanded(
+                      child:Container(
+                        height: 200,
+                         width: 200,
+                        child: MaterialButton(
+                        onPressed:(){
+                            Get.to(Second,arguments: ["../../images/test_image2.jpg", "This is sunset image description"]);
+                         },
+                          child: Column(
+                            children:  [
+                              Text("Sunset Image"),
+                              Expanded(child: Image.network("../../images/test_image2.jpg"))
+                            ],
+                          ),
+                        ),
+                      ) ,
+                    ) ,
+                    Expanded(
+                      child:Container(
+                        width: 200,
+
+                        height: 200,
+                        child: MaterialButton(
+                        onPressed:(){
+                             Get.to(Second,arguments: ["../../images/test_image3.jpg", "image3 desc"]);
+
+                        },
+
+                          child: Column(
+                            children:  [
+                              Text("Bird Image"),
+                              Expanded(child: Image.network("../../images/test_image3.jpg"))
+                            ],
+                          ),
+                        ),
+                      ) ,
+                    ) ,
+                    Expanded(
+                      child:Container(
+                        width: 200,
+
+                        height: 200,
+                        child: MaterialButton(
+                       onPressed:(){
+                            Get.to(Second,arguments: ["../../images/test_image.jpg", "image desc"]);
+
+                        },
+                          child: Column(
+                            children:  [
+                              Text("River Image"),
+                              Expanded(child: Image.network("../../images/test_image.jpg"))
+                            ],
+                          ),
+                        ),
+                      ) ,
+                    ) ,
+                    Expanded(
+                      child:Container(
+                        width: 200,
+
+                        height: 200,
+                        child: MaterialButton(
+                        onPressed:(){
+                            Get.to(Second,arguments: ["../../images/test_image2.jpg", "image2 desc"]);
+
+                                                },
+
+                          child: Column(
+                            children:  [
+                              Text("Night Image"),
+                              Expanded(child: Image.network("../../images/test_image2.jpg"))
+                            ],
+                          ),
+                        ),
+                      ) ,
+                    ) ,
+                  ],
+                ),
+              ),
+            ],
+          ),
+      ),
+  );
+  }
+
+}
+
+
+
+class Second extends StatefulWidget {
+  State<Second> createState() => SecondState();
+}
+class SecondState extends State<Second> {
+
+  Widget build(BuildContext context) {
+  return Scaffold(
+  body: Padding(
+        padding: EdgeInsets.all(8),
+        child: Row(
+            children: [
+              Expanded(
+                child: Column(
+                  children: [
+                    Container(
+                      height: 300,
+                      child: Column(
+                        children:  [
+                          Text("Hi"),
+                          Expanded(child: Image.network("../../images/test_image.jpg"))
+                        ],
+                      ),
+                    )],
+                ),
+              ),
+            ],
+          ),
+      ),
+  );
+  }
+
+}

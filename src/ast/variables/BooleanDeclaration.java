@@ -1,25 +1,19 @@
 package ast.variables;
 
-public class BooleanDeclaration extends VariableDeclaration{
+
+import ast.NodeType;
+import gen.dart_parse;
+
+public class BooleanDeclaration extends Identifier implements assignment {
 	String name;
-	public BooleanValueClass booleanValueClass;
-	
-	public BooleanDeclaration(String name, int line, String parent,String type,int childCount) {
-		super(line , parent,type,childCount);
+	public BooleanDeclaration(dart_parse.BooleanDeclarationContext ctx, String name) {
+		super(ctx);
 		this.name=name;
-	}
-	
-	public BooleanDeclaration(String name, BooleanValueClass booleanValueClass, int line, String parent,String type,int childCount) {
-		super(line ,parent, type, childCount);
-		this.name=name;
-		this.booleanValueClass=booleanValueClass;
 	}
 
 	@Override
 	public String toString() {
-		return "Boolean Declaration: " +name+" line: "+ getLine() + " parent: "+ getParent()
-				+" Child Count =  "+getChildCount()+" Type = "+getType()+"\n"
-				+ booleanValueClass
-				;
+		return getLineString()+"Boolean Declaration: " +name+ " parent: "+ getParent()
+				+" Child Count =  "+getChildCount()+" Type = "+ NodeType.BOOLEANDECLARATION;
 	}
 }

@@ -1,0 +1,7 @@
+class test {
+    int x=2;
+
+    int z = x+t;
+
+
+  }

@@ -1,21 +1,27 @@
 package ast.nodes;
 
-public class WhileStatement extends Node  implements StatementDeclarationAbstractChild{
-    BooleanOperation booleanOperation;
+import ast.NodeType;
+import ast.variables.ConditionExpr;
+import gen.dart_parse;
+
+public class WhileStatement extends Node  implements StatementAbstractChild {
+    ConditionExpr conditionExpr;
     Block block;
 
-    public WhileStatement(int line, String parent,String type,int childCount ,BooleanOperation booleanOperation, Block block) {
-        super(line, parent, type, childCount);
-        this.booleanOperation = booleanOperation;
+    public WhileStatement(dart_parse.WhileStatementContext ctx, ConditionExpr conditionExpr, Block block) {
+
+        super(ctx);
+
+        this.conditionExpr = conditionExpr;
         this.block = block;
     }
 
-    public BooleanOperation getBooleanOperation() {
-        return booleanOperation;
+    public ConditionExpr getConditionExpr() {
+        return conditionExpr;
     }
 
-    public void setBooleanOperation(BooleanOperation booleanOperation) {
-        this.booleanOperation = booleanOperation;
+    public void setConditionExpr(ConditionExpr conditionExpr) {
+        this.conditionExpr = conditionExpr;
     }
 
     public Block getBlock() {
@@ -28,7 +34,7 @@ public class WhileStatement extends Node  implements StatementDeclarationAbstrac
 
     @Override
     public String toString() {
-        return "WhileStatement: " + "condition: " + booleanOperation + ", block: " + block + ", line: " + line + ", parent: '" + parent
-                +" Child Count:  "+getChildCount()+" Type:  "+getType();
+        return getLineString()+"WhileStatement: " + "condition: " + conditionExpr + ", block: " + block + ", parent: '" + parent
+                +" Child Count:  "+getChildCount()+" Type:  "+ NodeType.CONDITION;
     }
 }

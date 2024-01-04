@@ -1,39 +1,31 @@
 package ast.nodes;
 
+import ast.NodeType;
+import gen.dart_parse;
+
 import java.util.List;
 import java.util.ArrayList;
 
 public class ClassDeclaration extends AllClassesDeclarationAbstractChild {
-	List<DartVariablesDeclaration> dartVariablesDeclarationList;
+	List<DartDeclaration> dartDeclarationList;
 	String name;
 
-	public List<DartVariablesDeclaration> getDartVariablesDeclarationList() {
-		return dartVariablesDeclarationList;
+	public List<DartDeclaration> getDartDeclarationList() {
+		return dartDeclarationList;
 	}
 
-	public void setDartVariablesDeclarationList(List<DartVariablesDeclaration> dartVariablesDeclarationList) {
-		this.dartVariablesDeclarationList = dartVariablesDeclarationList;
-	}
-
-	public ClassDeclaration(int line,String parent,String type,int childCount) {
-		super(line,parent, type, childCount);
-		this.dartVariablesDeclarationList =new ArrayList<>();
-	}
-	public  ClassDeclaration(String name,int line,String parent,String type,int childCount){
-		super(line,parent, type, childCount);
+	public ClassDeclaration(String name, dart_parse.ClassDeclarationContext ctx){
+		super(ctx);
 		this.name = name;
-		this.dartVariablesDeclarationList =new ArrayList<>();
-	}
-	
-	public void addChildren(DartVariablesDeclaration variable) {
-		dartVariablesDeclarationList.add(variable);
+		this.dartDeclarationList =new ArrayList<>();
+
 	}
 	
 	@Override
 	public String toString() {
-		return  "Class Declaration Name is "+name+", line: "+getLine()+", parent "+getParent()
-				+", Child Count =  "+getChildCount()+", Type = "+getType()+"\n"+
-				dartVariablesDeclarationList
+		return  getLineString()+"Class Declaration Name is "+name+", parent "+getParent()
+				+", Child Count =  "+getChildCount()+", Type = "+ NodeType.CLASS +"\n"+
+				dartDeclarationList
 				;
 	}
 }

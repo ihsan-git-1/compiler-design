@@ -1,0 +1,10 @@
+class test {
+    void main(){
+        if(true){
+        int a =1,b=2;
+            while(a<b){
+                a=a+1;
+            }
+        }
+    }
+ }

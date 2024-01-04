@@ -1,4 +1,4 @@
-// Generated from java-escape by ANTLR 4.11.1
+// Generated from dart_parse.g4 by ANTLR 4.10.1
 package gen;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
@@ -128,15 +128,25 @@ public interface dart_parseListener extends ParseTreeListener {
 	 */
 	void exitBuildMethodDeclaration(dart_parse.BuildMethodDeclarationContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link dart_parse#dartVariabelsDeclaration}.
+	 * Enter a parse tree produced by {@link dart_parse#dartDeclaration}.
 	 * @param ctx the parse tree
 	 */
-	void enterDartVariabelsDeclaration(dart_parse.DartVariabelsDeclarationContext ctx);
+	void enterDartDeclaration(dart_parse.DartDeclarationContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link dart_parse#dartVariabelsDeclaration}.
+	 * Exit a parse tree produced by {@link dart_parse#dartDeclaration}.
 	 * @param ctx the parse tree
 	 */
-	void exitDartVariabelsDeclaration(dart_parse.DartVariabelsDeclarationContext ctx);
+	void exitDartDeclaration(dart_parse.DartDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#navigation}.
+	 * @param ctx the parse tree
+	 */
+	void enterNavigation(dart_parse.NavigationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#navigation}.
+	 * @param ctx the parse tree
+	 */
+	void exitNavigation(dart_parse.NavigationContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link dart_parse#variable}.
 	 * @param ctx the parse tree
@@ -148,6 +158,16 @@ public interface dart_parseListener extends ParseTreeListener {
 	 */
 	void exitVariable(dart_parse.VariableContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link dart_parse#integerDeclarationLine}.
+	 * @param ctx the parse tree
+	 */
+	void enterIntegerDeclarationLine(dart_parse.IntegerDeclarationLineContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#integerDeclarationLine}.
+	 * @param ctx the parse tree
+	 */
+	void exitIntegerDeclarationLine(dart_parse.IntegerDeclarationLineContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link dart_parse#integerDeclaration}.
 	 * @param ctx the parse tree
 	 */
@@ -157,6 +177,36 @@ public interface dart_parseListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitIntegerDeclaration(dart_parse.IntegerDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#integerDeclarationAssignment}.
+	 * @param ctx the parse tree
+	 */
+	void enterIntegerDeclarationAssignment(dart_parse.IntegerDeclarationAssignmentContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#integerDeclarationAssignment}.
+	 * @param ctx the parse tree
+	 */
+	void exitIntegerDeclarationAssignment(dart_parse.IntegerDeclarationAssignmentContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#integerAssignment}.
+	 * @param ctx the parse tree
+	 */
+	void enterIntegerAssignment(dart_parse.IntegerAssignmentContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#integerAssignment}.
+	 * @param ctx the parse tree
+	 */
+	void exitIntegerAssignment(dart_parse.IntegerAssignmentContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#doubleDeclarationLine}.
+	 * @param ctx the parse tree
+	 */
+	void enterDoubleDeclarationLine(dart_parse.DoubleDeclarationLineContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#doubleDeclarationLine}.
+	 * @param ctx the parse tree
+	 */
+	void exitDoubleDeclarationLine(dart_parse.DoubleDeclarationLineContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link dart_parse#doubleDeclaration}.
 	 * @param ctx the parse tree
@@ -168,6 +218,36 @@ public interface dart_parseListener extends ParseTreeListener {
 	 */
 	void exitDoubleDeclaration(dart_parse.DoubleDeclarationContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link dart_parse#doubleDeclarationAssignment}.
+	 * @param ctx the parse tree
+	 */
+	void enterDoubleDeclarationAssignment(dart_parse.DoubleDeclarationAssignmentContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#doubleDeclarationAssignment}.
+	 * @param ctx the parse tree
+	 */
+	void exitDoubleDeclarationAssignment(dart_parse.DoubleDeclarationAssignmentContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#doubleAssignment}.
+	 * @param ctx the parse tree
+	 */
+	void enterDoubleAssignment(dart_parse.DoubleAssignmentContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#doubleAssignment}.
+	 * @param ctx the parse tree
+	 */
+	void exitDoubleAssignment(dart_parse.DoubleAssignmentContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#stringDeclarationLine}.
+	 * @param ctx the parse tree
+	 */
+	void enterStringDeclarationLine(dart_parse.StringDeclarationLineContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#stringDeclarationLine}.
+	 * @param ctx the parse tree
+	 */
+	void exitStringDeclarationLine(dart_parse.StringDeclarationLineContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link dart_parse#stringDeclaration}.
 	 * @param ctx the parse tree
 	 */
@@ -178,15 +258,65 @@ public interface dart_parseListener extends ParseTreeListener {
 	 */
 	void exitStringDeclaration(dart_parse.StringDeclarationContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link dart_parse#boolDeclaration}.
+	 * Enter a parse tree produced by {@link dart_parse#stringDeclarationAssignment}.
 	 * @param ctx the parse tree
 	 */
-	void enterBoolDeclaration(dart_parse.BoolDeclarationContext ctx);
+	void enterStringDeclarationAssignment(dart_parse.StringDeclarationAssignmentContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link dart_parse#boolDeclaration}.
+	 * Exit a parse tree produced by {@link dart_parse#stringDeclarationAssignment}.
 	 * @param ctx the parse tree
 	 */
-	void exitBoolDeclaration(dart_parse.BoolDeclarationContext ctx);
+	void exitStringDeclarationAssignment(dart_parse.StringDeclarationAssignmentContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#stringAssignment}.
+	 * @param ctx the parse tree
+	 */
+	void enterStringAssignment(dart_parse.StringAssignmentContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#stringAssignment}.
+	 * @param ctx the parse tree
+	 */
+	void exitStringAssignment(dart_parse.StringAssignmentContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#booleanDeclarationLine}.
+	 * @param ctx the parse tree
+	 */
+	void enterBooleanDeclarationLine(dart_parse.BooleanDeclarationLineContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#booleanDeclarationLine}.
+	 * @param ctx the parse tree
+	 */
+	void exitBooleanDeclarationLine(dart_parse.BooleanDeclarationLineContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#booleanDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterBooleanDeclaration(dart_parse.BooleanDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#booleanDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitBooleanDeclaration(dart_parse.BooleanDeclarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#booleanDeclarationAssignment}.
+	 * @param ctx the parse tree
+	 */
+	void enterBooleanDeclarationAssignment(dart_parse.BooleanDeclarationAssignmentContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#booleanDeclarationAssignment}.
+	 * @param ctx the parse tree
+	 */
+	void exitBooleanDeclarationAssignment(dart_parse.BooleanDeclarationAssignmentContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#booleanAssignment}.
+	 * @param ctx the parse tree
+	 */
+	void enterBooleanAssignment(dart_parse.BooleanAssignmentContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#booleanAssignment}.
+	 * @param ctx the parse tree
+	 */
+	void exitBooleanAssignment(dart_parse.BooleanAssignmentContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link dart_parse#addExpression}.
 	 * @param ctx the parse tree
@@ -558,6 +688,26 @@ public interface dart_parseListener extends ParseTreeListener {
 	 */
 	void exitBlock(dart_parse.BlockContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link dart_parse#functionBody}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunctionBody(dart_parse.FunctionBodyContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#functionBody}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunctionBody(dart_parse.FunctionBodyContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#returnStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterReturnStatement(dart_parse.ReturnStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#returnStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitReturnStatement(dart_parse.ReturnStatementContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link dart_parse#function}.
 	 * @param ctx the parse tree
 	 */
@@ -588,6 +738,16 @@ public interface dart_parseListener extends ParseTreeListener {
 	 */
 	void exitParameters(dart_parse.ParametersContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link dart_parse#assignment}.
+	 * @param ctx the parse tree
+	 */
+	void enterAssignment(dart_parse.AssignmentContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#assignment}.
+	 * @param ctx the parse tree
+	 */
+	void exitAssignment(dart_parse.AssignmentContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link dart_parse#statement}.
 	 * @param ctx the parse tree
 	 */
@@ -607,4 +767,154 @@ public interface dart_parseListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitForStatement(dart_parse.ForStatementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#variableAssignment}.
+	 * @param ctx the parse tree
+	 */
+	void enterVariableAssignment(dart_parse.VariableAssignmentContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#variableAssignment}.
+	 * @param ctx the parse tree
+	 */
+	void exitVariableAssignment(dart_parse.VariableAssignmentContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#name}.
+	 * @param ctx the parse tree
+	 */
+	void enterName(dart_parse.NameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#name}.
+	 * @param ctx the parse tree
+	 */
+	void exitName(dart_parse.NameContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#conditionExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterConditionExpr(dart_parse.ConditionExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#conditionExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitConditionExpr(dart_parse.ConditionExprContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#andExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterAndExpr(dart_parse.AndExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#andExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitAndExpr(dart_parse.AndExprContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#binaryExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterBinaryExpr(dart_parse.BinaryExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#binaryExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitBinaryExpr(dart_parse.BinaryExprContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#term}.
+	 * @param ctx the parse tree
+	 */
+	void enterTerm(dart_parse.TermContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#term}.
+	 * @param ctx the parse tree
+	 */
+	void exitTerm(dart_parse.TermContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#numericExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterNumericExpr(dart_parse.NumericExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#numericExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitNumericExpr(dart_parse.NumericExprContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#numericTerm}.
+	 * @param ctx the parse tree
+	 */
+	void enterNumericTerm(dart_parse.NumericTermContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#numericTerm}.
+	 * @param ctx the parse tree
+	 */
+	void exitNumericTerm(dart_parse.NumericTermContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#prefixUnaryOperator}.
+	 * @param ctx the parse tree
+	 */
+	void enterPrefixUnaryOperator(dart_parse.PrefixUnaryOperatorContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#prefixUnaryOperator}.
+	 * @param ctx the parse tree
+	 */
+	void exitPrefixUnaryOperator(dart_parse.PrefixUnaryOperatorContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#postfixUnaryOperator}.
+	 * @param ctx the parse tree
+	 */
+	void enterPostfixUnaryOperator(dart_parse.PostfixUnaryOperatorContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#postfixUnaryOperator}.
+	 * @param ctx the parse tree
+	 */
+	void exitPostfixUnaryOperator(dart_parse.PostfixUnaryOperatorContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpression(dart_parse.ExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpression(dart_parse.ExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#literal}.
+	 * @param ctx the parse tree
+	 */
+	void enterLiteral(dart_parse.LiteralContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#literal}.
+	 * @param ctx the parse tree
+	 */
+	void exitLiteral(dart_parse.LiteralContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#identifier}.
+	 * @param ctx the parse tree
+	 */
+	void enterIdentifier(dart_parse.IdentifierContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#identifier}.
+	 * @param ctx the parse tree
+	 */
+	void exitIdentifier(dart_parse.IdentifierContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#functionCall}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunctionCall(dart_parse.FunctionCallContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#functionCall}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunctionCall(dart_parse.FunctionCallContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link dart_parse#arguments}.
+	 * @param ctx the parse tree
+	 */
+	void enterArguments(dart_parse.ArgumentsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link dart_parse#arguments}.
+	 * @param ctx the parse tree
+	 */
+	void exitArguments(dart_parse.ArgumentsContext ctx);
 }

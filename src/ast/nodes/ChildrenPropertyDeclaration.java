@@ -1,13 +1,16 @@
 package ast.nodes;
 
+import ast.NodeType;
+import gen.dart_parse;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class ChildrenPropertyDeclaration extends Node{
 	List<WidgetsDeclaration> widgetsDeclarationList;
 	
-	public ChildrenPropertyDeclaration(int line ,String parent,String type,int childCount) {
-		super(line,parent, type, childCount);
+	public ChildrenPropertyDeclaration(dart_parse.ChildrenPropertyDeclarationContext ctx) {
+		super(ctx);
 		this.widgetsDeclarationList = new ArrayList<>();
 	}
 	
@@ -25,9 +28,18 @@ public class ChildrenPropertyDeclaration extends Node{
 
 	@Override
 	public String toString() {
-		return "Children Property Declaration line: "+getLine() + " parent "+getParent()
-				+" Child Count =  "+getChildCount()+" Type = "+getType()+"\n"
+		return getLineString()+"Children Property Declaration  " + " parent "+getParent()
+				+" Child Count =  "+getChildCount()+" Type = "+ NodeType.PROPERTY+"\n"
 				+widgetsDeclarationList
 				;
+	}
+
+	public String generate_code() {
+		StringBuilder builder = new StringBuilder();
+		for(WidgetsDeclaration child : widgetsDeclarationList){
+			builder.append(child.generate_code());
+		}
+		return builder.toString();
+
 	}
 }

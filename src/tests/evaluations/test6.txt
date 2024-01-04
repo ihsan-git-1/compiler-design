@@ -1,0 +1,10 @@
+class test {
+    int x=2;
+    int y=3;
+
+    int z = 2+x*y;
+    int w = x/2*6;
+    int t = y*9+4*x-5;
+    int r = y*y+x+x-1*2/4+4;
+
+  }

@@ -4,17 +4,17 @@ import java.util.List;
 
 public class Parameter {
 
-    List<DartVariablesDeclaration> parameter;
+    List<DartDeclaration> parameter;
 
-    public Parameter(List<DartVariablesDeclaration> parameter) {
+    public Parameter(List<DartDeclaration> parameter) {
         this.parameter = parameter;
     }
 
-    public List<DartVariablesDeclaration> getParameter() {
+    public List<DartDeclaration> getParameter() {
         return parameter;
     }
 
-    public void setParameter(List<DartVariablesDeclaration> parameter) {
+    public void setParameter(List<DartDeclaration> parameter) {
         this.parameter = parameter;
     }
 

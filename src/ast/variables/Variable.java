@@ -1,12 +1,13 @@
 package ast.variables;
 
-import ast.nodes.DartVariablesDeclarationAbstractChild;
+import ast.nodes.DartDeclarationAbstractChild;
+import gen.dart_parse;
 
-public class Variable extends DartVariablesDeclarationAbstractChild {
+public class Variable extends DartDeclarationAbstractChild {
     VariableDeclaration declaration;
 
-    public Variable(VariableDeclaration declaration, int line, String parent,String type,int childCount) {
-        super(line, parent, type, childCount);
+    public Variable(dart_parse.VariableContext ctx, VariableDeclaration declaration) {
+        super(ctx);
         this.declaration = declaration;
     }
 

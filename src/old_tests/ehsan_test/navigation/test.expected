@@ -1,0 +1,11 @@
+
+*********** AST ************
+
+Line : (1) Top Tree Declaration  Child Count =  1 Type = Top Tree
+Line : (1) Class Declaration Name is a parent AllClassesDeclaration Child Count =  4 Type = class ,  
+
+*********** SYMBOL TABLE ************
+
+Global Scope (0)
+Class Scope (1) Parent Is Global Scope (0)
+

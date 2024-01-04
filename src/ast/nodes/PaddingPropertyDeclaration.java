@@ -1,18 +1,20 @@
 package ast.nodes;
 
+import ast.NodeType;
+import gen.dart_parse;
+
 public class PaddingPropertyDeclaration extends Node{
 	EdgeInsistAll edgeInsistAll;
 	
-	public PaddingPropertyDeclaration(EdgeInsistAll edgeInsistAll,int line ,String parent,String type,int childCount)
-	{
-		super(line,parent, type,childCount);
+	public PaddingPropertyDeclaration(dart_parse.PaddingPropertyDeclarationContext ctx, EdgeInsistAll edgeInsistAll) {
+		super(ctx);
 		this.edgeInsistAll=edgeInsistAll;
 	}
 
 	@Override
 	public String toString() {
-		return "Padding property Declaration line: "+getLine() + " parent "+getParent()
-				+" Child Count =  "+getChildCount()+" Type = "+getType()+"\n"
+		return getLineString()+"Padding property Declaration " + " parent "+getParent()
+				+" Child Count =  "+getChildCount()+" Type = " + NodeType.PROPERTY+"\n"
 				+ edgeInsistAll
 				;
 	}

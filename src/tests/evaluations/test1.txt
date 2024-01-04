@@ -1,0 +1,11 @@
+class test {
+   int x=2;
+   int y=3;
+
+   int z = x+y;
+   int w = x-y;
+   int r = x*y;
+   int t = x/y;
+
+
+ }

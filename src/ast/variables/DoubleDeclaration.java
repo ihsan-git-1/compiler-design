@@ -1,27 +1,12 @@
 package ast.variables;
 
-public class DoubleDeclaration extends VariableDeclaration {
+import gen.dart_parse;
+
+public class DoubleDeclaration extends Identifier implements assignment {
     String name;
-    AddDoubleExpression expr;
 
-    public DoubleDeclaration(String name, int line, String parent,String type,int childCount) {
-        super(line, parent, type, childCount);
+    public DoubleDeclaration(dart_parse.DoubleDeclarationContext ctx , String name) {
+        super(ctx);
         this.name = name;
-    }
-
-    public DoubleDeclaration(AddDoubleExpression expr, String name, int line, String parent,String type,int childCount) {
-        super(line, parent, type, childCount);
-        this.expr = expr;
-        this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        if (expr != null) {
-            return "Double Declaration: "+"name:" +name + " value: "+expr.value.num +" line: "+ getLine() + " Parent: "+ getParent()
-                    +" Child Count =  "+getChildCount()+" Type = "+getType()+"\n"
-                    +expr;
-        }
-        return "\n";
     }
 }

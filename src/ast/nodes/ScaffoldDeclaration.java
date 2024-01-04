@@ -1,18 +1,31 @@
 package ast.nodes;
 
+import ast.NodeType;
+import gen.dart_parse;
+
 public class ScaffoldDeclaration extends WidgetAbstractChild {
 	BodyPropertyDeclaration bodyPropertyDeclaration;
 	
-	public ScaffoldDeclaration(BodyPropertyDeclaration bodyPropertyDeclaration,int line ,String parent,String type,int childCount) {
-		super(line,parent, type, childCount);
+	public ScaffoldDeclaration(dart_parse.ScaffoldDeclarationContext ctx, BodyPropertyDeclaration bodyPropertyDeclaration) {
+		super(ctx);
 		this.bodyPropertyDeclaration = bodyPropertyDeclaration;
 	}
 
 	@Override
 	public String toString() {
-		return "Scaffold Declaration line: "+getLine()+" parent "+getParent()
-				+" Child Count =  "+getChildCount()+" Type = "+getType()+"\n"
+		return getLineString()+"Scaffold Declaration "+" parent "+getParent()
+				+" Child Count =  "+getChildCount()+" Type = "+ NodeType.OBJECT+"\n"
 				+bodyPropertyDeclaration
 				;
+	}
+
+	@Override
+	public String generate_code(){
+		StringBuilder builder = new StringBuilder();
+		builder.append("<div class='container'>\n");
+		builder.append(bodyPropertyDeclaration.generate_code());
+		builder.append("</div>\n");
+		return builder.toString();
+
 	}
 }

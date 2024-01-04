@@ -1,17 +1,25 @@
 package ast.nodes;
 
+import ast.NodeType;
+import gen.dart_parse;
+
 public class ContainerPropertiesDeclaration extends Node {
 	ContainerPropertiesDeclarationAbstractChild containerPropertiesDeclarationAbstractChild;
 	
-	public ContainerPropertiesDeclaration(ContainerPropertiesDeclarationAbstractChild child,int line ,String parent,String type,int childCount) {
-		super(line,parent, type, childCount);
+	public ContainerPropertiesDeclaration(dart_parse.ConatinerPropertiesDeclarationContext ctx, ContainerPropertiesDeclarationAbstractChild child) {
+		super(ctx);
 		this.containerPropertiesDeclarationAbstractChild = child;
 	}
 
 	@Override
 	public String toString() {
-		return "Container Property Declaration line: "+getLine()+" parent "+getParent()
-				+" Child Count =  "+getChildCount()+" Type = "+getType()+"\n"
+		return getLineString()+"Container Property Declaration "+" parent "+getParent()
+				+" Child Count =  "+getChildCount()+" Type = "+ NodeType.PROPERTY+"\n"
 				+containerPropertiesDeclarationAbstractChild.toString();
+	}
+
+	@Override
+	public String generate_code() {
+		return containerPropertiesDeclarationAbstractChild.generate_code();
 	}
 }

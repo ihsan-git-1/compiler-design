@@ -1,0 +1,29 @@
+
+*********** AST ************
+
+Line : (1) Top Tree Declaration  Child Count =  1 Type = Top Tree
+Line : (1) Class Declaration Name is test parent AllClassesDeclaration Child Count =  10 Type = class
+Line : (2) Dart Variable Declaration:  parent: ClassDeclaration Child Count =  1 Type = object
+Line : (2) Double Declaration Line: Number of declarations on this line: 1Number of assignments on this line: 1 parent: Variable Child Count =  2 Type = variable declaration line (type double)
+ Line : (3) Dart Variable Declaration:  parent: ClassDeclaration Child Count =  1 Type = object
+Line : (3) Double Declaration Line: Number of declarations on this line: 1Number of assignments on this line: 1 parent: Variable Child Count =  2 Type = variable declaration line (type double)
+ Line : (5) Dart Variable Declaration:  parent: ClassDeclaration Child Count =  1 Type = object
+Line : (5) Double Declaration Line: Number of declarations on this line: 1Number of assignments on this line: 1 parent: Variable Child Count =  2 Type = variable declaration line (type double)
+ Line : (6) Dart Variable Declaration:  parent: ClassDeclaration Child Count =  1 Type = object
+Line : (6) Double Declaration Line: Number of declarations on this line: 1Number of assignments on this line: 1 parent: Variable Child Count =  2 Type = variable declaration line (type double)
+ Line : (7) Dart Variable Declaration:  parent: ClassDeclaration Child Count =  1 Type = object
+Line : (7) Double Declaration Line: Number of declarations on this line: 1Number of assignments on this line: 1 parent: Variable Child Count =  2 Type = variable declaration line (type double)
+ Line : (8) Dart Variable Declaration:  parent: ClassDeclaration Child Count =  1 Type = object
+Line : (8) Double Declaration Line: Number of declarations on this line: 1Number of assignments on this line: 1 parent: Variable Child Count =  2 Type = variable declaration line (type double) ,  
+
+*********** SYMBOL TABLE ************
+
+Global Scope (0)
+Class Scope (1) Parent Is Global Scope (0)
+
+Identifier x, Type double, Value : 3.5 , Scope Class Scope (1)
+Identifier y, Type double, Value : 3.25 , Scope Class Scope (1)
+Identifier z, Type double, Value : 6.75 , Scope Class Scope (1)
+Identifier w, Type double, Value : -0.25 , Scope Class Scope (1)
+Identifier r, Type double, Value : 11.375 , Scope Class Scope (1)
+Identifier t, Type double, Value : 0.9285714285714286 , Scope Class Scope (1)

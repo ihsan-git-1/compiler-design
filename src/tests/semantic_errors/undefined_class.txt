@@ -1,0 +1,14 @@
+class test {
+
+    int a(){
+            int b =3;
+            double b =2;
+            while(a != b){
+                if(num > dNumber){
+
+                    int count = 3;
+
+                }
+            }
+    }
+}

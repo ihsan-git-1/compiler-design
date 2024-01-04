@@ -5,7 +5,7 @@ options {tokenVocab=dart_lexar;}
 // base declarations start code
 topTreeDeclaration :
     (allClassesDeclaration
-    |dartVariabelsDeclaration)*
+    |dartDeclaration)*
     ;
 
 allClassesDeclaration:
@@ -18,7 +18,7 @@ classDeclaration :
     CLASS
     NAME
     CRLY_BRKT_OP
-    dartVariabelsDeclaration*
+    dartDeclaration*
     CRLY_BRKT_CL
     ;
 
@@ -27,7 +27,7 @@ statelessClassDeclaration :
     NAME
     STATELESS
     CRLY_BRKT_OP
-    dartVariabelsDeclaration*
+    dartDeclaration*
     buildMethodDeclaration
     CRLY_BRKT_CL
     ;
@@ -42,7 +42,7 @@ stfulFirstBody:
     NAME
     STATEFULL
     CRLY_BRKT_OP
-    dartVariabelsDeclaration*
+    dartDeclaration*
     statefullAssignStateClassDeclaration
     CRLY_BRKT_CL
 ;
@@ -56,7 +56,7 @@ stfulSecondBody:
     NAME
     ANGLE_BRKT_CL
     CRLY_BRKT_OP
-    dartVariabelsDeclaration*
+    dartDeclaration*
     buildMethodDeclaration
     CRLY_BRKT_CL
 ;
@@ -103,7 +103,7 @@ buildMethodDeclaration:
     buildContextDeclaration
     BRKT_CL
     CRLY_BRKT_OP
-    dartVariabelsDeclaration*
+    dartDeclaration*
     RETURN
     widgetsDeclaration
     SEMICOLON
@@ -112,48 +112,128 @@ buildMethodDeclaration:
 
 
 // dart declarations
-dartVariabelsDeclaration:
+dartDeclaration:
     variable
     |function
     |dartAllListsDeclaration
+    |navigation
     ;
-
+// getx navigation
+navigation:
+GET
+BRKT_OP
+NAME
+COMMA
+ARGUMENTS
+COLON
+SQR_BRKT_OP
+STRING_LINE
+(COMMA STRING_LINE)*
+SQR_BRKT_CL
+BRKT_CL
+SEMICOLON
+;
 // dart int, string, bool
 
 variable:
     (FINAL | CONST)?
-    (integerDeclaration
-    |stringDeclaration
-    |boolDeclaration
-    |doubleDeclaration)
+    (integerDeclarationLine
+    |stringDeclarationLine
+    |booleanDeclarationLine
+    |doubleDeclarationLine)
     SEMICOLON
     ;
 
+integerDeclarationLine:
+    INT
+    (integerDeclaration | integerDeclarationAssignment)
+    (COMMA (integerDeclaration | integerDeclarationAssignment))*
+    ;
+
 integerDeclaration:
-    INT?
     NAME
-    (ASSIGN
-    addExpression)?
+    ;
+
+integerDeclarationAssignment:
+    NAME
+    ASSIGN
+    addExpression
+    ;
+
+integerAssignment:
+    NAME
+    ASSIGN
+    addExpression
+    SEMICOLON
+    ;
+
+doubleDeclarationLine:
+    DOUBLE
+    (doubleDeclaration | doubleDeclarationAssignment)
+    (COMMA (doubleDeclaration | doubleDeclarationAssignment))*
     ;
 
 doubleDeclaration:
-    DOUBLE?
     NAME
-    (ASSIGN
-    addDoubleExpression)?
-    ;
-stringDeclaration:
-    STRING?
-    NAME
-    (ASSIGN
-    STRING_LINE)?
     ;
 
-boolDeclaration:
-    BOOL?
+doubleDeclarationAssignment:
     NAME
-    (ASSIGN
-    booleans)?
+    ASSIGN
+    addDoubleExpression
+    ;
+
+doubleAssignment:
+    NAME
+    ASSIGN
+    addDoubleExpression
+    SEMICOLON
+    ;
+
+stringDeclarationLine:
+    STRING
+    (stringDeclaration | stringDeclarationAssignment)
+    (COMMA (stringDeclaration | stringDeclarationAssignment))*
+    ;
+
+stringDeclaration:
+    NAME
+    ;
+
+stringDeclarationAssignment:
+    NAME
+    ASSIGN
+    STRING_LINE
+    ;
+
+stringAssignment:
+    NAME
+    ASSIGN
+    STRING_LINE
+    SEMICOLON
+    ;
+
+booleanDeclarationLine:
+    BOOL
+    (booleanDeclaration | booleanDeclarationAssignment)
+    (COMMA (booleanDeclaration | booleanDeclarationAssignment))*
+    ;
+
+booleanDeclaration:
+    NAME
+    ;
+
+booleanDeclarationAssignment:
+    NAME
+    ASSIGN
+    booleans
+    ;
+
+booleanAssignment:
+    NAME
+    ASSIGN
+    booleans
+    SEMICOLON
     ;
 
 addExpression
@@ -161,7 +241,7 @@ addExpression
     ;
 
 multiplyExpression
-    :   number (('*' | '/') number)*
+    :   (name|number)  (('*' | '/')  (name|number))*
     ;
 
 addDoubleExpression
@@ -169,18 +249,17 @@ addDoubleExpression
     ;
 
 multiplyDoubleExpression
-    :   (number|numberDouble) (('*' | '/') (number|numberDouble))*
+    :   (name|number|numberDouble) (('*' | '/') (name|number|numberDouble))*
     ;
 
 booleans:
     TRUE
     |FALSE
-    |booleanOperation
     ;
 
 booleanOperation:
     (number|numberDouble|NAME)
-    (EQUAL | NOTEQUAL | ANGLE_BRKT_CL | ANGLE_BRKT_OP | GRATEREQUAL | LESSEQUAL)
+    (EQUAL | NOTEQUAL | ANGLE_BRKT_CL | ANGLE_BRKT_OP | GTE | LTE)
     (number|numberDouble|NAME)
     ;
 
@@ -287,7 +366,7 @@ scaffoldDeclaration:
 textDeclaration:
     TEXT
     BRKT_OP
-    STRING_LINE
+    (NAME|STRING_LINE)
     COMMA?
     BRKT_CL
     ;
@@ -441,17 +520,17 @@ NUMBERDOUBLE
 ifStatement:
     IF
     BRKT_OP
-    booleanOperation
+    conditionExpr
     BRKT_CL
     block
-    (ELSEIF block)*
+    ((ELSEIF BRKT_OP conditionExpr BRKT_CL block)* (ELSE block))?
     (ELSE block)?
     ;
 
 whileStatement:
     WHILE
     BRKT_OP
-    booleanOperation
+    conditionExpr
     BRKT_CL
     block
     ;
@@ -462,39 +541,97 @@ block:
     statement*
     CRLY_BRKT_CL
     ;
+
+functionBody:
+    CRLY_BRKT_OP
+    statement*
+    CRLY_BRKT_CL
+   ;
+returnStatement:
+    RETURN
+    expression
+    SEMICOLON;
+
 function:
-    (
-    (FUNCTION? functionType)
-    |FUNCTION
-    )
-    NAME '(' parameters? ')' block
+    functionType? NAME '(' parameters? ')' functionBody
     ;
 functionType:
     (STRING | INT | DOUBLE| BOOL| VAR| VOID)
     ;
 
 parameters:
-    dartVariabelsDeclaration
-    (',' dartVariabelsDeclaration)*
-    COMMA?
+    dartDeclaration (',' dartDeclaration)* COMMA?
+    ;
+
+assignment:
+    integerAssignment
+    |doubleAssignment
+    |booleanAssignment
+    |stringAssignment
     ;
 
 statement:
-    dartVariabelsDeclaration
+    dartDeclaration
     |ifStatement
+    |forStatement
     |whileStatement
-    |function
+    |assignment
     ;
 
 forStatement:
     FOR
     BRKT_OP
-    (integerDeclaration | doubleDeclaration)
+    variable?
+    conditionExpr?
     SEMICOLON
-    booleanOperation
-    SEMICOLON
-    (integerDeclaration | doubleDeclaration)
+    variableAssignment?
     BRKT_CL
-    block
-    ;
+    block;
+
+
+variableAssignment:
+    integerDeclarationAssignment
+    |stringDeclarationAssignment
+    |booleanDeclarationAssignment
+    |doubleDeclarationAssignment;
+
+name : NAME;
+// example on a condition : ((3.3>=3) || false) && (4>=a) ==> (no errors)
+
+conditionExpr : andExpr (OR andExpr)*;
+
+andExpr :binaryExpr (AND binaryExpr)* ;
+
+binaryExpr: term ((EQUAL | NOTEQUAL) term)* ;
+
+term: numericExpr| BRKT_OP conditionExpr BRKT_CL | booleans;
+
+numericExpr: numericTerm (LTE | GTE | EQUAL | NOTEQUAL|ANGLE_BRKT_CL|ANGLE_BRKT_OP) numericTerm;
+
+numericTerm:addExpression|addDoubleExpression|identifier;
+
+prefixUnaryOperator : INC | DEC | NOT;
+
+postfixUnaryOperator: INC | DEC;
+
+expression :  prefixUnaryOperator expression
+           | expression postfixUnaryOperator
+           | addExpression postfixUnaryOperator
+           | functionCall
+           | conditionExpr
+           | numericTerm
+           | '(' expression ')'
+           ;
+
+literal : INT | DOUBLE | STRING | TRUE | FALSE | NULL ;
+
+identifier :
+    integerDeclaration
+    | doubleDeclaration
+    | stringDeclaration
+    | booleanDeclaration;
+
+functionCall : identifier '(' arguments? ')' ;
+
+arguments : expression (',' expression)* ;
 

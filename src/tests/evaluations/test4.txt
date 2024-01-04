@@ -1,0 +1,10 @@
+class test {
+   double x=2;
+   double y=3;
+
+   double z = y+1.3;
+   double w = y-13.75;
+   double r = 4.6*x;
+   double t = y/3;
+
+ }
